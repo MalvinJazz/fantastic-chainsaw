@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<!-- <html>
+    <head>
+
+        Customize this policy to fit your own app's needs. For more guidance, see:
+            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+        Some notes:
+            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+                * Enable inline JS: add 'unsafe-inline' to default-src
+
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <title>Hello World</title>
+    </head>
+    <body>
+        <div class="app">
+            <h1>Apache Cordova</h1>
+            <div id="deviceready" class="blink">
+                <p class="event listening">Connecting to Device</p>
+                <p class="event received">Device is Ready</p>
+            </div>
+        </div>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+    </body>
+</html> -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <title>Prueba</title>
+  </head>
+  <body>
+    <div id="content" style="margin-top: 100px;">
+      <h1>Denuncia</h1>
+      <div class="">
+        <label>Anonima</label>
+        <input type="radio" name="name" value="anomimo">
+        <label>Personal</label>
+        <input type="radio" name="name" value="personal">
+      </div>
+      <form id="form1" method="POST" action='' enctype='multipart/form-data'>
+          <div class="form-group">
+            <div id="ident" style="display: none;">
+              <div>
+                <label>Nombre</label></br>
+                  <input type="text" name="nombre" value="Anonimo"></br>
+              </div>
+              <div>
+                <label>DPI</label></br>
+                  <input type="text" name="dpi" value="Anonimo"> </br>
+              </div>
+              <div>
+                <label>Telefono</label></br>
+                  <input type="text" name="telefono" value=""></br>
+              </div>
+            </div>
+            <div>
+            <label>Denuncia</label></br>
+              <textarea name="denuncia" rows="8" cols="40"></textarea></br>
+            </div>
+            <div>
+              <label>Departamento</label></br>
+              <select id="dep" name="dep">
+                <option value="0" selected>------</option>
+              </select>
+            </div>
+            <div>
+              <label>Municipio</label></br>
+              <select id="muni_id" name="muni">
+                <option selected>------</option>
+              </select>
+            </div>
+            <div>
+            <label>Zona</label></br>
+            <select id="Zona_id" name="zona">
+              <option selected>------</option>
+            </select> </br>
+            </div>
+            <div>
+              <label>Referencia</label></br>
+                <input type="text" name="referencia" value=""></br><span id="help1" class="help">....</span></br>
+            </div>
+            <!-- <div id="map_canvas" style="height: 200px; width: 300px"></div> -->
+            <div>
+            <label>Foto/Video</label></br>
+              <input type="file" id="file" name="file"></br>
+            </div>
+            <div>
+              <!-- <label>Institucion</label></br>
+              <select id="inst" name="inst">
+                <option selected>------</option>
+                {% for dato in instituciones %}
+                  <option value="{{dato.id}}">{{dato.nombre}}</option>
+                {% endfor %}
+              </select>
+            </div> -->
+            <div>
+              <label>Tipo</label></br>
+                {{form.tipo}} </br>
+            </div>
+            <div>
+              <label>Motivo</label></br>
+                {{form.motivo}} </br>
+            </div>
+            <div id="btnForm">
+            </br>
+              <input type="submit" class="btn btn-default" value='Enviar'>
+            </br>
+            </div>
+            <div id="coord" style="display: none;">
+              <input id="lat" type="text" name="lat" value=0>
+              <input id="lon" type="text" name="lon" value=0>
+            </div>
+          </div>
+      </form>
+    </div>
+  </body>
+</html>

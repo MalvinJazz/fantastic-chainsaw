@@ -1,0 +1,25 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.debursa.prueba"
+        },
+        "cordova-plugin-camera": {
+            "PACKAGE_NAME": "com.debursa.prueba"
+        },
+        "cordova-plugin-geolocation": {
+            "PACKAGE_NAME": "com.debursa.prueba"
+        }
+    },
+    "dependent_plugins": {
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "com.debursa.prueba"
+        }
+    }
+}
