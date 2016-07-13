@@ -28,7 +28,6 @@ var app = {
     bindEvents: function() {
       var deps = document.getElementById('dep');
       deps.addEventListener('change', app.busquedaMunicipio);
-
       document.addEventListener('deviceready', this.onDeviceReady, false);
     },
     // deviceready Event Handler
@@ -42,24 +41,29 @@ var app = {
 
 
       var id = $(this).val();
+      document.getElementById('muni_id').length = 0;
 
       $.ajax({
 
         type: 'get',
         dataType: 'json',
-        url: "http://192.168.0.93:8000/" +
-              "estadisticas/api/local/" +
-              "municipio/?departamento__id=" + id,
+        url: "http://192.168.0.93:8000/estadisticas/api/local/municipio/?departamento__id="+id,
         success: function(data){
 
-          var municipios = document.getElementById('muni_id');
+          var municipios = document.getElementById("muni_id");
+
+          var p = document.createElement("option");
+          p.value = "0";
+          p.innerHTML = "------"
+
+          municipios.options.add(p);
 
           for(var i=0;i<data.objects.length;i++){
 
             var nuevo = document.createElement("option");
 
             nuevo.value = data.objects[i].id;
-            nuevo.innerHTML = data[i].fields.nombre;
+            nuevo.innerHTML = data.objects[i].nombre;
 
             municipios.options.add(nuevo);
 
@@ -70,15 +74,13 @@ var app = {
           alert('No funciona.')
         }
 
-      })
+      });
 
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
 
       var departamentos = document.getElementById('dep');
-
-      alert(departamentos);
 
       $.ajax({
 
