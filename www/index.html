@@ -97,7 +97,7 @@
             <div>
               <label>Municipio</label></br>
               <select id="muni_id" name="muni">
-                <option selected>------</option>
+                <option value="0" selected>------</option>
               </select>
             </div>
             <div>
@@ -115,15 +115,6 @@
             <label>Foto/Video</label></br>
               <input type="file" id="file" name="file"></br>
             </div>
-            <div>
-              <!-- <label>Institucion</label></br>
-              <select id="inst" name="inst">
-                <option selected>------</option>
-                {% for dato in instituciones %}
-                  <option value="{{dato.id}}">{{dato.nombre}}</option>
-                {% endfor %}
-              </select>
-            </div> -->
             <div>
               <label>Tipo</label></br>
                 {{form.tipo}} </br>
@@ -144,5 +135,8 @@
           </div>
       </form>
     </div>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   </body>
 </html>
