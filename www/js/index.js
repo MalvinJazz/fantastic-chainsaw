@@ -27,6 +27,12 @@ var app = {
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
       var deps = document.getElementById('dep');
+      var muni = document.getElementById('muni_id');
+      var tipo = document.getElementById('id_tipo');
+      var enviar = document.getElementById('enviar');
+      enviar.addEventListener('click', app.enviarInfo);
+      tipo.addEventListener('change', app.busquedaMotivo);
+      muni.addEventListener('change', app.busquedaZona);
       deps.addEventListener('change', app.busquedaMunicipio);
       document.addEventListener('deviceready', this.onDeviceReady, false);
     },
@@ -37,6 +43,123 @@ var app = {
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
     },
+
+    enviarInfo: function(){
+
+      var motivo = document.getElementById('motivo_id').value;
+      var direccion = document.getElementById('zona_id').value;
+
+      var data = JSON.stringify({
+
+         'nombre': document.getElementById('nombre').value,
+         'dpi': document.getElementById('dpi').value,
+         'telefono': document.getElementById('telefono').value,
+         'latitud': document.getElementById('lat').value,
+         'longitud': document.getElementById('lon').value,
+         'denuncia': document.getElementById('denuncia').value,
+         'referencia': document.getElementById('referencia').value,
+         'tipo': document.getElementById('id_tipo').value,
+         'motivo': "denuncias/api/d1/motivo/" + motivo + '/',
+         'direccion': "estadisticas/api/local/direccion/" + direccion + '/',
+
+      })
+
+      alert(data);
+
+
+      $.ajax({
+
+        url: 'http://192.168.0.93:8000/denuncias/api/d1/denuncia/',
+        type: 'POST',
+        contentType: 'application/json',
+        data: data,
+        dataType: 'json',
+        processData: false
+
+      })
+
+    },
+
+    busquedaMotivo: function(){
+
+      var id = $(this).val();
+      document.getElementById('motivo_id').length = 0;
+
+      $.ajax({
+
+        type: 'get',
+        dataType: 'json',
+        url: "http://192.168.0.93:8000/denuncias/api/d1/motivo?institucion__tipo="+id,
+        success: function(data){
+
+          var motivos = document.getElementById('motivo_id');
+
+          var p = document.createElement('option');
+          p.value = "0";
+          p.innerHTML = "------";
+
+          motivos.options.add(p);
+
+          for(var i=0; i<data.objects.length;i++){
+
+            var nuevo = document.createElement('option');
+
+            nuevo.value = data.objects[i].id;
+            nuevo.innerHTML = data.objects[i].motivo;
+
+            motivos.options.add(nuevo);
+
+          }
+
+        },
+        error: function(){
+          alert('No funciona.');
+        }
+
+      })
+
+    },
+
+    busquedaZona: function(){
+
+      var id = $(this).val();
+      document.getElementById('zona_id').length = 0;
+
+      $.ajax({
+
+        type: 'get',
+        dataType: 'json',
+        url: "http://192.168.0.93:8000/estadisticas/api/local/direccion/?municipio__id="+id,
+        success: function(data){
+
+          var zonas = document.getElementById("zona_id");
+
+          var p = document.createElement("option");
+          p.value = "0";
+          p.innerHTML = "------";
+
+          zonas.options.add(p);
+
+          for(var i=0; i<data.objects.length;i++){
+
+            var nuevo = document.createElement("option");
+
+            nuevo.value = data.objects[i].id;
+            nuevo.innerHTML = data.objects[i].direccion;
+
+            zonas.options.add(nuevo);
+
+          }
+
+        },
+        error: function(){
+          alert('no funciona.');
+        }
+
+      })
+
+    },
+
     busquedaMunicipio: function(){
 
 
@@ -104,6 +227,7 @@ var app = {
         }
 
       });
+
         var parentElement = document.getElementById(id);
         var listeningElement = parentElement.querySelector('.listening');
         var receivedElement = parentElement.querySelector('.received');

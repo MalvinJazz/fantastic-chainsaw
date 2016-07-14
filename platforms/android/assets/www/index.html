@@ -62,7 +62,7 @@
   <body>
     <div id="content" style="margin-top: 100px;">
       <h1>Denuncia</h1>
-      <div class="">
+      <div class="rdBtn">
         <label>Anonima</label>
         <input type="radio" name="name" value="anomimo">
         <label>Personal</label>
@@ -73,20 +73,20 @@
             <div id="ident" style="display: none;">
               <div>
                 <label>Nombre</label></br>
-                  <input type="text" name="nombre" value="Anonimo"></br>
+                  <input id="nombre" type="text" name="nombre" value="Anonimo"></br>
               </div>
               <div>
                 <label>DPI</label></br>
-                  <input type="text" name="dpi" value="Anonimo"> </br>
+                  <input id='dpi' type="text" name="dpi" value="Anonimo"> </br>
               </div>
               <div>
                 <label>Telefono</label></br>
-                  <input type="text" name="telefono" value=""></br>
+                  <input id="telefono" type="text" name="telefono" value=""></br>
               </div>
             </div>
             <div>
             <label>Denuncia</label></br>
-              <textarea name="denuncia" rows="8" cols="40"></textarea></br>
+              <textarea id="denuncia" name="denuncia" rows="8" cols="40"></textarea></br>
             </div>
             <div>
               <label>Departamento</label></br>
@@ -102,13 +102,13 @@
             </div>
             <div>
             <label>Zona</label></br>
-            <select id="Zona_id" name="zona">
+            <select id="zona_id" name="zona">
               <option value="0" selected>------</option>
             </select> </br>
             </div>
             <div>
               <label>Referencia</label></br>
-                <input type="text" name="referencia" value=""></br><span id="help1" class="help">....</span></br>
+                <input id="referencia" type="text" name="referencia" value=""></br><span id="help1" class="help">....</span></br>
             </div>
             <!-- <div id="map_canvas" style="height: 200px; width: 300px"></div> -->
             <div>
@@ -117,18 +117,26 @@
             </div>
             <div>
               <label>Tipo</label></br>
-                {{form.tipo}} </br>
+              <select id="id_tipo" name="tipo">
+                <option value="0" selected>------</option>
+                <option value="CR">Criminal</option>
+                <option value="MU">Municipal</option>
+                <option value="MA">Medio Ambiente</option>
+                <option value="DH">Derechos Humanos</option>
+              </select></br>
             </div>
             <div>
               <label>Motivo</label></br>
-                {{form.motivo}} </br>
+                <select id="motivo_id" name="motivo">
+                  <option value="0" selected>------</option>
+                </select> </br>
             </div>
             <div id="btnForm">
             </br>
-              <input type="submit" class="btn btn-default" value='Enviar'>
+              <input id="enviar" type="button" class="btn btn-default" value='Enviar'>
             </br>
             </div>
-            <div id="coord" style="display: none;">
+            <div id="coord" style="display: block;">
               <input id="lat" type="text" name="lat" value=0>
               <input id="lon" type="text" name="lon" value=0>
             </div>
@@ -138,5 +146,27 @@
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type="text/javascript">
+
+    $('#document').ready(getGeolocation);
+
+    function getGeolocation(){
+
+      if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position){
+
+            var lat = position.coords.latitude;
+            var lon = position.coords.longitude;
+
+            document.getElementById('lat').value = lat;
+            document.getElementById('lon').value = lon;
+          });
+      } else {
+        alert("Para utilizar la geolocalización necesitas actualizar tu navegador.");
+      }
+
+    }
+
+    </script>
   </body>
 </html>
