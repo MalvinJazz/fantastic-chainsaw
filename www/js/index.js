@@ -61,6 +61,7 @@ var app = {
          'tipo': document.getElementById('id_tipo').value,
          'motivo': "denuncias/api/d1/motivo/" + motivo + '/',
          'direccion': "estadisticas/api/local/direccion/" + direccion + '/',
+         'file': document.getElementById('myImage').src,
 
       })
 
@@ -200,10 +201,32 @@ var app = {
       });
 
     },
+
+    onSuccess: function(imageData){
+      var img = document.getElementById('myImage');
+      img.src = "data:image/jpeg;base64," + imageData;
+      // document.getElementById('text').innerHTML = imageData;
+    },
+
+    onFail: function(message){
+      alert('Error por ' + message);
+    },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
 
+      navigator.camera.getPicture(app.onSuccess, app.onFail, {
+        quality: 50,
+        destinationType: Camera.DestinationType.DATA_URL
+      });
+
+      document.getElementById('content').style.display = 'block';
+      document.getElementById('photo').style.display = 'none';
+
       var departamentos = document.getElementById('dep');
+
+      // location.href = 'file:///android_asset/www/prueba.html';
+
+      // file:///android_asset/www/index.html
 
       $.ajax({
 

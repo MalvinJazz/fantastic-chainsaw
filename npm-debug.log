@@ -1,0 +1,419 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node',
+1 verbose cli   '/home/meljua/.node/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   '-g',
+1 verbose cli   'plugman' ]
+2 info using npm@3.10.3
+3 info using node@v0.10.25
+4 verbose node symlink /usr/bin/node
+5 silly loadCurrentTree Starting
+6 silly install loadCurrentTree
+7 silly install readGlobalPackageData
+8 silly fetchPackageMetaData plugman
+9 silly fetchNamedPackageData plugman
+10 silly mapToRegistry name plugman
+11 silly mapToRegistry using default registry
+12 silly mapToRegistry registry https://registry.npmjs.org/
+13 silly mapToRegistry data { raw: 'plugman',
+13 silly mapToRegistry   scope: null,
+13 silly mapToRegistry   escapedName: 'plugman',
+13 silly mapToRegistry   name: 'plugman',
+13 silly mapToRegistry   rawSpec: '',
+13 silly mapToRegistry   spec: 'latest',
+13 silly mapToRegistry   type: 'tag' }
+14 silly mapToRegistry uri https://registry.npmjs.org/plugman
+15 verbose request uri https://registry.npmjs.org/plugman
+16 verbose request no auth needed
+17 info attempt registry request try #1 at 14:46:25
+18 verbose request id 7f01c18c9daa1108
+19 http request GET https://registry.npmjs.org/plugman
+20 http 200 https://registry.npmjs.org/plugman
+21 verbose headers { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+21 verbose headers   etag: '"2CYVZN4HVTT801IA47L4CTP9I"',
+21 verbose headers   'content-type': 'application/json',
+21 verbose headers   'content-encoding': 'gzip',
+21 verbose headers   'cache-control': 'max-age=300',
+21 verbose headers   'content-length': '16615',
+21 verbose headers   'accept-ranges': 'bytes',
+21 verbose headers   date: 'Thu, 14 Jul 2016 20:46:26 GMT',
+21 verbose headers   via: '1.1 varnish',
+21 verbose headers   age: '0',
+21 verbose headers   connection: 'keep-alive',
+21 verbose headers   'x-served-by': 'cache-iad2136-IAD',
+21 verbose headers   'x-cache': 'MISS',
+21 verbose headers   'x-cache-hits': '0',
+21 verbose headers   'x-timer': 'S1468529186.310120,VS0,VE23',
+21 verbose headers   vary: 'Accept-Encoding' }
+22 silly get cb [ 200,
+22 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+22 silly get     etag: '"2CYVZN4HVTT801IA47L4CTP9I"',
+22 silly get     'content-type': 'application/json',
+22 silly get     'content-encoding': 'gzip',
+22 silly get     'cache-control': 'max-age=300',
+22 silly get     'content-length': '16615',
+22 silly get     'accept-ranges': 'bytes',
+22 silly get     date: 'Thu, 14 Jul 2016 20:46:26 GMT',
+22 silly get     via: '1.1 varnish',
+22 silly get     age: '0',
+22 silly get     connection: 'keep-alive',
+22 silly get     'x-served-by': 'cache-iad2136-IAD',
+22 silly get     'x-cache': 'MISS',
+22 silly get     'x-cache-hits': '0',
+22 silly get     'x-timer': 'S1468529186.310120,VS0,VE23',
+22 silly get     vary: 'Accept-Encoding' } ]
+23 verbose get saving plugman to /home/meljua/.npm/registry.npmjs.org/plugman/.cache.json
+24 verbose correctMkdir /home/meljua/.npm correctMkdir not in flight; initializing
+25 silly install normalizeTree
+26 silly loadCurrentTree Finishing
+27 silly loadIdealTree Starting
+28 silly install loadIdealTree
+29 silly cloneCurrentTree Starting
+30 silly install cloneCurrentTreeToIdealTree
+31 silly cloneCurrentTree Finishing
+32 silly loadShrinkwrap Starting
+33 silly install loadShrinkwrap
+34 silly loadShrinkwrap Finishing
+35 silly loadAllDepsIntoIdealTree Starting
+36 silly install loadAllDepsIntoIdealTree
+37 silly resolveWithNewModule plugman@1.3.0 checking installable status
+38 silly cache add args [ 'plugman', null ]
+39 verbose cache add spec plugman
+40 silly cache add parsed spec { raw: 'plugman',
+40 silly cache add   scope: null,
+40 silly cache add   escapedName: 'plugman',
+40 silly cache add   name: 'plugman',
+40 silly cache add   rawSpec: '',
+40 silly cache add   spec: 'latest',
+40 silly cache add   type: 'tag' }
+41 silly addNamed plugman@latest
+42 verbose addNamed "latest" is being treated as a dist-tag for plugman
+43 info addNameTag [ 'plugman', 'latest' ]
+44 silly mapToRegistry name plugman
+45 silly mapToRegistry using default registry
+46 silly mapToRegistry registry https://registry.npmjs.org/
+47 silly mapToRegistry data { raw: 'plugman',
+47 silly mapToRegistry   scope: null,
+47 silly mapToRegistry   escapedName: 'plugman',
+47 silly mapToRegistry   name: 'plugman',
+47 silly mapToRegistry   rawSpec: '',
+47 silly mapToRegistry   spec: 'latest',
+47 silly mapToRegistry   type: 'tag' }
+48 silly mapToRegistry uri https://registry.npmjs.org/plugman
+49 verbose addNameTag registry:https://registry.npmjs.org/plugman not in flight; fetching
+50 verbose get https://registry.npmjs.org/plugman not expired, no request
+51 silly addNameTag next cb for plugman with tag latest
+52 silly addNamed plugman@1.3.0
+53 verbose addNamed "1.3.0" is a plain semver version for plugman
+54 silly mapToRegistry name plugman
+55 silly mapToRegistry using default registry
+56 silly mapToRegistry registry https://registry.npmjs.org/
+57 silly mapToRegistry data { raw: 'plugman',
+57 silly mapToRegistry   scope: null,
+57 silly mapToRegistry   escapedName: 'plugman',
+57 silly mapToRegistry   name: 'plugman',
+57 silly mapToRegistry   rawSpec: '',
+57 silly mapToRegistry   spec: 'latest',
+57 silly mapToRegistry   type: 'tag' }
+58 silly mapToRegistry uri https://registry.npmjs.org/plugman
+59 verbose addRemoteTarball https://registry.npmjs.org/plugman/-/plugman-1.3.0.tgz not in flight; adding
+60 verbose addRemoteTarball [ 'https://registry.npmjs.org/plugman/-/plugman-1.3.0.tgz',
+60 verbose addRemoteTarball   '91a4899e9bc4a6bc2f72af99ec844c8c5da787c7' ]
+61 info retry fetch attempt 1 at 14:46:26
+62 info attempt registry request try #1 at 14:46:26
+63 http fetch GET https://registry.npmjs.org/plugman/-/plugman-1.3.0.tgz
+64 http fetch 200 https://registry.npmjs.org/plugman/-/plugman-1.3.0.tgz
+65 silly fetchAndShaCheck shasum 91a4899e9bc4a6bc2f72af99ec844c8c5da787c7
+66 verbose addTmpTarball /tmp/npm-3468-6c3825fd/registry.npmjs.org/plugman/-/plugman-1.3.0.tgz not in flight; adding
+67 verbose addTmpTarball already have metadata; skipping unpack for plugman@1.3.0
+68 verbose correctMkdir /home/meljua/.npm correctMkdir not in flight; initializing
+69 silly cache afterAdd plugman@1.3.0
+70 verbose afterAdd /home/meljua/.npm/plugman/1.3.0/package/package.json not in flight; writing
+71 verbose correctMkdir /home/meljua/.npm correctMkdir not in flight; initializing
+72 verbose afterAdd /home/meljua/.npm/plugman/1.3.0/package/package.json written
+73 silly fetchNamedPackageData cordova-lib
+74 silly mapToRegistry name cordova-lib
+75 silly mapToRegistry using default registry
+76 silly mapToRegistry registry https://registry.npmjs.org/
+77 silly mapToRegistry data { raw: 'cordova-lib',
+77 silly mapToRegistry   scope: null,
+77 silly mapToRegistry   escapedName: 'cordova-lib',
+77 silly mapToRegistry   name: 'cordova-lib',
+77 silly mapToRegistry   rawSpec: '',
+77 silly mapToRegistry   spec: 'latest',
+77 silly mapToRegistry   type: 'tag' }
+78 silly mapToRegistry uri https://registry.npmjs.org/cordova-lib
+79 silly fetchNamedPackageData nopt
+80 silly mapToRegistry name nopt
+81 silly mapToRegistry using default registry
+82 silly mapToRegistry registry https://registry.npmjs.org/
+83 silly mapToRegistry data { raw: 'nopt',
+83 silly mapToRegistry   scope: null,
+83 silly mapToRegistry   escapedName: 'nopt',
+83 silly mapToRegistry   name: 'nopt',
+83 silly mapToRegistry   rawSpec: '',
+83 silly mapToRegistry   spec: 'latest',
+83 silly mapToRegistry   type: 'tag' }
+84 silly mapToRegistry uri https://registry.npmjs.org/nopt
+85 silly fetchNamedPackageData q
+86 silly mapToRegistry name q
+87 silly mapToRegistry using default registry
+88 silly mapToRegistry registry https://registry.npmjs.org/
+89 silly mapToRegistry data { raw: 'q',
+89 silly mapToRegistry   scope: null,
+89 silly mapToRegistry   escapedName: 'q',
+89 silly mapToRegistry   name: 'q',
+89 silly mapToRegistry   rawSpec: '',
+89 silly mapToRegistry   spec: 'latest',
+89 silly mapToRegistry   type: 'tag' }
+90 silly mapToRegistry uri https://registry.npmjs.org/q
+91 verbose request uri https://registry.npmjs.org/q
+92 verbose request no auth needed
+93 info attempt registry request try #1 at 14:46:27
+94 verbose etag "98V5TKM118YYG8VD14SOKEZD4"
+95 http request GET https://registry.npmjs.org/q
+96 verbose request uri https://registry.npmjs.org/cordova-lib
+97 verbose request no auth needed
+98 info attempt registry request try #1 at 14:46:27
+99 verbose etag "DZZURU491DITX8D8IH8S81RSN"
+100 http request GET https://registry.npmjs.org/cordova-lib
+101 verbose request uri https://registry.npmjs.org/nopt
+102 verbose request no auth needed
+103 info attempt registry request try #1 at 14:46:27
+104 verbose etag "2JXBG6E9IHE2YUKR7WIPSF0QW"
+105 http request GET https://registry.npmjs.org/nopt
+106 http 200 https://registry.npmjs.org/nopt
+107 verbose headers { server: 'CouchDB/1.6.1 (Erlang OTP/R16B03)',
+107 verbose headers   etag: '"78G1M1M0AXU12YKI437SEJ1HN"',
+107 verbose headers   'content-type': 'application/json',
+107 verbose headers   'content-encoding': 'gzip',
+107 verbose headers   'cache-control': 'max-age=300',
+107 verbose headers   'content-length': '7224',
+107 verbose headers   'accept-ranges': 'bytes',
+107 verbose headers   date: 'Thu, 14 Jul 2016 20:46:27 GMT',
+107 verbose headers   via: '1.1 varnish',
+107 verbose headers   age: '102',
+107 verbose headers   connection: 'keep-alive',
+107 verbose headers   'x-served-by': 'cache-iad2644-IAD',
+107 verbose headers   'x-cache': 'HIT',
+107 verbose headers   'x-cache-hits': '4',
+107 verbose headers   'x-timer': 'S1468529187.870194,VS0,VE0',
+107 verbose headers   vary: 'Accept-Encoding' }
+108 silly get cb [ 200,
+108 silly get   { server: 'CouchDB/1.6.1 (Erlang OTP/R16B03)',
+108 silly get     etag: '"78G1M1M0AXU12YKI437SEJ1HN"',
+108 silly get     'content-type': 'application/json',
+108 silly get     'content-encoding': 'gzip',
+108 silly get     'cache-control': 'max-age=300',
+108 silly get     'content-length': '7224',
+108 silly get     'accept-ranges': 'bytes',
+108 silly get     date: 'Thu, 14 Jul 2016 20:46:27 GMT',
+108 silly get     via: '1.1 varnish',
+108 silly get     age: '102',
+108 silly get     connection: 'keep-alive',
+108 silly get     'x-served-by': 'cache-iad2644-IAD',
+108 silly get     'x-cache': 'HIT',
+108 silly get     'x-cache-hits': '4',
+108 silly get     'x-timer': 'S1468529187.870194,VS0,VE0',
+108 silly get     vary: 'Accept-Encoding' } ]
+109 verbose get saving nopt to /home/meljua/.npm/registry.npmjs.org/nopt/.cache.json
+110 verbose correctMkdir /home/meljua/.npm correctMkdir not in flight; initializing
+111 silly resolveWithNewModule nopt@1.0.9 checking installable status
+112 silly cache add args [ 'nopt@1.0.9', null ]
+113 verbose cache add spec nopt@1.0.9
+114 silly cache add parsed spec { raw: 'nopt@1.0.9',
+114 silly cache add   scope: null,
+114 silly cache add   escapedName: 'nopt',
+114 silly cache add   name: 'nopt',
+114 silly cache add   rawSpec: '1.0.9',
+114 silly cache add   spec: '1.0.9',
+114 silly cache add   type: 'version' }
+115 silly addNamed nopt@1.0.9
+116 verbose addNamed "1.0.9" is a plain semver version for nopt
+117 silly mapToRegistry name nopt
+118 silly mapToRegistry using default registry
+119 silly mapToRegistry registry https://registry.npmjs.org/
+120 silly mapToRegistry data { raw: 'nopt',
+120 silly mapToRegistry   scope: null,
+120 silly mapToRegistry   escapedName: 'nopt',
+120 silly mapToRegistry   name: 'nopt',
+120 silly mapToRegistry   rawSpec: '',
+120 silly mapToRegistry   spec: 'latest',
+120 silly mapToRegistry   type: 'tag' }
+121 silly mapToRegistry uri https://registry.npmjs.org/nopt
+122 verbose addNameVersion registry:https://registry.npmjs.org/nopt not in flight; fetching
+123 verbose get https://registry.npmjs.org/nopt not expired, no request
+124 silly mapToRegistry name nopt
+125 silly mapToRegistry using default registry
+126 silly mapToRegistry registry https://registry.npmjs.org/
+127 silly mapToRegistry data { raw: 'nopt',
+127 silly mapToRegistry   scope: null,
+127 silly mapToRegistry   escapedName: 'nopt',
+127 silly mapToRegistry   name: 'nopt',
+127 silly mapToRegistry   rawSpec: '',
+127 silly mapToRegistry   spec: 'latest',
+127 silly mapToRegistry   type: 'tag' }
+128 silly mapToRegistry uri https://registry.npmjs.org/nopt
+129 verbose addRemoteTarball https://registry.npmjs.org/nopt/-/nopt-1.0.9.tgz not in flight; adding
+130 verbose addRemoteTarball [ 'https://registry.npmjs.org/nopt/-/nopt-1.0.9.tgz',
+130 verbose addRemoteTarball   '3bc0d7cba7bfb0d5a676dbed7c0ebe48a4fd454e' ]
+131 info retry fetch attempt 1 at 14:46:27
+132 info attempt registry request try #1 at 14:46:27
+133 http fetch GET https://registry.npmjs.org/nopt/-/nopt-1.0.9.tgz
+134 http 200 https://registry.npmjs.org/q
+135 verbose headers { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+135 verbose headers   etag: '"11LE5BH9VUZ1ZBU2CGUFXD66O"',
+135 verbose headers   'content-type': 'application/json',
+135 verbose headers   'content-encoding': 'gzip',
+135 verbose headers   'cache-control': 'max-age=300',
+135 verbose headers   'content-length': '23105',
+135 verbose headers   'accept-ranges': 'bytes',
+135 verbose headers   date: 'Thu, 14 Jul 2016 20:46:27 GMT',
+135 verbose headers   via: '1.1 varnish',
+135 verbose headers   age: '73',
+135 verbose headers   connection: 'keep-alive',
+135 verbose headers   'x-served-by': 'cache-iad2624-IAD',
+135 verbose headers   'x-cache': 'HIT',
+135 verbose headers   'x-cache-hits': '1',
+135 verbose headers   'x-timer': 'S1468529187.810825,VS0,VE0',
+135 verbose headers   vary: 'Accept-Encoding' }
+136 silly get cb [ 200,
+136 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+136 silly get     etag: '"11LE5BH9VUZ1ZBU2CGUFXD66O"',
+136 silly get     'content-type': 'application/json',
+136 silly get     'content-encoding': 'gzip',
+136 silly get     'cache-control': 'max-age=300',
+136 silly get     'content-length': '23105',
+136 silly get     'accept-ranges': 'bytes',
+136 silly get     date: 'Thu, 14 Jul 2016 20:46:27 GMT',
+136 silly get     via: '1.1 varnish',
+136 silly get     age: '73',
+136 silly get     connection: 'keep-alive',
+136 silly get     'x-served-by': 'cache-iad2624-IAD',
+136 silly get     'x-cache': 'HIT',
+136 silly get     'x-cache-hits': '1',
+136 silly get     'x-timer': 'S1468529187.810825,VS0,VE0',
+136 silly get     vary: 'Accept-Encoding' } ]
+137 verbose get saving q to /home/meljua/.npm/registry.npmjs.org/q/.cache.json
+138 verbose correctMkdir /home/meljua/.npm correctMkdir not in flight; initializing
+139 silly resolveWithNewModule q@1.0.1 checking installable status
+140 silly cache add args [ 'q@1.0.1', null ]
+141 verbose cache add spec q@1.0.1
+142 silly cache add parsed spec { raw: 'q@1.0.1',
+142 silly cache add   scope: null,
+142 silly cache add   escapedName: 'q',
+142 silly cache add   name: 'q',
+142 silly cache add   rawSpec: '1.0.1',
+142 silly cache add   spec: '1.0.1',
+142 silly cache add   type: 'version' }
+143 silly addNamed q@1.0.1
+144 verbose addNamed "1.0.1" is a plain semver version for q
+145 silly mapToRegistry name q
+146 silly mapToRegistry using default registry
+147 silly mapToRegistry registry https://registry.npmjs.org/
+148 silly mapToRegistry data { raw: 'q',
+148 silly mapToRegistry   scope: null,
+148 silly mapToRegistry   escapedName: 'q',
+148 silly mapToRegistry   name: 'q',
+148 silly mapToRegistry   rawSpec: '',
+148 silly mapToRegistry   spec: 'latest',
+148 silly mapToRegistry   type: 'tag' }
+149 silly mapToRegistry uri https://registry.npmjs.org/q
+150 verbose addNameVersion registry:https://registry.npmjs.org/q not in flight; fetching
+151 verbose get https://registry.npmjs.org/q not expired, no request
+152 silly cache afterAdd q@1.0.1
+153 verbose afterAdd /home/meljua/.npm/q/1.0.1/package/package.json not in flight; writing
+154 verbose correctMkdir /home/meljua/.npm correctMkdir not in flight; initializing
+155 verbose afterAdd /home/meljua/.npm/q/1.0.1/package/package.json written
+156 http 200 https://registry.npmjs.org/cordova-lib
+157 verbose headers { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+157 verbose headers   etag: '"28KHPMN1SXAGDLOXN925XZFSP"',
+157 verbose headers   'content-type': 'application/json',
+157 verbose headers   'content-encoding': 'gzip',
+157 verbose headers   'cache-control': 'max-age=300',
+157 verbose headers   'content-length': '23343',
+157 verbose headers   'accept-ranges': 'bytes',
+157 verbose headers   date: 'Thu, 14 Jul 2016 20:46:27 GMT',
+157 verbose headers   via: '1.1 varnish',
+157 verbose headers   age: '0',
+157 verbose headers   connection: 'keep-alive',
+157 verbose headers   'x-served-by': 'cache-iad2140-IAD',
+157 verbose headers   'x-cache': 'HIT',
+157 verbose headers   'x-cache-hits': '1',
+157 verbose headers   'x-timer': 'S1468529187.867113,VS0,VE115',
+157 verbose headers   vary: 'Accept-Encoding' }
+158 silly get cb [ 200,
+158 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+158 silly get     etag: '"28KHPMN1SXAGDLOXN925XZFSP"',
+158 silly get     'content-type': 'application/json',
+158 silly get     'content-encoding': 'gzip',
+158 silly get     'cache-control': 'max-age=300',
+158 silly get     'content-length': '23343',
+158 silly get     'accept-ranges': 'bytes',
+158 silly get     date: 'Thu, 14 Jul 2016 20:46:27 GMT',
+158 silly get     via: '1.1 varnish',
+158 silly get     age: '0',
+158 silly get     connection: 'keep-alive',
+158 silly get     'x-served-by': 'cache-iad2140-IAD',
+158 silly get     'x-cache': 'HIT',
+158 silly get     'x-cache-hits': '1',
+158 silly get     'x-timer': 'S1468529187.867113,VS0,VE115',
+158 silly get     vary: 'Accept-Encoding' } ]
+159 verbose get saving cordova-lib to /home/meljua/.npm/registry.npmjs.org/cordova-lib/.cache.json
+160 verbose correctMkdir /home/meljua/.npm correctMkdir not in flight; initializing
+161 silly resolveWithNewModule cordova-lib@6.2.0 checking installable status
+162 silly cache add args [ 'cordova-lib@6.2.0', null ]
+163 verbose cache add spec cordova-lib@6.2.0
+164 silly cache add parsed spec { raw: 'cordova-lib@6.2.0',
+164 silly cache add   scope: null,
+164 silly cache add   escapedName: 'cordova-lib',
+164 silly cache add   name: 'cordova-lib',
+164 silly cache add   rawSpec: '6.2.0',
+164 silly cache add   spec: '6.2.0',
+164 silly cache add   type: 'version' }
+165 silly addNamed cordova-lib@6.2.0
+166 verbose addNamed "6.2.0" is a plain semver version for cordova-lib
+167 silly mapToRegistry name cordova-lib
+168 silly mapToRegistry using default registry
+169 silly mapToRegistry registry https://registry.npmjs.org/
+170 silly mapToRegistry data { raw: 'cordova-lib',
+170 silly mapToRegistry   scope: null,
+170 silly mapToRegistry   escapedName: 'cordova-lib',
+170 silly mapToRegistry   name: 'cordova-lib',
+170 silly mapToRegistry   rawSpec: '',
+170 silly mapToRegistry   spec: 'latest',
+170 silly mapToRegistry   type: 'tag' }
+171 silly mapToRegistry uri https://registry.npmjs.org/cordova-lib
+172 verbose addNameVersion registry:https://registry.npmjs.org/cordova-lib not in flight; fetching
+173 verbose get https://registry.npmjs.org/cordova-lib not expired, no request
+174 silly cache afterAdd cordova-lib@6.2.0
+175 verbose afterAdd /home/meljua/.npm/cordova-lib/6.2.0/package/package.json not in flight; writing
+176 verbose correctMkdir /home/meljua/.npm correctMkdir not in flight; initializing
+177 verbose afterAdd /home/meljua/.npm/cordova-lib/6.2.0/package/package.json written
+178 http fetch 200 https://registry.npmjs.org/nopt/-/nopt-1.0.9.tgz
+179 silly fetchAndShaCheck shasum 3bc0d7cba7bfb0d5a676dbed7c0ebe48a4fd454e
+180 verbose addTmpTarball /tmp/npm-3468-6c3825fd/registry.npmjs.org/nopt/-/nopt-1.0.9.tgz not in flight; adding
+181 verbose addTmpTarball already have metadata; skipping unpack for nopt@1.0.9
+182 verbose correctMkdir /home/meljua/.npm correctMkdir not in flight; initializing
+183 silly rollbackFailedOptional Starting
+184 silly rollbackFailedOptional Finishing
+185 silly runTopLevelLifecycles Starting
+186 silly runTopLevelLifecycles Finishing
+187 silly install printInstalled
+188 verbose stack Error: EACCES, mkdir '/home/meljua/.npm/nopt/1.0.9'
+189 verbose cwd /home/meljua/Documentos/Proyecto/prueba
+190 error Linux 3.19.0-64-generic
+191 error argv "node" "/home/meljua/.node/bin/npm" "install" "-g" "plugman"
+192 error node v0.10.25
+193 error npm  v3.10.3
+194 error path /home/meljua/.npm/nopt/1.0.9
+195 error code EACCES
+196 error errno 3
+197 error Error: EACCES, mkdir '/home/meljua/.npm/nopt/1.0.9'
+197 error  { [Error: EACCES, mkdir '/home/meljua/.npm/nopt/1.0.9']
+197 error   errno: 3,
+197 error   code: 'EACCES',
+197 error   path: '/home/meljua/.npm/nopt/1.0.9',
+197 error   parent: 'plugman' }
+198 error Please try running this command again as root/Administrator.
+199 verbose exit [ 3, true ]

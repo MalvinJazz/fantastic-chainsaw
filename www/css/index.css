@@ -125,11 +125,13 @@ body {
 }
 
 #photo{
-    display:none;
-    width:200px;
-    height:200px;
+    display:block;
 }
 
 #sendPhoto{
     display: none;
+}
+
+#content{
+  display: none;
 }
