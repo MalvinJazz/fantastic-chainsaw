@@ -58,10 +58,11 @@ var app = {
          'longitud': document.getElementById('lon').value,
          'denuncia': document.getElementById('denuncia').value,
          'referencia': document.getElementById('referencia').value,
+        //  'archivo': document.getElementById('file')
          'tipo': document.getElementById('id_tipo').value,
          'motivo': "denuncias/api/d1/motivo/" + motivo + '/',
          'direccion': "estadisticas/api/local/direccion/" + direccion + '/',
-         'file': document.getElementById('myImage').src
+         'file': document.getElementById('myImage').src,
 
       })
 
@@ -70,7 +71,7 @@ var app = {
 
       $.ajax({
 
-        url: 'http://192.168.0.93:8000/denuncias/api/d1/denuncia/',
+        url: 'http://192.168.0.89:8000/denuncias/api/d1/denuncia/',
         type: 'POST',
         contentType: 'application/json',
         data: data,
@@ -90,7 +91,7 @@ var app = {
 
         type: 'get',
         dataType: 'json',
-        url: "http://192.168.0.93:8000/denuncias/api/d1/motivo?institucion__tipo="+id,
+        url: "http://192.168.0.89:8000/denuncias/api/d1/motivo?institucion__tipo="+id,
         success: function(data){
 
           var motivos = document.getElementById('motivo_id');
@@ -130,7 +131,7 @@ var app = {
 
         type: 'get',
         dataType: 'json',
-        url: "http://192.168.0.93:8000/estadisticas/api/local/direccion/?municipio__id="+id,
+        url: "http://192.168.0.89:8000/estadisticas/api/local/direccion/?municipio__id="+id,
         success: function(data){
 
           var zonas = document.getElementById("zona_id");
@@ -171,7 +172,7 @@ var app = {
 
         type: 'get',
         dataType: 'json',
-        url: "http://192.168.0.93:8000/estadisticas/api/local/municipio/?departamento__id="+id,
+        url: "http://192.168.0.89:8000/estadisticas/api/local/municipio/?departamento__id="+id,
         success: function(data){
 
           var municipios = document.getElementById("muni_id");
@@ -205,11 +206,15 @@ var app = {
     onSuccess: function(imageData){
       var img = document.getElementById('myImage');
       img.src = "data:image/jpeg;base64," + imageData;
+      $('#file').hide();
+      $('#photo').show();
       // document.getElementById('text').innerHTML = imageData;
     },
 
     onFail: function(message){
       alert('Error por ' + message);
+      $('#file').show();
+      $('#photo').hide();
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
@@ -220,7 +225,7 @@ var app = {
       });
 
       document.getElementById('content').style.display = 'block';
-      document.getElementById('photo').style.display = 'none';
+      // document.getElementById('photo').style.display = 'none';
 
       var departamentos = document.getElementById('dep');
 
@@ -232,7 +237,7 @@ var app = {
 
         type: 'get',
         dataType: "json",
-        url: "http://192.168.0.93:8000/estadisticas/api/local/departamento?limit=22",
+        url: "http://192.168.0.89:8000/estadisticas/api/local/departamento?limit=22",
         success: function(data){
           for(var i=0; i<data.objects.length; i++){
 
@@ -246,7 +251,7 @@ var app = {
           }
         },
         error: function(){
-          alert('no funciona.');
+          alert('no funciona. 1');
         }
 
       });
