@@ -55,8 +55,11 @@ var app = {
         if (FileReader && files && files.length) {
         var fr = new FileReader();
         fr.onload = function () {
-            document.getElementById('myImage').src = fr.result;
-            $('#photo').show();
+          alert(fr.result);
+          document.getElementById('myImage').src = fr.result;
+          document.getElementById('myVideo').src = fr.result;
+
+          $('#photo').show();
         }
         fr.readAsDataURL(files[0]);
       }
