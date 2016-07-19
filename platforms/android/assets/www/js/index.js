@@ -30,6 +30,8 @@ var app = {
       var muni = document.getElementById('muni_id');
       var tipo = document.getElementById('id_tipo');
       var enviar = document.getElementById('enviar');
+      var doc = document.getElementById('file');
+      doc.addEventListener('change', app.mostrarDoc);
       enviar.addEventListener('click', app.enviarInfo);
       tipo.addEventListener('change', app.busquedaMotivo);
       muni.addEventListener('change', app.busquedaZona);
@@ -42,6 +44,25 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
+    },
+
+    mostrarDoc: function (evt) {
+
+        var tgt = evt.target || window.event.srcElement,
+        files = tgt.files;
+
+      // FileReader support
+        if (FileReader && files && files.length) {
+        var fr = new FileReader();
+        fr.onload = function () {
+            document.getElementById('myImage').src = fr.result;
+            $('#photo').show();
+        }
+        fr.readAsDataURL(files[0]);
+      }
+      else {
+        alert('No funciono')
+      }
     },
 
     enviarInfo: function(){
