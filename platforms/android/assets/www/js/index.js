@@ -54,9 +54,9 @@ var app = {
       // FileReader support
         if (FileReader && files && files.length) {
 
-          extension = (this.value.substring(archivo.lastIndexOf("."))).toLowerCase();
-          alert (extension);
-        
+          // extension = (this.value.substring(archivo.lastIndexOf("."))).toLowerCase();
+          // alert (extension);
+
           var fr = new FileReader();
           fr.onload = function () {
 
