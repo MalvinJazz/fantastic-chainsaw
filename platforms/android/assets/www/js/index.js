@@ -61,7 +61,7 @@ var app = {
           fr.onload = function () {
 
             document.getElementById('myImage').src = fr.result;
-            document.getElementById('myVideo').src = fr.result;
+            // document.getElementById('myVideo').src = fr.result;
 
             $('#photo').show();
           }

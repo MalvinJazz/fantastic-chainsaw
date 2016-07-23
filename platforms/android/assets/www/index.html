@@ -54,6 +54,10 @@
     <meta charset="utf-8">
     <meta charset="utf-8" />
     <meta name="format-detection" content="telephone=no" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
     <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
     <link rel="stylesheet" type="text/css" href="css/index.css" />
@@ -64,9 +68,9 @@
       <h1>Denuncia</h1>
       <div class="rdBtn">
         <label>Anonima</label>
-        <input type="radio" name="name" value="anomimo">
+        <input type="radio" name="name" value="anomimo" checked onClick="deshabilita()">
         <label>Personal</label>
-        <input type="radio" name="name" value="personal">
+        <input type="radio" name="name" value="personal" onClick="habilita()">
       </div>
       <form id="form1" method="POST" action='' enctype='multipart/form-data'>
           <div class="form-group">
@@ -154,6 +158,18 @@
     <script type="text/javascript">
 
     $('#document').ready(getGeolocation);
+
+    function habilita(){
+      document.getElementById("id_nombre").disabled = false;
+      document.getElementById("id_dpi").disabled = false;
+      document.getElementById("ident").style.display = 'block'
+    }
+
+    function deshabilita(){
+      document.getElementById("id_nombre").disabled = true;
+      document.getElementById("id_dpi").disabled = true;
+      document.getElementById("ident").style.display = 'none';
+    }
 
     function getGeolocation(){
 
