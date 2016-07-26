@@ -89,6 +89,7 @@ body {
     color: white;
     position: relative;
     top: 10px;
+    max-width: 200px;
 }
 
 .event {
@@ -141,9 +142,11 @@ body {
 .menu{
   position: relative;
   right: 0;
-  left: 47%;
+  left: 95%;
   top: -40%;
+  height: 32px;
   background: url(img/menu.png) no-repeat center;
+  width: 32px;
 }
 
 .menu span{
