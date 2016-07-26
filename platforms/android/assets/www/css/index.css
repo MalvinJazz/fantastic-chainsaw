@@ -139,9 +139,19 @@ body {
 }
 
 .menu{
-  /*position: relative;
-  right: 0;*/
-  float: right;
+  position: relative;
+  right: 0;
+  left: 47%;
+  top: -40%;
+  background: url(img/menu.png) no-repeat center;
+}
+
+.menu span{
+    display: block;
+    text-indent: -9999px;
+    width: 32px;
+    height: 32px;
+    position: relative;
 }
 
 #photo{
