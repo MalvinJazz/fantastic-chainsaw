@@ -30,6 +30,8 @@ var app = {
       var muni = document.getElementById('muni_id');
       var tipo = document.getElementById('id_tipo');
       var enviar = document.getElementById('enviar');
+      var doc = document.getElementById('file');
+      doc.addEventListener('change', app.mostrarDoc);
       enviar.addEventListener('click', app.enviarInfo);
       tipo.addEventListener('change', app.busquedaMotivo);
       muni.addEventListener('change', app.busquedaZona);
@@ -43,6 +45,32 @@ var app = {
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
     },
+
+    mostrarDoc: function (evt) {
+
+        var tgt = evt.target || window.event.srcElement,
+        files = tgt.files;
+
+      // FileReader support
+        if (FileReader && files && files.length) {
+
+          // extension = (this.value.substring(archivo.lastIndexOf("."))).toLowerCase();
+          // alert (extension);
+
+          var fr = new FileReader();
+          fr.onload = function () {
+
+            document.getElementById('myImage').src = fr.result;
+            // document.getElementById('myVideo').src = fr.result;
+
+            $('#photo').show();
+          }
+          fr.readAsDataURL(files[0]);
+        }
+        else {
+          alert('No funciono')
+        }
+      },
 
     enviarInfo: function(){
 
@@ -58,18 +86,17 @@ var app = {
          'longitud': document.getElementById('lon').value,
          'denuncia': document.getElementById('denuncia').value,
          'referencia': document.getElementById('referencia').value,
+        //  'archivo': document.getElementById('file')
          'tipo': document.getElementById('id_tipo').value,
          'motivo': "denuncias/api/d1/motivo/" + motivo + '/',
          'direccion': "estadisticas/api/local/direccion/" + direccion + '/',
+         'file': document.getElementById('myImage').src,
 
       })
 
-      alert(data);
-
-
       $.ajax({
 
-        url: 'http://192.168.0.93:8000/denuncias/api/d1/denuncia/',
+        url: 'http://192.168.0.88:8000/denuncias/api/d1/denuncia/',
         type: 'POST',
         contentType: 'application/json',
         data: data,
@@ -89,7 +116,7 @@ var app = {
 
         type: 'get',
         dataType: 'json',
-        url: "http://192.168.0.93:8000/denuncias/api/d1/motivo?institucion__tipo="+id,
+        url: "http://192.168.0.88:8000/denuncias/api/d1/motivo?institucion__tipo="+id,
         success: function(data){
 
           var motivos = document.getElementById('motivo_id');
@@ -129,7 +156,7 @@ var app = {
 
         type: 'get',
         dataType: 'json',
-        url: "http://192.168.0.93:8000/estadisticas/api/local/direccion/?municipio__id="+id,
+        url: "http://192.168.0.88:8000/estadisticas/api/local/direccion/?municipio__id="+id,
         success: function(data){
 
           var zonas = document.getElementById("zona_id");
@@ -170,7 +197,7 @@ var app = {
 
         type: 'get',
         dataType: 'json',
-        url: "http://192.168.0.93:8000/estadisticas/api/local/municipio/?departamento__id="+id,
+        url: "http://192.168.0.88:8000/estadisticas/api/local/municipio/?departamento__id="+id,
         success: function(data){
 
           var municipios = document.getElementById("muni_id");
@@ -200,16 +227,42 @@ var app = {
       });
 
     },
+
+    onSuccess: function(imageData){
+      var img = document.getElementById('myImage');
+      img.src = "data:image/jpeg;base64," + imageData;
+      $('#file').hide();
+      $('#photo').show();
+      // document.getElementById('text').innerHTML = imageData;
+    },
+
+    onFail: function(message){
+      alert('Error por ' + message);
+      $('#file').show();
+      $('#photo').hide();
+    },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
 
+      navigator.camera.getPicture(app.onSuccess, app.onFail, {
+        quality: 50,
+        destinationType: Camera.DestinationType.DATA_URL
+      });
+
+      document.getElementById('content').style.display = 'block';
+      // document.getElementById('photo').style.display = 'none';
+
       var departamentos = document.getElementById('dep');
+
+      // location.href = 'file:///android_asset/www/prueba.html';
+
+      // file:///android_asset/www/index.html
 
       $.ajax({
 
         type: 'get',
         dataType: "json",
-        url: "http://192.168.0.93:8000/estadisticas/api/local/departamento?limit=22",
+        url: "http://192.168.0.88:8000/estadisticas/api/local/departamento?limit=22",
         success: function(data){
           for(var i=0; i<data.objects.length; i++){
 
@@ -223,7 +276,7 @@ var app = {
           }
         },
         error: function(){
-          alert('no funciona.');
+          alert('no funciona. 1');
         }
 
       });

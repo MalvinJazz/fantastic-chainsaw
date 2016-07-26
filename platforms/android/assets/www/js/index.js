@@ -43,6 +43,7 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
+        FastClick.attach(document.body);
         app.receivedEvent('deviceready');
     },
 
@@ -77,6 +78,29 @@ var app = {
       var motivo = document.getElementById('motivo_id').value;
       var direccion = document.getElementById('zona_id').value;
 
+      if(document.getElementById('denuncia').value==""){
+        alert('Por favor, ingresa una denuncia.');
+        document.getElementById('denuncia').style.border = "solid red";
+        var pos = $('#denuncia').offset();
+        window.scrollTo(pos.left, pos.top-100);
+        return;
+      }
+      if(motivo==0){
+        alert('Por favor, ingresa un motivo.');
+        document.getElementById('motivo_id').style.border = "solid red";
+        var pos = $('#motivo_id').offset();
+        window.scrollTo(pos.left, pos.top-100);
+        return;
+      }
+
+      if(direccion==0){
+        alert('Por favor, ingresa una zona.');
+        document.getElementById('zona_id').style.border = "solid red";
+        var pos = $('#zona_id').offset();
+        window.scrollTo(pos.left, pos.top-100);
+        return;
+      }
+
       var data = JSON.stringify({
 
          'nombre': document.getElementById('nombre').value,
@@ -94,16 +118,28 @@ var app = {
 
       })
 
-      alert(data);
-
-
       $.ajax({
 
-        url: 'http://192.168.0.89:8000/denuncias/api/d1/denuncia/',
+        url: 'http://192.168.0.88:8000/denuncias/api/d1/denuncia/',
         type: 'POST',
         contentType: 'application/json',
         data: data,
         dataType: 'json',
+        statusCode: {
+          201: function(){
+            alert('Denuncia enviada con exito.');
+          },
+          400: function(){
+            alert('Ha ocurrido un error con el servidor, ' +
+                                 'intenta de nuevo mas tarde.');
+          }
+        },
+        // success: function(data){
+        //   alert('Se ha enviado con exito.')
+        // },
+        // error: function(){
+        //   alert('Ha ocurrido un error con el servidor, intenta de nuevo mas tarde.')
+        // },
         processData: false
 
       })
@@ -119,7 +155,7 @@ var app = {
 
         type: 'get',
         dataType: 'json',
-        url: "http://192.168.0.89:8000/denuncias/api/d1/motivo?institucion__tipo="+id,
+        url: "http://192.168.0.88:8000/denuncias/api/d1/motivo?institucion__tipo="+id,
         success: function(data){
 
           var motivos = document.getElementById('motivo_id');
@@ -159,7 +195,7 @@ var app = {
 
         type: 'get',
         dataType: 'json',
-        url: "http://192.168.0.89:8000/estadisticas/api/local/direccion/?municipio__id="+id,
+        url: "http://192.168.0.88:8000/estadisticas/api/local/direccion/?municipio__id="+id,
         success: function(data){
 
           var zonas = document.getElementById("zona_id");
@@ -200,7 +236,7 @@ var app = {
 
         type: 'get',
         dataType: 'json',
-        url: "http://192.168.0.89:8000/estadisticas/api/local/municipio/?departamento__id="+id,
+        url: "http://192.168.0.88:8000/estadisticas/api/local/municipio/?departamento__id="+id,
         success: function(data){
 
           var municipios = document.getElementById("muni_id");
@@ -265,7 +301,7 @@ var app = {
 
         type: 'get',
         dataType: "json",
-        url: "http://192.168.0.89:8000/estadisticas/api/local/departamento?limit=22",
+        url: "http://192.168.0.88:8000/estadisticas/api/local/departamento?limit=22",
         success: function(data){
           for(var i=0; i<data.objects.length; i++){
 
