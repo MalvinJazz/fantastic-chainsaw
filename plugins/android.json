@@ -18,6 +18,9 @@
         },
         "cordova-plugin-email-composer": {
             "PACKAGE_NAME": "com.debursa.prueba"
+        },
+        "cordova-plugin-dialogs": {
+            "PACKAGE_NAME": "com.debursa.prueba"
         }
     },
     "dependent_plugins": {

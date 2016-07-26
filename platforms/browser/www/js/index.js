@@ -43,6 +43,7 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
+        FastClick.attach(document.body);
         app.receivedEvent('deviceready');
     },
 
@@ -77,6 +78,29 @@ var app = {
       var motivo = document.getElementById('motivo_id').value;
       var direccion = document.getElementById('zona_id').value;
 
+      if(document.getElementById('denuncia').value==""){
+        alert('Por favor, ingresa una denuncia.');
+        document.getElementById('denuncia').style.border = "solid red";
+        var pos = $('#denuncia').offset();
+        window.scrollTo(pos.left, pos.top-100);
+        return;
+      }
+      if(motivo==0){
+        alert('Por favor, ingresa un motivo.');
+        document.getElementById('motivo_id').style.border = "solid red";
+        var pos = $('#motivo_id').offset();
+        window.scrollTo(pos.left, pos.top-100);
+        return;
+      }
+
+      if(direccion==0){
+        alert('Por favor, ingresa una zona.');
+        document.getElementById('zona_id').style.border = "solid red";
+        var pos = $('#zona_id').offset();
+        window.scrollTo(pos.left, pos.top-100);
+        return;
+      }
+
       var data = JSON.stringify({
 
          'nombre': document.getElementById('nombre').value,
@@ -101,6 +125,21 @@ var app = {
         contentType: 'application/json',
         data: data,
         dataType: 'json',
+        statusCode: {
+          201: function(){
+            alert('Denuncia enviada con exito.');
+          },
+          400: function(){
+            alert('Ha ocurrido un error con el servidor, ' +
+                                 'intenta de nuevo mas tarde.');
+          }
+        },
+        // success: function(data){
+        //   alert('Se ha enviado con exito.')
+        // },
+        // error: function(){
+        //   alert('Ha ocurrido un error con el servidor, intenta de nuevo mas tarde.')
+        // },
         processData: false
 
       })

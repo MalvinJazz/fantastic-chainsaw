@@ -22,6 +22,7 @@
 
 body {
     -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
+    -webkit-overflow-scrolling: touch;
     -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
     -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
     background-color:#1A57A7;
@@ -171,6 +172,10 @@ body {
 #content textarea{
   max-height: 150px;
 }
+
+/*#content textarea:focus, input:focus{
+  border: solid black;
+}*/
 
 #content input[type='button']{
   width: 40%;
