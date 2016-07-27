@@ -63,11 +63,27 @@
     <link rel="stylesheet" type="text/css" href="css/index.css" />
     <title>Prueba</title>
   </head>
-  <body onload="loaded()">
+  <body>
     <div class="title">
       <h1>DENUNCIA MOVIL</h1>
-      <div class="menu">
-        <a href="#"><span>MENU</span></a>
+      <div id="menu">
+        <a href="javascript:menu('menu');"><span>MENU</span></a>
+        <div id="wrapperMenu">
+          <div class="scroller">
+            <div id="contenidoMenu">
+              <ul id="ulMenu">
+              	<li>Menu Principal</li>
+              	<li>
+              		<div class="borde-menu color1"></div>
+              		<a href="javascript:menu('1');">
+              			<div class="opcion">Opcion 1</div>
+              			<div class="descripcion">Descripcion opcion</div>
+              		</a>
+              	</li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <div id="content">
@@ -169,8 +185,9 @@
     var myScroll;
 
     function loaded () {
-	     myScroll = new IScroll('#wrapper', { scrollX: true, freeScroll: true, hideScrollbar: true });
+	     myScroll = new IScroll('#content', { scrollX: false, freeScroll: true, hideScrollbar: true });
      }
+    //  document.addEventListener('DOMContentLoaded', loaded, false);
 
     function habilita(){
       document.getElementById("nombre").disabled = false;

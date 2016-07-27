@@ -82,14 +82,14 @@ body {
     font-size:18px;
     font-weight: bolder;
     font-family: Helvetica;
-    margin:0px;
-    overflow:visible;
-    padding:0px;
-    text-align:left;
+    margin: 0px;
+    overflow: visible;
+    padding: 0px;
+    text-align: left;
     color: white;
     position: relative;
     top: 10px;
-    max-width: 200px;
+    max-width: 170px;
 }
 
 .event {
@@ -139,7 +139,7 @@ body {
     width:100%;
 }
 
-.menu{
+#menu{
   position: relative;
   right: 0;
   left: 95%;
@@ -149,7 +149,7 @@ body {
   width: 32px;
 }
 
-.menu span{
+#menu span{
     display: block;
     text-indent: -9999px;
     width: 32px;
@@ -209,4 +209,120 @@ body {
 #content input[type='button']{
   width: 40%;
   height: 40px;
+}
+
+.borde-menu{
+	width:5px;
+	float:left;
+	left:0px;
+	height:100%;
+	margin-right:10px
+}
+
+.color1{
+	background:#2ed877;
+}
+
+.color2{
+	background:#3398dc;
+}
+
+.color3{
+	background:#f4c601;
+}
+
+.color4{
+	background:#fa5039;
+}
+
+.color5{
+	background:#f9870b;
+}
+
+.color6{
+	background:#00c8a4;
+}
+
+.scroller {
+	position:absolute; z-index:1;
+	width:100%;
+	padding:0;
+}
+
+.scroller ul {
+	list-style:none;
+	padding:0;
+	margin:0;
+	width:100%;
+	text-align:left;
+}
+
+.scroller li:first-child {
+	padding:0 10px;
+	border-bottom:1px solid #202328;
+	border-top:1px solid #202529;
+	background-color:#202529;
+	height:44px;
+	line-height:44px;
+	font-size:14px;
+	text-align:center;
+}
+
+.scroller li {
+	border-bottom:1px solid #202328;
+	border-top:1px solid #202529;
+	background-color:#181c1f;
+	height:88px;
+	color:#fff
+}
+
+
+.li-menu-activo{
+	background-color:#323a40 !important;
+}
+
+.scroller li a{
+	width:100%;
+	text-decoration: none;
+}
+
+.scroller li .opcion{
+	width:100%;
+	padding-top:20px;
+	font-size:16px;
+	text-shadow: 0 1px #000;
+}
+
+.scroller li .descripcion{
+	width:100%;
+	padding-top:10px;
+	color:#6e7679;
+	font-size:12px;
+	text-shadow: 0 1px #000;
+	padding-bottom:25px
+}
+
+.page {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+}
+
+.page.center {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+}
+
+.page.right {
+    -webkit-transform: translate3d(80%, 0, 0);
+    transform: translate3d(80%, 0, 0);
+}
+
+.page.transition {
+    -webkit-transition-duration: .25s;
+    transition-duration: .25s;
 }

@@ -63,7 +63,7 @@
     <link rel="stylesheet" type="text/css" href="css/index.css" />
     <title>Prueba</title>
   </head>
-  <body onload="loaded()">
+  <body>
     <div class="title">
       <h1>DENUNCIA MOVIL</h1>
       <div class="menu">
@@ -169,8 +169,9 @@
     var myScroll;
 
     function loaded () {
-	     myScroll = new IScroll('#wrapper', { scrollX: true, freeScroll: true, hideScrollbar: true });
+	     myScroll = new IScroll('#content', { scrollX: false, freeScroll: true, hideScrollbar: true });
      }
+     document.addEventListener('DOMContentLoaded', loaded, false);
 
     function habilita(){
       document.getElementById("nombre").disabled = false;
