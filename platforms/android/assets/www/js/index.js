@@ -38,13 +38,15 @@ var app = {
 
 		// Creamos los 2 scroll mediante el plugin iscroll, uno para el men� principal y otro para el cuerpo
     myScroll = new iScroll('wrapper', {
+      hideScrollbar: true,
       useTransform: false,
       bounce: false,
       onBeforeScrollStart: function (e) {
       var target = e.target;
-      while (target.nodeType != 1) target = target.parentNode;
+      while (target.nodeType != 1)
+        target = target.parentNode;
       if (target.tagName != 'SELECT' && target.tagName != 'INPUT' && target.tagName != 'TEXTAREA' && target.tagName != 'OPTION')
-      e.preventDefault();
+        e.preventDefault();
       }
     });
 		myScrollMenu = new iScroll('wrapperMenu', { hideScrollbar: true });
