@@ -234,7 +234,7 @@ a {
 }
 
 #content{
-  display: block;;
+  display: none;
   align-items: center;
   align-content: center;
   padding-top: 30px;
