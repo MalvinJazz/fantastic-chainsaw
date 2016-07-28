@@ -1,207 +1,67 @@
 <!DOCTYPE html>
-<!--
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
-<!-- <html>
+<html>
     <head>
-
-        Customize this policy to fit your own app's needs. For more guidance, see:
-            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
-        Some notes:
-            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
-            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
-            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
-                * Enable inline JS: add 'unsafe-inline' to default-src
-
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
-        <meta name="format-detection" content="telephone=no">
-        <meta name="msapplication-tap-highlight" content="no">
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-        <link rel="stylesheet" type="text/css" href="css/index.css">
-        <title>Hello World</title>
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <title>Denuncia Movil</title>
     </head>
     <body>
-        <div class="app">
-            <h1>Apache Cordova</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
-            </div>
-        </div>
+		<div id="menuprincipal">
+			<div id="wrapperMenu">
+				<div class="scroller">
+					<div id="contenidoMenu"></div>
+				</div>
+			</div>
+		</div>
+    <div id="cuerpo">
+	    <div id="header"><a href="javascript:menu('menu');"><div class="btn">MENU</div></a><span class="title">Denuncia Movil</span></div>
+			<div id="wrapper">
+				<div class="scroller">
+					<div id="contenidoCuerpo"></div>
+				</div>
+			</div>
+		</div>
+    <div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/fastclick.js"></script>
+        <script type="text/javascript" src="js/iscroll.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript">
+
+
+        function habilita(){
+          document.getElementById("nombre").disabled = false;
+          document.getElementById("dpi").disabled = false;
+          document.getElementById("ident").style.display = 'block'
+        }
+
+        function deshabilita(){
+          document.getElementById("nombre").disabled = true;
+          document.getElementById("dpi").disabled = true;
+          document.getElementById("ident").style.display = 'none';
+        }
+
+        function getGeolocation(){
+
+          if (navigator.geolocation) {
+              navigator.geolocation.getCurrentPosition(function(position){
+
+                var lat = position.coords.latitude;
+                var lon = position.coords.longitude;
+
+                document.getElementById('lat').value = lat;
+                document.getElementById('lon').value = lon;
+              });
+          } else {
+            alert("Para utilizar la geolocalización necesitas actualizar tu navegador.");
+          }
+
+        }
+
+        </script>
+        <script type="text/javascript">
+            app.initialize();
+        </script>
     </body>
-</html> -->
-
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta charset="utf-8" />
-    <meta name="format-detection" content="telephone=no" />
-    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="msapplication-tap-highlight" content="no">
-    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width"> -->
-    <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
-    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-    <link rel="stylesheet" type="text/css" href="css/index.css" />
-    <title>Prueba</title>
-  </head>
-  <body>
-    <div class="title">
-      <h1>DENUNCIA MOVIL</h1>
-      <div class="menu">
-        <a href="#"><span>MENU</span></a>
-      </div>
-    </div>
-    <div id="content">
-      <div class="rdBtn">
-        <label>Anonima</label>
-        <input type="radio" name="name" value="anomimo" onClick="deshabilita()" checked>
-        <label>Personal</label>
-        <input type="radio" name="name" value="personal" onclick="habilita()">
-      </div>
-      <form id="form1" method="POST" action='' enctype='multipart/form-data'>
-          <div id="ident" style="display: none;">
-            <div>
-              <label>Nombre</label></br>
-                <input id="nombre" type="text" name="nombre" value="Anonimo"></br>
-            </div>
-            <div>
-              <label>DPI</label></br>
-                <input id='dpi' type="text" name="dpi" value="Anonimo"> </br>
-            </div>
-            <div>
-              <label>Telefono</label></br>
-                <input id="telefono" type="text" name="telefono" value=""></br>
-            </div>
-          </div>
-          <div>
-          <label>Denuncia</label></br>
-            <textarea id="denuncia" name="denuncia" rows="8" cols="40"></textarea></br>
-          </div>
-          <div>
-            <label>Departamento</label></br>
-            <select id="dep" name="dep">
-              <option value="0" selected>------</option>
-            </select>
-          </div>
-          <div>
-            <label>Municipio</label></br>
-            <select id="muni_id" name="muni">
-              <option value="0" selected>------</option>
-            </select>
-          </div>
-          <div>
-          <label>Zona</label></br>
-          <select id="zona_id" name="zona">
-            <option value="0" selected>------</option>
-          </select> </br>
-          </div>
-          <div>
-            <label>Referencia</label></br>
-              <input id="referencia" type="text" name="referencia" value=""></br>
-          </div>
-          <!-- <div id="map_canvas" style="height: 200px; width: 300px"></div> -->
-          <div>
-          <label>Foto/Video</label></br>
-            <div id="photo">
-              <img style="width:60px;height:60px;" src="" id="myImage"/> <!-- height="200px" width="200px"/> -->
-              <video style="width:60px;height:60px;" src="" id="myVideo" controls autoplay></video>
-            </div>
-            <input type="file" id="file" name="file" accept="image/*, video/*"></br>
-          </div>
-          <div>
-            <label>Tipo</label></br>
-            <select id="id_tipo" name="tipo">
-              <option value="0" selected>------</option>
-              <option value="CR">Criminal</option>
-              <option value="MU">Municipal</option>
-              <option value="MA">Medio Ambiente</option>
-              <option value="DH">Derechos Humanos</option>
-            </select></br>
-          </div>
-          <div>
-            <label>Motivo</label></br>
-              <select id="motivo_id" name="motivo">
-                <option value="0" selected>------</option>
-              </select> </br>
-          </div>
-          <div id="btnForm">
-          </br>
-            <input id="enviar" type="button" class="btn btn-default" value='Enviar'>
-          </br>
-          </div>
-          <div id="coord" style="display: block;">
-            <input id="lat" type="hidden" name="lat" value=0>
-            <input id="lon" type="hidden" name="lon" value=0>
-          </div>
-      </form>
-
-    </div>
-    <script type="text/javascript" src="cordova.js"></script>
-    <script type="text/javascript" src="js/iscroll.js"></script>
-    <script type="text/javascript" src="js/fastclick.js"></script>
-    <script type="text/javascript" src="js/index.js"></script>
-    <!-- <script type="text/javascript" src="js/jquery.js"></script> -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script type="text/javascript">
-
-
-    $('#document').ready(getGeolocation);
-    // document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
-    var myScroll;
-
-    function loaded () {
-	     myScroll = new IScroll('#content', { scrollX: false, freeScroll: true, hideScrollbar: true });
-     }
-     document.addEventListener('DOMContentLoaded', loaded, false);
-
-    function habilita(){
-      document.getElementById("nombre").disabled = false;
-      document.getElementById("dpi").disabled = false;
-      document.getElementById("ident").style.display = 'block'
-    }
-
-    function deshabilita(){
-      document.getElementById("nombre").disabled = true;
-      document.getElementById("dpi").disabled = true;
-      document.getElementById("ident").style.display = 'none';
-    }
-
-    function getGeolocation(){
-
-      if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(function(position){
-
-            var lat = position.coords.latitude;
-            var lon = position.coords.longitude;
-
-            document.getElementById('lat').value = lat;
-            document.getElementById('lon').value = lon;
-          });
-      } else {
-        alert("Para utilizar la geolocalización necesitas actualizar tu navegador.");
-      }
-
-    }
-
-    </script>
-  </body>
 </html>
