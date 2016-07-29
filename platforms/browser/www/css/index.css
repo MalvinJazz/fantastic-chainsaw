@@ -234,7 +234,7 @@ a {
 }
 
 #content{
-  display: none;
+  display: block;
   align-items: center;
   align-content: center;
   padding-top: 30px;
@@ -289,4 +289,22 @@ a {
     text-align: left;
     color: white;
     max-width: 170px;
+}
+
+
+.geoChart{
+  position: relative;
+  top: 0px;
+	width: 100%;
+	height: 500px;
+}
+
+#section{
+  position: relative;
+  /*padding: 3em 0em 4em 0em;*/
+  background-color:#FFF;
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  min-height: 450px;
 }

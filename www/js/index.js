@@ -15,7 +15,7 @@ var app = {
     	estado="cuerpo";
 
     	// Creamos el elemento style, lo a�adimos al html y creamos la clase cssClass para aplicarsela al contenedor wrapper
-	    var heightCuerpo=window.innerHeight-46;
+	    var heightCuerpo=window.innerHeight;
 	    var style = document.createElement('style');
 	    style.type = 'text/css';
 	    style.innerHTML = '.cssClass { position:absolute; z-index:2; left:0; top:46px; width:100%; height: '+heightCuerpo+'px; overflow:auto;}';
@@ -30,6 +30,7 @@ var app = {
 		xhReq.open("GET", "opciones/opcion1.html", false);
 		xhReq.send(null);
 		document.getElementById("contenidoCuerpo").innerHTML=xhReq.responseText;
+    getDepartamentos();
 
 		// Leemos por ajax el archivos menu.html de la carpeta opciones
 		xhReq.open("GET", "opciones/menu.html", false);
@@ -60,267 +61,309 @@ var app = {
         var tipo = document.getElementById('id_tipo');
         var enviar = document.getElementById('enviar');
         var doc = document.getElementById('file');
-        doc.addEventListener('change', app.mostrarDoc);
-        enviar.addEventListener('click', app.enviarInfo);
-        tipo.addEventListener('change', app.busquedaMotivo);
-        muni.addEventListener('change', app.busquedaZona);
-        deps.addEventListener('change', app.busquedaMunicipio);
+        doc.addEventListener('change', mostrarDoc);
+        enviar.addEventListener('click', enviarInfo);
+        tipo.addEventListener('change', busquedaMotivo);
+        muni.addEventListener('change', busquedaZona);
+        deps.addEventListener('change', busquedaMunicipio);
         document.addEventListener('deviceready', this.onDeviceReady, false);
     },
 
     onDeviceReady: function() {
     	// Ejecutamos la funci�n FastClick, que es la que nos elimina esos 300ms de espera al hacer click
-    	new FastClick(document.body);
+      google.charts.load('visualization', '1', {'packages': ['geochart', 'corechart']});
+      new FastClick(document.body);
       receivedEvent();
-    },
-    mostrarDoc: function (evt) {
-
-        var tgt = evt.target || window.event.srcElement,
-        files = tgt.files;
-
-      // FileReader support
-        if (FileReader && files && files.length) {
-
-          // extension = (this.value.substring(archivo.lastIndexOf("."))).toLowerCase();
-          // alert (extension);
-
-          var fr = new FileReader();
-          fr.onload = function () {
-
-            document.getElementById('myImage').src = fr.result;
-            // document.getElementById('myVideo').src = fr.result;
-
-            $('#photo').show();
-          }
-          fr.readAsDataURL(files[0]);
-        }
-        else {
-          alert('No funciono')
-        }
-      },
-
-    enviarInfo: function(){
-
-      var motivo = document.getElementById('motivo_id').value;
-      var direccion = document.getElementById('zona_id').value;
-
-      if(document.getElementById('denuncia').value==""){
-        alert('Por favor, ingresa una denuncia.');
-        document.getElementById('denuncia').style.border = "solid red";
-        var pos = $('#denuncia').offset();
-        window.scrollTo(pos.left, pos.top-100);
-        return;
-      }
-      if(motivo==0){
-        alert('Por favor, ingresa un motivo.');
-        document.getElementById('motivo_id').style.border = "solid red";
-        var pos = $('#motivo_id').offset();
-        window.scrollTo(pos.left, pos.top-100);
-        return;
-      }
-
-      if(direccion==0){
-        alert('Por favor, ingresa una zona.');
-        document.getElementById('zona_id').style.border = "solid red";
-        var pos = $('#zona_id').offset();
-        window.scrollTo(pos.left, pos.top-100);
-        return;
-      }
-
-      var data = JSON.stringify({
-
-         'nombre': document.getElementById('nombre').value,
-         'dpi': document.getElementById('dpi').value,
-         'telefono': document.getElementById('telefono').value,
-         'latitud': document.getElementById('lat').value,
-         'longitud': document.getElementById('lon').value,
-         'denuncia': document.getElementById('denuncia').value,
-         'referencia': document.getElementById('referencia').value,
-        //  'archivo': document.getElementById('file')
-         'tipo': document.getElementById('id_tipo').value,
-         'motivo': "denuncias/api/d1/motivo/" + motivo + '/',
-         'direccion': "estadisticas/api/local/direccion/" + direccion + '/',
-         'file': document.getElementById('myImage').src,
-
-      })
-
-      $.ajax({
-
-        url: 'http://192.168.0.89:8000/denuncias/api/d1/denuncia/',
-        type: 'POST',
-        contentType: 'application/json',
-        data: data,
-        dataType: 'json',
-        statusCode: {
-          201: function(){
-            alert('Denuncia enviada con exito.');
-            document.getElementById('form1').reset();
-            myScroll.refresh();
-            myScroll.scrollTo(0,0);
-          },
-          400: function(){
-            alert('Ha ocurrido un error con el servidor, ' +
-                                 'intenta de nuevo mas tarde.');
-          }
-        },
-        // success: function(data){
-        //   alert('Se ha enviado con exito.')
-        // },
-        // error: function(){
-        //   alert('Ha ocurrido un error con el servidor, intenta de nuevo mas tarde.')
-        // },
-        processData: false
-
-      })
-
-    },
-
-    busquedaMotivo: function(){
-
-      var id = $(this).val();
-      document.getElementById('motivo_id').length = 0;
-
-      $.ajax({
-
-        type: 'get',
-        dataType: 'json',
-        url: "http://192.168.0.89:8000/denuncias/api/d1/motivo?institucion__tipo="+id,
-        success: function(data){
-
-          var motivos = document.getElementById('motivo_id');
-
-          var p = document.createElement('option');
-          p.value = "0";
-          p.innerHTML = "------";
-
-          motivos.options.add(p);
-
-          for(var i=0; i<data.objects.length;i++){
-
-            var nuevo = document.createElement('option');
-
-            nuevo.value = data.objects[i].id;
-            nuevo.innerHTML = data.objects[i].motivo;
-
-            motivos.options.add(nuevo);
-
-          }
-
-        },
-        error: function(){
-          alert('No funciona.');
-        }
-
-      })
-
-    },
-
-    busquedaZona: function(){
-
-      var id = $(this).val();
-      document.getElementById('zona_id').length = 0;
-
-      $.ajax({
-
-        type: 'get',
-        dataType: 'json',
-        url: "http://192.168.0.89:8000/estadisticas/api/local/direccion/?municipio__id="+id,
-        success: function(data){
-
-          var zonas = document.getElementById("zona_id");
-
-          var p = document.createElement("option");
-          p.value = "0";
-          p.innerHTML = "------";
-
-          zonas.options.add(p);
-
-          for(var i=0; i<data.objects.length;i++){
-
-            var nuevo = document.createElement("option");
-
-            nuevo.value = data.objects[i].id;
-            nuevo.innerHTML = data.objects[i].direccion;
-
-            zonas.options.add(nuevo);
-
-          }
-
-        },
-        error: function(){
-          alert('no funciona.');
-        }
-
-      })
-
-    },
-
-    busquedaMunicipio: function(){
-
-
-      var id = $(this).val();
-      document.getElementById('muni_id').length = 0;
-
-      $.ajax({
-
-        type: 'get',
-        dataType: 'json',
-        url: "http://192.168.0.89:8000/estadisticas/api/local/municipio/?departamento__id="+id,
-        success: function(data){
-
-          var municipios = document.getElementById("muni_id");
-
-          var p = document.createElement("option");
-          p.value = "0";
-          p.innerHTML = "------"
-
-          municipios.options.add(p);
-
-          for(var i=0;i<data.objects.length;i++){
-
-            var nuevo = document.createElement("option");
-
-            nuevo.value = data.objects[i].id;
-            nuevo.innerHTML = data.objects[i].nombre;
-
-            municipios.options.add(nuevo);
-
-          }
-
-        },
-        error: function(){
-          alert('No funciona.')
-        }
-
-      });
-
-    },
-
-    onSuccess: function(imageData){
-      var img = document.getElementById('myImage');
-      img.src = "data:image/jpeg;base64," + imageData;
-      $('#file').hide();
-      $('#photo').show();
-      // document.getElementById('text').innerHTML = imageData;
-    },
-
-    onFail: function(message){
-      alert('Error por ' + message);
-      $('#file').show();
-      $('#photo').hide();
     },
     // Update DOM on a Received Event
 
 };
 
+function mostrarDoc(evt) {
+
+    var tgt = evt.target || window.event.srcElement,
+    files = tgt.files;
+
+  // FileReader support
+    if (FileReader && files && files.length) {
+
+      // extension = (this.value.substring(archivo.lastIndexOf("."))).toLowerCase();
+      // alert (extension);
+
+      var fr = new FileReader();
+      fr.onload = function () {
+
+        var divPhoto = document.getElementById('photo');
+
+        if(fr.result.includes('image')){
+          var img = document.createElement('img');
+          img.id = 'myImage';
+          img.style.height = '70px';
+          img.style.width = '70px';
+          img.src = fr.result;
+          divPhoto.appendChild(img);
+        }else if (fr.result.includes('video')) {
+          var video = document.createElement('video');
+          video.id = 'myVideo';
+          video.style.height = '70px';
+          video.style.width = '70px';
+          video.src = fr.result;
+          divPhoto.appendChild(video);
+        }
+        document.getElementById('archivo').value = fr.result;
+
+        // document.getElementById('myImage').src = fr.result;
+        // document.getElementById('myVideo').src = fr.result;
+
+        $('#photo').show();
+      }
+      fr.readAsDataURL(files[0]);
+    }
+    else {
+      alert('El archivo esta corrupto.')
+    }
+  }
+
+function enviarInfo(){
+
+  var motivo = document.getElementById('motivo_id').value;
+  var direccion = document.getElementById('zona_id').value;
+
+  if(document.getElementById('denuncia').value==""){
+    alert('Por favor, ingresa una denuncia.');
+    // document.getElementById('denuncia').style.border = "solid red";
+    var pos = $('#denuncia').offset();
+    // pos.focus();
+    window.scrollTo(pos.left, pos.top-100);
+    return;
+  }
+  if(motivo==0){
+    alert('Por favor, ingresa un motivo.');
+    // document.getElementById('motivo_id').style.border = "solid red";
+    var pos = $('#motivo_id').offset();
+    window.scrollTo(pos.left, pos.top-100);
+    return;
+  }
+
+  if(direccion==0){
+    alert('Por favor, ingresa una zona.');
+    // document.getElementById('zona_id').style.border = "solid red";
+    var pos = $('#zona_id').offset();
+    window.scrollTo(pos.left, pos.top-100);
+    return;
+  }
+
+  var data = JSON.stringify({
+
+     'nombre': document.getElementById('nombre').value,
+     'dpi': document.getElementById('dpi').value,
+     'telefono': document.getElementById('telefono').value,
+     'latitud': document.getElementById('lat').value,
+     'longitud': document.getElementById('lon').value,
+     'denuncia': document.getElementById('denuncia').value,
+     'referencia': document.getElementById('referencia').value,
+    //  'archivo': document.getElementById('file')
+     'tipo': document.getElementById('id_tipo').value,
+     'motivo': "denuncias/api/d1/motivo/" + motivo + '/',
+     'direccion': "estadisticas/api/local/direccion/" + direccion + '/',
+     'file': document.getElementById('archivo').value,
+
+  })
+
+  $.ajax({
+
+    url: 'http://192.168.0.89:8000/denuncias/api/d1/denuncia/',
+    type: 'POST',
+    contentType: 'application/json',
+    data: data,
+    dataType: 'json',
+    statusCode: {
+      201: function(){
+        alert('Denuncia enviada con exito.');
+        document.getElementById('form1').reset();
+        myScroll.refresh();
+        myScroll.scrollTo(0,0);
+      },
+      400: function(){
+        alert('Ha ocurrido un error con el servidor, ' +
+                             'intenta de nuevo mas tarde.');
+      }
+    },
+    // success: function(data){
+    //   alert('Se ha enviado con exito.')
+    // },
+    // error: function(){
+    //   alert('Ha ocurrido un error con el servidor, intenta de nuevo mas tarde.')
+    // },
+    processData: false
+
+  })
+
+}
+
+function busquedaMotivo(){
+
+  var id = $(this).val();
+  document.getElementById('motivo_id').length = 0;
+
+  $.ajax({
+
+    type: 'get',
+    dataType: 'json',
+    url: "http://192.168.0.89:8000/denuncias/api/d1/motivo?institucion__tipo="+id,
+    success: function(data){
+
+      var motivos = document.getElementById('motivo_id');
+
+      var p = document.createElement('option');
+      p.value = "0";
+      p.innerHTML = "------";
+
+      motivos.options.add(p);
+
+      for(var i=0; i<data.objects.length;i++){
+
+        var nuevo = document.createElement('option');
+
+        nuevo.value = data.objects[i].id;
+        nuevo.innerHTML = data.objects[i].motivo;
+
+        motivos.options.add(nuevo);
+
+      }
+
+    },
+    error: function(){
+      alert('No funciona.');
+    }
+
+  })
+
+}
+
+function busquedaZona(){
+
+  var id = $(this).val();
+  document.getElementById('zona_id').length = 0;
+
+  $.ajax({
+
+    type: 'get',
+    dataType: 'json',
+    url: "http://192.168.0.89:8000/estadisticas/api/local/direccion/?municipio__id="+id,
+    success: function(data){
+
+      var zonas = document.getElementById("zona_id");
+
+      var p = document.createElement("option");
+      p.value = "0";
+      p.innerHTML = "------";
+
+      zonas.options.add(p);
+
+      for(var i=0; i<data.objects.length;i++){
+
+        var nuevo = document.createElement("option");
+
+        nuevo.value = data.objects[i].id;
+        nuevo.innerHTML = data.objects[i].direccion;
+
+        zonas.options.add(nuevo);
+
+      }
+
+    },
+    error: function(){
+      alert('no funciona.');
+    }
+
+  })
+
+}
+
+function busquedaMunicipio(){
+
+
+  var id = $(this).val();
+  document.getElementById('muni_id').length = 0;
+
+  $.ajax({
+
+    type: 'get',
+    dataType: 'json',
+    url: "http://192.168.0.89:8000/estadisticas/api/local/municipio/?departamento__id="+id,
+    success: function(data){
+
+      var municipios = document.getElementById("muni_id");
+
+      var p = document.createElement("option");
+      p.value = "0";
+      p.innerHTML = "------"
+
+      municipios.options.add(p);
+
+      for(var i=0;i<data.objects.length;i++){
+
+        var nuevo = document.createElement("option");
+
+        nuevo.value = data.objects[i].id;
+        nuevo.innerHTML = data.objects[i].nombre;
+
+        municipios.options.add(nuevo);
+
+      }
+
+    },
+    error: function(){
+      alert('No funciona.')
+    }
+
+  });
+
+}
+
+function onSuccess(imageData){
+  var divPhoto = document.getElementById('photo');
+  var img = document.createElement('img');
+  img.id = 'myImage';
+  img.style.height = '70px';
+  img.style.width = '70px';
+  img.src = "data:image/jpeg;base64," + imageData;
+  divPhoto.appendChild(img);
+  $('#file').hide();
+  $('#photo').show();
+  document.getElementById('archivo').value = img.src;
+  // document.getElementById('text').innerHTML = imageData;
+}
+
+function onFail(message){
+  alert('Error por ' + message);
+  $('#file').show();
+  $('#photo').hide();
+}
+
 function receivedEvent() {
 
-  navigator.camera.getPicture(app.onSuccess, app.onFail, {
+  navigator.camera.getPicture(onSuccess, onFail, {
     quality: 50,
     destinationType: Camera.DestinationType.DATA_URL
   });
 
   document.getElementById('photo').style.display = 'none';
+
+}
+
+function getDepartamentos(){
+  var deps = document.getElementById('dep');
+  var muni = document.getElementById('muni_id');
+  var tipo = document.getElementById('id_tipo');
+  var enviar = document.getElementById('enviar');
+  var doc = document.getElementById('file');
+  doc.addEventListener('change', mostrarDoc);
+  enviar.addEventListener('click', enviarInfo);
+  tipo.addEventListener('change', busquedaMotivo);
+  muni.addEventListener('change', busquedaZona);
+  deps.addEventListener('change', busquedaMunicipio);
 
   var departamentos = document.getElementById('dep');
 
@@ -395,6 +438,13 @@ function menu(opcion){
 		xhReq.send(null);
 		document.getElementById("contenidoCuerpo").innerHTML=xhReq.responseText;
 
+    if(opcion=='1')
+      getDepartamentos();
+
+
+    if(opcion == '2')
+      google.charts.setOnLoadCallback(drawGeoChart);
+
 		// Refrescamos el elemento iscroll seg�n el contenido ya a�adido mediante ajax, y hacemos que se desplace al top
 		myScroll.refresh();
 		myScroll.scrollTo(0,0);
@@ -411,3 +461,50 @@ function menu(opcion){
 	 }
 
 }
+
+function drawGeoChart() {
+
+  var deps = [
+      ['States','Departamento', 'Denuncias']
+    ];
+
+  $.ajax({
+
+    type: 'get',
+    dataType: "json",
+    url: "http://192.168.0.89:8000/estadisticas/api/local/departamento?limit=22",
+    success: function(data){
+      for(var i=0; i<data.objects.length; i++){
+
+        var nuevo = [
+          data.objects[i].codigo,
+          data.objects[i].nombre,
+          data.objects[i].denuncias
+        ];
+
+        deps.push(nuevo);
+
+      }
+      var datos = new google.visualization.arrayToDataTable(deps);
+
+      var options = {
+         backgroundColor: '#white',
+         datalessRegionColor: '#C0C0C0',
+         defaultColor: '#4D4D50',
+         region: 'GT',
+         //displayMode: 'markers',
+         resolution: 'provinces',
+         //FAE398
+         colorAxis: {colors: ['#FDF1CB','#FFC400','#DF0000']},
+      };
+
+      var chart = new google.visualization.GeoChart(document.getElementById('chart_div'));
+      chart.draw(datos, options);
+    },
+    error: function(){
+      alert('Ocurrio un problema con el servidor. Intenta más tarde.');
+    }
+
+  });
+
+  }
