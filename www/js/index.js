@@ -438,8 +438,11 @@ function menu(opcion){
 		xhReq.send(null);
 		document.getElementById("contenidoCuerpo").innerHTML=xhReq.responseText;
 
-    if(opcion=='1')
+    if(opcion=='1'){
       getDepartamentos();
+
+      receivedEvent();
+    }
 
 
     if(opcion == '2')
@@ -459,6 +462,33 @@ function menu(opcion){
 		}, 300);
 
 	 }
+
+}
+
+
+function irPorPasos(paso){
+
+  var celdas = document.getElementById('pasos').rows[0].cells;
+  for (var i = 0; i < celdas.length; i++) {
+    if(i<=paso)
+      celdas[i].style.display = 'block';
+    else
+      celdas[i].style.display = 'none';
+  }
+
+  if(paso > 5)
+    document.getElementById('continuar').style.display = 'none';
+  else
+    document.getElementById('continuar').style.display = 'block';
+
+  var id = 'paso'+paso;
+  document.getElementById(id).style.display = 'none';
+
+  id = 'paso'+(paso+1);
+  document.getElementById(id).style.display = 'block';
+
+
+  document.getElementById('continuar').href = "javascript:irPorPasos("+(paso+1)+");"
 
 }
 

@@ -438,8 +438,11 @@ function menu(opcion){
 		xhReq.send(null);
 		document.getElementById("contenidoCuerpo").innerHTML=xhReq.responseText;
 
-    if(opcion=='1')
+    if(opcion=='1'){
       getDepartamentos();
+
+      receivedEvent();
+    }
 
 
     if(opcion == '2')
@@ -461,6 +464,32 @@ function menu(opcion){
 	 }
 
 }
+
+// function irPorPasos(paso){
+//
+//   // A�adimos la clase al li presionado
+//   addClass('li-menu-activo' , document.getElementById("ulMenu").getElementsByTagName("li")[opcion]);
+//
+//   // Recogemos mediante ajax el contenido del html seg�n la opci�n clickeada en el menu
+//   xhReq.open("GET", "opciones/paso"+paso+".html", false);
+//   xhReq.send(null);
+//   document.getElementById("contenidoCuerpo").innerHTML=xhReq.responseText;
+//
+//
+//   // Refrescamos el elemento iscroll seg�n el contenido ya a�adido mediante ajax, y hacemos que se desplace al top
+//   myScroll.refresh();
+//   myScroll.scrollTo(0,0);
+//
+//   // A�adimos las clases necesarias para que la capa cuerpo se mueva al centro de nuestra app y muestre el contenido
+//   cuerpo.className = 'page transition center';
+//   estado="cuerpo";
+//
+//   // Quitamos la clase a�adida al li que hemos presionado
+//   setTimeout(function() {
+//     removeClass('li-menu-activo' , document.getElementById("ulMenu").getElementsByTagName("li")[opcion]);
+//   }, 300);
+//
+// }
 
 function drawGeoChart() {
 

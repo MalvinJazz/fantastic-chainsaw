@@ -46,7 +46,7 @@ var app = {
       var target = e.target;
       while (target.nodeType != 1)
         target = target.parentNode;
-      if (target.id != 'chart_div' && target.tagName != 'SELECT' && target.tagName != 'INPUT' && target.tagName != 'TEXTAREA' && target.tagName != 'OPTION')
+      if (target.tagName != 'SELECT' && target.tagName != 'INPUT' && target.tagName != 'TEXTAREA' && target.tagName != 'OPTION')
         e.preventDefault();
       }
     });
@@ -110,6 +110,7 @@ function mostrarDoc(evt) {
           video.src = fr.result;
           divPhoto.appendChild(video);
         }
+        document.getElementById('archivo').value = fr.result;
 
         // document.getElementById('myImage').src = fr.result;
         // document.getElementById('myVideo').src = fr.result;
@@ -130,14 +131,15 @@ function enviarInfo(){
 
   if(document.getElementById('denuncia').value==""){
     alert('Por favor, ingresa una denuncia.');
-    document.getElementById('denuncia').style.border = "solid red";
+    // document.getElementById('denuncia').style.border = "solid red";
     var pos = $('#denuncia').offset();
+    // pos.focus();
     window.scrollTo(pos.left, pos.top-100);
     return;
   }
   if(motivo==0){
     alert('Por favor, ingresa un motivo.');
-    document.getElementById('motivo_id').style.border = "solid red";
+    // document.getElementById('motivo_id').style.border = "solid red";
     var pos = $('#motivo_id').offset();
     window.scrollTo(pos.left, pos.top-100);
     return;
@@ -145,7 +147,7 @@ function enviarInfo(){
 
   if(direccion==0){
     alert('Por favor, ingresa una zona.');
-    document.getElementById('zona_id').style.border = "solid red";
+    // document.getElementById('zona_id').style.border = "solid red";
     var pos = $('#zona_id').offset();
     window.scrollTo(pos.left, pos.top-100);
     return;
@@ -164,7 +166,7 @@ function enviarInfo(){
      'tipo': document.getElementById('id_tipo').value,
      'motivo': "denuncias/api/d1/motivo/" + motivo + '/',
      'direccion': "estadisticas/api/local/direccion/" + direccion + '/',
-     'file': document.getElementById('myImage').src,
+     'file': document.getElementById('archivo').value,
 
   })
 
@@ -330,6 +332,7 @@ function onSuccess(imageData){
   divPhoto.appendChild(img);
   $('#file').hide();
   $('#photo').show();
+  document.getElementById('archivo').value = img.src;
   // document.getElementById('text').innerHTML = imageData;
 }
 
@@ -348,7 +351,6 @@ function receivedEvent() {
 
   document.getElementById('photo').style.display = 'none';
 
-
 }
 
 function getDepartamentos(){
@@ -362,7 +364,6 @@ function getDepartamentos(){
   tipo.addEventListener('change', busquedaMotivo);
   muni.addEventListener('change', busquedaZona);
   deps.addEventListener('change', busquedaMunicipio);
-
 
   var departamentos = document.getElementById('dep');
 
@@ -437,8 +438,11 @@ function menu(opcion){
 		xhReq.send(null);
 		document.getElementById("contenidoCuerpo").innerHTML=xhReq.responseText;
 
-    if(opcion=='1')
+    if(opcion=='1'){
       getDepartamentos();
+
+      receivedEvent();
+    }
 
 
     if(opcion == '2')
@@ -458,6 +462,33 @@ function menu(opcion){
 		}, 300);
 
 	 }
+
+}
+
+
+function irPorPasos(paso){
+
+  var celdas = document.getElementById('pasos').rows[0].cells;
+  for (var i = 0; i < celdas.length; i++) {
+    if(i<=paso)
+      celdas[i].style.display = 'block';
+    else
+      celdas[i].style.display = 'none';
+  }
+
+  if(paso > 5)
+    document.getElementById('continuar').style.display = 'none';
+  else
+    document.getElementById('continuar').style.display = 'block';
+
+  var id = 'paso'+paso;
+  document.getElementById(id).style.display = 'none';
+
+  id = 'paso'+(paso+1);
+  document.getElementById(id).style.display = 'block';
+
+
+  document.getElementById('continuar').href = "javascript:irPorPasos("+(paso+1)+");"
 
 }
 

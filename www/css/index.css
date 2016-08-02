@@ -40,6 +40,22 @@ a {
 	height: 45px;
 }
 
+.btn1 {
+    position: absolute;
+    top: 5px;
+    left: 41.5%;
+    width:17%;
+    line-height: 36px;
+    background-color:#46b7f1;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+
+.btn1:active {
+    background-color:#0f6f91;
+}
+
 #header .btn {
     position: absolute;
     top: 5px;
@@ -307,4 +323,20 @@ a {
   width: 100%;
   background-size: cover;
   min-height: 450px;
+}
+
+#pasos{
+  width: 40%;
+  background-color: #607d8b;
+  clear: both;
+  margin-bottom: 15px;
+}
+
+#pasos tr td{
+  width: 60px;
+  height: 40px;
+  border-left: solid #0e5771;
+  align-self: center;
+  color: white;
+  font-weight: bolder;
 }

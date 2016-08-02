@@ -31,16 +31,20 @@
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript">
 
+    $(document).ready(getGeolocation);
+
     function habilita(){
       document.getElementById("nombre").disabled = false;
       document.getElementById("dpi").disabled = false;
       document.getElementById("ident").style.display = 'block'
+      // document.getElementById('wrapper').style.height = window.innerHeight;
     }
 
     function deshabilita(){
       document.getElementById("nombre").disabled = true;
       document.getElementById("dpi").disabled = true;
       document.getElementById("ident").style.display = 'none';
+      // document.getElementById('wrapper').style.height = window.innerHeight;
     }
 
     function getGeolocation(){
@@ -51,11 +55,13 @@
             var lat = position.coords.latitude;
             var lon = position.coords.longitude;
 
+
+
             document.getElementById('lat').value = lat;
             document.getElementById('lon').value = lon;
           });
       } else {
-        alert("Para utilizar la geolocalización necesitas actualizar tu navegador.");
+        alert("Para utilizar la geolocalización necesitas activar tu GPS.");
       }
 
     }
