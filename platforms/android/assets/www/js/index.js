@@ -132,26 +132,31 @@ function enviarInfo(){
   if(document.getElementById('denuncia').value==""){
     alert('Por favor, ingresa una denuncia.');
     // document.getElementById('denuncia').style.border = "solid red";
-    var pos = $('#denuncia').offset();
-    // pos.focus();
-    window.scrollTo(pos.left, pos.top-100);
+    // var pos = $('#denuncia').offset();
+    // // pos.focus();
+    // window.scrollTo(pos.left, pos.top-100);
+    regresar(2);
     return;
   }
   if(motivo==0){
     alert('Por favor, ingresa un motivo.');
     // document.getElementById('motivo_id').style.border = "solid red";
-    var pos = $('#motivo_id').offset();
-    window.scrollTo(pos.left, pos.top-100);
+    // var pos = $('#motivo_id').offset();
+    // window.scrollTo(pos.left, pos.top-100);
+    regresar(2);
     return;
   }
 
   if(direccion==0){
     alert('Por favor, ingresa una zona.');
     // document.getElementById('zona_id').style.border = "solid red";
-    var pos = $('#zona_id').offset();
-    window.scrollTo(pos.left, pos.top-100);
+    // var pos = $('#zona_id').offset();
+    // window.scrollTo(pos.left, pos.top-100);
+    regresar(3);
     return;
   }
+
+  getGeolocation();
 
   var data = JSON.stringify({
 
@@ -181,6 +186,7 @@ function enviarInfo(){
       201: function(){
         alert('Denuncia enviada con exito.');
         document.getElementById('form1').reset();
+        regresar(1);
         myScroll.refresh();
         myScroll.scrollTo(0,0);
       },
@@ -198,6 +204,24 @@ function enviarInfo(){
     processData: false
 
   })
+
+}
+
+function getGeolocation(){
+
+  if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position){
+
+        var lat = position.coords.latitude;
+        var lon = position.coords.longitude;
+
+        document.getElementById('lat').value = lat;
+        document.getElementById('lon').value = lon;
+
+      });
+  } else {
+    alert("Para utilizar la geolocalización necesitas activar tu GPS.");
+  }
 
 }
 
@@ -465,31 +489,62 @@ function menu(opcion){
 
 }
 
-// function irPorPasos(paso){
-//
-//   // A�adimos la clase al li presionado
-//   addClass('li-menu-activo' , document.getElementById("ulMenu").getElementsByTagName("li")[opcion]);
-//
-//   // Recogemos mediante ajax el contenido del html seg�n la opci�n clickeada en el menu
-//   xhReq.open("GET", "opciones/paso"+paso+".html", false);
-//   xhReq.send(null);
-//   document.getElementById("contenidoCuerpo").innerHTML=xhReq.responseText;
-//
-//
-//   // Refrescamos el elemento iscroll seg�n el contenido ya a�adido mediante ajax, y hacemos que se desplace al top
-//   myScroll.refresh();
-//   myScroll.scrollTo(0,0);
-//
-//   // A�adimos las clases necesarias para que la capa cuerpo se mueva al centro de nuestra app y muestre el contenido
-//   cuerpo.className = 'page transition center';
-//   estado="cuerpo";
-//
-//   // Quitamos la clase a�adida al li que hemos presionado
-//   setTimeout(function() {
-//     removeClass('li-menu-activo' , document.getElementById("ulMenu").getElementsByTagName("li")[opcion]);
-//   }, 300);
-//
-// }
+function regresar(paso){
+  var celdas = document.getElementById('pasos').rows[0].cells;
+  for (var i = 0; i < celdas.length; i++) {
+    if(i<paso)
+      celdas[i].style.display = 'inline-block';
+    else
+      celdas[i].style.display = 'none';
+  }
+
+  if(paso > 5)
+    document.getElementById('continuar').style.display = 'none';
+  else
+    document.getElementById('continuar').style.display = 'block';
+
+  for (var i = paso; i < 7; i++) {
+    var id = 'paso'+i;
+    document.getElementById(id).style.display = 'none';
+  }
+
+  id = 'paso'+paso;
+  document.getElementById(id).style.display = 'block';
+
+
+  document.getElementById('continuar').href = "javascript:irPorPasos("+(paso)+");";
+  myScroll.refresh();
+  myScroll.scrollTo(0,0);
+}
+
+
+function irPorPasos(paso){
+
+  var celdas = document.getElementById('pasos').rows[0].cells;
+  for (var i = 0; i < celdas.length; i++) {
+    if(i<=paso)
+      celdas[i].style.display = 'inline-block';
+    else
+      celdas[i].style.display = 'none';
+  }
+
+  if(paso > 4)
+    document.getElementById('continuar').style.display = 'none';
+  else
+    document.getElementById('continuar').style.display = 'block';
+
+  var id = 'paso'+paso;
+  document.getElementById(id).style.display = 'none';
+
+  id = 'paso'+(paso+1);
+  document.getElementById(id).style.display = 'block';
+
+
+  document.getElementById('continuar').href = "javascript:irPorPasos("+(paso+1)+");";
+  myScroll.refresh();
+  myScroll.scrollTo(0,0);
+
+}
 
 function drawGeoChart() {
 

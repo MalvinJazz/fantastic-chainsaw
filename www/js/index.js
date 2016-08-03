@@ -132,26 +132,31 @@ function enviarInfo(){
   if(document.getElementById('denuncia').value==""){
     alert('Por favor, ingresa una denuncia.');
     // document.getElementById('denuncia').style.border = "solid red";
-    var pos = $('#denuncia').offset();
-    // pos.focus();
-    window.scrollTo(pos.left, pos.top-100);
+    // var pos = $('#denuncia').offset();
+    // // pos.focus();
+    // window.scrollTo(pos.left, pos.top-100);
+    regresar(2);
     return;
   }
   if(motivo==0){
     alert('Por favor, ingresa un motivo.');
     // document.getElementById('motivo_id').style.border = "solid red";
-    var pos = $('#motivo_id').offset();
-    window.scrollTo(pos.left, pos.top-100);
+    // var pos = $('#motivo_id').offset();
+    // window.scrollTo(pos.left, pos.top-100);
+    regresar(2);
     return;
   }
 
   if(direccion==0){
     alert('Por favor, ingresa una zona.');
     // document.getElementById('zona_id').style.border = "solid red";
-    var pos = $('#zona_id').offset();
-    window.scrollTo(pos.left, pos.top-100);
+    // var pos = $('#zona_id').offset();
+    // window.scrollTo(pos.left, pos.top-100);
+    regresar(3);
     return;
   }
+
+  getGeolocation();
 
   var data = JSON.stringify({
 
@@ -181,6 +186,7 @@ function enviarInfo(){
       201: function(){
         alert('Denuncia enviada con exito.');
         document.getElementById('form1').reset();
+        regresar(1);
         myScroll.refresh();
         myScroll.scrollTo(0,0);
       },
@@ -198,6 +204,24 @@ function enviarInfo(){
     processData: false
 
   })
+
+}
+
+function getGeolocation(){
+
+  if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position){
+
+        var lat = position.coords.latitude;
+        var lon = position.coords.longitude;
+
+        document.getElementById('lat').value = lat;
+        document.getElementById('lon').value = lon;
+
+      });
+  } else {
+    alert("Para utilizar la geolocalización necesitas activar tu GPS.");
+  }
 
 }
 
@@ -469,7 +493,7 @@ function regresar(paso){
   var celdas = document.getElementById('pasos').rows[0].cells;
   for (var i = 0; i < celdas.length; i++) {
     if(i<paso)
-      celdas[i].style.display = 'block';
+      celdas[i].style.display = 'inline-block';
     else
       celdas[i].style.display = 'none';
   }
@@ -479,14 +503,18 @@ function regresar(paso){
   else
     document.getElementById('continuar').style.display = 'block';
 
-  var id = 'paso'+paso;
-  document.getElementById(id).style.display = 'none';
+  for (var i = paso; i < 7; i++) {
+    var id = 'paso'+i;
+    document.getElementById(id).style.display = 'none';
+  }
 
-  id = 'paso'+(paso+1);
+  id = 'paso'+paso;
   document.getElementById(id).style.display = 'block';
 
 
-  document.getElementById('continuar').href = "javascript:irPorPasos("+(paso+1)+");"
+  document.getElementById('continuar').href = "javascript:irPorPasos("+(paso)+");";
+  myScroll.refresh();
+  myScroll.scrollTo(0,0);
 }
 
 
@@ -495,12 +523,12 @@ function irPorPasos(paso){
   var celdas = document.getElementById('pasos').rows[0].cells;
   for (var i = 0; i < celdas.length; i++) {
     if(i<=paso)
-      celdas[i].style.display = 'block';
+      celdas[i].style.display = 'inline-block';
     else
       celdas[i].style.display = 'none';
   }
 
-  if(paso > 5)
+  if(paso > 4)
     document.getElementById('continuar').style.display = 'none';
   else
     document.getElementById('continuar').style.display = 'block';
@@ -512,7 +540,9 @@ function irPorPasos(paso){
   document.getElementById(id).style.display = 'block';
 
 
-  document.getElementById('continuar').href = "javascript:irPorPasos("+(paso+1)+");"
+  document.getElementById('continuar').href = "javascript:irPorPasos("+(paso+1)+");";
+  myScroll.refresh();
+  myScroll.scrollTo(0,0);
 
 }
 

@@ -1,14 +1,21 @@
 <div class="borde-h1 color1"></div><h1>Enviar Denuncia</h1>
-<table id='pasos'>
-  <tr>
-    <td style="display: block;"><a href="javascript:irPorPasos(1);">Paso 1</a></td>
-    <td style="display: none;"><a href="javascript:irPorPasos(2);">Paso 2</a></td>
-    <td style="display: none;"><a href="javascript:irPorPasos(3);">Paso 3</a></td>
-    <td style="display: none;"><a href="javascript:irPorPasos(4);">Paso 4</a></td>
-    <td style="display: none;"><a href="javascript:irPorPasos(5);">Paso 5</a></td>
+<table id="pasos">
+  <tr style="display:block">
+      <td style="display: inline-block;"><a href="javascript:regresar(1);">Paso 1</a></td>
+    <td style="display: none;"><a href="javascript:regresar(2);">Paso 2</a></td>
+    <td style="display: none;"><a href="javascript:regresar(3);">Paso 3</a></td>
+    <td style="display: none;"><a href="javascript:regresar(4);">Paso 4</a></td>
+    <td style="display: none;"><a href="javascript:regresar(5);">Paso 5</a></td>
     <td style="display: none;"><a href="#">Paso 6</a></td>
+      <!-- <td><a href="javascript:regresar(1);">Paso 1</a></td>
+      <td><a href="javascript:regresar(2);">Paso 2</a></td>
+      <td><a href="javascript:regresar(3);">Paso 3</a></td>
+      <td><a href="javascript:regresar(4);">Paso 4</a></td>
+      <td><a href="javascript:regresar(5);">Paso 5</a></td>
+      <td><a href="#">Paso 6</a></td> -->
   </tr>
 </table>
+
 <div id="content" style="height: 750px;">
   <div class="rdBtn" id="paso1">
     <label>Anonima</label>
@@ -88,7 +95,7 @@
         </div>
         <input type="file" id="file" name="file" accept="image/*, video/*"></br>
       </div>
-      <div id="paso6">
+      <div id="paso6" style="display: none;">
       </br>
         <input id="enviar" type="button" class="btn btn-default" value='Enviar'>
       </br>
@@ -100,7 +107,7 @@
       </div>
   </form>
   <div>
-    <a id="continuar" href="javascript:irPorPasos(1);"><div class="btn1">Continuar</div></a>
+    <a id="continuar" href="javascript:irPorPasos(1);"><div class="btn1"><span>Continuar</span></div></a>
   </div>
 
 </div>

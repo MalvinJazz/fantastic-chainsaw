@@ -1,4 +1,21 @@
 <div class="borde-h1 color1"></div><h1>Enviar Denuncia</h1>
+<table id="pasos">
+  <tr style="display:block">
+      <td style="display: inline-block;"><a href="javascript:regresar(1);">1</a></td>
+    <td style="display: none;"><a href="javascript:regresar(2);">2</a></td>
+    <td style="display: none;"><a href="javascript:regresar(3);">3</a></td>
+    <td style="display: none;"><a href="javascript:regresar(4);">4</a></td>
+    <td style="display: none;"><a href="javascript:regresar(5);">5</a></td>
+    <td style="display: none;"><a href="#">6</a></td>
+      <!-- <td><a href="javascript:regresar(1);">Paso 1</a></td>
+      <td><a href="javascript:regresar(2);">Paso 2</a></td>
+      <td><a href="javascript:regresar(3);">Paso 3</a></td>
+      <td><a href="javascript:regresar(4);">Paso 4</a></td>
+      <td><a href="javascript:regresar(5);">Paso 5</a></td>
+      <td><a href="#">Paso 6</a></td> -->
+  </tr>
+</table>
+
 <div id="content" style="height: 750px;">
   <div class="rdBtn" id="paso1">
     <label>Anonima</label>
@@ -21,7 +38,7 @@
             <input id="telefono" type="text" name="telefono" value=""></br>
         </div>
       </div>
-      <div id="paso2">
+      <div id="paso2" style="display: none;">
         <div>
           <label>Tipo</label></br>
           <select id="id_tipo" name="tipo">
@@ -43,7 +60,7 @@
           <textarea id="denuncia" name="denuncia" rows="8" cols="40"></textarea></br>
         </div>
       </div>
-      <div id="paso3">
+      <div id="paso3" style="display: none;">
         <div>
           <label>Departamento</label></br>
           <select id="dep" name="dep">
@@ -63,14 +80,14 @@
         </select> </br>
         </div>
       </div>
-      <div id="paso4">
+      <div id="paso4" style="display: none;">
         <div>
           <label>Referencia</label></br>
             <input id="referencia" type="text" name="referencia" value=""></br>
         </div>
       </div>
       <!-- <div id="map_canvas" style="height: 200px; width: 300px"></div> -->
-      <div id="paso5">
+      <div id="paso5" style="display: none;">
       <label>Foto/Video</label></br>
         <div id="photo">
           <!-- <img style="width:60px;height:60px;" src="" id="myImage"/>height="200px" width="200px"/>
@@ -78,7 +95,7 @@
         </div>
         <input type="file" id="file" name="file" accept="image/*, video/*"></br>
       </div>
-      <div id="paso6">
+      <div id="paso6" style="display: none;">
       </br>
         <input id="enviar" type="button" class="btn btn-default" value='Enviar'>
       </br>
@@ -90,7 +107,7 @@
       </div>
   </form>
   <div>
-    <input id="continuar" type="button" name="continuar" value="Continuar">
+    <a id="continuar" href="javascript:irPorPasos(1);"><div class="btn1"><span>Continuar</span></div></a>
   </div>
 
 </div>

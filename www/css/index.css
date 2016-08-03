@@ -42,14 +42,23 @@ a {
 
 .btn1 {
     position: absolute;
-    top: 5px;
+    top: 10px;
     left: 41.5%;
-    width:17%;
+    width:30%;
+    height: 50px;
     line-height: 36px;
     background-color:#46b7f1;
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	border-radius: 3px;
+}
+
+.btn1 span{
+  position: relative;
+  top: 10%;
+  align-content: center;
+  color: white;
+  font-weight: 900;
 }
 
 .btn1:active {
@@ -273,16 +282,18 @@ a {
 #content input[type='radio']{
   width: 18%;
   margin: 0;
+  height: 20px;
 }
 
 #content textarea, input, select{
   width: 80%;
+  height: 40px;
   margin-top: 5px;
   max-width: 300px;
-  max-height: 20px;
 }
 
 #content textarea{
+  height: 110px;
   max-height: 150px;
 }
 
@@ -291,8 +302,15 @@ a {
 }*/
 
 #content input[type='button']{
-  width: 40%;
+  width: 60%;
   height: 40px;
+  color: white;
+  font-weight: bolder;
+  background-color: #2ed877;
+}
+
+#content input[type='button']:active{
+  background-color: #18733f;
 }
 
 .title{
@@ -325,18 +343,26 @@ a {
   min-height: 450px;
 }
 
+
 #pasos{
-  width: 30%;
-  background-color: #607d8b;
+  width: 90%;
+  height: 40px;
   clear: both;
   margin-bottom: 15px;
 }
 
 #pasos tr td{
-  width: 60px;
+  width: 13%;
   height: 40px;
   border-left: solid #0e5771;
+  background-color: #607d8b;
   align-self: center;
   color: white;
   font-weight: bolder;
+}
+
+#pasos tr td a{
+  position: relative;
+  top: 30%;
+  font-size: large;
 }
