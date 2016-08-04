@@ -43,7 +43,7 @@ a {
 .btn1 {
     position: absolute;
     top: 10px;
-    left: 41.5%;
+    left: 35%;
     width:30%;
     height: 50px;
     line-height: 36px;
@@ -365,4 +365,20 @@ a {
   position: relative;
   top: 30%;
   font-size: large;
+}
+
+#denuncia-completa{
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 20px;
+  background-color: transparent;
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+#denuncia-completa > thead > tr > th, #denuncia-completa > tbody > tr > th, #denuncia-completa > tfoot > tr > th, #denuncia-completa > thead > tr > td, #denuncia-completa > tbody > tr > td, #denuncia-completa > tfoot > tr > td {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
 }
