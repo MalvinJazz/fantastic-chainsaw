@@ -5,7 +5,10 @@
     <link rel="stylesheet" type="text/css" href="css/index.css" />
     <title>Denuncia Movil</title>
   </head>
-  <body>
+  <body onload="rotar()">
+    <div id="pantalla-inicio">
+      <h1>Denuncia Movil</h1>
+    </div>
 	<div id="menuprincipal">
 		<div id="wrapperMenu">
 			<div class="scroller">
@@ -21,7 +24,6 @@
 			</div>
 		</div>
 	</div>
-  <div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/fastclick.js"></script>
@@ -35,7 +37,9 @@
     function habilita(){
       document.getElementById("nombre").disabled = false;
       document.getElementById("dpi").disabled = false;
-      document.getElementById("ident").style.display = 'block'
+      document.getElementById("ident").style.display = 'block';
+      myScroll.refresh();
+      myScroll.scrollTo(0,0);
       // document.getElementById('wrapper').style.height = window.innerHeight;
     }
 
@@ -43,12 +47,16 @@
       document.getElementById("nombre").disabled = true;
       document.getElementById("dpi").disabled = true;
       document.getElementById("ident").style.display = 'none';
+      myScroll.refresh();
+      myScroll.scrollTo(0,0);
       // document.getElementById('wrapper').style.height = window.innerHeight;
     }
 
+    function rotar(){window.addEventListener('orientationchange',  rotacion,  false);}
+
     </script>
     <script type="text/javascript">
-        app.initialize();
+      app.initialize();
     </script>
   </body>
 </html>

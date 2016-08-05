@@ -20,33 +20,34 @@ var xhReq = new XMLHttpRequest();
 var app = {
     // Constructor de la app
     initialize: function() {
-    	// Estado inicial mostrando capa cuerpo
-    	estado="cuerpo";
 
-    	// Creamos el elemento style, lo a�adimos al html y creamos la clase cssClass para aplicarsela al contenedor wrapper
-	    var heightCuerpo=window.innerHeight;
-	    var style = document.createElement('style');
-	    style.type = 'text/css';
-	    style.innerHTML = '.cssClass { position:absolute; z-index:2; left:0; top:46px; width:100%; height: '+heightCuerpo+'px; overflow:auto;}';
-	    document.getElementsByTagName('head')[0].appendChild(style);
+      // Estado inicial mostrando capa cuerpo
+      estado="cuerpo";
 
-	    // A�adimos las clases necesarias
-		cuerpo.className = 'page center';
-		menuprincipal.className = 'page center';
-		wrapper.className = 'cssClass';
+      // Creamos el elemento style, lo a�adimos al html y creamos la clase cssClass para aplicarsela al contenedor wrapper
+      var heightCuerpo=window.innerHeight;
+      var style = document.createElement('style');
+      style.type = 'text/css';
+      style.innerHTML = '.cssClass { position:absolute; z-index:2; left:0; top:46px; width:100%; height: '+heightCuerpo+'px; overflow:auto;}';
+      document.getElementsByTagName('head')[0].appendChild(style);
 
-		// Leemos por ajax el archivos opcion1.html de la carpeta opciones
-		xhReq.open("GET", "opciones/opcion1.html", false);
-		xhReq.send(null);
-		document.getElementById("contenidoCuerpo").innerHTML=xhReq.responseText;
+      // A�adimos las clases necesarias
+    cuerpo.className = 'page center';
+    menuprincipal.className = 'page center';
+    wrapper.className = 'cssClass';
+
+    // Leemos por ajax el archivos opcion1.html de la carpeta opciones
+    xhReq.open("GET", "opciones/opcion1.html", false);
+    xhReq.send(null);
+    document.getElementById("contenidoCuerpo").innerHTML=xhReq.responseText;
     getDepartamentos();
 
-		// Leemos por ajax el archivos menu.html de la carpeta opciones
-		xhReq.open("GET", "opciones/menu.html", false);
-		xhReq.send(null);
-		document.getElementById("contenidoMenu").innerHTML=xhReq.responseText;
+    // Leemos por ajax el archivos menu.html de la carpeta opciones
+    xhReq.open("GET", "opciones/menu.html", false);
+    xhReq.send(null);
+    document.getElementById("contenidoMenu").innerHTML=xhReq.responseText;
 
-		// Creamos los 2 scroll mediante el plugin iscroll, uno para el men� principal y otro para el cuerpo
+    // Creamos los 2 scroll mediante el plugin iscroll, uno para el men� principal y otro para el cuerpo
     myScroll = new iScroll('wrapper', {
       hideScrollbar: true,
       useTransform: false,
@@ -59,9 +60,17 @@ var app = {
         e.preventDefault();
       }
     });
-		myScrollMenu = new iScroll('wrapperMenu', { hideScrollbar: true });
+    myScrollMenu = new iScroll('wrapperMenu', { hideScrollbar: true });
+    document.getElementById('pantalla-inicio').style.display = 'block';
+    $('#menuprincipal').hide();
+    $('#cuerpo').hide();
 
-        this.bindEvents();
+    sleep(1000);
+
+    document.getElementById('pantalla-inicio').style.display = 'none';
+    $('#menuprincipal').show();
+    $('#cuerpo').show();
+      this.bindEvents();
     },
 
     bindEvents: function() {
@@ -175,21 +184,22 @@ function enviarInfo(){
   var motivo = document.getElementById('motivo_id').value;
   var direccion = document.getElementById('zona_id').value;
 
+  if(motivo==0){
+    // alert('Por favor, ingresa un motivo.');
+    navigator.notification.alert('Por favor, ingresa un motivo.', regresar(2), 'Error!', 'OK');
+    // document.getElementById('motivo_id').style.border = "solid red";
+    // var pos = $('#motivo_id').offset();
+    // window.scrollTo(pos.left, pos.top-100);
+    // regresar(2);
+    return;
+  }
+
   if(document.getElementById('denuncia').value==""){
     // alert('Por favor, ingresa una denuncia.');
     navigator.notification.alert('Por favor ingresa una denuncia', regresar(2), 'Error!', 'OK');
     // document.getElementById('denuncia').style.border = "solid red";
     // var pos = $('#denuncia').offset();
     // // pos.focus();
-    // window.scrollTo(pos.left, pos.top-100);
-    // regresar(2);
-    return;
-  }
-  if(motivo==0){
-    // alert('Por favor, ingresa un motivo.');
-    navigator.notification.alert('Por favor, ingresa un motivo.', regresar(2), 'Error!', 'OK');
-    // document.getElementById('motivo_id').style.border = "solid red";
-    // var pos = $('#motivo_id').offset();
     // window.scrollTo(pos.left, pos.top-100);
     // regresar(2);
     return;
@@ -608,12 +618,12 @@ function regresar(paso){
       habilita();
   }
 
-  if(paso > 5)
+  if(paso > 4)
     document.getElementById('continuar').style.display = 'none';
   else
     document.getElementById('continuar').style.display = 'block';
 
-  for (var i = paso; i < 7; i++) {
+  for (var i = paso; i < 6; i++) {
     var id = 'paso'+i;
     document.getElementById(id).style.display = 'none';
   }
@@ -641,7 +651,7 @@ function irPorPasos(paso){
   if(paso>0)
     document.getElementById('ident').style.display = 'none';
 
-  if(paso>4){
+  if(paso>3){
     var tabla = document.getElementById('denuncia-completa');
     var old_tbody = tabla.childNodes[1];
     var tbody = document.createElement('tbody');
@@ -757,7 +767,7 @@ function irPorPasos(paso){
 
   }
 
-  if(paso > 4)
+  if(paso > 3)
     document.getElementById('continuar').style.display = 'none';
   else
     document.getElementById('continuar').style.display = 'block';
@@ -826,3 +836,18 @@ function drawGeoChart() {
   });
 
   }
+
+  // function sleep(milliseconds) {
+  //   var start = new Date().getTime();
+  //   for (var i = 0; i < 1e7; i++) {
+  //     if ((new Date().getTime() - start) > milliseconds){
+  //       break;
+  //     }
+  //   }
+  // }
+function sleep(miliseconds) {
+   var currentTime = new Date().getTime();
+
+   while (currentTime + miliseconds >= new Date().getTime()) {
+   }
+}

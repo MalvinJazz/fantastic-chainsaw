@@ -6,7 +6,7 @@
     <td style="display: none;"><a href="javascript:regresar(3);">3</a></td>
     <td style="display: none;"><a href="javascript:regresar(4);">4</a></td>
     <td style="display: none;"><a href="javascript:regresar(5);">5</a></td>
-    <td style="display: none;"><a href="#">6</a></td>
+    <!-- <td style="display: none;"><a href="#">6</a></td> -->
       <!-- <td><a href="javascript:regresar(1);">Paso 1</a></td>
       <td><a href="javascript:regresar(2);">Paso 2</a></td>
       <td><a href="javascript:regresar(3);">Paso 3</a></td>
@@ -16,12 +16,12 @@
   </tr>
 </table>
 
-<div id="content" style="height: 750px;">
+<div id="content">
   <div class="rdBtn" id="paso1">
     <label>Anonima</label>
-    <input type="radio" name="name" value="anomimo" onClick="deshabilita()" checked>
+    <input type="radio" name="name" id="anonimo" value="anomimo" onClick="deshabilita()" checked>
     <label>Personal</label>
-    <input type="radio" name="name" value="personal" onclick="habilita()">
+    <input type="radio" name="name" id="personal" value="personal" onclick="habilita()">
   </div>
   <form id="form1" method="POST" action='' enctype='multipart/form-data'>
       <div id="ident" style="display: none;">
@@ -79,15 +79,13 @@
           <option value="0" selected>------</option>
         </select> </br>
         </div>
-      </div>
-      <div id="paso4" style="display: none;">
         <div>
-          <label>Referencia</label></br>
+          <label>Referencia a la dirección</label></br>
             <input id="referencia" type="text" name="referencia" value=""></br>
         </div>
       </div>
       <!-- <div id="map_canvas" style="height: 200px; width: 300px"></div> -->
-      <div id="paso5" style="display: none;">
+      <div id="paso4" style="display: none;">
       <label>Foto/Video</label></br>
         <div id="photo">
           <!-- <img style="width:60px;height:60px;" src="" id="myImage"/>height="200px" width="200px"/>
@@ -95,10 +93,10 @@
         </div>
         <input type="file" id="file" name="file" accept="image/*, video/*"></br>
       </div>
-      <div id="paso6" style="display: none;">
+      <div id="paso5" style="display: none;">
       </br>
         <table id="denuncia-completa"><tbody>
-        <thead><strong>¿Todo bien con tu denuncia?</thead>
+        <thead><strong>¿Todo bien con tu denuncia?</strong></thead>
         </tbody></table>
         <input id="enviar" type="button" class="btn btn-default" value='Enviar'>
       </br>
