@@ -35,7 +35,9 @@
     function habilita(){
       document.getElementById("nombre").disabled = false;
       document.getElementById("dpi").disabled = false;
-      document.getElementById("ident").style.display = 'block'
+      document.getElementById("ident").style.display = 'block';
+      myScroll.refresh();
+      myScroll.scrollTo(0,0);
       // document.getElementById('wrapper').style.height = window.innerHeight;
     }
 
@@ -43,6 +45,8 @@
       document.getElementById("nombre").disabled = true;
       document.getElementById("dpi").disabled = true;
       document.getElementById("ident").style.display = 'none';
+      myScroll.refresh();
+      myScroll.scrollTo(0,0);
       // document.getElementById('wrapper').style.height = window.innerHeight;
     }
 

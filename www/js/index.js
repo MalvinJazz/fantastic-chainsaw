@@ -105,17 +105,31 @@ function mostrarDoc(evt) {
         var divPhoto = document.getElementById('photo');
 
         if(fr.result.includes('image')){
-          var img = document.createElement('img');
+          if($('#myVideo').length){
+            var video = document.getElementById('myVideo');
+            video.parentNode.removeChild(video);
+          }
+          if($('#myImage').length)
+            var img = document.getElementById('myImage');
+          else
+            var img = document.createElement('img');
           img.id = 'myImage';
-          img.style.height = '70px';
-          img.style.width = '70px';
+          img.style.height = '200px';
+          img.style.width = '200px';
           img.src = fr.result;
           divPhoto.appendChild(img);
         }else if (fr.result.includes('video')) {
-          var video = document.createElement('video');
+          if($('#myImage').length){
+            var img = document.getElementById('myImage');
+            img.parentNode.removeChild(img);
+          }
+          if($('#myVideo').length)
+            var video = document.getElementById('myVideo');
+          else
+            var video = document.createElement('video');
           video.id = 'myVideo';
-          video.style.height = '70px';
-          video.style.width = '70px';
+          video.style.height = '200px';
+          video.style.width = '200px';
           video.src = fr.result;
           divPhoto.appendChild(video);
         }
@@ -131,7 +145,7 @@ function mostrarDoc(evt) {
     else {
       // alert('El archivo esta corrupto.')
       navigator.notification.alert(
-        'El archivo esta corrupto.',
+        'El archivo esta corrupto o no se subió ninguno.',
           null,
         'Error',
         'OK'
@@ -144,7 +158,6 @@ function onConfirm(buttonIndex){
   if(buttonIndex==1){
     getGeolocation();
     navigator.notification.alert('¡Gracias!', null, 'Localización procesada', 'OK');
-    geoLconfirmada = true;
   }else if (buttonIndex == 2) {
     navigator.notification.alert(
       'Tu denuncia se procesará.',
@@ -153,6 +166,7 @@ function onConfirm(buttonIndex){
       'OK'
     );
   }
+  geoLconfirmada = true;
 
 }
 
@@ -163,7 +177,7 @@ function enviarInfo(){
 
   if(document.getElementById('denuncia').value==""){
     // alert('Por favor, ingresa una denuncia.');
-    navigator.notification.alert('¡Gracias!', regresar(2), 'Localización procesada', 'OK');
+    navigator.notification.alert('Por favor ingresa una denuncia', regresar(2), 'Error!', 'OK');
     // document.getElementById('denuncia').style.border = "solid red";
     // var pos = $('#denuncia').offset();
     // // pos.focus();
@@ -173,7 +187,7 @@ function enviarInfo(){
   }
   if(motivo==0){
     // alert('Por favor, ingresa un motivo.');
-    navigator.notification.alert('¡Gracias!', regresar(2), 'Localización procesada', 'OK');
+    navigator.notification.alert('Por favor, ingresa un motivo.', regresar(2), 'Error!', 'OK');
     // document.getElementById('motivo_id').style.border = "solid red";
     // var pos = $('#motivo_id').offset();
     // window.scrollTo(pos.left, pos.top-100);
@@ -183,7 +197,7 @@ function enviarInfo(){
 
   if(direccion==0){
     // alert('Por favor, ingresa una zona.');
-    navigator.notification.alert('¡Gracias!', regresar(3), 'Localización procesada', 'OK');
+    navigator.notification.alert('Por favor, ingresa una zona.', regresar(3), 'Error!', 'OK');
     // document.getElementById('zona_id').style.border = "solid red";
     // var pos = $('#zona_id').offset();
     // window.scrollTo(pos.left, pos.top-100);
@@ -585,6 +599,15 @@ function regresar(paso){
       celdas[i].style.display = 'none';
   }
 
+  if(paso>1)
+    deshabilita();
+  else {
+    if(document.getElementById('anonimo').checked)
+      deshabilita();
+    else
+      habilita();
+  }
+
   if(paso > 5)
     document.getElementById('continuar').style.display = 'none';
   else
@@ -615,6 +638,9 @@ function irPorPasos(paso){
       celdas[i].style.display = 'none';
   }
 
+  if(paso>0)
+    document.getElementById('ident').style.display = 'none';
+
   if(paso>4){
     var tabla = document.getElementById('denuncia-completa');
     var old_tbody = tabla.childNodes[1];
@@ -623,6 +649,41 @@ function irPorPasos(paso){
     var fila = document.createElement('tr');
     var celdath = document.createElement('th');
     var celdatd = document.createElement('td');
+
+    if(!document.getElementById('anonimo').checked){
+      var filaA = document.createElement('tr');
+      var celdathA = document.createElement('th');
+      var celdatdA = document.createElement('td');
+      var textoA = document.createTextNode('Nombre');
+      celdathA.appendChild(textoA);
+      textoA = document.createTextNode($('#nombre').val());
+      celdatdA.appendChild(textoA);
+      filaA.appendChild(celdathA);
+      filaA.appendChild(celdatdA);
+      tbody.appendChild(filaA);
+
+      filaA = document.createElement('tr');
+      celdathA = document.createElement('th');
+      celdatdA = document.createElement('td');
+      textoA = document.createTextNode('DPI');
+      celdathA.appendChild(textoA);
+      textoA = document.createTextNode($('#dpi').val());
+      celdatdA.appendChild(textoA);
+      filaA.appendChild(celdathA);
+      filaA.appendChild(celdatdA);
+      tbody.appendChild(filaA);
+
+      filaA = document.createElement('tr');
+      celdathA = document.createElement('th');
+      celdatdA = document.createElement('td');
+      textoA = document.createTextNode('Telefono');
+      celdathA.appendChild(textoA);
+      textoA = document.createTextNode($('#telefono').val());
+      celdatdA.appendChild(textoA);
+      filaA.appendChild(celdathA);
+      filaA.appendChild(celdatdA);
+      tbody.appendChild(filaA);
+    }
 
     var texto = document.createTextNode('Denuncia');
     celdath.appendChild(texto);

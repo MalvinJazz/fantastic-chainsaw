@@ -1,6 +1,7 @@
 // Declaraci�n de variables globales
 var myScroll, myScrollMenu, cuerpo, menuprincipal, wrapper, estado;
 var direccion = '192.168.0.88:8000'
+var geoLconfirmada = false;
 
 // Guardamos en variables elementos para poder rescatarlos despu�s sin tener que volver a buscarlos
 cuerpo = document.getElementById("cuerpo"),
@@ -104,17 +105,31 @@ function mostrarDoc(evt) {
         var divPhoto = document.getElementById('photo');
 
         if(fr.result.includes('image')){
-          var img = document.createElement('img');
+          if($('#myVideo').length){
+            var video = document.getElementById('myVideo');
+            video.parentNode.removeChild(video);
+          }
+          if($('#myImage').length)
+            var img = document.getElementById('myImage');
+          else
+            var img = document.createElement('img');
           img.id = 'myImage';
-          img.style.height = '70px';
-          img.style.width = '70px';
+          img.style.height = '200px';
+          img.style.width = '200px';
           img.src = fr.result;
           divPhoto.appendChild(img);
         }else if (fr.result.includes('video')) {
-          var video = document.createElement('video');
+          if($('#myImage').length){
+            var img = document.getElementById('myImage');
+            img.parentNode.removeChild(img);
+          }
+          if($('#myVideo').length)
+            var video = document.getElementById('myVideo');
+          else
+            var video = document.createElement('video');
           video.id = 'myVideo';
-          video.style.height = '70px';
-          video.style.width = '70px';
+          video.style.height = '200px';
+          video.style.width = '200px';
           video.src = fr.result;
           divPhoto.appendChild(video);
         }
@@ -128,7 +143,13 @@ function mostrarDoc(evt) {
       fr.readAsDataURL(files[0]);
     }
     else {
-      alert('El archivo esta corrupto.')
+      // alert('El archivo esta corrupto.')
+      navigator.notification.alert(
+        'El archivo esta corrupto o no se subió ninguno.',
+          null,
+        'Error',
+        'OK'
+      );
     }
   }
 
@@ -137,8 +158,14 @@ function onConfirm(buttonIndex){
   if(buttonIndex==1){
     getGeolocation();
     navigator.notification.alert('¡Gracias!', null, 'Localización procesada', 'OK');
+    geoLconfirmada = true;
   }else if (buttonIndex == 2) {
-    alert('No hay problema, tu denuncia se procesará.');
+    navigator.notification.alert(
+      'Tu denuncia se procesará.',
+        null,
+      'Denuncia Movil',
+      'OK'
+    );
   }
 
 }
@@ -149,29 +176,32 @@ function enviarInfo(){
   var direccion = document.getElementById('zona_id').value;
 
   if(document.getElementById('denuncia').value==""){
-    alert('Por favor, ingresa una denuncia.');
+    // alert('Por favor, ingresa una denuncia.');
+    navigator.notification.alert('¡Gracias!', regresar(2), 'Localización procesada', 'OK');
     // document.getElementById('denuncia').style.border = "solid red";
     // var pos = $('#denuncia').offset();
     // // pos.focus();
     // window.scrollTo(pos.left, pos.top-100);
-    regresar(2);
+    // regresar(2);
     return;
   }
   if(motivo==0){
-    alert('Por favor, ingresa un motivo.');
+    // alert('Por favor, ingresa un motivo.');
+    navigator.notification.alert('Error!', regresar(2), 'Por favor, ingresa un motivo.', 'OK');
     // document.getElementById('motivo_id').style.border = "solid red";
     // var pos = $('#motivo_id').offset();
     // window.scrollTo(pos.left, pos.top-100);
-    regresar(2);
+    // regresar(2);
     return;
   }
 
   if(direccion==0){
-    alert('Por favor, ingresa una zona.');
+    // alert('Por favor, ingresa una zona.');
+    navigator.notification.alert('Error!', regresar(3), 'Por favor, ingresa una zona.', 'OK');
     // document.getElementById('zona_id').style.border = "solid red";
     // var pos = $('#zona_id').offset();
     // window.scrollTo(pos.left, pos.top-100);
-    regresar(3);
+    // regresar(3);
     return;
   }
 
@@ -211,15 +241,28 @@ function enviarInfo(){
     dataType: 'json',
     statusCode: {
       201: function(){
-        alert('Denuncia enviada con exito.');
+        // alert('Denuncia enviada con exito.');
+        navigator.notification.alert(
+          'Denuncia enviada con exito.',
+            null,
+          'Envio Correcto',
+          'OK'
+        );
         document.getElementById('form1').reset();
         regresar(1);
         myScroll.refresh();
         myScroll.scrollTo(0,0);
+        geoLconfirmada = false;
       },
       400: function(){
-        alert('Ha ocurrido un error con el servidor, ' +
-                             'intenta de nuevo mas tarde.');
+        // alert('Ha ocurrido un error con el servidor, ' +
+        //                      'intenta de nuevo mas tarde.');
+       navigator.notification.alert(
+         'Ha ocurrido un error con el servidor, intenta de nuevo más tarde.',
+           null,
+         'Error',
+         'OK'
+       );
       }
     },
     // success: function(data){
@@ -247,7 +290,12 @@ function getGeolocation(){
 
       });
   } else {
-    alert("Para utilizar la geolocalización necesitas activar tu GPS.");
+    navigator.notification.alert(
+      'Para utilizar la geolocalización necesitas activar tu GPS.',
+        null,
+      'Error',
+      'OK'
+    );
   }
 
 }
@@ -285,7 +333,12 @@ function busquedaMotivo(){
 
     },
     error: function(){
-      alert('No funciona.');
+      navigator.notification.alert(
+        'Ha ocurrido un error con el servidor, intenta de nuevo más tarde.',
+          null,
+        'Error',
+        'OK'
+      );
     }
 
   })
@@ -325,7 +378,12 @@ function busquedaZona(){
 
     },
     error: function(){
-      alert('no funciona.');
+      navigator.notification.alert(
+        'Ha ocurrido un error con el servidor, intenta de nuevo más tarde.',
+          null,
+        'Error',
+        'OK'
+      );
     }
 
   })
@@ -366,7 +424,12 @@ function busquedaMunicipio(){
 
     },
     error: function(){
-      alert('No funciona.')
+      navigator.notification.alert(
+        'Ha ocurrido un error con el servidor, intenta de nuevo más tarde.',
+          null,
+        'Error',
+        'OK'
+      );
     }
 
   });
@@ -388,7 +451,13 @@ function onSuccess(imageData){
 }
 
 function onFail(message){
-  alert('Error por ' + message);
+  // alert('Error por ' + message);
+  navigator.notification.alert(
+    'Camara cerrada.',
+      null,
+    message,
+    'OK'
+  );
   $('#file').show();
   $('#photo').hide();
 }
@@ -440,7 +509,12 @@ function getDepartamentos(){
       }
     },
     error: function(){
-      alert('no funciona. 1');
+      navigator.notification.alert(
+        'Ha ocurrido un error con el servidor, intenta de nuevo más tarde.',
+          null,
+        'Error',
+        'OK'
+      );
     }
 
   });
@@ -525,6 +599,13 @@ function regresar(paso){
       celdas[i].style.display = 'none';
   }
 
+  if(paso>1)
+    document.getElementById('ident').style.display = 'none';
+  else {
+    if(!document.getElementById("nombre").disabled)
+      habilita();
+  }
+
   if(paso > 5)
     document.getElementById('continuar').style.display = 'none';
   else
@@ -554,6 +635,9 @@ function irPorPasos(paso){
     else
       celdas[i].style.display = 'none';
   }
+
+  if(paso>0)
+    document.getElementById('ident').style.display = 'none';
 
   if(paso>4){
     var tabla = document.getElementById('denuncia-completa');
@@ -624,7 +708,7 @@ function irPorPasos(paso){
 
     tabla.replaceChild(tbody, old_tbody);
 
-    if ($('lat').value == 0 && $('#lon').val() == 0 ) {
+    if (!geoLconfirmada) {
       navigator.notification.confirm(
         '¿Nos brindarías tu ubicación actual?',
         onConfirm,
@@ -694,7 +778,12 @@ function drawGeoChart() {
       chart.draw(datos, options);
     },
     error: function(){
-      alert('Ocurrio un problema con el servidor. Intenta más tarde.');
+      navigator.notification.alert(
+        'Ha ocurrido un error con el servidor, intenta de nuevo más tarde.',
+          null,
+        'Error',
+        'OK'
+      );
     }
 
   });
