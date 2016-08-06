@@ -483,7 +483,18 @@ function receivedEvent() {
 
 }
 
+function scrollear(offset){
+
+    console.log(offset);
+    myScroll.refresh();
+    myScroll.scrollTo(0,offset.top);
+}
+
 function getDepartamentos(){
+  $('input[type=text], textarea').bind("click",function(){
+    setTimeout(scrollear($(this).offset()), 250);
+  });
+
   var deps = document.getElementById('dep');
   var muni = document.getElementById('muni_id');
   var tipo = document.getElementById('id_tipo');
