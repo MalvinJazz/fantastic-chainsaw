@@ -154,7 +154,7 @@ a {
 }
 
 #wrapper{
-	position:absolute; 
+	position:absolute;
 	z-index:1;
 	height:100%;
 	width:100%;
@@ -413,4 +413,52 @@ a {
     line-height: 1.42857143;
     vertical-align: top;
     border-top: 1px solid #ddd;
+}
+
+#graficas{
+	width: 300px;
+height: 160px;
+float: left;
+position: relative;
+z-index: 1;
+overflow: hidden;
+background: #aaa;
+-webkit-border-radius: 10px;
+-moz-border-radius: 10px;
+-o-border-radius: 10px;
+border-radius: 10px;
+background: #e3e3e3;
+}
+
+#scroller{
+	width: 2100px;
+height: 100%;
+float: left;
+padding: 0;
+}
+
+#scroller ul{
+	list-style: none;
+display: block;
+float: left;
+width: 100%;
+height: 100%;
+padding: 0;
+margin: 0;
+text-align: left;
+}
+
+#scroller li{
+	-webkit-box-sizing: border-box;
+-moz-box-sizing: border-box;
+-o-box-sizing: border-box;
+box-sizing: border-box;
+display: block;
+float: left;
+width: 300px;
+height: 160px;
+text-align: center;
+font-family: georgia;
+font-size: 18px;
+line-height: 140%;
 }

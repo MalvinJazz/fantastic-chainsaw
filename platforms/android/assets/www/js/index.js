@@ -597,8 +597,14 @@ function menu(opcion){
     }
 
 
-    if(opcion == '2')
+    if(opcion == '2'){
       google.charts.setOnLoadCallback(drawGeoChart);
+      var graficas = new iScroll('graficas', {
+    	snap: 'li',
+    	momentum: false,
+    	hScrollbar: false,
+    	vScrollbar: false });
+    }
 
 		// Refrescamos el elemento iscroll seg�n el contenido ya a�adido mediante ajax, y hacemos que se desplace al top
 		myScroll.refresh();
@@ -834,7 +840,7 @@ function drawGeoChart() {
          region: 'GT',
          //displayMode: 'markers',
          resolution: 'provinces',
-         //FAE398
+         //#FAE398
          colorAxis: {colors: ['#FDF1CB','#FFC400','#DF0000']},
       };
 

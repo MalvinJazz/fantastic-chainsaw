@@ -597,8 +597,14 @@ function menu(opcion){
     }
 
 
-    if(opcion == '2')
+    if(opcion == '2'){
       google.charts.setOnLoadCallback(drawGeoChart);
+      var graficas = new iScroll('graficas', {
+    	snap: 'li',
+    	momentum: false,
+    	hScrollbar: false,
+    	vScrollbar: false });
+    }
 
 		// Refrescamos el elemento iscroll seg�n el contenido ya a�adido mediante ajax, y hacemos que se desplace al top
 		myScroll.refresh();
@@ -834,7 +840,7 @@ function drawGeoChart() {
          region: 'GT',
          //displayMode: 'markers',
          resolution: 'provinces',
-         //FAE398
+         //#FAE398
          colorAxis: {colors: ['#FDF1CB','#FFC400','#DF0000']},
       };
 
@@ -853,99 +859,6 @@ function drawGeoChart() {
   });
 
   }
-
-// function initMap(){
-//   if (navigator.geolocation) {
-//     navigator.geolocation.getCurrentPosition(function(position){
-//
-//       var lt = position.coords.latitude;
-//       var lon = position.coords.longitude;
-//
-//       var myLatlng = new google.maps.LatLng(lt,lon);
-//
-//       var styleArray = [
-//         {
-//           featureType: "all",
-//           stylers: [
-//             { saturation: -90 }
-//           ]
-//         },{
-//           featureType: "road.arterial",
-//           elementType: "geometry",
-//           stylers: [
-//             // { hue: "#0e1450 " },
-//             { hue: "#034c86" },
-//             { saturation: 50 }
-//           ]
-//         },{
-//           featureType: "road.local",
-//           elementType: "geometry",
-//           stylers: [
-//             // { hue: "#263238" },
-//             { hue: "#0e1450" },
-//             { saturation: 35 },
-//             { lightness: 5 }
-//           ]
-//         },{
-//           featureType: "road.highway",
-//           elementType: "geometry",
-//           stylers: [
-//             // { hue: "#034c86" },
-//             { hue: "#263238" },
-//             { saturation: 10 },
-//             { lightness: 10 }
-//           ]
-//         },{
-//           featureType: "water",
-//           elementType: "geometry",
-//           stylers: [
-//             { hue: "#0d47a1" },
-//             { saturation: 100 },
-//             { lightness: 10 }
-//           ]
-//         }//,{
-//         //   featureType: "poi.business",
-//         //   elementType: "labels",
-//         //   stylers: [
-//         //     { visibility: "off" }
-//         //   ]
-//         // }
-//       ];
-//
-//       map = new google.maps.Map(document.getElementById('mapa'), {
-//         center: myLatlng,
-//         zoom: 15
-//       });
-//
-//       map.setOptions({styles: styleArray});
-//
-//       // {% for dato in denuncias %}
-//       //   loc = {lat: {{dato.latitud}}, lng: {{dato.longitud}}};
-//       //   addMarker(loc, map, '{{dato.motivo}}', {{dato.getSprite}});
-//       // {% endfor %}
-//
-//       // var image = {
-//       //   url: '/static/images/marcadores.png',
-//       //   size: new google.maps.Size(36,46),
-//       //   origin: new google.maps.Point(0,0),
-//       //   anchor: new google.maps.Point(0,17)
-//       // };
-//       //
-//       // var marker = new google.maps.Marker({
-//       //   position: {lat: lt, lng: lon},
-//       //   title: 'Usuario',
-//       //   map: map,
-//       //   icon: image,
-//       //   animation: google.maps.Animation.DROP
-//       // });
-//
-//     });
-//
-//   } else {
-//     alert("Para utilizar la geolocalización necesitas actualizar tu navegador.");
-//   }
-//
-// }
 
   // function sleep(milliseconds) {
   //   var start = new Date().getTime();
