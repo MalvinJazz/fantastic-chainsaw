@@ -50,8 +50,8 @@ var app = {
     // Creamos los 2 scroll mediante el plugin iscroll, uno para el men� principal y otro para el cuerpo
     myScroll = new iScroll('wrapper', {
       hideScrollbar: true,
-      useTransform: false,
-      bounce: false,
+      // useTransform: true,
+      // bounce: true,
       onBeforeScrollStart: function (e) {
       var target = e.target;
       while (target.nodeType != 1)
@@ -65,7 +65,7 @@ var app = {
     $('#menuprincipal').hide();
     $('#cuerpo').hide();
 
-    sleep(1000);
+    sleep(500);
 
     document.getElementById('pantalla-inicio').style.display = 'none';
     $('#menuprincipal').show();
@@ -74,16 +74,16 @@ var app = {
     },
 
     bindEvents: function() {
-        var deps = document.getElementById('dep');
-        var muni = document.getElementById('muni_id');
-        var tipo = document.getElementById('id_tipo');
-        var enviar = document.getElementById('enviar');
-        var doc = document.getElementById('file');
-        doc.addEventListener('change', mostrarDoc);
-        enviar.addEventListener('click', enviarInfo);
-        tipo.addEventListener('change', busquedaMotivo);
-        muni.addEventListener('change', busquedaZona);
-        deps.addEventListener('change', busquedaMunicipio);
+        // var deps = document.getElementById('dep');
+        // var muni = document.getElementById('muni_id');
+        // var tipo = document.getElementById('id_tipo');
+        // var enviar = document.getElementById('enviar');
+        // var doc = document.getElementById('file');
+        // doc.addEventListener('change', mostrarDoc);
+        // enviar.addEventListener('click', enviarInfo);
+        // tipo.addEventListener('change', busquedaMotivo);
+        // muni.addEventListener('change', busquedaZona);
+        // deps.addEventListener('change', busquedaMunicipio);
         document.addEventListener('deviceready', this.onDeviceReady, false);
     },
 
@@ -486,13 +486,16 @@ function receivedEvent() {
 function scrollear(offset){
 
     console.log(offset);
-    myScroll.refresh();
-    myScroll.scrollTo(0,offset.top);
+    setTimeout(function(){
+      myScroll.refresh();
+      myScroll.scrollTo(0,-offset.top);
+    }, 5000)
+
 }
 
 function getDepartamentos(){
   $('input[type=text], textarea').bind("click",function(){
-    setTimeout(scrollear($(this).offset()), 250);
+    scrollear($(this).offset());
   });
 
   var deps = document.getElementById('dep');
@@ -506,7 +509,7 @@ function getDepartamentos(){
   muni.addEventListener('change', busquedaZona);
   deps.addEventListener('change', busquedaMunicipio);
 
-  var departamentos = document.getElementById('dep');
+  // var departamentos = document.getElementById('dep');
 
   // location.href = 'file:///android_asset/www/prueba.html';
 
@@ -525,7 +528,7 @@ function getDepartamentos(){
         nuevo.value = data.objects[i].id;
         nuevo.innerHTML = data.objects[i].nombre;
 
-        departamentos.options.add(nuevo);
+        deps.options.add(nuevo);
 
       }
     },
