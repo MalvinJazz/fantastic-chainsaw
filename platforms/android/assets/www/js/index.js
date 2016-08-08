@@ -273,7 +273,15 @@ function enviarInfo(){
          'Error',
          'OK'
        );
-      }
+     },
+     500: function(){
+       navigator.notification.alert(
+         'Ha ocurrido un error con el servidor, intenta de nuevo más tarde.',
+           null,
+         'Error',
+         'OK'
+       );
+     }
     },
     // success: function(data){
     //   alert('Se ha enviado con exito.')
@@ -599,11 +607,11 @@ function menu(opcion){
 
     if(opcion == '2'){
       google.charts.setOnLoadCallback(drawGeoChart);
-      var graficas = new iScroll('graficas', {
-    	snap: 'li',
-    	momentum: false,
-    	hScrollbar: false,
-    	vScrollbar: false });
+      // var graficas = new iScroll('graficas', {
+    	// snap: 'li',
+    	// momentum: false,
+    	// hScrollbar: false,
+    	// vScrollbar: false });
     }
 
 		// Refrescamos el elemento iscroll seg�n el contenido ya a�adido mediante ajax, y hacemos que se desplace al top
