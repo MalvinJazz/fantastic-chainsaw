@@ -483,18 +483,21 @@ function receivedEvent() {
 
 }
 
-function scrollear(offset){
+function scrollear(element){
 
-    console.log(offset);
+    // console.log(element);
     setTimeout(function(){
       myScroll.refresh();
-      myScroll.scrollTo(0,-offset.top);
+      var scroll = (window.innerHeight/2) - element.top;
+      // myScroll.scrollToElement(element,0);
+      myScroll.scrollTo(0, -scroll, 0, true);
     }, 200)
 
 }
 
 function getDepartamentos(){
   $('input[type=text], textarea').bind("click",function(){
+    // scrollear($(this)[0]);
     scrollear($(this).offset());
   });
 
