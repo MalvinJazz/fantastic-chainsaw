@@ -3,6 +3,8 @@ var myScroll, myScrollMenu, cuerpo, menuprincipal, wrapper, estado;
 var direccion = '192.168.0.88:8000'
 var geoLconfirmada = false;
 
+var denuncias = [];
+
 // Guardamos en variables elementos para poder rescatarlos despu�s sin tener que volver a buscarlos
 cuerpo = document.getElementById("cuerpo"),
 menuprincipal = document.getElementById("menuprincipal"),
@@ -51,7 +53,7 @@ var app = {
     myScroll = new iScroll('wrapper', {
       hideScrollbar: true,
       // useTransform: true,
-      // bounce: true,
+      bounce: false,
       onBeforeScrollStart: function (e) {
       var target = e.target;
       while (target.nodeType != 1)
@@ -614,6 +616,10 @@ function menu(opcion){
     	// vScrollbar: false });
     }
 
+    if(opcion=='3'){
+      initMap();
+    }
+
 		// Refrescamos el elemento iscroll seg�n el contenido ya a�adido mediante ajax, y hacemos que se desplace al top
 		myScroll.refresh();
 		myScroll.scrollTo(0,0);
@@ -866,7 +872,90 @@ function drawGeoChart() {
 
   });
 
+}
+
+function initMap(){
+
+  if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position){
+
+        document.getElementById('mapa').style.height = (window.innerHeight*0.75) + 'px';
+        console.log(window.innerHeight);
+
+        var map = new GMaps({
+          div: '#mapa',
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+          zoom: 16,
+        });
+
+        var image = {
+          url: '/img/marcadores.png',
+          size: new google.maps.Size(36,46),
+          origin: new google.maps.Point(0,0),
+          anchor: new google.maps.Point(0,17)
+        };
+
+        map.addMarker({
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+          icon: image
+          // infoWindow: {
+          //   content: '<p>HTML Content</p>'
+          // }
+          // click: function(e) {
+          //   alert('You clicked in this marker');
+          // }
+        });
+
+        $.ajax({
+
+          type: 'get',
+          dataType: "json",
+          url: "http://"+direccion+"/denuncias/geo_denuncias/",
+          success: function(data){
+            for(var i=0; i<data.length; i++){
+
+              // image = {
+              //   url: '/img/marcadores.png',
+              //   size: new google.maps.Size(36,46),
+              //   origin: new google.maps.Point(data[i].sprite,0),
+              //   anchor: new google.maps.Point(0,17)
+              // };
+              //
+              // map.addMarker({
+              //   lat: data[i].latitud,
+              //   lng: data[i].longitud,
+              //   icon: image,
+              //   infoWindow: {
+              //     content: '<h1>Motivo: '+data[i].motivo+'</h1></br><p>Fecha y Hora: '+data[i].fecha+'</p>'
+              //   }
+              // });
+
+            }
+          },
+          error: function(){
+            navigator.notification.alert(
+              'Ha ocurrido un error con el servidor, intenta de nuevo más tarde.',
+                null,
+              'Error',
+              'OK'
+            );
+          }
+
+        });
+
+      });
+  } else {
+    navigator.notification.alert(
+      'Para utilizar la geolocalización necesitas activar tu GPS.',
+        null,
+      'Error',
+      'OK'
+    );
   }
+
+}
 
   // function sleep(milliseconds) {
   //   var start = new Date().getTime();

@@ -466,3 +466,11 @@ background: #e3e3e3;
 color: black;
 /*background-color: white;*/
 }
+
+#mapa{
+	/*padding: 5%;*/
+	/*margin: 0% 5%;*/
+	width: 100%;
+	padding-bottom: 50px;
+	margin-bottom: 5%;
+}

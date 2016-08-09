@@ -418,11 +418,11 @@ a {
 #graficas{
 	width: 300px;
 height: 160px;
-float: left;
+/*float: left;*/
 position: relative;
 z-index: 1;
 overflow: hidden;
-background: #aaa;
+/*background: #aaa;*/
 -webkit-border-radius: 10px;
 -moz-border-radius: 10px;
 -o-border-radius: 10px;
@@ -446,6 +446,7 @@ height: 100%;
 padding: 0;
 margin: 0;
 text-align: left;
+background: #e3e3e3;
 }
 
 #scroller li{
@@ -461,4 +462,15 @@ text-align: center;
 font-family: georgia;
 font-size: 18px;
 line-height: 140%;
+background: #e3e3e3;
+color: black;
+/*background-color: white;*/
+}
+
+#mapa{
+	/*padding: 5%;*/
+	/*margin: 0% 5%;*/
+	width: 100%;
+	padding-bottom: 50px;
+	margin-bottom: 5%;
 }
