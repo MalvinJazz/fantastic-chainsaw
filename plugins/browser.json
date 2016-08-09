@@ -21,6 +21,10 @@
         },
         "cordova-plugin-dialogs": {
             "PACKAGE_NAME": "com.debursa.prueba"
+        },
+        "phonegap-plugin-push": {
+            "SENDER_ID": "700344756414",
+            "PACKAGE_NAME": "com.debursa.prueba"
         }
     },
     "dependent_plugins": {

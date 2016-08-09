@@ -1,6 +1,6 @@
 // Declaraci�n de variables globales
 var myScroll, myScrollMenu, cuerpo, menuprincipal, wrapper, estado;
-var direccion = '192.168.0.88:8000'
+var direccion = '192.168.0.89:8000'
 var geoLconfirmada = false;
 
 var denuncias = [];
@@ -246,8 +246,9 @@ function enviarInfo(){
   $.ajax({
 
     data: data,
-    // url: 'http://'+ direccion +'/denuncias/api/d1/denuncia/',
-    url: 'http://192.168.0.88:8000/denuncias/api/d1/denuncia/',
+    url: "http://"+ direccion +"/denuncias/api/d1/denuncia",
+    // url: 'http://192.168.0.88:8000/denuncias/api/d1/denuncia/',
+    // "http://"+direccion+"/estadisticas/api/local/departamento?limit=22"
     type: 'POST',
     contentType: 'application/json',
     dataType: 'json',
@@ -890,7 +891,7 @@ function initMap(){
         });
 
         var image = {
-          url: '/img/marcadores.png',
+          url: 'http://'+direccion+'/static/images/marcadores.png',
           size: new google.maps.Size(36,46),
           origin: new google.maps.Point(0,0),
           anchor: new google.maps.Point(0,17)
@@ -899,7 +900,10 @@ function initMap(){
         map.addMarker({
           lat: position.coords.latitude,
           lng: position.coords.longitude,
-          icon: image
+          icon: image,
+          infoWindow: {
+            content: '<h1>Mi posición</h1>'
+          }
         });
 
         $.ajax({
@@ -908,22 +912,24 @@ function initMap(){
           dataType: "json",
           url: "http://"+direccion+"/denuncias/geo_denuncias/",
           success: function(data){
+
+            // alert('1');
             for(var i=0; i<data.length; i++){
 
               image = {
-                url: '/img/marcadores.png',
+                url: 'http://'+direccion+'/static/images/marcadores.png',
                 size: new google.maps.Size(36,46),
                 origin: new google.maps.Point(data[i].sprite,0),
                 anchor: new google.maps.Point(0,17)
               };
-              
+
               map.addMarker({
                 lat: data[i].latitud,
                 lng: data[i].longitud,
-                icon: image,
                 infoWindow: {
-                  content: '<h1>Motivo: '+data[i].motivo+'</h1></br><p>Fecha y Hora: '+data[i].fecha+'</p>'
-                }
+                  content: '<h1>'+data[i].motivo+'</h1></br></p>Fecha: '+data[i].fecha+'</p>'
+                },
+                icon: image
               });
 
             }
