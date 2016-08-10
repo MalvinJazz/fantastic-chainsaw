@@ -243,59 +243,62 @@ function enviarInfo(){
 
   })
 
-  $.ajax({
+  try{
+    $.ajax({
 
-    data: data,
-    url: "http://"+ direccion +"/denuncias/api/d1/denuncia",
-    // url: 'http://192.168.0.88:8000/denuncias/api/d1/denuncia/',
-    // "http://"+direccion+"/estadisticas/api/local/departamento?limit=22"
-    type: 'POST',
-    contentType: 'application/json',
-    dataType: 'json',
-    statusCode: {
-      201: function(){
-        // alert('Denuncia enviada con exito.');
-        navigator.notification.alert(
-          'Denuncia enviada con exito.',
-            null,
-          'Envio Correcto',
-          'OK'
-        );
-        document.getElementById('form1').reset();
-        regresar(1);
-        myScroll.refresh();
-        myScroll.scrollTo(0,0);
-        geoLconfirmada = false;
+      data: data,
+      // url: "http://"+direccion+"/denuncias/api/d1/denuncia/",
+      url: 'http://192.168.0.89:8000/denuncias/api/d1/denuncia/',
+      // "http://"+direccion+"/estadisticas/api/local/departamento?limit=22"
+      type: 'POST',
+      contentType: 'application/json',
+      dataType: 'json',
+      statusCode: {
+        201: function(){
+          // alert('Denuncia enviada con exito.');
+          navigator.notification.alert(
+            'Denuncia enviada con exito.',
+              null,
+            'Envio Correcto',
+            'OK'
+          );
+          document.getElementById('form1').reset();
+          regresar(1);
+          myScroll.refresh();
+          myScroll.scrollTo(0,0);
+          geoLconfirmada = false;
+        },
+        400: function(){
+          // alert('Ha ocurrido un error con el servidor, ' +
+          //                      'intenta de nuevo mas tarde.');
+         navigator.notification.alert(
+           'Ha ocurrido un error con el servidor, intenta de nuevo más tarde.',
+             null,
+           'Error',
+           'OK'
+         );
+       },
+       500: function(){
+         navigator.notification.alert(
+           'Ha ocurrido un error con el servidor, intenta de nuevo más tarde.',
+             null,
+           'Error',
+           'OK'
+         );
+       }
       },
-      400: function(){
-        // alert('Ha ocurrido un error con el servidor, ' +
-        //                      'intenta de nuevo mas tarde.');
-       navigator.notification.alert(
-         'Ha ocurrido un error con el servidor, intenta de nuevo más tarde.',
-           null,
-         'Error',
-         'OK'
-       );
-     },
-     500: function(){
-       navigator.notification.alert(
-         'Ha ocurrido un error con el servidor, intenta de nuevo más tarde.',
-           null,
-         'Error',
-         'OK'
-       );
-     }
-    },
-    // success: function(data){
-    //   alert('Se ha enviado con exito.')
-    // },
-    // error: function(){
-    //   alert('Ha ocurrido un error con el servidor, intenta de nuevo mas tarde.')
-    // },
-    processData: false
+      // success: function(data){
+      //   alert('Se ha enviado con exito.')
+      // },
+      // error: function(){
+      //   alert('Ha ocurrido un error con el servidor, intenta de nuevo mas tarde.')
+      // },
+      processData: false
 
-  })
-
+    });
+  }catch(err){
+    alert(err);
+  }
 }
 
 function getGeolocation(){
@@ -507,7 +510,7 @@ function scrollear(element){
 }
 
 function getDepartamentos(){
-  $('input[type=text], textarea').bind("click",function(){
+  $('input[type=text], textarea').on("click",function(){
     // scrollear($(this)[0]);
     scrollear($(this).offset());
   });
