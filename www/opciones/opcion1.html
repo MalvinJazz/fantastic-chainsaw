@@ -18,6 +18,7 @@
 
 <div id="content">
   <div class="rdBtn" id="paso1">
+    <h1>¿Como quieres hacer tu denuncia?</h1>
     <label>Anonima</label>
     <input type="radio" name="name" id="anonimo" value="anomimo" onClick="deshabilita()" checked>
     <label>Personal</label>
@@ -39,6 +40,7 @@
         </div>
       </div>
       <div id="paso2" style="display: none;">
+        <h1>Describe tu denuncia</h1>
         <div>
           <label>Tipo</label></br>
           <select id="id_tipo" name="tipo">
@@ -61,6 +63,7 @@
         </div>
       </div>
       <div id="paso3" style="display: none;">
+        <h1>¿Donde ocurrió?</h1>
         <div>
           <label>Departamento</label></br>
           <select id="dep" name="dep">
@@ -86,7 +89,8 @@
       </div>
       <!-- <div id="map_canvas" style="height: 200px; width: 300px"></div> -->
       <div id="paso4" style="display: none;">
-      <label>Foto/Video</label></br>
+        <h1>Evidencia de la denuncia</h1>
+        <label>Foto/Video</label></br>
         <div id="photo">
           <!-- <img style="width:60px;height:60px;" src="" id="myImage"/>height="200px" width="200px"/>
           <video style="width:60px;height:60px;" src="" id="myVideo" controls autoplay></video> -->
@@ -94,12 +98,13 @@
         <input type="file" id="file" name="file" accept="image/*, video/*"></br>
       </div>
       <div id="paso5" style="display: none;">
-      </br>
+        <h1>Verificar y enviar denuncia</h1>
+        </br>
         <table id="denuncia-completa"><tbody>
         <thead><strong>¿Todo bien con tu denuncia?</strong></thead>
         </tbody></table>
         <input id="enviar" type="button" class="btn btn-default" value='Enviar'>
-      </br>
+        </br>
       </div>
       <div id="coord" style="display: none;">
         <input id="lat" type="hidden" name="lat" value=0>

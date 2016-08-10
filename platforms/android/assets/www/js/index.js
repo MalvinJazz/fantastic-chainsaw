@@ -168,13 +168,13 @@ function mostrarDoc(evt) {
 function onConfirm(buttonIndex){
   if(buttonIndex==1){
     getGeolocation();
-    navigator.notification.alert('¡Gracias!', null, 'Localización procesada', 'OK');
+    navigator.notification.alert('¡Gracias!', null, 'Localización procesada', 'Continuar');
   }else if (buttonIndex == 2) {
     navigator.notification.alert(
       'Tu denuncia se procesará.',
         null,
       'Denuncia Movil',
-      'OK'
+      'Continuar'
     );
   }
   geoLconfirmada = true;
@@ -510,7 +510,7 @@ function scrollear(element){
 }
 
 function getDepartamentos(){
-  $('input[type=text], textarea').on("click",function(){
+  $('input[type=text], textarea').bind("click",function(){
     // scrollear($(this)[0]);
     scrollear($(this).offset());
   });
@@ -700,13 +700,16 @@ function irPorPasos(paso){
     var fila = document.createElement('tr');
     var celdath = document.createElement('th');
     var celdatd = document.createElement('td');
+    var link = document.createElement('a');
 
     if(!document.getElementById('anonimo').checked){
       var filaA = document.createElement('tr');
       var celdathA = document.createElement('th');
       var celdatdA = document.createElement('td');
+      link.href = 'javascript:regresar(1);'
       var textoA = document.createTextNode('Nombre');
-      celdathA.appendChild(textoA);
+      link.appendChild(textoA);
+      celdathA.appendChild(link);
       textoA = document.createTextNode($('#nombre').val());
       celdatdA.appendChild(textoA);
       filaA.appendChild(celdathA);
@@ -717,7 +720,10 @@ function irPorPasos(paso){
       celdathA = document.createElement('th');
       celdatdA = document.createElement('td');
       textoA = document.createTextNode('DPI');
-      celdathA.appendChild(textoA);
+      link = document.createElement('a');
+      link.href = 'javascript:regresar(1);'
+      link.appendChild(textoA);
+      celdathA.appendChild(link);
       textoA = document.createTextNode($('#dpi').val());
       celdatdA.appendChild(textoA);
       filaA.appendChild(celdathA);
@@ -728,7 +734,10 @@ function irPorPasos(paso){
       celdathA = document.createElement('th');
       celdatdA = document.createElement('td');
       textoA = document.createTextNode('Telefono');
-      celdathA.appendChild(textoA);
+      link = document.createElement('a');
+      link.href = 'javascript:regresar(1);'
+      link.appendChild(textoA);
+      celdathA.appendChild(link);
       textoA = document.createTextNode($('#telefono').val());
       celdatdA.appendChild(textoA);
       filaA.appendChild(celdathA);

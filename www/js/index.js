@@ -63,11 +63,11 @@ var app = {
       }
     });
     myScrollMenu = new iScroll('wrapperMenu', { hideScrollbar: true });
-    document.getElementById('pantalla-inicio').style.display = 'block';
-    $('#menuprincipal').hide();
-    $('#cuerpo').hide();
-
-    sleep(500);
+    // document.getElementById('pantalla-inicio').style.display = 'block';
+    // $('#menuprincipal').hide();
+    // $('#cuerpo').hide();
+    //
+    // sleep(500);
 
     document.getElementById('pantalla-inicio').style.display = 'none';
     $('#menuprincipal').show();
@@ -505,12 +505,12 @@ function scrollear(element){
       var scroll = (window.innerHeight/2) - element.top;
       // myScroll.scrollToElement(element,0);
       myScroll.scrollTo(0, -scroll, 0, true);
-    }, 200)
+    }, 300)
 
 }
 
 function getDepartamentos(){
-  $('input[type=text], textarea').on("click",function(){
+  $('input[type=text], textarea').bind("click",function(){
     // scrollear($(this)[0]);
     scrollear($(this).offset());
   });
@@ -700,13 +700,16 @@ function irPorPasos(paso){
     var fila = document.createElement('tr');
     var celdath = document.createElement('th');
     var celdatd = document.createElement('td');
+    var link = document.createElement('a');
 
     if(!document.getElementById('anonimo').checked){
       var filaA = document.createElement('tr');
       var celdathA = document.createElement('th');
       var celdatdA = document.createElement('td');
+      link.href = 'javascript:regresar(1);'
       var textoA = document.createTextNode('Nombre');
-      celdathA.appendChild(textoA);
+      link.appendChild(textoA);
+      celdathA.appendChild(link);
       textoA = document.createTextNode($('#nombre').val());
       celdatdA.appendChild(textoA);
       filaA.appendChild(celdathA);
@@ -717,7 +720,10 @@ function irPorPasos(paso){
       celdathA = document.createElement('th');
       celdatdA = document.createElement('td');
       textoA = document.createTextNode('DPI');
-      celdathA.appendChild(textoA);
+      link = document.createElement('a');
+      link.href = 'javascript:regresar(1);'
+      link.appendChild(textoA);
+      celdathA.appendChild(link);
       textoA = document.createTextNode($('#dpi').val());
       celdatdA.appendChild(textoA);
       filaA.appendChild(celdathA);
@@ -728,7 +734,10 @@ function irPorPasos(paso){
       celdathA = document.createElement('th');
       celdatdA = document.createElement('td');
       textoA = document.createTextNode('Telefono');
-      celdathA.appendChild(textoA);
+      link = document.createElement('a');
+      link.href = 'javascript:regresar(1);'
+      link.appendChild(textoA);
+      celdathA.appendChild(link);
       textoA = document.createTextNode($('#telefono').val());
       celdatdA.appendChild(textoA);
       filaA.appendChild(celdathA);
