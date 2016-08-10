@@ -168,13 +168,13 @@ function mostrarDoc(evt) {
 function onConfirm(buttonIndex){
   if(buttonIndex==1){
     getGeolocation();
-    navigator.notification.alert('¡Gracias!', null, 'Localización procesada', 'OK');
+    navigator.notification.alert('¡Gracias!', null, 'Localización procesada', 'Continuar');
   }else if (buttonIndex == 2) {
     navigator.notification.alert(
       'Tu denuncia se procesará.',
         null,
       'Denuncia Movil',
-      'OK'
+      'Continuar'
     );
   }
   geoLconfirmada = true;
@@ -798,9 +798,9 @@ function irPorPasos(paso){
 
     if (!geoLconfirmada) {
       navigator.notification.confirm(
-        '¿Nos brindarías tu ubicación actual?',
+        'Con esto alimentaremos el mapa de denuncias.',
         onConfirm,
-        'Localización',
+        '¿Nos brindarías tu ubicación actual?',
         ['Si', 'No']
       );
     }

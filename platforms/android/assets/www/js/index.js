@@ -798,9 +798,9 @@ function irPorPasos(paso){
 
     if (!geoLconfirmada) {
       navigator.notification.confirm(
-        '¿Nos brindarías tu ubicación actual?',
+        'Con esto alimentaremos el mapa de denuncias.',
         onConfirm,
-        'Localización',
+        '¿Nos brindarías tu ubicación actual?',
         ['Si', 'No']
       );
     }
