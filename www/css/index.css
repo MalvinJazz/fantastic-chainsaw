@@ -33,14 +33,18 @@ a {
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
+p{
+	line-height: 180%;
+}
+
 #pantalla-inicio{
   width: 100%;
   height: 100%;
-  background-color: #0b1152;
+  /*background-color: #0b1152;*/
 }
 
 #pantalla-inicio h1{
-  color: white;
+  color: black;
   position: relative;
   /*display: inherit;*/
   top: 50%;
@@ -404,8 +408,12 @@ a {
   max-width: 100%;
   margin-bottom: 20px;
   background-color: transparent;
-  border-spacing: 0;
-  border-collapse: collapse;
+	clear: both;
+}
+
+table{
+	border-spacing: 0;
+	border-collapse: collapse;
 }
 
 #denuncia-completa > thead > tr > th, #denuncia-completa > tbody > tr > th, #denuncia-completa > tfoot > tr > th, #denuncia-completa > thead > tr > td, #denuncia-completa > tbody > tr > td, #denuncia-completa > tfoot > tr > td {
@@ -413,6 +421,14 @@ a {
     line-height: 1.42857143;
     vertical-align: top;
     border-top: 1px solid #ddd;
+}
+
+th{
+	text-align: left;
+}
+
+td{
+	text-align: left;
 }
 
 #graficas{

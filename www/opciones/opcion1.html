@@ -1,7 +1,7 @@
 <div class="borde-h1 color1"></div><h1>Enviar Denuncia</h1>
 <table id="pasos">
   <tr style="display:block">
-      <td style="display: inline-block;"><a href="javascript:regresar(1);">1</a></td>
+    <td style="display: inline-block;"><a href="javascript:regresar(1);">1</a></td>
     <td style="display: none;"><a href="javascript:regresar(2);">2</a></td>
     <td style="display: none;"><a href="javascript:regresar(3);">3</a></td>
     <td style="display: none;"><a href="javascript:regresar(4);">4</a></td>
@@ -17,7 +17,7 @@
 </table>
 
 <div id="content">
-  <div class="rdBtn" id="paso1">
+  <div class="rdBtn" id="paso2"  style="display: none;">
     <h1>¿Como quieres hacer tu denuncia?</h1>
     <label>Anonima</label>
     <input type="radio" name="name" id="anonimo" value="anomimo" onClick="deshabilita()" checked>
@@ -25,6 +25,19 @@
     <input type="radio" name="name" id="personal" value="personal" onclick="habilita()">
   </div>
   <form id="form1" method="POST" action='' enctype='multipart/form-data'>
+    <div id="paso1">
+      <div id="pantalla-inicio">
+        <h1>Denuncia Movil</h1>
+      </div>
+      <label>Subir archivo</label></br>
+      <div id="photo">
+      <!-- <img style="width:60px;height:60px;" src="" id="myImage"/>height="200px" width="200px"/>
+      <video style="width:60px;height:60px;" src="" id="myVideo" controls autoplay></video> -->
+      </div>
+      <input type="button" id="camara" name="camara" value="Tomar Foto">
+      <input type="file" style="display: none;" id="file" name="file" accept="image/*, video/*"></br>
+      <input type="button" id="fake" name="fake" value="Subir Archivo">
+    </div>
       <div id="ident" style="display: none;">
         <div>
           <label>Nombre</label></br>
@@ -39,7 +52,7 @@
             <input id="telefono" type="text" name="telefono" value="" tabindex="3"></br>
         </div>
       </div>
-      <div id="paso2" style="display: none;">
+      <div id="paso3" style="display: none;">
         <h1>Describe tu denuncia</h1>
         <div>
           <label>Tipo</label></br>
@@ -62,7 +75,7 @@
           <textarea id="denuncia" name="denuncia" rows="8" cols="40" placeholder="Describe tu denuncia."></textarea></br>
         </div>
       </div>
-      <div id="paso3" style="display: none;">
+      <div id="paso4" style="display: none;">
         <h1>¿Donde ocurrió?</h1>
         <div>
           <label>Departamento</label></br>
@@ -88,15 +101,6 @@
         </div>
       </div>
       <!-- <div id="map_canvas" style="height: 200px; width: 300px"></div> -->
-      <div id="paso4" style="display: none;">
-        <h1>Evidencia de la denuncia</h1>
-        <label>Foto/Video</label></br>
-        <div id="photo">
-          <!-- <img style="width:60px;height:60px;" src="" id="myImage"/>height="200px" width="200px"/>
-          <video style="width:60px;height:60px;" src="" id="myVideo" controls autoplay></video> -->
-        </div>
-        <input type="file" id="file" name="file" accept="image/*, video/*"></br>
-      </div>
       <div id="paso5" style="display: none;">
         <h1>Verificar y enviar denuncia</h1>
         </br>

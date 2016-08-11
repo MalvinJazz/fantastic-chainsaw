@@ -69,9 +69,9 @@ var app = {
     //
     // sleep(500);
 
-    document.getElementById('pantalla-inicio').style.display = 'none';
-    $('#menuprincipal').show();
-    $('#cuerpo').show();
+    // document.getElementById('pantalla-inicio').style.display = 'none';
+    // $('#menuprincipal').show();
+    // $('#cuerpo').show();
       this.bindEvents();
     },
 
@@ -93,7 +93,7 @@ var app = {
     	// Ejecutamos la funci�n FastClick, que es la que nos elimina esos 300ms de espera al hacer click
       google.charts.load('visualization', '1', {'packages': ['geochart', 'corechart']});
       new FastClick(document.body);
-      receivedEvent();
+      // receivedEvent();
     },
     // Update DOM on a Received Event
 
@@ -198,13 +198,14 @@ function enviarInfo(){
 
   if(document.getElementById('denuncia').value==""){
     // alert('Por favor, ingresa una denuncia.');
-    navigator.notification.alert('Por favor ingresa una denuncia', regresar(2), 'Error!', 'OK');
+    // navigator.notification.alert('Por favor ingresa una denuncia', regresar(2), 'Error!', 'OK');
+    document.getElementById('denuncia').value = $("#motivo_id option:selected").text();
     // document.getElementById('denuncia').style.border = "solid red";
     // var pos = $('#denuncia').offset();
     // // pos.focus();
     // window.scrollTo(pos.left, pos.top-100);
     // regresar(2);
-    return;
+    // return;
   }
 
   if(direccion==0){
@@ -462,7 +463,10 @@ function busquedaMunicipio(){
 
 function onSuccess(imageData){
   var divPhoto = document.getElementById('photo');
-  var img = document.createElement('img');
+  if($('#myImage').length)
+    var img = document.getElementById('myImage');
+  else
+    var img = document.createElement('img');
   img.id = 'myImage';
   img.style.height = '70px';
   img.style.width = '70px';
@@ -482,7 +486,7 @@ function onFail(message){
     message,
     'OK'
   );
-  $('#file').show();
+  // $('#file').show();
   $('#photo').hide();
 }
 
@@ -490,11 +494,22 @@ function receivedEvent() {
 
   navigator.camera.getPicture(onSuccess, onFail, {
     quality: 50,
-    destinationType: Camera.DestinationType.DATA_URL
+    destinationType: Camera.DestinationType.DATA_URL,
+    // sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+    // mediaType: Camera.MediaType.ALLMEDIA
   });
 
   document.getElementById('photo').style.display = 'none';
 
+}
+
+function subirArchivo(){
+  navigator.camera.getPicture(onSuccess, onFail, {
+    quality: 50,
+    destinationType: Camera.DestinationType.DATA_URL,
+    sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+    mediaType: Camera.MediaType.ALLMEDIA
+  });
 }
 
 function scrollear(element){
@@ -520,6 +535,10 @@ function getDepartamentos(){
   var tipo = document.getElementById('id_tipo');
   var enviar = document.getElementById('enviar');
   var doc = document.getElementById('file');
+  var camara = document.getElementById('camara');
+  var fake = document.getElementById('fake');
+  fake.addEventListener('click', subirArchivo);
+  camara.addEventListener('click', receivedEvent);
   doc.addEventListener('change', mostrarDoc);
   enviar.addEventListener('click', enviarInfo);
   tipo.addEventListener('change', busquedaMotivo);

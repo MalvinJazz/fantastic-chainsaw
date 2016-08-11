@@ -63,15 +63,15 @@ var app = {
       }
     });
     myScrollMenu = new iScroll('wrapperMenu', { hideScrollbar: true });
-    document.getElementById('pantalla-inicio').style.display = 'block';
-    $('#menuprincipal').hide();
-    $('#cuerpo').hide();
+    // document.getElementById('pantalla-inicio').style.display = 'block';
+    // $('#menuprincipal').hide();
+    // $('#cuerpo').hide();
+    //
+    // sleep(500);
 
-    sleep(500);
-
-    document.getElementById('pantalla-inicio').style.display = 'none';
-    $('#menuprincipal').show();
-    $('#cuerpo').show();
+    // document.getElementById('pantalla-inicio').style.display = 'none';
+    // $('#menuprincipal').show();
+    // $('#cuerpo').show();
       this.bindEvents();
     },
 
@@ -93,7 +93,7 @@ var app = {
     	// Ejecutamos la funci�n FastClick, que es la que nos elimina esos 300ms de espera al hacer click
       google.charts.load('visualization', '1', {'packages': ['geochart', 'corechart']});
       new FastClick(document.body);
-      receivedEvent();
+      // receivedEvent();
     },
     // Update DOM on a Received Event
 
@@ -168,13 +168,13 @@ function mostrarDoc(evt) {
 function onConfirm(buttonIndex){
   if(buttonIndex==1){
     getGeolocation();
-    navigator.notification.alert('¡Gracias!', null, 'Localización procesada', 'OK');
+    navigator.notification.alert('¡Gracias!', null, 'Localización procesada', 'Continuar');
   }else if (buttonIndex == 2) {
     navigator.notification.alert(
       'Tu denuncia se procesará.',
         null,
       'Denuncia Movil',
-      'OK'
+      'Continuar'
     );
   }
   geoLconfirmada = true;
@@ -198,13 +198,14 @@ function enviarInfo(){
 
   if(document.getElementById('denuncia').value==""){
     // alert('Por favor, ingresa una denuncia.');
-    navigator.notification.alert('Por favor ingresa una denuncia', regresar(2), 'Error!', 'OK');
+    // navigator.notification.alert('Por favor ingresa una denuncia', regresar(2), 'Error!', 'OK');
+    document.getElementById('denuncia').value = $("#motivo_id option:selected").text();
     // document.getElementById('denuncia').style.border = "solid red";
     // var pos = $('#denuncia').offset();
     // // pos.focus();
     // window.scrollTo(pos.left, pos.top-100);
     // regresar(2);
-    return;
+    // return;
   }
 
   if(direccion==0){
@@ -243,59 +244,62 @@ function enviarInfo(){
 
   })
 
-  $.ajax({
+  try{
+    $.ajax({
 
-    data: data,
-    url: "http://"+ direccion +"/denuncias/api/d1/denuncia",
-    // url: 'http://192.168.0.88:8000/denuncias/api/d1/denuncia/',
-    // "http://"+direccion+"/estadisticas/api/local/departamento?limit=22"
-    type: 'POST',
-    contentType: 'application/json',
-    dataType: 'json',
-    statusCode: {
-      201: function(){
-        // alert('Denuncia enviada con exito.');
-        navigator.notification.alert(
-          'Denuncia enviada con exito.',
-            null,
-          'Envio Correcto',
-          'OK'
-        );
-        document.getElementById('form1').reset();
-        regresar(1);
-        myScroll.refresh();
-        myScroll.scrollTo(0,0);
-        geoLconfirmada = false;
+      data: data,
+      // url: "http://"+direccion+"/denuncias/api/d1/denuncia/",
+      url: 'http://192.168.0.89:8000/denuncias/api/d1/denuncia/',
+      // "http://"+direccion+"/estadisticas/api/local/departamento?limit=22"
+      type: 'POST',
+      contentType: 'application/json',
+      dataType: 'json',
+      statusCode: {
+        201: function(){
+          // alert('Denuncia enviada con exito.');
+          navigator.notification.alert(
+            'Denuncia enviada con exito.',
+              null,
+            'Envio Correcto',
+            'OK'
+          );
+          document.getElementById('form1').reset();
+          regresar(1);
+          myScroll.refresh();
+          myScroll.scrollTo(0,0);
+          geoLconfirmada = false;
+        },
+        400: function(){
+          // alert('Ha ocurrido un error con el servidor, ' +
+          //                      'intenta de nuevo mas tarde.');
+         navigator.notification.alert(
+           'Ha ocurrido un error con el servidor, intenta de nuevo más tarde.',
+             null,
+           'Error',
+           'OK'
+         );
+       },
+       500: function(){
+         navigator.notification.alert(
+           'Ha ocurrido un error con el servidor, intenta de nuevo más tarde.',
+             null,
+           'Error',
+           'OK'
+         );
+       }
       },
-      400: function(){
-        // alert('Ha ocurrido un error con el servidor, ' +
-        //                      'intenta de nuevo mas tarde.');
-       navigator.notification.alert(
-         'Ha ocurrido un error con el servidor, intenta de nuevo más tarde.',
-           null,
-         'Error',
-         'OK'
-       );
-     },
-     500: function(){
-       navigator.notification.alert(
-         'Ha ocurrido un error con el servidor, intenta de nuevo más tarde.',
-           null,
-         'Error',
-         'OK'
-       );
-     }
-    },
-    // success: function(data){
-    //   alert('Se ha enviado con exito.')
-    // },
-    // error: function(){
-    //   alert('Ha ocurrido un error con el servidor, intenta de nuevo mas tarde.')
-    // },
-    processData: false
+      // success: function(data){
+      //   alert('Se ha enviado con exito.')
+      // },
+      // error: function(){
+      //   alert('Ha ocurrido un error con el servidor, intenta de nuevo mas tarde.')
+      // },
+      processData: false
 
-  })
-
+    });
+  }catch(err){
+    alert(err);
+  }
 }
 
 function getGeolocation(){
@@ -479,7 +483,7 @@ function onFail(message){
     message,
     'OK'
   );
-  $('#file').show();
+  // $('#file').show();
   $('#photo').hide();
 }
 
@@ -502,7 +506,7 @@ function scrollear(element){
       var scroll = (window.innerHeight/2) - element.top;
       // myScroll.scrollToElement(element,0);
       myScroll.scrollTo(0, -scroll, 0, true);
-    }, 200)
+    }, 300)
 
 }
 
@@ -517,6 +521,10 @@ function getDepartamentos(){
   var tipo = document.getElementById('id_tipo');
   var enviar = document.getElementById('enviar');
   var doc = document.getElementById('file');
+  var camara = document.getElementById('camara');
+  var fake = document.getElementById('fake');
+  fake.addEventListener('click', doc.click());
+  camara.addEventListener('click', receivedEvent);
   doc.addEventListener('change', mostrarDoc);
   enviar.addEventListener('click', enviarInfo);
   tipo.addEventListener('change', busquedaMotivo);
@@ -697,13 +705,16 @@ function irPorPasos(paso){
     var fila = document.createElement('tr');
     var celdath = document.createElement('th');
     var celdatd = document.createElement('td');
+    var link = document.createElement('a');
 
     if(!document.getElementById('anonimo').checked){
       var filaA = document.createElement('tr');
       var celdathA = document.createElement('th');
       var celdatdA = document.createElement('td');
+      link.href = 'javascript:regresar(1);'
       var textoA = document.createTextNode('Nombre');
-      celdathA.appendChild(textoA);
+      link.appendChild(textoA);
+      celdathA.appendChild(link);
       textoA = document.createTextNode($('#nombre').val());
       celdatdA.appendChild(textoA);
       filaA.appendChild(celdathA);
@@ -714,7 +725,10 @@ function irPorPasos(paso){
       celdathA = document.createElement('th');
       celdatdA = document.createElement('td');
       textoA = document.createTextNode('DPI');
-      celdathA.appendChild(textoA);
+      link = document.createElement('a');
+      link.href = 'javascript:regresar(1);'
+      link.appendChild(textoA);
+      celdathA.appendChild(link);
       textoA = document.createTextNode($('#dpi').val());
       celdatdA.appendChild(textoA);
       filaA.appendChild(celdathA);
@@ -725,7 +739,10 @@ function irPorPasos(paso){
       celdathA = document.createElement('th');
       celdatdA = document.createElement('td');
       textoA = document.createTextNode('Telefono');
-      celdathA.appendChild(textoA);
+      link = document.createElement('a');
+      link.href = 'javascript:regresar(1);'
+      link.appendChild(textoA);
+      celdathA.appendChild(link);
       textoA = document.createTextNode($('#telefono').val());
       celdatdA.appendChild(textoA);
       filaA.appendChild(celdathA);
@@ -795,9 +812,9 @@ function irPorPasos(paso){
 
     if (!geoLconfirmada) {
       navigator.notification.confirm(
-        '¿Nos brindarías tu ubicación actual?',
+        'Con esto alimentaremos el mapa de denuncias.',
         onConfirm,
-        'Localización',
+        '¿Nos brindarías tu ubicación actual?',
         ['Si', 'No']
       );
     }
