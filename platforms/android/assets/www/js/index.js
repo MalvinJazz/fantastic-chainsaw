@@ -2,6 +2,7 @@
 var myScroll, myScrollMenu, cuerpo, menuprincipal, wrapper, estado;
 var direccion = '192.168.0.89:8000'
 var geoLconfirmada = false;
+var institucion = "";
 
 var denuncias = [];
 
@@ -104,6 +105,20 @@ function mostrarDoc(evt) {
     var tgt = evt.target || window.event.srcElement,
     files = tgt.files;
 
+    if(this.files[0].size > 25e6 ){
+      var tamaño = this.files[0].size/1e6;
+      navigator.notification.alert(
+        'El archivo no debe ser mayor a 25MB.\n(Tamaño: '+tamaño.toFixed(2)+' MB)',
+          null,
+        'Error',
+        'OK'
+      );
+      // var clon = $(this).clone();
+      // $(this).replaceWith(clon);
+      $(this).val(null);
+      return;
+    }
+
   // FileReader support
     if (FileReader && files && files.length) {
 
@@ -150,6 +165,7 @@ function mostrarDoc(evt) {
         // document.getElementById('myVideo').src = fr.result;
 
         $('#photo').show();
+        myScroll.refresh();
       }
       fr.readAsDataURL(files[0]);
     }
@@ -351,6 +367,7 @@ function busquedaMotivo(){
 
         nuevo.value = data.objects[i].id;
         nuevo.innerHTML = data.objects[i].motivo;
+        institucion = data.objects[i].institucion.nombre;
 
         motivos.options.add(nuevo);
 
@@ -505,14 +522,9 @@ function receivedEvent() {
 
 }
 
-// function subirArchivo(){
-//   navigator.camera.getPicture(onSuccess, onFail, {
-//     quality: 50,
-//     destinationType: Camera.DestinationType.DATA_URL,
-//     sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-//     mediaType: Camera.MediaType.VIDEO
-//   });
-// }
+function subirArchivo(){
+
+}
 
 function scrollear(element){
 
@@ -627,8 +639,6 @@ function menu(opcion){
 
     if(opcion=='1'){
       getDepartamentos();
-
-      receivedEvent();
     }
 
 
@@ -819,6 +829,17 @@ function irPorPasos(paso){
       texto = document.createTextNode('Si');
     else
       texto = document.createTextNode('No');
+    celdatd.appendChild(texto);
+    fila.appendChild(celdath);
+    fila.appendChild(celdatd);
+    tbody.appendChild(fila);
+
+    fila = document.createElement('tr');
+    celdath = document.createElement('th');
+    celdatd = document.createElement('td');
+    texto = document.createTextNode('Tu denuncia se enviará a');
+    celdath.appendChild(texto);
+    texto = document.createTextNode(institucion);
     celdatd.appendChild(texto);
     fila.appendChild(celdath);
     fila.appendChild(celdatd);

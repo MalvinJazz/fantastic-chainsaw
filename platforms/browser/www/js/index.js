@@ -2,6 +2,7 @@
 var myScroll, myScrollMenu, cuerpo, menuprincipal, wrapper, estado;
 var direccion = '192.168.0.89:8000'
 var geoLconfirmada = false;
+var institucion = "";
 
 var denuncias = [];
 
@@ -104,6 +105,20 @@ function mostrarDoc(evt) {
     var tgt = evt.target || window.event.srcElement,
     files = tgt.files;
 
+    if(this.files[0].size > 25 ){
+      var tamaño = this.files[0].size/1e6;
+      navigator.notification.alert(
+        'El archivo no debe ser mayor a 25MB.\n(Tamaño: '+tamaño.toFixed(2)+' MB)',
+          null,
+        'Error',
+        'OK'
+      );
+      // var clon = $(this).clone();
+      // $(this).replaceWith(clon);
+      $(this).val(null);
+      return;
+    }
+
   // FileReader support
     if (FileReader && files && files.length) {
 
@@ -150,6 +165,7 @@ function mostrarDoc(evt) {
         // document.getElementById('myVideo').src = fr.result;
 
         $('#photo').show();
+        myScroll.refresh();
       }
       fr.readAsDataURL(files[0]);
     }
@@ -188,7 +204,7 @@ function enviarInfo(){
 
   if(motivo==0){
     // alert('Por favor, ingresa un motivo.');
-    navigator.notification.alert('Por favor, ingresa un motivo.', regresar(2), 'Error!', 'OK');
+    navigator.notification.alert('Por favor, ingresa un motivo.', regresar(3), 'Error!', 'OK');
     // document.getElementById('motivo_id').style.border = "solid red";
     // var pos = $('#motivo_id').offset();
     // window.scrollTo(pos.left, pos.top-100);
@@ -210,7 +226,7 @@ function enviarInfo(){
 
   if(direccion==0){
     // alert('Por favor, ingresa una zona.');
-    navigator.notification.alert('Por favor, ingresa una zona.', regresar(3), 'Error!', 'OK');
+    navigator.notification.alert('Por favor, ingresa una zona.', regresar(4), 'Error!', 'OK');
     // document.getElementById('zona_id').style.border = "solid red";
     // var pos = $('#zona_id').offset();
     // window.scrollTo(pos.left, pos.top-100);
@@ -351,6 +367,7 @@ function busquedaMotivo(){
 
         nuevo.value = data.objects[i].id;
         nuevo.innerHTML = data.objects[i].motivo;
+        institucion = data.objects[i].institucion.nombre;
 
         motivos.options.add(nuevo);
 
@@ -463,7 +480,10 @@ function busquedaMunicipio(){
 
 function onSuccess(imageData){
   var divPhoto = document.getElementById('photo');
-  var img = document.createElement('img');
+  if($('#myImage').length)
+    var img = document.getElementById('myImage');
+  else
+    var img = document.createElement('img');
   img.id = 'myImage';
   img.style.height = '70px';
   img.style.width = '70px';
@@ -472,6 +492,7 @@ function onSuccess(imageData){
   $('#file').hide();
   $('#photo').show();
   document.getElementById('archivo').value = img.src;
+  alert(img.src);
   // document.getElementById('text').innerHTML = imageData;
 }
 
@@ -491,10 +512,17 @@ function receivedEvent() {
 
   navigator.camera.getPicture(onSuccess, onFail, {
     quality: 50,
-    destinationType: Camera.DestinationType.DATA_URL
+    destinationType: Camera.DestinationType.DATA_URL,
+    saveToPhotoAlbum: true
+    // sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+    // mediaType: Camera.MediaType.ALLMEDIA
   });
 
   document.getElementById('photo').style.display = 'none';
+
+}
+
+function subirArchivo(){
 
 }
 
@@ -522,8 +550,8 @@ function getDepartamentos(){
   var enviar = document.getElementById('enviar');
   var doc = document.getElementById('file');
   var camara = document.getElementById('camara');
-  var fake = document.getElementById('fake');
-  fake.addEventListener('click', doc.click());
+  // var fake = document.getElementById('fake');
+  // fake.addEventListener('click', subirArchivo);
   camara.addEventListener('click', receivedEvent);
   doc.addEventListener('change', mostrarDoc);
   enviar.addEventListener('click', enviarInfo);
@@ -611,8 +639,6 @@ function menu(opcion){
 
     if(opcion=='1'){
       getDepartamentos();
-
-      receivedEvent();
     }
 
 
@@ -803,6 +829,17 @@ function irPorPasos(paso){
       texto = document.createTextNode('Si');
     else
       texto = document.createTextNode('No');
+    celdatd.appendChild(texto);
+    fila.appendChild(celdath);
+    fila.appendChild(celdatd);
+    tbody.appendChild(fila);
+
+    fila = document.createElement('tr');
+    celdath = document.createElement('th');
+    celdatd = document.createElement('td');
+    texto = document.createTextNode('Tu denuncia se enviará a');
+    celdath.appendChild(texto);
+    texto = document.createTextNode(institucion);
     celdatd.appendChild(texto);
     fila.appendChild(celdath);
     fila.appendChild(celdatd);
