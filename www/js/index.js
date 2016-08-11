@@ -188,7 +188,7 @@ function enviarInfo(){
 
   if(motivo==0){
     // alert('Por favor, ingresa un motivo.');
-    navigator.notification.alert('Por favor, ingresa un motivo.', regresar(2), 'Error!', 'OK');
+    navigator.notification.alert('Por favor, ingresa un motivo.', regresar(3), 'Error!', 'OK');
     // document.getElementById('motivo_id').style.border = "solid red";
     // var pos = $('#motivo_id').offset();
     // window.scrollTo(pos.left, pos.top-100);
@@ -210,7 +210,7 @@ function enviarInfo(){
 
   if(direccion==0){
     // alert('Por favor, ingresa una zona.');
-    navigator.notification.alert('Por favor, ingresa una zona.', regresar(3), 'Error!', 'OK');
+    navigator.notification.alert('Por favor, ingresa una zona.', regresar(4), 'Error!', 'OK');
     // document.getElementById('zona_id').style.border = "solid red";
     // var pos = $('#zona_id').offset();
     // window.scrollTo(pos.left, pos.top-100);
