@@ -475,6 +475,7 @@ function onSuccess(imageData){
   $('#file').hide();
   $('#photo').show();
   document.getElementById('archivo').value = img.src;
+  alert(img.src);
   // document.getElementById('text').innerHTML = imageData;
 }
 
@@ -495,6 +496,7 @@ function receivedEvent() {
   navigator.camera.getPicture(onSuccess, onFail, {
     quality: 50,
     destinationType: Camera.DestinationType.DATA_URL,
+    saveToPhotoAlbum: true
     // sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
     // mediaType: Camera.MediaType.ALLMEDIA
   });
@@ -503,14 +505,14 @@ function receivedEvent() {
 
 }
 
-function subirArchivo(){
-  navigator.camera.getPicture(onSuccess, onFail, {
-    quality: 50,
-    destinationType: Camera.DestinationType.DATA_URL,
-    sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-    mediaType: Camera.MediaType.ALLMEDIA
-  });
-}
+// function subirArchivo(){
+//   navigator.camera.getPicture(onSuccess, onFail, {
+//     quality: 50,
+//     destinationType: Camera.DestinationType.DATA_URL,
+//     sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+//     mediaType: Camera.MediaType.VIDEO
+//   });
+// }
 
 function scrollear(element){
 
@@ -536,8 +538,8 @@ function getDepartamentos(){
   var enviar = document.getElementById('enviar');
   var doc = document.getElementById('file');
   var camara = document.getElementById('camara');
-  var fake = document.getElementById('fake');
-  fake.addEventListener('click', subirArchivo);
+  // var fake = document.getElementById('fake');
+  // fake.addEventListener('click', subirArchivo);
   camara.addEventListener('click', receivedEvent);
   doc.addEventListener('change', mostrarDoc);
   enviar.addEventListener('click', enviarInfo);
