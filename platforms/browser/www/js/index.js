@@ -105,7 +105,7 @@ function mostrarDoc(evt) {
     var tgt = evt.target || window.event.srcElement,
     files = tgt.files;
 
-    if(this.files[0].size > 25 ){
+    if(this.files[0].size > 25e6 ){
       var tamaño = this.files[0].size/1e6;
       navigator.notification.alert(
         'El archivo no debe ser mayor a 25MB.\n(Tamaño: '+tamaño.toFixed(2)+' MB)',
@@ -113,8 +113,6 @@ function mostrarDoc(evt) {
         'Error',
         'OK'
       );
-      // var clon = $(this).clone();
-      // $(this).replaceWith(clon);
       $(this).val(null);
       return;
     }
@@ -485,14 +483,13 @@ function onSuccess(imageData){
   else
     var img = document.createElement('img');
   img.id = 'myImage';
-  img.style.height = '70px';
-  img.style.width = '70px';
+  img.style.height = '200px';
+  img.style.width = '200px';
   img.src = "data:image/jpeg;base64," + imageData;
   divPhoto.appendChild(img);
   $('#file').hide();
   $('#photo').show();
   document.getElementById('archivo').value = img.src;
-  alert(img.src);
   // document.getElementById('text').innerHTML = imageData;
 }
 

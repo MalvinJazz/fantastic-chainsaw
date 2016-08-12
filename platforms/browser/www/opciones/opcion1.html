@@ -35,8 +35,11 @@
       <video style="width:60px;height:60px;" src="" id="myVideo" controls autoplay></video> -->
       </div>
       <input type="button" id="camara" name="camara" value="Tomar Foto">
-      <input type="button" id="fake" name="fake" value="Subir Archivo">
-      <input type="file" id="file" name="file" accept="image/*, video/*"></br>
+      <!-- <input type="button" id="fake" name="fake" value="Subir Archivo"> -->
+      <div class="falso-boton">
+        <input type="file" id="file" name="file" accept="image/*, video/*">
+        <label>Subir archivo</label>
+      </div></br>
     </div>
       <div id="ident" style="display: none;">
         <div>
@@ -116,8 +119,6 @@
         <input id="archivo" type="hidden" name="archivo" value="">
       </div>
   </form>
-  <div>
-    <a id="continuar" href="javascript:irPorPasos(1);"><div class="btn1"><span>Continuar</span></div></a>
-  </div>
+  <a id="continuar" href="javascript:irPorPasos(1);"><div class="btn1"><span>Continuar</span></div></a>
 
 </div>

@@ -113,8 +113,6 @@ function mostrarDoc(evt) {
         'Error',
         'OK'
       );
-      // var clon = $(this).clone();
-      // $(this).replaceWith(clon);
       $(this).val(null);
       return;
     }
@@ -485,14 +483,13 @@ function onSuccess(imageData){
   else
     var img = document.createElement('img');
   img.id = 'myImage';
-  img.style.height = '70px';
-  img.style.width = '70px';
+  img.style.height = '200px';
+  img.style.width = '200px';
   img.src = "data:image/jpeg;base64," + imageData;
   divPhoto.appendChild(img);
   $('#file').hide();
   $('#photo').show();
   document.getElementById('archivo').value = img.src;
-  alert(img.src);
   // document.getElementById('text').innerHTML = imageData;
 }
 
