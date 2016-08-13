@@ -1,4 +1,4 @@
-<div class="borde-h1 color1"></div><h1>Enviar Denuncia</h1>
+<div class="borde-h1 color1"></div><h1 id="cabecera">Enviar Denuncia</h1>
 <table id="pasos">
   <tr style="display:block">
     <td style="display: inline-block;"><a href="javascript:regresar(1);">1</a></td>
@@ -17,6 +17,9 @@
 </table>
 
 <div id="content">
+  <div id="cargando">
+    <img src="css/img/ajax-loader.gif" style="width: 32px; height: 32px;"/>
+  </div>
   <div class="rdBtn" id="paso2"  style="display: none;">
     <h1>¿Como quieres hacer tu denuncia?</h1>
     <label>Anonima</label>
@@ -36,7 +39,7 @@
       </div>
       <input type="button" id="camara" name="camara" value="Tomar Foto">
       <!-- <input type="button" id="fake" name="fake" value="Subir Archivo"> -->
-      <div class="falso-boton">
+      <div class="falso-boton" align="CENTER">
         <input type="file" id="file" name="file" accept="image/*, video/*">
         <label>Subir archivo</label>
       </div></br>

@@ -43,7 +43,6 @@ var app = {
     xhReq.open("GET", "opciones/opcion1.html", false);
     xhReq.send(null);
     document.getElementById("contenidoCuerpo").innerHTML=xhReq.responseText;
-    getDepartamentos();
 
     // Leemos por ajax el archivos menu.html de la carpeta opciones
     xhReq.open("GET", "opciones/menu.html", false);
@@ -51,19 +50,19 @@ var app = {
     document.getElementById("contenidoMenu").innerHTML=xhReq.responseText;
 
     // Creamos los 2 scroll mediante el plugin iscroll, uno para el men� principal y otro para el cuerpo
-    myScroll = new iScroll('wrapper', {
+    myScroll = new IScroll('#wrapper', {
       hideScrollbar: true,
       // useTransform: true,
       bounce: false,
-      onBeforeScrollStart: function (e) {
-      var target = e.target;
-      while (target.nodeType != 1)
-        target = target.parentNode;
-      if (target.tagName != 'SELECT' && target.tagName != 'INPUT' && target.tagName != 'TEXTAREA' && target.tagName != 'OPTION')
-        e.preventDefault();
-      }
+      // onBeforeScrollStart: function (e) {
+      // var target = e.target;
+      // while (target.nodeType != 1)
+      //   target = target.parentNode;
+      // if (target.tagName != 'SELECT' && target.tagName != 'INPUT' && target.tagName != 'TEXTAREA' && target.tagName != 'OPTION')
+      //   e.preventDefault();
+      // }
     });
-    myScrollMenu = new iScroll('wrapperMenu', { hideScrollbar: true });
+    myScrollMenu = new IScroll('#wrapperMenu', { hideScrollbar: true, bounce: true });
     // document.getElementById('pantalla-inicio').style.display = 'block';
     // $('#menuprincipal').hide();
     // $('#cuerpo').hide();
@@ -94,6 +93,7 @@ var app = {
     	// Ejecutamos la funci�n FastClick, que es la que nos elimina esos 300ms de espera al hacer click
       google.charts.load('visualization', '1', {'packages': ['geochart', 'corechart']});
       new FastClick(document.body);
+      getDepartamentos();
       // receivedEvent();
     },
     // Update DOM on a Received Event
@@ -267,6 +267,7 @@ function enviarInfo(){
       // "http://"+direccion+"/estadisticas/api/local/departamento?limit=22"
       type: 'POST',
       contentType: 'application/json',
+      timeout: 3000,
       dataType: 'json',
       statusCode: {
         201: function(){
@@ -348,6 +349,7 @@ function busquedaMotivo(){
 
     type: 'get',
     dataType: 'json',
+    timeout: 3000,
     url: 'http://'+direccion+'/denuncias/api/d1/motivo?institucion__tipo='+id,
     success: function(data){
 
@@ -394,6 +396,7 @@ function busquedaZona(){
 
     type: 'get',
     dataType: 'json',
+    timeout: 3000,
     url: "http://"+direccion+"/estadisticas/api/local/direccion/?municipio__id="+id,
     success: function(data){
 
@@ -440,6 +443,7 @@ function busquedaMunicipio(){
 
     type: 'get',
     dataType: 'json',
+    timeout: 3000,
     url: "http://"+direccion+"/estadisticas/api/local/municipio/?departamento__id="+id,
     success: function(data){
 
@@ -490,6 +494,7 @@ function onSuccess(imageData){
   $('#file').hide();
   $('#photo').show();
   document.getElementById('archivo').value = img.src;
+  myScroll.refresh();
   // document.getElementById('text').innerHTML = imageData;
 }
 
@@ -541,6 +546,18 @@ function getDepartamentos(){
     scrollear($(this).offset());
   });
 
+  $('#cargando').hide();
+
+  $(document).ajaxStart(function(){
+    console.log('ajaxStart');
+    $('#cargando').show();
+  })
+
+  $(document).ajaxStop(function(){
+    console.log('ajaxStop');
+    $('#cargando').hide();
+  })
+
   var deps = document.getElementById('dep');
   var muni = document.getElementById('muni_id');
   var tipo = document.getElementById('id_tipo');
@@ -566,6 +583,7 @@ function getDepartamentos(){
 
     type: 'get',
     dataType: "json",
+    timeout: 3000,
     url: "http://"+direccion+"/estadisticas/api/local/departamento?limit=22",
     success: function(data){
       for(var i=0; i<data.objects.length; i++){
@@ -884,6 +902,7 @@ function drawGeoChart() {
 
     type: 'get',
     dataType: "json",
+    timeout: 3000,
     url: "http://"+direccion+"/estadisticas/api/local/departamento?limit=22",
     success: function(data){
       for(var i=0; i<data.objects.length; i++){
@@ -961,6 +980,7 @@ function initMap(){
 
           type: 'get',
           dataType: "json",
+          timeout: 3000,
           url: "http://"+direccion+"/denuncias/geo_denuncias/",
           success: function(data){
 

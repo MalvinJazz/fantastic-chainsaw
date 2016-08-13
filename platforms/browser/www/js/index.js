@@ -43,7 +43,6 @@ var app = {
     xhReq.open("GET", "opciones/opcion1.html", false);
     xhReq.send(null);
     document.getElementById("contenidoCuerpo").innerHTML=xhReq.responseText;
-    getDepartamentos();
 
     // Leemos por ajax el archivos menu.html de la carpeta opciones
     xhReq.open("GET", "opciones/menu.html", false);
@@ -51,19 +50,19 @@ var app = {
     document.getElementById("contenidoMenu").innerHTML=xhReq.responseText;
 
     // Creamos los 2 scroll mediante el plugin iscroll, uno para el men� principal y otro para el cuerpo
-    myScroll = new iScroll('wrapper', {
+    myScroll = new IScroll('#wrapper', {
       hideScrollbar: true,
       // useTransform: true,
       bounce: false,
-      onBeforeScrollStart: function (e) {
-      var target = e.target;
-      while (target.nodeType != 1)
-        target = target.parentNode;
-      if (target.tagName != 'SELECT' && target.tagName != 'INPUT' && target.tagName != 'TEXTAREA' && target.tagName != 'OPTION')
-        e.preventDefault();
-      }
+      // onBeforeScrollStart: function (e) {
+      // var target = e.target;
+      // while (target.nodeType != 1)
+      //   target = target.parentNode;
+      // if (target.tagName != 'SELECT' && target.tagName != 'INPUT' && target.tagName != 'TEXTAREA' && target.tagName != 'OPTION')
+      //   e.preventDefault();
+      // }
     });
-    myScrollMenu = new iScroll('wrapperMenu', { hideScrollbar: true });
+    myScrollMenu = new IScroll('#wrapperMenu', { hideScrollbar: true, bounce: true });
     // document.getElementById('pantalla-inicio').style.display = 'block';
     // $('#menuprincipal').hide();
     // $('#cuerpo').hide();
@@ -94,6 +93,7 @@ var app = {
     	// Ejecutamos la funci�n FastClick, que es la que nos elimina esos 300ms de espera al hacer click
       google.charts.load('visualization', '1', {'packages': ['geochart', 'corechart']});
       new FastClick(document.body);
+      getDepartamentos();
       // receivedEvent();
     },
     // Update DOM on a Received Event
@@ -540,6 +540,18 @@ function getDepartamentos(){
     // scrollear($(this)[0]);
     scrollear($(this).offset());
   });
+
+  $('#cargando').hide();
+
+  $(document).ajaxStart(function(){
+    console.log('ajaxStart');
+    $('#cargando').show();
+  })
+
+  $(document).ajaxStop(function(){
+    console.log('ajaxStop');
+    $('#cargando').hide();
+  })
 
   var deps = document.getElementById('dep');
   var muni = document.getElementById('muni_id');

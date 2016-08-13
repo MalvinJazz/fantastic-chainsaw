@@ -343,6 +343,7 @@ p{
 	position: absolute;
 	top: 35%;
 	right: 35%;
+	/*margin: auto auto;*/
 }
 
 #content div{
