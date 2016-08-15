@@ -3,6 +3,7 @@ var myScroll, myScrollMenu, cuerpo, menuprincipal, wrapper, estado;
 var direccion = '192.168.0.89:8000'
 var geoLconfirmada = false;
 var institucion = "";
+var pasos = ['Evidencia', 'Tipo', 'Descripción', 'Localización', 'Enviar'];
 
 var denuncias = [];
 
@@ -86,6 +87,7 @@ var app = {
         // tipo.addEventListener('change', busquedaMotivo);
         // muni.addEventListener('change', busquedaZona);
         // deps.addEventListener('change', busquedaMunicipio);
+        document.addEventListener('offline', this.notification, false);
         document.addEventListener('deviceready', this.onDeviceReady, false);
     },
 
@@ -96,9 +98,23 @@ var app = {
       getDepartamentos();
       // receivedEvent();
     },
-    // Update DOM on a Received Event
+
+    notification: function(){
+
+      navigator.notification.alert(
+        'Comprueba tu conexión a internet.',
+        cerrar,
+        'Error',
+        'OK'
+      );
+
+    }
 
 };
+
+function cerrar(){
+  navigator.app.exitApp();
+}
 
 function mostrarDoc(evt) {
 
@@ -267,6 +283,7 @@ function enviarInfo(){
       // "http://"+direccion+"/estadisticas/api/local/departamento?limit=22"
       type: 'POST',
       contentType: 'application/json',
+      timeout: 5000,
       dataType: 'json',
       statusCode: {
         201: function(){
@@ -348,6 +365,7 @@ function busquedaMotivo(){
 
     type: 'get',
     dataType: 'json',
+    timeout: 3000,
     url: 'http://'+direccion+'/denuncias/api/d1/motivo?institucion__tipo='+id,
     success: function(data){
 
@@ -394,6 +412,7 @@ function busquedaZona(){
 
     type: 'get',
     dataType: 'json',
+    timeout: 3000,
     url: "http://"+direccion+"/estadisticas/api/local/direccion/?municipio__id="+id,
     success: function(data){
 
@@ -440,6 +459,7 @@ function busquedaMunicipio(){
 
     type: 'get',
     dataType: 'json',
+    timeout: 3000,
     url: "http://"+direccion+"/estadisticas/api/local/municipio/?departamento__id="+id,
     success: function(data){
 
@@ -490,6 +510,7 @@ function onSuccess(imageData){
   $('#file').hide();
   $('#photo').show();
   document.getElementById('archivo').value = img.src;
+  myScroll.refresh();
   // document.getElementById('text').innerHTML = imageData;
 }
 
@@ -516,10 +537,6 @@ function receivedEvent() {
   });
 
   document.getElementById('photo').style.display = 'none';
-
-}
-
-function subirArchivo(){
 
 }
 
@@ -578,6 +595,7 @@ function getDepartamentos(){
 
     type: 'get',
     dataType: "json",
+    timeout: 3000,
     url: "http://"+direccion+"/estadisticas/api/local/departamento?limit=22",
     success: function(data){
       for(var i=0; i<data.objects.length; i++){
@@ -682,6 +700,8 @@ function menu(opcion){
 }
 
 function regresar(paso){
+  document.getElementById('cabecera').innerHTML = 'PASO '+paso+': '+pasos[paso-1];
+
   var celdas = document.getElementById('pasos').rows[0].cells;
   for (var i = 0; i < celdas.length; i++) {
     if(i<paso)
@@ -720,6 +740,8 @@ function regresar(paso){
 
 
 function irPorPasos(paso){
+
+  document.getElementById('cabecera').innerHTML = 'PASO '+(paso+1)+': '+pasos[paso];
 
   var celdas = document.getElementById('pasos').rows[0].cells;
   for (var i = 0; i < celdas.length; i++) {
@@ -888,6 +910,18 @@ function irPorPasos(paso){
 
 function drawGeoChart() {
 
+  $('#cargando').hide();
+
+  $(document).ajaxStart(function(){
+    console.log('ajaxStart');
+    $('#cargando').show();
+  })
+
+  $(document).ajaxStop(function(){
+    console.log('ajaxStop');
+    $('#cargando').hide();
+  })
+
   var deps = [
       ['States','Departamento', 'Denuncias']
     ];
@@ -896,6 +930,7 @@ function drawGeoChart() {
 
     type: 'get',
     dataType: "json",
+    timeout: 3000,
     url: "http://"+direccion+"/estadisticas/api/local/departamento?limit=22",
     success: function(data){
       for(var i=0; i<data.objects.length; i++){
@@ -940,6 +975,18 @@ function drawGeoChart() {
 
 function initMap(){
 
+  $('#cargando').hide();
+
+  $(document).ajaxStart(function(){
+    console.log('ajaxStart');
+    $('#cargando').show();
+  })
+
+  $(document).ajaxStop(function(){
+    console.log('ajaxStop');
+    $('#cargando').hide();
+  })
+
   if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function(position){
 
@@ -973,6 +1020,7 @@ function initMap(){
 
           type: 'get',
           dataType: "json",
+          timeout: 3000,
           url: "http://"+direccion+"/denuncias/geo_denuncias/",
           success: function(data){
 

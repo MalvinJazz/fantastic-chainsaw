@@ -3,6 +3,7 @@ var myScroll, myScrollMenu, cuerpo, menuprincipal, wrapper, estado;
 var direccion = '192.168.0.89:8000'
 var geoLconfirmada = false;
 var institucion = "";
+var pasos = ['Evidencia', 'Tipo', 'Descripción', 'Localización', 'Enviar'];
 
 var denuncias = [];
 
@@ -86,6 +87,7 @@ var app = {
         // tipo.addEventListener('change', busquedaMotivo);
         // muni.addEventListener('change', busquedaZona);
         // deps.addEventListener('change', busquedaMunicipio);
+        document.addEventListener('offline', this.notification, false);
         document.addEventListener('deviceready', this.onDeviceReady, false);
     },
 
@@ -96,9 +98,23 @@ var app = {
       getDepartamentos();
       // receivedEvent();
     },
-    // Update DOM on a Received Event
+
+    notification: function(){
+
+      navigator.notification.alert(
+        'Comprueba tu conexión a internet.',
+        cerrar,
+        'Error',
+        'OK'
+      );
+
+    }
 
 };
+
+function cerrar(){
+  navigator.app.exitApp();
+}
 
 function mostrarDoc(evt) {
 
@@ -267,7 +283,7 @@ function enviarInfo(){
       // "http://"+direccion+"/estadisticas/api/local/departamento?limit=22"
       type: 'POST',
       contentType: 'application/json',
-      timeout: 3000,
+      timeout: 5000,
       dataType: 'json',
       statusCode: {
         201: function(){
@@ -524,18 +540,15 @@ function receivedEvent() {
 
 }
 
-function subirArchivo(){
-
-}
-
 function scrollear(element){
 
     // console.log(element);
     setTimeout(function(){
       myScroll.refresh();
-      var scroll = (window.innerHeight/2) - element.top;
+      // var scroll = (window.innerHeight/2) - element.top;
       // myScroll.scrollToElement(element,0);
-      myScroll.scrollTo(0, -scroll, 0, true);
+      // myScroll.scrollTo(0, -scroll, 0, true);
+      myScroll.scrollTo(0, -(element.offset().top - 100) , 300);
     }, 300)
 
 }
@@ -543,7 +556,8 @@ function scrollear(element){
 function getDepartamentos(){
   $('input[type=text], textarea').bind("click",function(){
     // scrollear($(this)[0]);
-    scrollear($(this).offset());
+    // scrollear($(this).offset());
+    scrollear($(this));
   });
 
   $('#cargando').hide();
@@ -688,6 +702,8 @@ function menu(opcion){
 }
 
 function regresar(paso){
+  document.getElementById('cabecera').innerHTML = 'PASO '+paso+': '+pasos[paso-1];
+
   var celdas = document.getElementById('pasos').rows[0].cells;
   for (var i = 0; i < celdas.length; i++) {
     if(i<paso)
@@ -726,6 +742,8 @@ function regresar(paso){
 
 
 function irPorPasos(paso){
+
+  document.getElementById('cabecera').innerHTML = 'PASO '+(paso+1)+': '+pasos[paso];
 
   var celdas = document.getElementById('pasos').rows[0].cells;
   for (var i = 0; i < celdas.length; i++) {
@@ -894,6 +912,18 @@ function irPorPasos(paso){
 
 function drawGeoChart() {
 
+  $('#cargando').hide();
+
+  $(document).ajaxStart(function(){
+    console.log('ajaxStart');
+    $('#cargando').show();
+  })
+
+  $(document).ajaxStop(function(){
+    console.log('ajaxStop');
+    $('#cargando').hide();
+  })
+
   var deps = [
       ['States','Departamento', 'Denuncias']
     ];
@@ -946,6 +976,18 @@ function drawGeoChart() {
 }
 
 function initMap(){
+
+  $('#cargando').hide();
+
+  $(document).ajaxStart(function(){
+    console.log('ajaxStart');
+    $('#cargando').show();
+  })
+
+  $(document).ajaxStop(function(){
+    console.log('ajaxStop');
+    $('#cargando').hide();
+  })
 
   if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function(position){

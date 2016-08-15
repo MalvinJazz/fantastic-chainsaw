@@ -1,4 +1,4 @@
-<div class="borde-h1 color1"></div><h1 id="cabecera">Enviar Denuncia</h1>
+<div class="borde-h1 color1"></div><h1 id="cabecera">PASO 1: Evidencia</h1>
 <table id="pasos">
   <tr style="display:block">
     <td style="display: inline-block;"><a href="javascript:regresar(1);">1</a></td>
@@ -17,7 +17,7 @@
 </table>
 
 <div id="content">
-  <div id="cargando">
+  <div id="cargando" style="margin: 0px auto;">
     <img src="css/img/ajax-loader.gif" style="width: 32px; height: 32px;"/>
   </div>
   <div class="rdBtn" id="paso2"  style="display: none;">
@@ -29,17 +29,17 @@
   </div>
   <form id="form1" method="POST" action='' enctype='multipart/form-data'>
     <div id="paso1">
-      <div id="pantalla-inicio">
+      <!-- <div id="pantalla-inicio">
         <h1>Denuncia Movil</h1>
-      </div>
-      <label>Subir archivo</label></br>
+      </div> -->
+      <h1>Subir archivo</h1></br>
       <div id="photo">
       <!-- <img style="width:60px;height:60px;" src="" id="myImage"/>height="200px" width="200px"/>
       <video style="width:60px;height:60px;" src="" id="myVideo" controls autoplay></video> -->
       </div>
       <input type="button" id="camara" name="camara" value="Tomar Foto">
       <!-- <input type="button" id="fake" name="fake" value="Subir Archivo"> -->
-      <div class="falso-boton" align="CENTER">
+      <div class="falso-boton">
         <input type="file" id="file" name="file" accept="image/*, video/*">
         <label>Subir archivo</label>
       </div></br>
