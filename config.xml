@@ -20,6 +20,7 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    <preference name="loadUrlTimeoutValue" value="700000" />
     <!-- <access origin="https://maps.googleapis.com" /> -->
     <!-- <preference name="fullscreen" value="false" /> -->
     <!-- <preference name="android-windowSoftInputMode" value="stateVisible" /> -->

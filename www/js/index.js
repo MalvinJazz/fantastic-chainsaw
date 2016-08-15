@@ -213,6 +213,18 @@ function onConfirm(buttonIndex){
 
 function enviarInfo(){
 
+  $('#cargando').hide();
+
+  $(document).ajaxStart(function(){
+    console.log('ajaxStart');
+    $('#cargando').show();
+  })
+
+  $(document).ajaxStop(function(){
+    console.log('ajaxStop');
+    $('#cargando').hide();
+  })
+
   var motivo = document.getElementById('motivo_id').value;
   var direccion = document.getElementById('zona_id').value;
 
@@ -932,8 +944,8 @@ function drawGeoChart() {
 
     type: 'get',
     dataType: "json",
-    timeout: 3000,
     url: "http://"+direccion+"/estadisticas/api/local/departamento?limit=22",
+    timeout: 3000,
     success: function(data){
       for(var i=0; i<data.objects.length; i++){
 
