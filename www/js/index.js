@@ -19,7 +19,7 @@ wrapper = document.getElementById("wrapper");
 //   myScroll.scrollTo(0,pos+100);
 // });
 
-var xhReq = new XMLHttpRequest();
+// var xhReq = new XMLHttpRequest();
 
 var app = {
     // Constructor de la app
@@ -40,53 +40,26 @@ var app = {
     menuprincipal.className = 'page center';
     wrapper.className = 'cssClass';
 
-    // Leemos por ajax el archivos opcion1.html de la carpeta opciones
-    xhReq.open("GET", "opciones/opcion1.html", false);
-    xhReq.send(null);
-    document.getElementById("contenidoCuerpo").innerHTML=xhReq.responseText;
+    $('#contenidoCuerpo').load("opciones/opcion1.html");
 
-    // Leemos por ajax el archivos menu.html de la carpeta opciones
-    xhReq.open("GET", "opciones/menu.html", false);
-    xhReq.send(null);
-    document.getElementById("contenidoMenu").innerHTML=xhReq.responseText;
+    $('#contenidoMenu').load("opciones/menu.html");
 
     // Creamos los 2 scroll mediante el plugin iscroll, uno para el men� principal y otro para el cuerpo
-    myScroll = new IScroll('#wrapper', {
-      hideScrollbar: true,
-      // useTransform: true,
-      bounce: false,
-      // onBeforeScrollStart: function (e) {
-      // var target = e.target;
-      // while (target.nodeType != 1)
-      //   target = target.parentNode;
-      // if (target.tagName != 'SELECT' && target.tagName != 'INPUT' && target.tagName != 'TEXTAREA' && target.tagName != 'OPTION')
-      //   e.preventDefault();
-      // }
-    });
-    myScrollMenu = new IScroll('#wrapperMenu', { hideScrollbar: true, bounce: true });
-    // document.getElementById('pantalla-inicio').style.display = 'block';
-    // $('#menuprincipal').hide();
-    // $('#cuerpo').hide();
-    //
-    // sleep(500);
+    setTimeout(function(){
+      myScroll = new IScroll('#wrapper', {
+        hideScrollbar: true,
+        // useTransform: true,
+        bounce: false,
 
-    // document.getElementById('pantalla-inicio').style.display = 'none';
-    // $('#menuprincipal').show();
-    // $('#cuerpo').show();
+      });
+      myScrollMenu = new IScroll('#wrapperMenu', { hideScrollbar: true, bounce: true });
+    }, 300);
+
+
       this.bindEvents();
     },
 
     bindEvents: function() {
-        // var deps = document.getElementById('dep');
-        // var muni = document.getElementById('muni_id');
-        // var tipo = document.getElementById('id_tipo');
-        // var enviar = document.getElementById('enviar');
-        // var doc = document.getElementById('file');
-        // doc.addEventListener('change', mostrarDoc);
-        // enviar.addEventListener('click', enviarInfo);
-        // tipo.addEventListener('change', busquedaMotivo);
-        // muni.addEventListener('change', busquedaZona);
-        // deps.addEventListener('change', busquedaMunicipio);
         document.addEventListener('offline', this.notification, false);
         document.addEventListener('deviceready', this.onDeviceReady, false);
     },
@@ -674,12 +647,13 @@ function menu(opcion){
 		addClass('li-menu-activo' , document.getElementById("ulMenu").getElementsByTagName("li")[opcion]);
 
 		// Recogemos mediante ajax el contenido del html seg�n la opci�n clickeada en el menu
-		xhReq.open("GET", "opciones/opcion"+opcion+".html", false);
-		xhReq.send(null);
-		document.getElementById("contenidoCuerpo").innerHTML=xhReq.responseText;
+		// xhReq.open("GET", "opciones/opcion"+opcion+".html", false);
+		// xhReq.send(null);
+		// document.getElementById("contenidoCuerpo").innerHTML=xhReq.responseText;
+    $('#contenidoCuerpo').load("opciones/opcion"+opcion+".html");
 
     if(opcion=='1'){
-      getDepartamentos();
+      setTimeout(getDepartamentos, 300);
     }
 
 
@@ -697,8 +671,10 @@ function menu(opcion){
     }
 
 		// Refrescamos el elemento iscroll seg�n el contenido ya a�adido mediante ajax, y hacemos que se desplace al top
-		myScroll.refresh();
-		myScroll.scrollTo(0,0);
+		setTimeout(function(){
+      myScroll.refresh();
+  		myScroll.scrollTo(0,0);
+    }, 300);
 
 		// A�adimos las clases necesarias para que la capa cuerpo se mueva al centro de nuestra app y muestre el contenido
 		cuerpo.className = 'page transition center';
