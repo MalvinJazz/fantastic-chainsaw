@@ -653,6 +653,7 @@ function menu(opcion){
     $('#contenidoCuerpo').load("opciones/opcion"+opcion+".html");
 
     if(opcion=='1'){
+      geoLconfirmada = false;
       setTimeout(getDepartamentos, 300);
     }
 

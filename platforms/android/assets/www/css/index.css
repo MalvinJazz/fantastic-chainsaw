@@ -544,3 +544,12 @@ color: black;
 	padding-bottom: 50px;
 	margin-bottom: 5%;
 }
+
+.importante{
+	font-weight: bolder;
+}
+
+.importante::after{
+	content: '*';
+	color: red;
+}
