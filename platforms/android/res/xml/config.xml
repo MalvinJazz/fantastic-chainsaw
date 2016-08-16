@@ -24,6 +24,7 @@
         <param name="android-package" value="org.apache.cordova.networkinformation.NetworkManager" />
     </feature>
     <allow-intent href="market:*" />
+    <splash src="www/img/logo.png" />
     <name>Denuncia Movil(beta)</name>
     <description>
         A sample Apache Cordova application that responds to the deviceready event.

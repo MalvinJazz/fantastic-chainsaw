@@ -26,6 +26,7 @@
     <!-- <preference name="android-windowSoftInputMode" value="stateVisible" /> -->
     <platform name="android">
         <allow-intent href="market:*" />
+        <splash src="www/img/logo.png"/>
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
