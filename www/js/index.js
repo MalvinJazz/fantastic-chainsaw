@@ -203,7 +203,7 @@ function enviarInfo(){
 
   if(motivo==0){
     // alert('Por favor, ingresa un motivo.');
-    navigator.notification.alert('Por favor, ingresa un motivo.', regresar(3), 'Error!', 'OK');
+    navigator.notification.alert('Por favor, ingresa un motivo.', regresar(2), 'Error!', 'OK');
     // document.getElementById('motivo_id').style.border = "solid red";
     // var pos = $('#motivo_id').offset();
     // window.scrollTo(pos.left, pos.top-100);
@@ -225,28 +225,28 @@ function enviarInfo(){
 
   if(direccion==0){
     // alert('Por favor, ingresa una zona.');
-    navigator.notification.alert('Por favor, ingresa una zona.', regresar(4), 'Error!', 'OK');
+    navigator.notification.alert('Por favor, ingresa una zona.', regresar(3), 'Error!', 'OK');
     // document.getElementById('zona_id').style.border = "solid red";
     // var pos = $('#zona_id').offset();
     // window.scrollTo(pos.left, pos.top-100);
     // regresar(3);
     return;
   }
-
-  var nombre = document.getElementById('nombre').value;
-  var dpi = document.getElementById('dpi').value;
-  if(nombre=="")
-    nombre = 'Anonimo';
-
-  if(dpi=="")
-    dpi = 'Anonimo';
+  //
+  // var nombre = document.getElementById('nombre').value;
+  // var dpi = document.getElementById('dpi').value;
+  // if(nombre=="")
+  //   nombre = 'Anonimo';
+  //
+  // if(dpi=="")
+  //   dpi = 'Anonimo';
 
 
   var data = JSON.stringify({
 
-     'nombre': nombre,
-     'dpi': dpi,
-     'telefono': document.getElementById('telefono').value,
+    //  'nombre': nombre,
+    //  'dpi': dpi,
+    //  'telefono': document.getElementById('telefono').value,
      'latitud': document.getElementById('lat').value,
      'longitud': document.getElementById('lon').value,
      'denuncia': document.getElementById('denuncia').value,
