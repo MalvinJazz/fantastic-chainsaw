@@ -40,55 +40,26 @@ var app = {
     menuprincipal.className = 'page center';
     wrapper.className = 'cssClass';
 
-    // Leemos por ajax el archivos opcion1.html de la carpeta opciones
-    // xhReq.open("GET", "opciones/opcion1.html", false);
-    // xhReq.send(null);
-    // document.getElementById("contenidoCuerpo").innerHTML=xhReq.responseText;
     $('#contenidoCuerpo').load("opciones/opcion1.html");
 
-    // Leemos por ajax el archivos menu.html de la carpeta opciones
-    // xhReq.open("GET", "opciones/menu.html", false);
-    // xhReq.send(null);
-    // document.getElementById("contenidoMenu").innerHTML=xhReq.responseText;
     $('#contenidoMenu').load("opciones/menu.html");
 
     // Creamos los 2 scroll mediante el plugin iscroll, uno para el men� principal y otro para el cuerpo
-    myScroll = new IScroll('#wrapper', {
-      hideScrollbar: true,
-      // useTransform: true,
-      bounce: false,
-      // onBeforeScrollStart: function (e) {
-      // var target = e.target;
-      // while (target.nodeType != 1)
-      //   target = target.parentNode;
-      // if (target.tagName != 'SELECT' && target.tagName != 'INPUT' && target.tagName != 'TEXTAREA' && target.tagName != 'OPTION')
-      //   e.preventDefault();
-      // }
-    });
-    myScrollMenu = new IScroll('#wrapperMenu', { hideScrollbar: true, bounce: true });
-    // document.getElementById('pantalla-inicio').style.display = 'block';
-    // $('#menuprincipal').hide();
-    // $('#cuerpo').hide();
-    //
-    // sleep(500);
+    setTimeout(function(){
+      myScroll = new IScroll('#wrapper', {
+        hideScrollbar: true,
+        // useTransform: true,
+        bounce: false,
 
-    // document.getElementById('pantalla-inicio').style.display = 'none';
-    // $('#menuprincipal').show();
-    // $('#cuerpo').show();
+      });
+      myScrollMenu = new IScroll('#wrapperMenu', { hideScrollbar: true, bounce: true });
+    }, 300);
+
+
       this.bindEvents();
     },
 
     bindEvents: function() {
-        // var deps = document.getElementById('dep');
-        // var muni = document.getElementById('muni_id');
-        // var tipo = document.getElementById('id_tipo');
-        // var enviar = document.getElementById('enviar');
-        // var doc = document.getElementById('file');
-        // doc.addEventListener('change', mostrarDoc);
-        // enviar.addEventListener('click', enviarInfo);
-        // tipo.addEventListener('change', busquedaMotivo);
-        // muni.addEventListener('change', busquedaZona);
-        // deps.addEventListener('change', busquedaMunicipio);
         document.addEventListener('offline', this.notification, false);
         document.addEventListener('deviceready', this.onDeviceReady, false);
     },
@@ -232,7 +203,7 @@ function enviarInfo(){
 
   if(motivo==0){
     // alert('Por favor, ingresa un motivo.');
-    navigator.notification.alert('Por favor, ingresa un motivo.', regresar(3), 'Error!', 'OK');
+    navigator.notification.alert('Por favor, ingresa un motivo.', regresar(2), 'Error!', 'OK');
     // document.getElementById('motivo_id').style.border = "solid red";
     // var pos = $('#motivo_id').offset();
     // window.scrollTo(pos.left, pos.top-100);
@@ -254,28 +225,28 @@ function enviarInfo(){
 
   if(direccion==0){
     // alert('Por favor, ingresa una zona.');
-    navigator.notification.alert('Por favor, ingresa una zona.', regresar(4), 'Error!', 'OK');
+    navigator.notification.alert('Por favor, ingresa una zona.', regresar(3), 'Error!', 'OK');
     // document.getElementById('zona_id').style.border = "solid red";
     // var pos = $('#zona_id').offset();
     // window.scrollTo(pos.left, pos.top-100);
     // regresar(3);
     return;
   }
-
-  var nombre = document.getElementById('nombre').value;
-  var dpi = document.getElementById('dpi').value;
-  if(nombre=="")
-    nombre = 'Anonimo';
-
-  if(dpi=="")
-    dpi = 'Anonimo';
+  //
+  // var nombre = document.getElementById('nombre').value;
+  // var dpi = document.getElementById('dpi').value;
+  // if(nombre=="")
+  //   nombre = 'Anonimo';
+  //
+  // if(dpi=="")
+  //   dpi = 'Anonimo';
 
 
   var data = JSON.stringify({
 
-     'nombre': nombre,
-     'dpi': dpi,
-     'telefono': document.getElementById('telefono').value,
+    //  'nombre': nombre,
+    //  'dpi': dpi,
+    //  'telefono': document.getElementById('telefono').value,
      'latitud': document.getElementById('lat').value,
      'longitud': document.getElementById('lon').value,
      'denuncia': document.getElementById('denuncia').value,
@@ -700,8 +671,10 @@ function menu(opcion){
     }
 
 		// Refrescamos el elemento iscroll seg�n el contenido ya a�adido mediante ajax, y hacemos que se desplace al top
-		myScroll.refresh();
-		myScroll.scrollTo(0,0);
+		setTimeout(function(){
+      myScroll.refresh();
+  		myScroll.scrollTo(0,0);
+    }, 300);
 
 		// A�adimos las clases necesarias para que la capa cuerpo se mueva al centro de nuestra app y muestre el contenido
 		cuerpo.className = 'page transition center';
