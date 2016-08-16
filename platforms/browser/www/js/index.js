@@ -19,7 +19,7 @@ wrapper = document.getElementById("wrapper");
 //   myScroll.scrollTo(0,pos+100);
 // });
 
-var xhReq = new XMLHttpRequest();
+// var xhReq = new XMLHttpRequest();
 
 var app = {
     // Constructor de la app
@@ -41,14 +41,16 @@ var app = {
     wrapper.className = 'cssClass';
 
     // Leemos por ajax el archivos opcion1.html de la carpeta opciones
-    xhReq.open("GET", "opciones/opcion1.html", false);
-    xhReq.send(null);
-    document.getElementById("contenidoCuerpo").innerHTML=xhReq.responseText;
+    // xhReq.open("GET", "opciones/opcion1.html", false);
+    // xhReq.send(null);
+    // document.getElementById("contenidoCuerpo").innerHTML=xhReq.responseText;
+    $('#contenidoCuerpo').load("opciones/opcion1.html");
 
     // Leemos por ajax el archivos menu.html de la carpeta opciones
-    xhReq.open("GET", "opciones/menu.html", false);
-    xhReq.send(null);
-    document.getElementById("contenidoMenu").innerHTML=xhReq.responseText;
+    // xhReq.open("GET", "opciones/menu.html", false);
+    // xhReq.send(null);
+    // document.getElementById("contenidoMenu").innerHTML=xhReq.responseText;
+    $('#contenidoMenu').load("opciones/menu.html");
 
     // Creamos los 2 scroll mediante el plugin iscroll, uno para el men� principal y otro para el cuerpo
     myScroll = new IScroll('#wrapper', {
@@ -674,12 +676,13 @@ function menu(opcion){
 		addClass('li-menu-activo' , document.getElementById("ulMenu").getElementsByTagName("li")[opcion]);
 
 		// Recogemos mediante ajax el contenido del html seg�n la opci�n clickeada en el menu
-		xhReq.open("GET", "opciones/opcion"+opcion+".html", false);
-		xhReq.send(null);
-		document.getElementById("contenidoCuerpo").innerHTML=xhReq.responseText;
+		// xhReq.open("GET", "opciones/opcion"+opcion+".html", false);
+		// xhReq.send(null);
+		// document.getElementById("contenidoCuerpo").innerHTML=xhReq.responseText;
+    $('#contenidoCuerpo').load("opciones/opcion"+opcion+".html");
 
     if(opcion=='1'){
-      getDepartamentos();
+      setTimeout(getDepartamentos, 300);
     }
 
 
@@ -754,6 +757,15 @@ function irPorPasos(paso){
       celdas[i].style.display = 'inline-block';
     else
       celdas[i].style.display = 'none';
+  }
+
+  if(paso==1){
+    navigator.notification.alert(
+      'Te recordamos que tu anonimato es nuestra prioridad.\nEn ningún momento obtenemos información tuya.',
+        null,
+      'Denuncia Movil',
+      'Continuar'
+    );
   }
 
   if(paso>2){
