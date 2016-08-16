@@ -1,11 +1,11 @@
-<div class="borde-h1 color1"></div><h1 id="cabecera">PASO 1: Evidencia</h1>
+<div class="borde-h1 color1"></div><h1 id="cabecera">PASO 1: Denuncia</h1>
 <table id="pasos">
   <tr style="display:block">
     <td style="display: inline-block;"><a href="javascript:regresar(1);">1</a></td>
     <td style="display: none;"><a href="javascript:regresar(2);">2</a></td>
     <td style="display: none;"><a href="javascript:regresar(3);">3</a></td>
     <td style="display: none;"><a href="javascript:regresar(4);">4</a></td>
-    <td style="display: none;"><a href="javascript:regresar(5);">5</a></td>
+    <!-- <td style="display: none;"><a href="javascript:regresar(5);">5</a></td> -->
     <!-- <td style="display: none;"><a href="#">6</a></td> -->
       <!-- <td><a href="javascript:regresar(1);">Paso 1</a></td>
       <td><a href="javascript:regresar(2);">Paso 2</a></td>
@@ -20,13 +20,13 @@
   <div id="cargando" style="margin: 0px auto;">
     <img src="css/img/ajax-loader.gif" style="width: 32px; height: 32px;"/>
   </div>
-  <div class="rdBtn" id="paso2"  style="display: none;">
+  <!-- <div class="rdBtn" id="paso2"  style="display: none;">
     <h1>¿Como quieres hacer tu denuncia?</h1>
     <label>Anonima</label>
     <input type="radio" name="name" id="anonimo" value="anomimo" onClick="deshabilita()" checked>
     <label>Personal</label>
     <input type="radio" name="name" id="personal" value="personal" onclick="habilita()">
-  </div>
+  </div> -->
   <form id="form1" method="POST" action='' enctype='multipart/form-data'>
     <div id="paso1">
       <!-- <div id="pantalla-inicio">
@@ -44,7 +44,7 @@
         <label>Subir archivo</label>
       </div></br>
     </div>
-      <div id="ident" style="display: none;">
+      <!-- <div id="ident" style="display: none;">
         <div>
           <label>Nombre</label></br>
             <input id="nombre" type="text" name="nombre" value="" tabindex="1"></br>
@@ -57,8 +57,8 @@
           <label>Telefono</label></br>
             <input id="telefono" type="text" name="telefono" value="" tabindex="3"></br>
         </div>
-      </div>
-      <div id="paso3" style="display: none;">
+      </div> -->
+      <div id="paso2" style="display: none;">
         <h1>Describe tu denuncia</h1>
         <div>
           <label>Tipo</label></br>
@@ -81,7 +81,7 @@
           <textarea id="denuncia" name="denuncia" rows="8" cols="40" placeholder="Describe tu denuncia."></textarea></br>
         </div>
       </div>
-      <div id="paso4" style="display: none;">
+      <div id="paso3" style="display: none;">
         <h1>¿Donde ocurrió?</h1>
         <div>
           <label>Departamento</label></br>
@@ -107,7 +107,7 @@
         </div>
       </div>
       <!-- <div id="map_canvas" style="height: 200px; width: 300px"></div> -->
-      <div id="paso5" style="display: none;">
+      <div id="paso4" style="display: none;">
         <h1>Verificar y enviar denuncia</h1>
         </br>
         <table id="denuncia-completa"><tbody>

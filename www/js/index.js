@@ -3,7 +3,7 @@ var myScroll, myScrollMenu, cuerpo, menuprincipal, wrapper, estado;
 var direccion = '192.168.0.89:8000'
 var geoLconfirmada = false;
 var institucion = "";
-var pasos = ['Evidencia', 'Tipo', 'Descripción', 'Localización', 'Enviar'];
+var pasos = ['Denuncia', 'Descripción', 'Localización', 'Enviar'];
 
 var denuncias = [];
 
@@ -724,21 +724,12 @@ function regresar(paso){
       celdas[i].style.display = 'none';
   }
 
-  if(paso>1)
-    deshabilita();
-  else {
-    if(document.getElementById('anonimo').checked)
-      deshabilita();
-    else
-      habilita();
-  }
-
-  if(paso > 4)
+  if(paso > 3)
     document.getElementById('continuar').style.display = 'none';
   else
     document.getElementById('continuar').style.display = 'block';
 
-  for (var i = paso; i < 6; i++) {
+  for (var i = paso; i < 5; i++) {
     var id = 'paso'+i;
     document.getElementById(id).style.display = 'none';
   }
@@ -765,10 +756,16 @@ function irPorPasos(paso){
       celdas[i].style.display = 'none';
   }
 
-  if(paso>0)
-    document.getElementById('ident').style.display = 'none';
+  if(paso==1){
+    navigator.notification.alert(
+      'Te recordamos que tu anonimato es nuestra prioridad.\nEn ningún momento obtenemos información tuya.',
+        null,
+      'Denuncia Movil',
+      'Continuar'
+    );
+  }
 
-  if(paso>3){
+  if(paso>2){
     var tabla = document.getElementById('denuncia-completa');
     var old_tbody = tabla.childNodes[1];
     var tbody = document.createElement('tbody');
@@ -777,49 +774,6 @@ function irPorPasos(paso){
     var celdath = document.createElement('th');
     var celdatd = document.createElement('td');
     var link = document.createElement('a');
-
-    if(!document.getElementById('anonimo').checked){
-      var filaA = document.createElement('tr');
-      var celdathA = document.createElement('th');
-      var celdatdA = document.createElement('td');
-      link.href = 'javascript:regresar(1);'
-      var textoA = document.createTextNode('Nombre');
-      link.appendChild(textoA);
-      celdathA.appendChild(link);
-      textoA = document.createTextNode($('#nombre').val());
-      celdatdA.appendChild(textoA);
-      filaA.appendChild(celdathA);
-      filaA.appendChild(celdatdA);
-      tbody.appendChild(filaA);
-
-      filaA = document.createElement('tr');
-      celdathA = document.createElement('th');
-      celdatdA = document.createElement('td');
-      textoA = document.createTextNode('DPI');
-      link = document.createElement('a');
-      link.href = 'javascript:regresar(1);'
-      link.appendChild(textoA);
-      celdathA.appendChild(link);
-      textoA = document.createTextNode($('#dpi').val());
-      celdatdA.appendChild(textoA);
-      filaA.appendChild(celdathA);
-      filaA.appendChild(celdatdA);
-      tbody.appendChild(filaA);
-
-      filaA = document.createElement('tr');
-      celdathA = document.createElement('th');
-      celdatdA = document.createElement('td');
-      textoA = document.createTextNode('Telefono');
-      link = document.createElement('a');
-      link.href = 'javascript:regresar(1);'
-      link.appendChild(textoA);
-      celdathA.appendChild(link);
-      textoA = document.createTextNode($('#telefono').val());
-      celdatdA.appendChild(textoA);
-      filaA.appendChild(celdathA);
-      filaA.appendChild(celdatdA);
-      tbody.appendChild(filaA);
-    }
 
     var texto = document.createTextNode('Denuncia');
     celdath.appendChild(texto);
@@ -904,7 +858,7 @@ function irPorPasos(paso){
 
   }
 
-  if(paso > 3)
+  if(paso > 2)
     document.getElementById('continuar').style.display = 'none';
   else
     document.getElementById('continuar').style.display = 'block';
