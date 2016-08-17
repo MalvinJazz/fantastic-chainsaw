@@ -12,15 +12,6 @@ cuerpo = document.getElementById("cuerpo"),
 menuprincipal = document.getElementById("menuprincipal"),
 wrapper = document.getElementById("wrapper");
 
-// $('#denuncia').on('focus',function(){
-//   var pos = $('#denuncia').offset();
-//   // pos.focus();
-//   myScroll.refresh();
-//   myScroll.scrollTo(0,pos+100);
-// });
-
-// var xhReq = new XMLHttpRequest();
-
 var app = {
     // Constructor de la app
     initialize: function() {
@@ -48,8 +39,6 @@ var app = {
     setTimeout(function(){
       myScroll = new IScroll('#wrapper', {
         scrollbars: true,
-        // hideScrollbar: true,
-        // useTransform: true,
         bounce: false,
 
       });
@@ -71,7 +60,6 @@ var app = {
       new FastClick(document.body);
       // checkConnection();
       getDepartamentos();
-      // receivedEvent();
     },
 
     notification: function(){
@@ -111,9 +99,6 @@ function mostrarDoc(evt) {
   // FileReader support
     if (FileReader && files && files.length) {
 
-      // extension = (this.value.substring(archivo.lastIndexOf("."))).toLowerCase();
-      // alert (extension);
-
       var fr = new FileReader();
       fr.onload = function () {
 
@@ -150,16 +135,12 @@ function mostrarDoc(evt) {
         }
         document.getElementById('archivo').value = fr.result;
 
-        // document.getElementById('myImage').src = fr.result;
-        // document.getElementById('myVideo').src = fr.result;
-
         $('#photo').show();
         myScroll.refresh();
       }
       fr.readAsDataURL(files[0]);
     }
     else {
-      // alert('El archivo esta corrupto.')
       navigator.notification.alert(
         'El archivo esta corrupto o no se subió ninguno.',
           null,
@@ -204,51 +185,21 @@ function enviarInfo(){
   var direccion = document.getElementById('zona_id').value;
 
   if(motivo==0){
-    // alert('Por favor, ingresa un motivo.');
     navigator.notification.alert('Por favor, ingresa un motivo.', regresar(2), 'Error!', 'OK');
-    // document.getElementById('motivo_id').style.border = "solid red";
-    // var pos = $('#motivo_id').offset();
-    // window.scrollTo(pos.left, pos.top-100);
-    // regresar(2);
     return;
   }
 
   if(document.getElementById('denuncia').value==""){
-    // alert('Por favor, ingresa una denuncia.');
-    // navigator.notification.alert('Por favor ingresa una denuncia', regresar(2), 'Error!', 'OK');
     document.getElementById('denuncia').value = $("#motivo_id option:selected").text();
-    // document.getElementById('denuncia').style.border = "solid red";
-    // var pos = $('#denuncia').offset();
-    // // pos.focus();
-    // window.scrollTo(pos.left, pos.top-100);
-    // regresar(2);
-    // return;
   }
 
   if(direccion==0){
-    // alert('Por favor, ingresa una zona.');
     navigator.notification.alert('Por favor, ingresa una zona.', regresar(3), 'Error!', 'OK');
-    // document.getElementById('zona_id').style.border = "solid red";
-    // var pos = $('#zona_id').offset();
-    // window.scrollTo(pos.left, pos.top-100);
-    // regresar(3);
     return;
   }
-  //
-  // var nombre = document.getElementById('nombre').value;
-  // var dpi = document.getElementById('dpi').value;
-  // if(nombre=="")
-  //   nombre = 'Anonimo';
-  //
-  // if(dpi=="")
-  //   dpi = 'Anonimo';
-
 
   var data = JSON.stringify({
 
-    //  'nombre': nombre,
-    //  'dpi': dpi,
-    //  'telefono': document.getElementById('telefono').value,
      'latitud': document.getElementById('lat').value,
      'longitud': document.getElementById('lon').value,
      'denuncia': document.getElementById('denuncia').value,
