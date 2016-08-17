@@ -29,7 +29,7 @@ var app = {
       estado="cuerpo";
 
       // Creamos el elemento style, lo a�adimos al html y creamos la clase cssClass para aplicarsela al contenedor wrapper
-      var heightCuerpo=window.innerHeight;
+      var heightCuerpo=window.innerHeight + 200;
       var style = document.createElement('style');
       style.type = 'text/css';
       style.innerHTML = '.cssClass { position:absolute; z-index:2; left:0; top:46px; width:100%; height: '+heightCuerpo+'px; overflow:auto;}';
@@ -47,7 +47,8 @@ var app = {
     // Creamos los 2 scroll mediante el plugin iscroll, uno para el men� principal y otro para el cuerpo
     setTimeout(function(){
       myScroll = new IScroll('#wrapper', {
-        hideScrollbar: true,
+        scrollbars: true,
+        // hideScrollbar: true,
         // useTransform: true,
         bounce: false,
 
@@ -68,6 +69,7 @@ var app = {
     	// Ejecutamos la funci�n FastClick, que es la que nos elimina esos 300ms de espera al hacer click
       google.charts.load('visualization', '1', {'packages': ['geochart', 'corechart']});
       new FastClick(document.body);
+      // checkConnection();
       getDepartamentos();
       // receivedEvent();
     },
@@ -1026,4 +1028,20 @@ function sleep(miliseconds) {
 
    while (currentTime + miliseconds >= new Date().getTime()) {
    }
+}
+
+function checkConnection() {
+    var networkState = navigator.connection.type;
+
+    var states = {};
+    states[Connection.UNKNOWN]  = 'Unknown connection';
+    states[Connection.ETHERNET] = 'Ethernet connection';
+    states[Connection.WIFI]     = 'WiFi connection';
+    states[Connection.CELL_2G]  = 'Cell 2G connection';
+    states[Connection.CELL_3G]  = 'Cell 3G connection';
+    states[Connection.CELL_4G]  = 'Cell 4G connection';
+    states[Connection.CELL]     = 'Cell generic connection';
+    states[Connection.NONE]     = 'No network connection';
+
+    alert('Connection type: ' + states[networkState]);
 }
