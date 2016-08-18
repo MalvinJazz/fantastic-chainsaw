@@ -5,14 +5,6 @@
     <td style="display: none;"><a href="javascript:regresar(2);">2</a></td>
     <td style="display: none;"><a href="javascript:regresar(3);">3</a></td>
     <td style="display: none;"><a href="javascript:regresar(4);">4</a></td>
-    <!-- <td style="display: none;"><a href="javascript:regresar(5);">5</a></td> -->
-    <!-- <td style="display: none;"><a href="#">6</a></td> -->
-      <!-- <td><a href="javascript:regresar(1);">Paso 1</a></td>
-      <td><a href="javascript:regresar(2);">Paso 2</a></td>
-      <td><a href="javascript:regresar(3);">Paso 3</a></td>
-      <td><a href="javascript:regresar(4);">Paso 4</a></td>
-      <td><a href="javascript:regresar(5);">Paso 5</a></td>
-      <td><a href="#">Paso 6</a></td> -->
   </tr>
 </table>
 
@@ -20,44 +12,18 @@
   <div id="cargando" style="margin: 0px auto;">
     <img src="css/img/ajax-loader.gif" style="width: 32px; height: 32px;"/>
   </div>
-  <!-- <div class="rdBtn" id="paso2"  style="display: none;">
-    <h1>¿Como quieres hacer tu denuncia?</h1>
-    <label>Anonima</label>
-    <input type="radio" name="name" id="anonimo" value="anomimo" onClick="deshabilita()" checked>
-    <label>Personal</label>
-    <input type="radio" name="name" id="personal" value="personal" onclick="habilita()">
-  </div> -->
   <form id="form1" method="POST" action='' enctype='multipart/form-data'>
     <div id="paso1">
-      <!-- <div id="pantalla-inicio">
-        <h1>Denuncia Movil</h1>
-      </div> -->
       <h1>Subir archivo</h1></br>
       <div id="photo">
-      <!-- <img style="width:60px;height:60px;" src="" id="myImage"/>height="200px" width="200px"/>
-      <video style="width:60px;height:60px;" src="" id="myVideo" controls autoplay></video> -->
       </div>
       <input type="button" id="camara" name="camara" value="Tomar Foto">
-      <!-- <input type="button" id="fake" name="fake" value="Subir Archivo"> -->
       <div class="falso-boton">
         <input type="file" id="file" name="file" accept="image/*, video/*">
         <label>Subir archivo</label>
       </div></br>
+      <i>(Todos los campos marcados con '<span style="color: red;">*</span>' son obligatorios)</i>
     </div>
-      <!-- <div id="ident" style="display: none;">
-        <div>
-          <label>Nombre</label></br>
-            <input id="nombre" type="text" name="nombre" value="" tabindex="1"></br>
-        </div>
-        <div>
-          <label>DPI</label></br>
-            <input id='dpi' type="text" name="dpi" value="" tabindex="2"> </br>
-        </div>
-        <div>
-          <label>Telefono</label></br>
-            <input id="telefono" type="text" name="telefono" value="" tabindex="3"></br>
-        </div>
-      </div> -->
       <div id="paso2" style="display: none;">
         <h1>Describe tu denuncia</h1>
         <div>
@@ -106,7 +72,6 @@
             <input id="referencia" type="text" name="referencia" value="" placeholder="Punto de referencia."></br>
         </div>
       </div>
-      <!-- <div id="map_canvas" style="height: 200px; width: 300px"></div> -->
       <div id="paso4" style="display: none;">
         <h1>Verificar y enviar denuncia</h1>
         </br>
