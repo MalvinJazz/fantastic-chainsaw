@@ -256,6 +256,7 @@ p{
 	padding-top:20px;
 	font-size:16px;
 	text-shadow: 0 1px #000;
+	font-family: 'Montserrat', sans-serif;
 }
 
 .scroller li .descripcion{
@@ -265,6 +266,7 @@ p{
 	font-size:12px;
 	text-shadow: 0 1px #000;
 	padding-bottom:25px
+	font-family: 'Martel', serif;
 }
 /*Fin estilos de las capas internas de los iscroll, tanto cuerpo como menu*/
 
@@ -383,6 +385,7 @@ p{
     font-size:35px;
     /*font-weight: bolder;*/
     font-family: Tox;
+		text-shadow: 2px 2px 2px #40484c;
     margin: 0px;
     overflow: visible;
     padding: 0px;
@@ -525,4 +528,8 @@ color: black;
 .importante::after{
 	content: '*';
 	color: red;
+}
+
+#cabecera{
+	font-family: 'Montserrat', sans-serif;
 }
