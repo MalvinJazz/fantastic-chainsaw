@@ -62,7 +62,8 @@ p{
 	position:absolute; z-index:2;
 	top:0; left:0;
 	width:100%;
-	background: #1A57A7;
+	/*background: #1A57A7;*/
+	background: #263248;
 	border-bottom: 5px solid #000;
 	padding:0;
 	color:#eee;
@@ -80,7 +81,8 @@ p{
     width:30%;
     height: 50px;
     line-height: 36px;
-    background-color:#629bcc;
+		background-color: #FF9800;
+    /*background-color:#629bcc;*/
     /*background-color:#46b7f1;*/
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
@@ -105,11 +107,15 @@ p{
     top: 5px;
     left: 5px;
     width:17%;
+		height: 35px;
     line-height: 36px;
-    background-color:#629bcc;
+		/*background-color: #17607D;*/
+		background-color: #7E8AA2;
+    /*background-color:#629bcc;*/
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	border-radius: 3px;
+	/*background: url(img/menu.png) no-repeat center;*/
 }
 
 #header .btn:active {
@@ -132,8 +138,8 @@ p{
 }
 
 #cuerpo h1{
-	font-size:20px;
-	line-height:30px
+	/*font-size:20px;*/
+	line-height:30px;
 }
 
 .borde-h1{
@@ -182,16 +188,19 @@ p{
 }
 
 .color1{
-	background:#2ed877;
+	/*background:#2ed877;*/
+	background: #FF9311;
 }
 
 .color2{
-	background:#3398dc;
+	background: #D64700;
+	/*background:#3398dc;*/
 }
 
 .color3{
 	/*background: #2927ab;*/
-	background:#f4c601;
+	/*background:#f4c601;*/
+	background: #17607D;
 }
 
 .color4{
@@ -231,6 +240,7 @@ p{
 	line-height:44px;
 	font-size:14px;
 	text-align:center;
+	font-family: 'Montserrat', sans-serif;
 }
 
 .scroller li {
@@ -265,7 +275,7 @@ p{
 	color:#6e7679;
 	font-size:12px;
 	text-shadow: 0 1px #000;
-	padding-bottom:25px
+	padding-bottom: 25px;
 	font-family: 'Martel', serif;
 }
 /*Fin estilos de las capas internas de los iscroll, tanto cuerpo como menu*/
@@ -322,11 +332,11 @@ p{
 		height: 60px;
 		color: white;
 		font-weight: bolder;
-		background-color: #2ed877;
+		background-color: #4B5F6D;
 }
 
 .falso-boton:active {
-    background-color: #18733f;
+    background-color: #363F45;
 }
 
 .falso-boton #file{
@@ -357,11 +367,19 @@ p{
   height: 20px;
 }
 
-#content textarea, input, select{
+#content textarea, input[type='text'], select{
   width: 80%;
   height: 40px;
   margin-top: 5px;
   max-width: 300px;
+	font-family: 'Martel', serif;
+}
+
+select{
+	background-color: white;
+	color: black;
+	border-color: white;
+	border-bottom-color: black;
 }
 
 #content textarea{
@@ -371,14 +389,24 @@ p{
 
 #content input[type='button']{
   width: 60%;
+	max-width: 300px;
   height: 60px;
   color: white;
   font-weight: bolder;
-  background-color: #2ed877;
+	font-family: 'Montserrat', sans-serif;
+	font-size: larger;
+}
+
+.btn-default{
+	background-color: #5E7C88;
+}
+
+.btn-enviar{
+	background-color: #FF9800;
 }
 
 #content input[type='button']:active{
-  background-color: #18733f;
+  background-color: #363F45;
 }
 
 .title{
@@ -435,6 +463,7 @@ p{
   top: 25%;
   font-size: large;
   left: 40%;
+	font-family: 'Montserrat', serif;
 }
 
 #denuncia-completa{
@@ -456,6 +485,14 @@ table{
     line-height: 1.42857143;
     vertical-align: top;
     border-top: 1px solid #ddd;
+}
+
+#denuncia-completa > tbody > tr > th{
+	font-family: 'Montserrat', sans-serif;
+}
+
+#denuncia-completa > tbody > tr > td{
+	font-family: 'Martel', serif;
 }
 
 th{
@@ -531,5 +568,25 @@ color: black;
 }
 
 #cabecera{
+	font-family: 'Montserrat', sans-serif;
+	font-size: x-large;
+}
+
+#paso1 i{
+	font-family: 'Martel', serif;
+	font-size: smaller;
+}
+
+#paso4 strong{
+	font-family: 'Montserrat', sans-serif;
+	font-size: large;
+}
+
+.paso-cabecera{
+	font-family: 'Montserrat', sans-serif;
+	font-size: large;
+}
+
+div>label, div>span{
 	font-family: 'Montserrat', sans-serif;
 }

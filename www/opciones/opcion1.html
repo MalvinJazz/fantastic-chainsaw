@@ -14,10 +14,10 @@
   </div>
   <form id="form1" method="POST" action='' enctype='multipart/form-data'>
     <div id="paso1">
-      <h1>Subir archivo</h1></br>
+      <h1 class="paso-cabecera">Subir archivo</h1></br>
       <div id="photo">
       </div>
-      <input type="button" id="camara" name="camara" value="Tomar Foto">
+      <input type="button" class="btn-default" id="camara" name="camara" value="Tomar Foto">
       <div class="falso-boton">
         <input type="file" id="file" name="file" accept="image/*, video/*">
         <label>Subir archivo</label>
@@ -25,7 +25,7 @@
       <i>(Todos los campos marcados con '<span style="color: red;">*</span>' son obligatorios)</i>
     </div>
       <div id="paso2" style="display: none;">
-        <h1>Describe tu denuncia</h1>
+        <h1 class="paso-cabecera">¿Qué ocurrió?</h1>
         <div>
           <label class="importante">Tipo</label></br>
           <select id="id_tipo" name="tipo">
@@ -48,7 +48,7 @@
         </div>
       </div>
       <div id="paso3" style="display: none;">
-        <h1>¿Donde ocurrió?</h1>
+        <h1 class="paso-cabecera">¿Donde ocurrió?</h1>
         <div>
           <label class="importante">Departamento</label></br>
           <select id="dep" name="dep">
@@ -73,12 +73,13 @@
         </div>
       </div>
       <div id="paso4" style="display: none;">
-        <h1>Verificar y enviar denuncia</h1>
+        <h1 class="paso-cabecera">¿Todo bien con tu denuncia?</h1>
         </br>
-        <table id="denuncia-completa"><tbody>
-        <thead><strong>¿Todo bien con tu denuncia?</strong></thead>
-        </tbody></table>
-        <input id="enviar" type="button" class="btn btn-default" value='Enviar'>
+        <!-- <strong>¿Todo bien con tu denuncia?</strong> -->
+        <table id="denuncia-completa">
+          <tbody></tbody>
+        </table>
+        <input id="enviar" type="button" class="btn-enviar" value='Enviar'>
         </br>
       </div>
       <div id="coord" style="display: none;">

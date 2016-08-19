@@ -260,9 +260,14 @@ function enviarInfo(){
       // success: function(data){
       //   alert('Se ha enviado con exito.')
       // },
-      // error: function(){
-      //   alert('Ha ocurrido un error con el servidor, intenta de nuevo mas tarde.')
-      // },
+      error: function(){
+        navigator.notification.alert(
+          'Ha ocurrido un error con el servidor, intenta de nuevo más tarde.',
+            null,
+          'Error',
+          'OK'
+        );
+      },
       processData: false
 
     });
@@ -708,7 +713,7 @@ function irPorPasos(paso){
 
   if(paso>2){
     var tabla = document.getElementById('denuncia-completa');
-    var old_tbody = tabla.childNodes[1];
+    var old_tbody = tabla.childNodes[0];
     var tbody = document.createElement('tbody');
 
     var fila = document.createElement('tr');

@@ -20,7 +20,7 @@ var app = {
       estado="cuerpo";
 
       // Creamos el elemento style, lo a�adimos al html y creamos la clase cssClass para aplicarsela al contenedor wrapper
-      var heightCuerpo=window.innerHeight + 200;
+      var heightCuerpo=window.innerHeight;
       var style = document.createElement('style');
       style.type = 'text/css';
       style.innerHTML = '.cssClass { position:absolute; z-index:2; left:0; top:46px; width:100%; height: '+heightCuerpo+'px; overflow:auto;}';
@@ -708,7 +708,7 @@ function irPorPasos(paso){
 
   if(paso>2){
     var tabla = document.getElementById('denuncia-completa');
-    var old_tbody = tabla.childNodes[1];
+    var old_tbody = tabla.childNodes[0];
     var tbody = document.createElement('tbody');
 
     var fila = document.createElement('tr');

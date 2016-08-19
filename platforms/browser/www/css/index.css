@@ -1,9 +1,10 @@
 @font-face {
 	font-family: "Tox";
-	src: url("fonts/Tox Typewriter/Tox_Typewriter.eot"),
-				url("fonts/Tox Typewriter/Tox_Typewriter.ttf"),
-				url("fonts/Tox Typewriter/Tox_Typewriter.svg"),
-				url("fonts/Tox Typewriter/Tox_Typewriter.woff");
+	src: url("fonts/Utility/Utility.eot"),
+				url("fonts/Utility/Utility.ttf"),
+				url("fonts/Utility/Utility.svg"),
+				url("fonts/Utility/Utility.otf"),
+				url("fonts/Utility/Utility.woff");
 }
 
 * {
@@ -61,7 +62,8 @@ p{
 	position:absolute; z-index:2;
 	top:0; left:0;
 	width:100%;
-	background: #1A57A7;
+	/*background: #1A57A7;*/
+	background: #263248;
 	border-bottom: 5px solid #000;
 	padding:0;
 	color:#eee;
@@ -79,7 +81,8 @@ p{
     width:30%;
     height: 50px;
     line-height: 36px;
-    background-color:#629bcc;
+		background-color: #FF9800;
+    /*background-color:#629bcc;*/
     /*background-color:#46b7f1;*/
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
@@ -104,11 +107,15 @@ p{
     top: 5px;
     left: 5px;
     width:17%;
+		height: 35px;
     line-height: 36px;
-    background-color:#629bcc;
+		/*background-color: #17607D;*/
+		background-color: #7E8AA2;
+    /*background-color:#629bcc;*/
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	border-radius: 3px;
+	/*background: url(img/menu.png) no-repeat center;*/
 }
 
 #header .btn:active {
@@ -131,8 +138,8 @@ p{
 }
 
 #cuerpo h1{
-	font-size:20px;
-	line-height:30px
+	/*font-size:20px;*/
+	line-height:30px;
 }
 
 .borde-h1{
@@ -181,16 +188,19 @@ p{
 }
 
 .color1{
-	background:#2ed877;
+	/*background:#2ed877;*/
+	background: #FF9311;
 }
 
 .color2{
-	background:#3398dc;
+	background: #D64700;
+	/*background:#3398dc;*/
 }
 
 .color3{
 	/*background: #2927ab;*/
-	background:#f4c601;
+	/*background:#f4c601;*/
+	background: #17607D;
 }
 
 .color4{
@@ -230,6 +240,7 @@ p{
 	line-height:44px;
 	font-size:14px;
 	text-align:center;
+	font-family: 'Montserrat', sans-serif;
 }
 
 .scroller li {
@@ -255,6 +266,7 @@ p{
 	padding-top:20px;
 	font-size:16px;
 	text-shadow: 0 1px #000;
+	font-family: 'Montserrat', sans-serif;
 }
 
 .scroller li .descripcion{
@@ -263,7 +275,8 @@ p{
 	color:#6e7679;
 	font-size:12px;
 	text-shadow: 0 1px #000;
-	padding-bottom:25px
+	padding-bottom: 25px;
+	font-family: 'Martel', serif;
 }
 /*Fin estilos de las capas internas de los iscroll, tanto cuerpo como menu*/
 
@@ -312,15 +325,6 @@ p{
 }
 
 #content .falso-boton {
-    /*position: relative;
-    border-radius: 10px;
-    background-color: #fff;
-    color: #000;
-    border: 2px solid #666;
-    padding-bottom: 2px;
-    box-shadow: inset 0 0px 8px 2px black;
-    width: 100px;
-    margin-left: 180px;*/
 		align-content: center;
 		margin: 10px auto;
 		max-width: 300px;
@@ -328,13 +332,11 @@ p{
 		height: 60px;
 		color: white;
 		font-weight: bolder;
-		background-color: #2ed877;
-		/*left: 31%;*/
-		/*display: -webkit-inline-box;*/
+		background-color: #4B5F6D;
 }
 
 .falso-boton:active {
-    background-color: #18733f;
+    background-color: #363F45;
 }
 
 .falso-boton #file{
@@ -342,8 +344,6 @@ p{
  position: relative;
  width: 100%;
  height: 100%;
- /*margin-left: -125px;
- width: 225px;*/
 }
 
 .falso-boton label{
@@ -351,14 +351,10 @@ p{
 	left: 0;
 	top: 35%;
 	right: 0;
-	/*margin: 35% auto;*/
 }
 
 #content div{
   position: relative;
-  /*left: 10%;*/
-  /*font-size:24px;
-  font-weight:normal;*/
   margin:10px 0px;
   overflow:visible;
   padding:0px;
@@ -371,11 +367,19 @@ p{
   height: 20px;
 }
 
-#content textarea, input, select{
+#content textarea, input[type='text'], select{
   width: 80%;
   height: 40px;
   margin-top: 5px;
   max-width: 300px;
+	font-family: 'Martel', serif;
+}
+
+select{
+	background-color: white;
+	color: black;
+	border-color: white;
+	border-bottom-color: black;
 }
 
 #content textarea{
@@ -383,26 +387,33 @@ p{
   max-height: 150px;
 }
 
-/*#content textarea:focus, input:focus{
-  border: solid black;
-}*/
-
 #content input[type='button']{
   width: 60%;
+	max-width: 300px;
   height: 60px;
   color: white;
   font-weight: bolder;
-  background-color: #2ed877;
+	font-family: 'Montserrat', sans-serif;
+	font-size: larger;
+}
+
+.btn-default{
+	background-color: #5E7C88;
+}
+
+.btn-enviar{
+	background-color: #FF9800;
 }
 
 #content input[type='button']:active{
-  background-color: #18733f;
+  background-color: #363F45;
 }
 
 .title{
-    font-size:20px;
-    font-weight: bolder;
+    font-size:35px;
+    /*font-weight: bolder;*/
     font-family: Tox;
+		text-shadow: 2px 2px 2px #40484c;
     margin: 0px;
     overflow: visible;
     padding: 0px;
@@ -421,7 +432,6 @@ p{
 
 #section{
   position: relative;
-  /*padding: 3em 0em 4em 0em;*/
   background-color:#FFF;
   height: 100%;
   width: 100%;
@@ -453,11 +463,11 @@ p{
   top: 25%;
   font-size: large;
   left: 40%;
+	font-family: 'Montserrat', serif;
 }
 
 #denuncia-completa{
   width: 100%;
-  /*max-width: 100%;*/
 	height: 100%;
 	min-width: 250px;
   margin-bottom: 20px;
@@ -477,6 +487,14 @@ table{
     border-top: 1px solid #ddd;
 }
 
+#denuncia-completa > tbody > tr > th{
+	font-family: 'Montserrat', sans-serif;
+}
+
+#denuncia-completa > tbody > tr > td{
+	font-family: 'Martel', serif;
+}
+
 th{
 	text-align: left;
 }
@@ -488,11 +506,9 @@ td{
 #graficas{
 	width: 300px;
 height: 160px;
-/*float: left;*/
 position: relative;
 z-index: 1;
 overflow: hidden;
-/*background: #aaa;*/
 -webkit-border-radius: 10px;
 -moz-border-radius: 10px;
 -o-border-radius: 10px;
@@ -534,12 +550,9 @@ font-size: 18px;
 line-height: 140%;
 background: #e3e3e3;
 color: black;
-/*background-color: white;*/
 }
 
 #mapa{
-	/*padding: 5%;*/
-	/*margin: 0% 5%;*/
 	width: 100%;
 	padding-bottom: 50px;
 	margin-bottom: 5%;
@@ -552,4 +565,28 @@ color: black;
 .importante::after{
 	content: '*';
 	color: red;
+}
+
+#cabecera{
+	font-family: 'Montserrat', sans-serif;
+	font-size: x-large;
+}
+
+#paso1 i{
+	font-family: 'Martel', serif;
+	font-size: smaller;
+}
+
+#paso4 strong{
+	font-family: 'Montserrat', sans-serif;
+	font-size: large;
+}
+
+.paso-cabecera{
+	font-family: 'Montserrat', sans-serif;
+	font-size: large;
+}
+
+div>label, div>span{
+	font-family: 'Montserrat', sans-serif;
 }
