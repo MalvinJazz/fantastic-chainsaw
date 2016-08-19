@@ -68,7 +68,7 @@ var app = {
         'Comprueba tu conexión a internet.',
         cerrar,
         'Error',
-        'OK'
+        'Cerrar'
       );
 
     }
@@ -185,7 +185,7 @@ function enviarInfo(){
   var direccion = document.getElementById('zona_id').value;
 
   if(motivo==0){
-    navigator.notification.alert('Por favor, ingresa un motivo.', regresar(2), 'Error!', 'OK');
+    navigator.notification.alert('Por favor, ingresa un motivo.', regresar(2), 'Error!', 'Continuar');
     return;
   }
 
@@ -194,7 +194,7 @@ function enviarInfo(){
   }
 
   if(direccion==0){
-    navigator.notification.alert('Por favor, ingresa una zona.', regresar(3), 'Error!', 'OK');
+    navigator.notification.alert('Por favor, ingresa una zona.', regresar(3), 'Error!', 'Continuar');
     return;
   }
 
@@ -293,7 +293,7 @@ function getGeolocation(){
       'Para utilizar la geolocalización necesitas activar tu GPS.',
         null,
       'Error',
-      'OK'
+      'Continuar'
     );
   }
 
@@ -506,12 +506,10 @@ function getDepartamentos(){
   $('#cargando').hide();
 
   $(document).ajaxStart(function(){
-    console.log('ajaxStart');
     $('#cargando').show();
   })
 
   $(document).ajaxStop(function(){
-    console.log('ajaxStop');
     $('#cargando').hide();
   })
 
@@ -704,7 +702,7 @@ function irPorPasos(paso){
 
   if(paso==1){
     navigator.notification.alert(
-      'Te recordamos que tu anonimato es nuestra prioridad.\nEn ningún momento obtenemos información tuya.',
+      'Te recordamos que tu anonimato es nuestra prioridad.\nTu denuncia es encriptada y enviada al servidor.',
         null,
       'Denuncia Movil',
       'Continuar'
@@ -794,7 +792,7 @@ function irPorPasos(paso){
 
     if (!geoLconfirmada) {
       navigator.notification.confirm(
-        'Con esto alimentaremos el mapa de denuncias.',
+        'Esto hace que tu denuncia tenga una ubicación más exacta.',
         onConfirm,
         '¿Nos brindarías tu ubicación actual?',
         ['Si', 'No']
