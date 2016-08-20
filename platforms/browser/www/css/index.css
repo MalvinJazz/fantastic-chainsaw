@@ -7,6 +7,15 @@
 				url("fonts/Utility/Utility.woff");
 }
 
+@font-face {
+	font-family: "Icon";
+	src: url("fonts/Entypo/Entypo.otf"),
+			url("fonts/Entypo/Entypo.ttf"),
+			url("fonts/Entypo/Entypo.eot"),
+			url("fonts/Entypo/Entypo.svg"),
+			url("fonts/Entypo/Entypo.woff");
+}
+
 * {
     /*-webkit-user-select: none;*/
     -webkit-tap-highlight-color: rgba(0,0,0,0);
@@ -448,7 +457,7 @@ select{
 }
 
 #pasos tr td{
-  width: 13%;
+  width: 20%;
   height: 40px;
   border-left: solid #0e5771;
 	/*background-color: #1996ef;*/
@@ -471,8 +480,11 @@ select{
 
 #pasos tr td a .bloque span{
 	position: relative;
-	top: 25%;
-  left: 45%;
+	top: -20%;
+	left: 30%;
+	font-family: Icon;
+	font-size: 58px;
+	font-weight: 100;
 }
 
 #denuncia-completa{

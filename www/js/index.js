@@ -212,6 +212,14 @@ function enviarInfo(){
 
   })
 
+  navigator.notification.alert(
+    // 'Te recordamos que tu anonimato es nuestra prioridad.\nTu denuncia es encriptada y enviada al servidor.',
+    'Por tu seguridad, nadie, inlcuyendo al equipo de Denuncia Móvil, puede saber quien denuncia.',
+      null,
+    'Denuncia Movil',
+    'Continuar'
+  );
+
   try{
     $.ajax({
 
@@ -702,8 +710,8 @@ function irPorPasos(paso){
 
   if(paso==1){
     navigator.notification.alert(
-      'Te recordamos que tu anonimato es nuestra prioridad.\nTu denuncia es encriptada y enviada al servidor.',
-        null,
+      'Tus datos e identidad permanecerán completamente anonimos, toda la información de Denuncia Móvil está cifrada.',
+      null,
       'Denuncia Movil',
       'Continuar'
     );
