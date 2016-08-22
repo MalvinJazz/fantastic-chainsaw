@@ -21,12 +21,17 @@
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
     <preference name="loadUrlTimeoutValue" value="700000" />
+
+    <icon src="res/icon/android/icon-ldpi.png"   gap:platform="android"    gap:qualifier="ldpi" />
+ <icon src="res/icon/android/icon-mdpi.png"   gap:platform="android"    gap:qualifier="mdpi" />
+ <icon src="res/icon/android/icon-hdpi.png"   gap:platform="android"    gap:qualifier="hdpi" />
+ <icon src="res/icon/android/icon-xhdpi.png"  gap:platform="android"    gap:qualifier="xhdpi" />
     <!-- <access origin="https://maps.googleapis.com" /> -->
     <!-- <preference name="fullscreen" value="false" /> -->
     <!-- <preference name="android-windowSoftInputMode" value="stateVisible" /> -->
     <platform name="android">
         <allow-intent href="market:*" />
-        <splash src="www/img/logo.png"/>
+        <!-- <splash src="www/img/logo.png"/> -->
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
