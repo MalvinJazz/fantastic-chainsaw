@@ -1,10 +1,9 @@
 @font-face {
 	font-family: "Tox";
-	src: url("fonts/Utility/Utility.eot"),
-				url("fonts/Utility/Utility.ttf"),
-				url("fonts/Utility/Utility.svg"),
-				url("fonts/Utility/Utility.otf"),
-				url("fonts/Utility/Utility.woff");
+	src: url("fonts/Communist/communist.eot"),
+				url("fonts/Communist/communist.ttf"),
+				url("fonts/Communist/communist.svg"),
+				url("fonts/Communist/communist.woff");
 }
 
 @font-face {
@@ -260,6 +259,18 @@ p{
 	color:#fff
 }
 
+.scroller li img{
+	margin: 20px;
+}
+
+.scroller li span{
+	color: #454545;
+  font-size: small;
+  position: relative;
+  top: -25px;
+  left: -2%;
+  font-family: 'Martel', serif;
+}
 
 .li-menu-activo{
 	background-color:#323a40 !important;
@@ -431,7 +442,7 @@ select{
 }
 
 .title{
-    font-size:35px;
+    font-size:25px;
     /*font-weight: bolder;*/
     font-family: Tox;
 		text-shadow: 2px 2px 2px #40484c;
@@ -441,7 +452,7 @@ select{
     text-align: left;
     color: white;
     max-width: 170px;
-		margin-left: 0 auto;
+		margin: 0 auto;
 }
 
 

@@ -185,6 +185,7 @@ function enviarInfo(){
   var direccion = document.getElementById('zona_id').value;
 
   if(motivo==0){
+    $('#motivo_id').css('border-bottom-color','red');
     navigator.notification.alert('Por favor, ingresa un motivo.', regresar(2), 'Error!', 'Continuar');
     return;
   }
@@ -194,6 +195,7 @@ function enviarInfo(){
   }
 
   if(direccion==0){
+    $('#zona_id').css('border-bottom-color','red');
     navigator.notification.alert('Por favor, ingresa una zona.', regresar(3), 'Error!', 'Continuar');
     return;
   }
