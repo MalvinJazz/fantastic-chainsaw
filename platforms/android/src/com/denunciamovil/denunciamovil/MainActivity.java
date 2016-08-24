@@ -17,7 +17,7 @@
        under the License.
  */
 
-package com.debursa.prueba;
+package com.denunciamovil.denunciamovil;
 
 import android.os.Bundle;
 import org.apache.cordova.*;

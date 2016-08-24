@@ -72,8 +72,9 @@ p{
 	width:100%;
 	/*background: #1A57A7;*/
 	/*background: #263248;*/
-	background: #294471;
-	border-bottom: 5px solid #000;
+	/*background: #294471;*/
+	background: white;
+	/*border-bottom: 5px solid #000;*/
 	padding:0;
 	color:#eee;
 	font-size:14px;
@@ -99,11 +100,12 @@ p{
 
 .btn1 span{
   position: relative;
-  top: 10%;
+  top: 15%;
   align-content: center;
 	margin: 0px auto;
   color: white;
-  font-weight: 900;
+	font-size: x-large;
+  font-weight: bolder;
 }
 
 .btn1:active {
@@ -112,12 +114,15 @@ p{
 
 #header .btn {
     position: absolute;
-    top: 5px;
+		font-family: 'Icon';
+		font-size: 95px;
+		color: #3F69AF;
+		top: 10px;
     left: 5px;
-    width:17%;
+    width:14%;
 		height: 35px;
     line-height: 36px;
-		background-color: #5c83c4;
+		/*background-color: #5c83c4;*/
 		/*background-color: #7E8AA2;*/
     /*background-color:#629bcc;*/
 	-webkit-border-radius: 3px;
@@ -127,7 +132,7 @@ p{
 }
 
 #header .btn:active {
-    background-color:#0f6f91;
+    color:#0f6f91;
 }
 
 .logo{
@@ -246,9 +251,10 @@ p{
 	background-color:#202529;
 	height:44px;
 	line-height:44px;
-	font-size:14px;
+	font-size:larger;
 	text-align:center;
 	font-family: 'Montserrat', sans-serif;
+	font-weight: bold;
 }
 
 .scroller li {
@@ -269,7 +275,8 @@ p{
   position: relative;
   top: -25px;
   left: -2%;
-  font-family: 'Martel', serif;
+  font-family: 'Josefin Sans', sans-serif;
+	font-weight: 300;
 }
 
 .li-menu-activo{
@@ -284,9 +291,10 @@ p{
 .scroller li .opcion{
 	width:100%;
 	padding-top:20px;
-	font-size:16px;
+	font-size:18px;
 	text-shadow: 0 1px #000;
 	font-family: 'Montserrat', sans-serif;
+	font-weight: bold;
 }
 
 .scroller li .descripcion{
@@ -296,7 +304,8 @@ p{
 	font-size:12px;
 	text-shadow: 0 1px #000;
 	padding-bottom: 25px;
-	font-family: 'Martel', serif;
+	font-family: 'Josefin Sans', sans-serif;
+	font-weight: 300;
 }
 /*Fin estilos de las capas internas de los iscroll, tanto cuerpo como menu*/
 
@@ -353,7 +362,8 @@ p{
 		color: white;
 		font-weight: bolder;
 		/*background-color: #4B5F6D;*/
-		background-color: #676767;
+		/*background-color: #676767;*/
+		background-color: #9a9a9a;
 		-webkit-border-radius: 15px;
 		-moz-border-radius: 15px;
 		border-radius: 15px;
@@ -375,6 +385,7 @@ p{
 	left: 0;
 	top: 35%;
 	right: 0;
+ 	font-size: 20px;
 }
 
 #content div{
@@ -396,7 +407,8 @@ p{
   height: 40px;
   margin-top: 5px;
   max-width: 300px;
-	font-family: 'Martel', serif;
+	font-family: 'Josefin Sans', sans-serif;
+	font-weight: 300;
 }
 
 select{
@@ -417,13 +429,14 @@ select{
   height: 60px;
   color: white;
   font-weight: bolder;
-	font-family: 'Montserrat', sans-serif;
-	font-size: larger;
+	font-family: 'Josefin Sans', sans-serif;
+	font-size: 23px;
 }
 
 .btn-default{
 	/*background-color: #5E7C88;*/
-	background-color: #9a9a9a;
+	/*background-color: #9a9a9a;*/
+	background-color: #BCBCBC;
 	-webkit-border-radius: 15px;
 	-moz-border-radius: 15px;
 	border-radius: 15px;
@@ -443,7 +456,7 @@ select{
 
 .title{
     font-size:25px;
-    /*font-weight: bolder;*/
+    font-weight: bolder;
     font-family: Tox;
 		text-shadow: 2px 2px 2px #40484c;
     /*margin: 0px;*/
@@ -478,25 +491,24 @@ select{
   height: 40px;
   clear: both;
   margin-bottom: 15px;
+	margin-top: 30px;
 }
 
 #pasos tr td{
-  width: 20%;
+	width: 20%;
+  text-align: center;
   height: 40px;
-	border-bottom: solid #4d4d4d;
-	background-color: #787878;
-  align-self: center;
-  color: white;
-  font-weight: bolder;
-	-webkit-border-radius: 13px;
-	-moz-border-radius: 13px;
-	border-radius: 13px;
+  border: solid #4d4d4d;
+  color: black;
+  -webkit-border-radius: 13px;
+  -moz-border-radius: 13px;
+  border-radius: 13px;
 }
 
 #pasos tr td a{
-	position: relative;
   font-size: large;
 	font-family: 'Montserrat', serif;
+	font-weight: bold;
 }
 
 #pasos tr td a .bloque{
@@ -506,8 +518,7 @@ select{
 
 #pasos tr td a .bloque span{
 	position: relative;
-	top: -20%;
-	left: 25%;
+	top: -25%;
 	font-family: Icon;
 	font-size: 58px;
 	font-weight: 100;
@@ -536,10 +547,12 @@ table{
 
 #denuncia-completa > tbody > tr > th{
 	font-family: 'Montserrat', sans-serif;
+	font-weight: bold;
 }
 
 #denuncia-completa > tbody > tr > td{
-	font-family: 'Martel', serif;
+	font-family: 'Josefin Sans', sans-serif;
+	font-weight: 300;
 }
 
 th{
@@ -616,24 +629,31 @@ color: black;
 
 #cabecera{
 	font-family: 'Montserrat', sans-serif;
-	font-size: x-large;
+	font-weight: bolder;
+	font-size: 30px;
 }
 
 #paso1 i{
-	font-family: 'Martel', serif;
+	font-family: 'Josefin Sans', sans-serif;
+	font-weight: 300;
 	font-size: smaller;
 }
 
 #paso4 strong{
 	font-family: 'Montserrat', sans-serif;
+	font-weight: bold;
 	font-size: large;
 }
 
 .paso-cabecera{
 	font-family: 'Montserrat', sans-serif;
-	font-size: large;
+	font-weight: bold;
+	font-size: x-large;
+	color: #47525e;
 }
 
+
 div>label, div>span{
-	font-family: 'Montserrat', sans-serif;
+	font-family: 'Josefin Sans', sans-serif;
+	font-weight: bold;
 }

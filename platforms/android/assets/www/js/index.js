@@ -20,7 +20,7 @@ var app = {
       estado="cuerpo";
 
       // Creamos el elemento style, lo a�adimos al html y creamos la clase cssClass para aplicarsela al contenedor wrapper
-      var heightCuerpo=window.innerHeight;
+      var heightCuerpo=window.innerHeight+200;
       var style = document.createElement('style');
       style.type = 'text/css';
       style.innerHTML = '.cssClass { position:absolute; z-index:2; left:0; top:46px; width:100%; height: '+heightCuerpo+'px; overflow:auto;}';
@@ -600,15 +600,17 @@ function menu(opcion){
 	// Si pulsamos en el bot�n de "menu" entramos en el if
 	if(opcion=="menu"){
 		if(estado=="cuerpo"){
+      document.getElementById('btn-menu').innerHTML = "(";
 			cuerpo.className = 'page transition right';
 			estado="menuprincipal";
 		}else if(estado=="menuprincipal"){
+      document.getElementById('btn-menu').innerHTML = "i";
 			cuerpo.className = 'page transition center';
 			estado="cuerpo";
 		}
 	// Si pulsamos un bot�n del menu principal entramos en el else
 	}else{
-
+    document.getElementById('btn-menu').innerHTML = "i";
 		// A�adimos la clase al li presionado
 		addClass('li-menu-activo' , document.getElementById("ulMenu").getElementsByTagName("li")[opcion]);
 
