@@ -443,7 +443,7 @@ select{
 
 .title{
     font-size:25px;
-    /*font-weight: bolder;*/
+    font-weight: bolder;
     font-family: Tox;
 		text-shadow: 2px 2px 2px #40484c;
     /*margin: 0px;*/
