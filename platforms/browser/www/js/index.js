@@ -673,6 +673,7 @@ function regresar(paso){
   document.getElementById('cabecera').innerHTML = 'PASO '+paso+': '+pasos[paso-1];
 
   var celdas = document.getElementById('pasos').rows[0].cells;
+  celdas[paso-1].className = "activo";
   for (var i = 0; i < celdas.length; i++) {
     if(i<paso)
       celdas[i].style.display = 'inline-block';
@@ -705,7 +706,10 @@ function irPorPasos(paso){
   document.getElementById('cabecera').innerHTML = 'PASO '+(paso+1)+': '+pasos[paso];
 
   var celdas = document.getElementById('pasos').rows[0].cells;
+  celdas[paso].className = "activo";
   for (var i = 0; i < celdas.length; i++) {
+    if(i!=paso)
+      celdas[i].className = "";
     if(i<=paso)
       celdas[i].style.display = 'inline-block';
     else
