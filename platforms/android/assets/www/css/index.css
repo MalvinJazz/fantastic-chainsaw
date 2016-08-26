@@ -172,7 +172,7 @@ p{
 
 /*Inicio estilos del menu principal*/
 #menuprincipal{
-	background: #cdcdcd; /*url(img/fondo.png) repeat*/
+	background: #f7f7f7; /*url(img/fondo.png) repeat*/
 	position:absolute;
 	width: 80%;
 	height: 100%;
@@ -196,7 +196,7 @@ p{
 }
 
 .borde-menu{
-	width:5px;
+	width:7px;
 	float:left;
 	left:0px;
 	height:100%;
@@ -249,11 +249,12 @@ p{
 
 .scroller li:first-child {
 	padding:0 10px;
-	border-bottom:1px solid #202328;
-	border-top:1px solid #202529;
-	background-color: #676767;
-	height:44px;
-	line-height:44px;
+	border-bottom:1px solid #294471;
+	border-top:1px solid #294471;
+	color: white;
+    background-color: #3F69AF;
+	height:55px;
+	line-height:55px;
 	font-size:larger;
 	text-align:center;
 	font-family: 'Montserrat', sans-serif;
@@ -261,11 +262,11 @@ p{
 }
 
 .scroller li {
-	border-bottom:1px solid #202328;
-	border-top:1px solid #202529;
-	background-color: #ababab;
+	border-bottom: 0.5px solid rgba(32,35,40, 0.25);
+	/*border-top: 0.5px solid rgba(32,35,40, 0.25);*/
+	background-color: white;
 	height:88px;
-	color:#fff
+	color: #47525e;
 }
 
 .scroller li img{
@@ -295,7 +296,7 @@ p{
 	width:100%;
 	padding-top:20px;
 	font-size:18px;
-	text-shadow: 0 1px #000;
+	/*text-shadow: 0 1px #000;*/
 	font-family: 'Montserrat', sans-serif;
 	font-weight: bold;
 }
@@ -305,7 +306,7 @@ p{
 	padding-top:10px;
 	color:#6e7679;
 	font-size:15px;
-	text-shadow: 0 1px #000;
+	/*text-shadow: 0 1px #000;*/
 	padding-bottom: 25px;
 	font-family: 'Roboto', sans-serif;
 	font-weight: 300;
@@ -504,9 +505,9 @@ select{
 }
 
 #pasos tr td{
-	width: 20%;
+	width: 15%;
   text-align: center;
-  height: 40px;
+  height: 30px;
   border: solid #4d4d4d;
   color: black;
   -webkit-border-radius: 13px;
@@ -532,9 +533,9 @@ select{
 
 #pasos tr td a .bloque span{
 	position: relative;
-	top: -25%;
+	top: -40%;
 	font-family: Icon;
-	font-size: 58px;
+	font-size: 50px;
 	font-weight: 100;
 }
 

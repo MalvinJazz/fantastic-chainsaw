@@ -502,7 +502,7 @@ function scrollear(element){
       // myScroll.scrollToElement(element,0);
       // myScroll.scrollTo(0, -scroll, 0, true);
       myScroll.scrollTo(0, -(element.offset().top - 100) , 300);
-    }, 300)
+    }, 400)
 
 }
 
