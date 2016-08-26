@@ -439,6 +439,7 @@ select{
   color: white;
 	font-family: 'Roboto', sans-serif;
 	font-size: 23px;
+	border: 0;
 }
 
 .btn-default{
@@ -462,6 +463,7 @@ select{
 
 #content input[type='button']:active{
   background-color: #363F45;
+	border: 0;
 }
 
 .title{
