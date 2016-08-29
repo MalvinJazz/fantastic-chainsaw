@@ -35,6 +35,10 @@
                         {
                             "xml": "<feature name=\"NetworkStatus\"><param name=\"android-package\" value=\"org.apache.cordova.networkinformation.NetworkManager\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"SplashScreen\"><param name=\"android-package\" value=\"org.apache.cordova.splashscreen.SplashScreen\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -158,6 +162,9 @@
         },
         "cordova-plugin-network-information": {
             "PACKAGE_NAME": "com.debursa.prueba"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.denunciamovil.denunciamovil"
         }
     },
     "dependent_plugins": {},
@@ -245,6 +252,13 @@
             "clobbers": [
                 "Connection"
             ]
+        },
+        {
+            "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
+            "id": "cordova-plugin-splashscreen.SplashScreen",
+            "clobbers": [
+                "navigator.splashscreen"
+            ]
         }
     ],
     "plugin_metadata": {
@@ -255,6 +269,7 @@
         "cordova-plugin-email-composer": "0.8.3",
         "cordova-plugin-dialogs": "1.2.1",
         "phonegap-plugin-push": "1.8.1",
-        "cordova-plugin-network-information": "1.2.1"
+        "cordova-plugin-network-information": "1.2.1",
+        "cordova-plugin-splashscreen": "3.2.2"
     }
 }

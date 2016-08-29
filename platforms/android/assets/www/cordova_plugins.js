@@ -83,6 +83,13 @@ module.exports = [
         "clobbers": [
             "Connection"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
+        "id": "cordova-plugin-splashscreen.SplashScreen",
+        "clobbers": [
+            "navigator.splashscreen"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -95,7 +102,8 @@ module.exports.metadata =
     "cordova-plugin-email-composer": "0.8.3",
     "cordova-plugin-dialogs": "1.2.1",
     "phonegap-plugin-push": "1.8.1",
-    "cordova-plugin-network-information": "1.2.1"
+    "cordova-plugin-network-information": "1.2.1",
+    "cordova-plugin-splashscreen": "3.2.2"
 };
 // BOTTOM OF METADATA
 });
