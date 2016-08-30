@@ -41,14 +41,6 @@ module.exports = [
         "runs": true
     },
     {
-        "file": "plugins/cordova-plugin-email-composer/www/email_composer.js",
-        "id": "cordova-plugin-email-composer.EmailComposer",
-        "clobbers": [
-            "cordova.plugins.email",
-            "plugin.email"
-        ]
-    },
-    {
         "file": "plugins/cordova-plugin-dialogs/www/notification.js",
         "id": "cordova-plugin-dialogs.notification",
         "merges": [
@@ -99,7 +91,6 @@ module.exports.metadata =
     "cordova-plugin-compat": "1.0.0",
     "cordova-plugin-camera": "2.2.0",
     "cordova-plugin-geolocation": "2.2.0",
-    "cordova-plugin-email-composer": "0.8.3",
     "cordova-plugin-dialogs": "1.2.1",
     "phonegap-plugin-push": "1.8.1",
     "cordova-plugin-network-information": "1.2.1",

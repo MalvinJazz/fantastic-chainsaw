@@ -62,13 +62,13 @@ var app = {
     onDeviceReady: function() {
     	// Ejecutamos la funci�n FastClick, que es la que nos elimina esos 300ms de espera al hacer click
       google.charts.load('visualization', '1', {'packages': ['geochart', 'corechart']});
-      // new FastClick(document.body);
-      // navigator.notification.alert(
-      //   'Tus datos e identidad permanecerán completamente anonimos, toda la información de Denuncia Móvil está cifrada.',
-      //   null,
-      //   'Denuncia Movil',
-      //   'Continuar'
-      // );
+      new FastClick(document.body);
+      navigator.notification.alert(
+        'Tus datos e identidad permanecerán completamente anonimos, toda la información de Denuncia Móvil está cifrada.',
+        null,
+        'Denuncia Movil',
+        'Continuar'
+      );
       // checkConnection();
       getDepartamentos();
     },
