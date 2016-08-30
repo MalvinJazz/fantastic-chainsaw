@@ -242,7 +242,7 @@ function enviarInfo(){
       // "http://"+direccion+"/estadisticas/api/local/departamento?limit=22"
       type: 'POST',
       contentType: 'application/json',
-      timeout: 5000,
+      timeout: 7000,
       dataType: 'json',
       statusCode: {
         201: function(){
