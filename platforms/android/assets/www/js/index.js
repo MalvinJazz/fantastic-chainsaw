@@ -332,7 +332,7 @@ function busquedaMotivo(){
     timeout: 3000,
     url: 'http://'+direccion+'/denuncias/api/d1/motivo?tipo='+id,
     success: function(data){
-
+      institucion = [];
       var motivos = document.getElementById('motivo_id');
 
       var p = document.createElement('option');
@@ -347,7 +347,11 @@ function busquedaMotivo(){
 
         nuevo.value = data.objects[i].id;
         nuevo.innerHTML = data.objects[i].motivo;
-        institucion.push(data.objects[i].instituciones);
+        var temporal = [];
+        for (var j = 0; j < data.objects[i].instituciones.length; j++) {
+          temporal.push(data.objects[i].instituciones[j].nombre);
+        }
+        institucion.push(temporal);
 
         motivos.options.add(nuevo);
 
@@ -810,11 +814,9 @@ function irPorPasos(paso){
     texto = document.createTextNode('Tu denuncia se enviará a');
     celdath.appendChild(texto);
     var aux = "";
-    if($('#motivo_id').val()!=0){
-      var index = $('#motivo_id').val();
-      for (var i = 0; i < institucion[index-1].length; i++) {
-        aux +=institucion[index-1][i].nombre + " | ";
-      }
+    if($('#motivo_id').val()!="0"){
+      var index = document.getElementById('motivo_id').selectedIndex;
+      aux = institucion[index-1].toString();
     }
     texto = document.createTextNode(aux);
     celdatd.appendChild(texto);

@@ -2,7 +2,7 @@
 var myScroll, myScrollMenu, cuerpo, menuprincipal, wrapper, estado;
 var direccion = '192.168.0.89:8000'
 var geoLconfirmada = false;
-var institucion = "";
+var institucion = [['hola', 'adios']];
 var pasos = ['Denuncia', 'Descripción', 'Localización', 'Enviar'];
 
 var denuncias = [];
@@ -242,7 +242,7 @@ function enviarInfo(){
       // "http://"+direccion+"/estadisticas/api/local/departamento?limit=22"
       type: 'POST',
       contentType: 'application/json',
-      timeout: 5000,
+      timeout: 7000,
       dataType: 'json',
       statusCode: {
         201: function(){
@@ -281,14 +281,14 @@ function enviarInfo(){
       // success: function(data){
       //   alert('Se ha enviado con exito.')
       // },
-      error: function(){
-        navigator.notification.alert(
-          'Ha ocurrido un error con el servidor, intenta de nuevo más tarde.',
-            null,
-          'Error',
-          'OK'
-        );
-      },
+      // error: function(){
+      //   navigator.notification.alert(
+      //     'Ha ocurrido un error con el servidor, intenta de nuevo más tarde.',
+      //       null,
+      //     'Error',
+      //     'OK'
+      //   );
+      // },
       processData: false
 
     });
@@ -330,7 +330,7 @@ function busquedaMotivo(){
     type: 'get',
     dataType: 'json',
     timeout: 3000,
-    url: 'http://'+direccion+'/denuncias/api/d1/motivo?institucion__tipo='+id,
+    url: 'http://'+direccion+'/denuncias/api/d1/motivo?tipo='+id,
     success: function(data){
 
       var motivos = document.getElementById('motivo_id');
@@ -347,7 +347,8 @@ function busquedaMotivo(){
 
         nuevo.value = data.objects[i].id;
         nuevo.innerHTML = data.objects[i].motivo;
-        institucion = data.objects[i].institucion.nombre;
+        institucion.push(data.objects[i].instituciones);
+        console.log(institucion);
 
         motivos.options.add(nuevo);
 
@@ -809,7 +810,14 @@ function irPorPasos(paso){
     celdatd = document.createElement('td');
     texto = document.createTextNode('Tu denuncia se enviará a');
     celdath.appendChild(texto);
-    texto = document.createTextNode(institucion);
+    var aux = "";
+    if($('#motivo_id').val()!="0"){
+      var index = parseInt($('#motivo_id').val());
+      for (var i = 0; i < institucion[index-1].length; i++) {
+        aux +=institucion[index-1][i].nombre + " | ";
+      }
+    }
+    texto = document.createTextNode(aux);
     celdatd.appendChild(texto);
     fila.appendChild(celdath);
     fila.appendChild(celdatd);
