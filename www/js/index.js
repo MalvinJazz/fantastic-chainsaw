@@ -45,7 +45,7 @@ var app = {
       myScroll = new IScroll('#wrapper', {
         scrollbars: true,
         bounce: false,
-
+        // momentum: false
       });
       myScrollMenu = new IScroll('#wrapperMenu', { hideScrollbar: true, bounce: true });
     }, 300);
@@ -859,6 +859,7 @@ function irPorPasos(paso){
 function drawGeoChart() {
 
   $('#cargando').hide();
+  $("#columnchart").hide();
 
   $(document).ajaxStart(function(){
     console.log('ajaxStart');
@@ -907,6 +908,82 @@ function drawGeoChart() {
 
       var chart = new google.visualization.GeoChart(document.getElementById('chart_div'));
       chart.draw(datos, options);
+
+      google.visualization.events.addListener(chart, 'select', function() {
+      var seleccion = chart.getSelection();
+      var code = datos.getValue(seleccion[0].row, 0);
+      var dep = datos.getValue(seleccion[0].row, 1);
+      console.log(code);
+
+
+      document.getElementById("columnchart").style.display = 'block';
+      $("#columnchart").show();
+
+      // var pos = $('#columnchart').offset();
+      // window.scrollTo(pos.left, pos.top-100);
+
+      $.ajax({
+
+        data: {'code': code},
+        url: "http://"+direccion+"/estadisticas/obtD/",
+        type: 'get',
+        success: function(data){
+
+          var lista = [[
+            'Municipio',
+            'Cantidad',
+            { role: 'annotation' }
+          ]];
+
+
+         for(var i=0; i<data.length;i++){
+           lista.push([
+             data[i].fields.nombre,
+             data[i].cant,
+             data[i].cant
+           ]);
+         }
+
+          var tabla = new google.visualization.arrayToDataTable(lista);
+
+          var options1 = {
+            title: dep,
+            legend: { position: 'none'},
+            bar: { groupWidth: '75%' },
+            // isStacked: 'percent',
+            // isStacked: true,
+            animation:{
+                duration: 1500,
+                easing: 'out',
+                startup: true,
+            },
+            colors: ['#4370bb'],
+            vAxis:{
+              format: 'decimal',
+              minValue: 0,
+              // ticks: [0, .3, .6, .9, 1]
+            },
+          };
+
+          var chart1 = new google.visualization.ColumnChart(document.getElementById('columnchart'));
+          chart1.draw(tabla, options1);
+          myScroll.refresh();
+          myScroll.scrollToElement('#columnchart', 800, true, true);
+        },
+        error: function(){
+          navigator.notification.alert(
+            'Ha ocurrido un error con el servidor, intenta de nuevo más tarde.',
+              null,
+            'Error',
+            'OK'
+          );
+        }
+
+      })
+
+
+    });
+
     },
     error: function(){
       navigator.notification.alert(
@@ -928,12 +1005,12 @@ function initMap(){
   $(document).ajaxStart(function(){
     console.log('ajaxStart');
     $('#cargando').show();
-  })
+  });
 
   $(document).ajaxStop(function(){
     console.log('ajaxStop');
     $('#cargando').hide();
-  })
+  });
 
   if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function(position){
@@ -963,6 +1040,9 @@ function initMap(){
             content: '<h1>Mi posición</h1>'
           }
         });
+
+        myScroll.refresh();
+        myScroll.scrollTo(0,0);
 
         $.ajax({
 
