@@ -1130,3 +1130,6 @@ function checkConnection() {
 
     // alert('Connection type: ' + states[networkState]);
 }
+
+
+//Corregir clicks, hacer menos peticiones, mejorar titulos.
