@@ -16,11 +16,12 @@
     <div id="paso1">
       <h1 class="paso-cabecera">Subir archivo</h1></br>
       <div id="photo">
+        <!--Al tomar foto, cambiar de paso -->
       </div>
       <input type="button" class="btn-default" id="camara" name="camara" value="Tomar Foto">
       <div class="falso-boton">
-        <input type="file" id="file" name="file" accept="image/*, video/*">
         <label>Subir archivo</label>
+        <input type="file" id="file" name="file" accept="image/*, video/*">
       </div></br>
       <i>(Todos los campos marcados con '<span style="color: red;">*</span>' son obligatorios)</i>
     </div>
@@ -51,6 +52,7 @@
         <h1 class="paso-cabecera">¿Donde ocurrió?</h1>
         <div>
           <label class="importante">Departamento</label></br>
+          <!-- cargar departamentos desde -->
           <select id="dep" name="dep">
             <option value="0" selected>------</option>
           </select>
@@ -68,6 +70,7 @@
         </select> </br>
         </div>
         <div>
+          <!-- fallo en textbox -->
           <label>Referencia a la dirección</label></br>
             <input id="referencia" type="text" name="referencia" value="" placeholder="Punto de referencia."></br>
         </div>

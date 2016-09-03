@@ -45,6 +45,9 @@ var app = {
       myScroll = new IScroll('#wrapper', {
         scrollbars: true,
         bounce: false,
+        // preventDefault: true,
+        click: false
+        // preventDefaultException: { tagName:/^(INPUT|TEXTAREA|BUTTON|SELECT)$/}
         // momentum: false
       });
       myScrollMenu = new IScroll('#wrapperMenu', { hideScrollbar: true, bounce: true });

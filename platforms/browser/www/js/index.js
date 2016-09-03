@@ -45,6 +45,8 @@ var app = {
       myScroll = new IScroll('#wrapper', {
         scrollbars: true,
         bounce: false,
+        preventDefault: true,
+        click: false
         // momentum: false
       });
       myScrollMenu = new IScroll('#wrapperMenu', { hideScrollbar: true, bounce: true });
@@ -859,7 +861,6 @@ function irPorPasos(paso){
 function drawGeoChart() {
 
   $('#cargando').hide();
-  document.getElementById("columnchart").style.display = 'none';
   $("#columnchart").hide();
 
   $(document).ajaxStart(function(){
