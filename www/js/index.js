@@ -524,8 +524,8 @@ function scrollear(element){
       // var scroll = (window.innerHeight/2) - element.top;
       // myScroll.scrollToElement(element,0);
       // myScroll.scrollTo(0, -scroll, 0, true);
-      myScroll.scrollTo(0, -(element.offset().top - 100) , 300);
-    }, 400)
+      myScroll.scrollTo(0, -(element.offset().top - 100) , 100);
+    }, 300)
 
 }
 
@@ -535,6 +535,14 @@ function getDepartamentos(){
     // scrollear($(this).offset());
     scrollear($(this));
   });
+
+  // $('select').on('touchstart',function(){
+  //   $(this).slideUp();
+  // });
+
+  // $('select').on('touchstart' /*'mousedown'*/, function(e) {
+  //   e.stopPropagation();
+  // }, false);
 
   $('#cargando').hide();
 

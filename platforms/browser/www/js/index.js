@@ -172,14 +172,14 @@ function mostrarDoc(evt) {
 function onConfirm(buttonIndex){
   if(buttonIndex==1){
     getGeolocation();
-    navigator.notification.alert('¡Gracias!', null, 'Localización procesada', 'Continuar');
+    // navigator.notification.alert('¡Gracias!', null, 'Localización procesada', 'Continuar');
   }else if (buttonIndex == 2) {
-    navigator.notification.alert(
-      'Tu denuncia se procesará.',
-        null,
-      'Denuncia Movil',
-      'Continuar'
-    );
+    // navigator.notification.alert(
+    //   'Tu denuncia se procesará.',
+    //     null,
+    //   'Denuncia Movil',
+    //   'Continuar'
+    // );
   }
   geoLconfirmada = true;
 
@@ -482,10 +482,11 @@ function onSuccess(imageData){
   img.style.width = '200px';
   img.src = "data:image/jpeg;base64," + imageData;
   divPhoto.appendChild(img);
-  $('#file').hide();
-  $('#photo').show();
+  // $('#file').hide();
+  // $('#photo').show();
   document.getElementById('archivo').value = img.src;
-  myScroll.refresh();
+  // myScroll.refresh();
+  irPorPasos(1);
   // document.getElementById('text').innerHTML = imageData;
 }
 
@@ -523,8 +524,8 @@ function scrollear(element){
       // var scroll = (window.innerHeight/2) - element.top;
       // myScroll.scrollToElement(element,0);
       // myScroll.scrollTo(0, -scroll, 0, true);
-      myScroll.scrollTo(0, -(element.offset().top - 100) , 300);
-    }, 400)
+      myScroll.scrollTo(0, -(element.offset().top - 100) , 100);
+    }, 300)
 
 }
 
@@ -534,6 +535,14 @@ function getDepartamentos(){
     // scrollear($(this).offset());
     scrollear($(this));
   });
+
+  $('select').on('focus',function(){
+    $(this).click();
+  });
+
+  // $('select').on('touchstart' /*'mousedown'*/, function(e) {
+  //   e.stopPropagation();
+  // }, false);
 
   $('#cargando').hide();
 
