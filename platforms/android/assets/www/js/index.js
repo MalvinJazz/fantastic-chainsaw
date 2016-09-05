@@ -46,8 +46,11 @@ var app = {
         scrollbars: true,
         bounce: false,
         // preventDefault: true,
-        click: false
-        // preventDefaultException: { tagName:/^(INPUT|TEXTAREA|BUTTON|SELECT)$/}
+        click: false,
+        // preventDefaultException: {
+        //               tagName:/^(INPUT|TEXTAREA|BUTTON|SELECT)$/,
+        //               className: /^(onoffswitch)$/
+        //               }
         // momentum: false
       });
       myScrollMenu = new IScroll('#wrapperMenu', { hideScrollbar: true, bounce: true });
@@ -149,8 +152,9 @@ function mostrarDoc(evt) {
         }
         document.getElementById('archivo').value = fr.result;
 
-        $('#photo').show();
-        myScroll.refresh();
+        irPorPasos(1);
+        // $('#photo').show();
+        // myScroll.refresh();
       }
       fr.readAsDataURL(files[0]);
     }
@@ -168,14 +172,14 @@ function mostrarDoc(evt) {
 function onConfirm(buttonIndex){
   if(buttonIndex==1){
     getGeolocation();
-    navigator.notification.alert('¡Gracias!', null, 'Localización procesada', 'Continuar');
+    // navigator.notification.alert('¡Gracias!', null, 'Localización procesada', 'Continuar');
   }else if (buttonIndex == 2) {
-    navigator.notification.alert(
-      'Tu denuncia se procesará.',
-        null,
-      'Denuncia Movil',
-      'Continuar'
-    );
+    // navigator.notification.alert(
+    //   'Tu denuncia se procesará.',
+    //     null,
+    //   'Denuncia Movil',
+    //   'Continuar'
+    // );
   }
   geoLconfirmada = true;
 
@@ -478,10 +482,11 @@ function onSuccess(imageData){
   img.style.width = '200px';
   img.src = "data:image/jpeg;base64," + imageData;
   divPhoto.appendChild(img);
-  $('#file').hide();
-  $('#photo').show();
+  // $('#file').hide();
+  // $('#photo').show();
   document.getElementById('archivo').value = img.src;
-  myScroll.refresh();
+  // myScroll.refresh();
+  irPorPasos(1);
   // document.getElementById('text').innerHTML = imageData;
 }
 
@@ -1130,3 +1135,6 @@ function checkConnection() {
 
     // alert('Connection type: ' + states[networkState]);
 }
+
+
+//Corregir clicks, hacer menos peticiones, mejorar titulos.

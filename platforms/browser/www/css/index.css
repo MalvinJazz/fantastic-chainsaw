@@ -50,6 +50,103 @@ p{
 	line-height: 180%;
 }
 
+/*Switch*/
+.switch {
+	display: block;
+	padding: 0 10px 20px 0;
+}
+.switch h3 {
+	font-weight: normal;
+}
+.toggle {
+	position: absolute;
+	margin-left: -9999px;
+	visibility: hidden;
+}
+
+.toggle + label {
+	display: block;
+	position: relative;
+	cursor: pointer;
+	border-radius: 60px;
+	padding: 2px;
+	width: 150px;
+	height: 50px;
+	overflow: hidden;
+}
+
+.toggle + label:before, .toggle + label:after {
+	display: block;
+	border-radius: 60px;
+	position: absolute;
+	top: 1px;
+	left: 1px;
+	bottom: 1px;
+	padding: 15px;
+	color: #FFF;
+}
+.toggle + label:before {
+	content: "On";
+	right: 1px;
+	background-color: #bfbfbf;
+	text-indent: -90px;
+}
+.toggle + label:after {
+	content: "Off";
+	text-indent: 90px;
+	width: 20px;
+	background-color: #fff;
+	margin: 1px;
+	box-shadow: 0 2px 5px rgba(000,000,000,0.2)
+}
+.toggle:checked + label:before {
+	background-color: #0088cc;
+	text-indent: 0;
+}
+.toggle:checked + label:after {
+	margin-left: 101px;
+	box-shadow: none;
+}
+
+input.toggle-round-right-left + label {
+	text-align: center;
+	overflow: hidden;
+	height: 55px;
+	border-radius: 0;
+}
+input.toggle-round-right-left + label:before, input.toggle-round-right-left + label:after {
+	width: 100%;
+	height: 58%;
+	padding-top: 12%;
+	color: #FFF;
+	border-radius: 0;
+	padding-left: 0;
+	padding-right: 0;
+	padding-bottom: 5px;
+}
+input.toggle-round-right-left + label:before {
+	content: "Um..";
+	background-color: #bfbfbf;
+	text-indent: inherit;
+}
+input.toggle-round-right-left + label:after {
+	content: "Yup!";
+	background-color: #0088cc;
+	top: 0;
+	left: -101%;
+	box-shadow: none;
+	text-indent: inherit;
+}
+input.toggle-round-right-left:checked + label:before {
+	left: 83%;
+	background-color: #e7e7e7;
+}
+input.toggle-round-right-left:checked + label:after {
+	margin-left: 0;
+	left: 0;
+}
+/*------------------------------------------------*/
+
 #pantalla-inicio{
   width: 100%;
   height: 100%;

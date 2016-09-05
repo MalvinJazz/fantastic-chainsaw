@@ -45,8 +45,12 @@ var app = {
       myScroll = new IScroll('#wrapper', {
         scrollbars: true,
         bounce: false,
-        preventDefault: true,
-        click: false
+        // preventDefault: true,
+        click: false,
+        // preventDefaultException: {
+        //               tagName:/^(INPUT|TEXTAREA|BUTTON|SELECT)$/,
+        //               className: /^(onoffswitch)$/
+        //               }
         // momentum: false
       });
       myScrollMenu = new IScroll('#wrapperMenu', { hideScrollbar: true, bounce: true });
@@ -148,8 +152,9 @@ function mostrarDoc(evt) {
         }
         document.getElementById('archivo').value = fr.result;
 
-        $('#photo').show();
-        myScroll.refresh();
+        irPorPasos(1);
+        // $('#photo').show();
+        // myScroll.refresh();
       }
       fr.readAsDataURL(files[0]);
     }
@@ -1129,3 +1134,6 @@ function checkConnection() {
 
     // alert('Connection type: ' + states[networkState]);
 }
+
+
+//Corregir clicks, hacer menos peticiones, mejorar titulos.
