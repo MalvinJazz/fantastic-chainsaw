@@ -50,6 +50,84 @@ p{
 	line-height: 180%;
 }
 
+/*Select modificado*/
+
+nav > #id_tipo{
+	margin: 0% auto;
+	position: relative;
+	height: 10%;
+}
+
+nav > #id_tipo > li{
+	display: none;
+	list-style: none;
+  border: 1px solid #DDDDDD;
+  border-top: 0px;
+  margin: 0px 0px 0px -40px;
+  height: 35px;
+}
+nav > #id_tipo > li > a:hover{
+	background: rgba(255,255,255, .2);
+}
+
+nav > #id_tipo > li:last-child{
+	border-radius: 0px 0px 4px 4px;
+}
+
+nav > #id_tipo > li.mn:active{
+	background-color: #ababab;
+}
+
+nav > #id_tipo > li.hm {
+	display: block !important;
+	border: 1px solid #DDDDDD;
+	border-radius: 4px 4px 0px 0px;
+	margin: -10px 0px 0px -40px;
+	position: relative;
+	display: block !important;
+	border: 1px solid #DDDDDD;
+	border-radius: 4px 4px 0px 0px;
+	margin: -10px 0px 0px -40px;
+	position: relative;
+	height: 10%;
+}
+nav > #id_tipo > li.hm::after {
+	border-width: 0px 0px 0px 1px;
+	border-style: solid;
+	border-color: #DDDDDD;
+		content: "\022c1";
+		color: #fff;
+		text-align: center;
+		width: 40px;
+		height: 40px;
+		background-color: transparent;
+		position: absolute;
+		right: 0;
+		top: 0;
+		padding-top: 8px;
+		cursor: pointer;
+
+}
+nav {
+	width: 80%;
+	position: relative;
+	margin: 20px auto;
+	/* left: 2%; */
+	/* top: 100%; */
+	height: 10%;
+	max-width: 265px;
+	text-align: center;
+}
+nav > #id_tipo > li > a {
+	text-decoration: none;
+	color: #fff;
+	padding: 15px;
+	display: block;
+	transition: all .8s ease;
+}
+
+/*.............................................*/
+
 /*Switch*/
 
 /*------------------------------------------------*/

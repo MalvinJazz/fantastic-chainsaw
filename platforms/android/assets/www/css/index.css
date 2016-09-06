@@ -50,6 +50,64 @@ p{
 	line-height: 180%;
 }
 
+/*Select modificado*/
+
+nav ul li{
+	display: none;
+	list-style: none;
+	border: 1px solid #DDDDDD;
+	border-top: 0px;
+	margin: 0px 0px 0px -40px;
+}
+nav ul li a:hover{
+	background: rgba(255,255,255, .2);
+}
+nav ul li.mn a:hover:before{
+	content: "\00bb";
+	top: -2px;
+	left: 0;
+	position: relative;
+	padding-right: 5px;
+}
+nav ul li:last-child{
+	border-radius: 0px 0px 4px 4px;
+}
+nav ul li.hm {
+	display: block !important;
+	border: 1px solid #DDDDDD;
+	border-radius: 4px 4px 0px 0px;
+	margin: -10px 0px 0px -40px;
+	position: relative;
+}
+nav ul li.hm::after {
+	border-width: 0px 0px 0px 1px;
+	border-style: solid;
+	border-color: #DDDDDD;
+		content: "\022c1";
+		color: #fff;
+		text-align: center;
+		width: 40px;
+		height: 40px;
+		background-color: transparent;
+		position: absolute;
+		right: 0;
+		top: 0;
+		padding-top: 8px;
+		cursor: pointer;
+}
+nav {
+	width: 40%;
+}
+nav ul li a {
+	text-decoration: none;
+	color: #fff;
+	padding: 15px;
+	display: block;
+	transition: all .8s ease;
+}
+
+/*.............................................*/
+
 /*Switch*/
 
 /*------------------------------------------------*/

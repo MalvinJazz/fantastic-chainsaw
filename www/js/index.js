@@ -536,6 +536,14 @@ function getDepartamentos(){
     scrollear($(this));
   });
 
+  $(".hm").after().click(function(){
+    $(".mn").slideToggle();
+    myScroll.refresh();
+  });
+  $(".mn").after().click(function(){
+    $(".mn").slideToggle();
+    myScroll.refresh();
+  });
   // $('select').on('touchstart',function(){
   //   $(this).slideUp();
   // });
