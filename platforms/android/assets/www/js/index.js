@@ -536,9 +536,16 @@ function getDepartamentos(){
     scrollear($(this));
   });
 
-  $(".hm").after().click(function(){
-    $(".mn").slideToggle();
-  });
+
+
+  // $(".hm").after().click(function(){
+  //   $(".mn").slideToggle();
+  //   setTimeout(function(){myScroll.refresh()}, 300);
+  // });
+  // $(".mn").after().click(function(){
+  //   $(".mn").slideToggle();
+  //   setTimeout(function(){myScroll.refresh()}, 300);
+  // });
   // $('select').on('touchstart',function(){
   //   $(this).slideUp();
   // });
@@ -571,6 +578,9 @@ function getDepartamentos(){
   tipo.addEventListener('change', busquedaMotivo);
   muni.addEventListener('change', busquedaZona);
   deps.addEventListener('change', busquedaMunicipio);
+
+  deps.size = deps.options.length;
+  tipo.size = tipo.options.length;
 
   // var departamentos = document.getElementById('dep');
 

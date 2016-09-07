@@ -536,14 +536,16 @@ function getDepartamentos(){
     scrollear($(this));
   });
 
-  $(".hm").after().click(function(){
-    $(".mn").slideToggle();
-    myScroll.refresh();
-  });
-  $(".mn").after().click(function(){
-    $(".mn").slideToggle();
-    myScroll.refresh();
-  });
+
+
+  // $(".hm").after().click(function(){
+  //   $(".mn").slideToggle();
+  //   setTimeout(function(){myScroll.refresh()}, 300);
+  // });
+  // $(".mn").after().click(function(){
+  //   $(".mn").slideToggle();
+  //   setTimeout(function(){myScroll.refresh()}, 300);
+  // });
   // $('select').on('touchstart',function(){
   //   $(this).slideUp();
   // });
@@ -576,7 +578,7 @@ function getDepartamentos(){
   tipo.addEventListener('change', busquedaMotivo);
   muni.addEventListener('change', busquedaZona);
   deps.addEventListener('change', busquedaMunicipio);
-
+  
   // var departamentos = document.getElementById('dep');
 
   // location.href = 'file:///android_asset/www/prueba.html';
