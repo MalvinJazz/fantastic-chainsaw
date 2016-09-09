@@ -327,10 +327,10 @@ function getGeolocation(){
 
 }
 
-function busquedaMotivo(){
+function busquedaMotivo(id){
 
-  var id = $(this).val();
-  document.getElementById('motivo_id').length = 0;
+  // var id = $(this).val();
+  // document.getElementById('motivo_id').length = 0;
 
   $.ajax({
 
@@ -342,27 +342,47 @@ function busquedaMotivo(){
       institucion = [];
       var motivos = document.getElementById('motivo_id');
 
-      var p = document.createElement('option');
-      p.value = "0";
-      p.innerHTML = "------";
+      $('#motivo_id .hm').text('Seleccionar motivo');
+      $('#motivo_id .hm')[0].dataset.code = '0';
 
-      motivos.options.add(p);
+      if($("#motivo_id .hm")[0].className.includes('arriba'))
+        $("#motivo_id .hm").removeClass('arriba').addClass('abajo');
+
+      var viejos = $('#motivo_id .mn');
+
+      for (var i = 0; i < viejos.length; i++) {
+        motivos.removeChild(viejos[i]);
+        setTimeout(function(){myScroll.refresh()}, 300);
+      }
 
       for(var i=0; i<data.objects.length;i++){
 
-        var nuevo = document.createElement('option');
+        var nuevo = document.createElement('li');
 
-        nuevo.value = data.objects[i].id;
+        nuevo.dataset.code = data.objects[i].id;
+        nuevo.dataset.index = i;
         nuevo.innerHTML = data.objects[i].motivo;
+        nuevo.className = "mn";
         var temporal = [];
         for (var j = 0; j < data.objects[i].instituciones.length; j++) {
           temporal.push(data.objects[i].instituciones[j].nombre);
         }
         institucion.push(temporal);
 
-        motivos.options.add(nuevo);
+        motivos.appendChild(nuevo);
 
       }
+      $("#motivo_id .mn").after().click(function(){
+        $('#motivo_id .hm').text($(this).text());
+        $('#motivo_id .hm')[0].dataset.code = $(this)[0].dataset.code;
+        $('#motivo_id .hm')[0].dataset.index = $(this)[0].dataset.index;
+        $("#motivo_id .mn").slideToggle();
+        if($("#motivo_id .hm")[0].className.includes('abajo'))
+          $("#motivo_id .hm").removeClass('abajo').addClass('arriba');
+        else if($("#motivo_id .hm")[0].className.includes('arriba'))
+          $("#motivo_id .hm").removeClass('arriba').addClass('abajo');
+        setTimeout(function(){myScroll.refresh()}, 300);
+      });
 
     },
     error: function(){
@@ -378,10 +398,10 @@ function busquedaMotivo(){
 
 }
 
-function busquedaZona(){
+function busquedaZona(id){
 
-  var id = $(this).val();
-  document.getElementById('zona_id').length = 0;
+  // var id = $(this).val();
+  // document.getElementById('zona_id').length = 0;
 
   $.ajax({
 
@@ -393,22 +413,40 @@ function busquedaZona(){
 
       var zonas = document.getElementById("zona_id");
 
-      var p = document.createElement("option");
-      p.value = "0";
-      p.innerHTML = "------";
+      $('#zona_id .hm').text('Seleccionar zona');
+      $('#zona_id .hm')[0].dataset.code = '0';
 
-      zonas.options.add(p);
+      if($("#zona_id .hm")[0].className.includes('arriba'))
+        $("#zona_id .hm").removeClass('arriba').addClass('abajo');
+
+      var viejos = $('#zona_id .mn');
+
+      for (var i = 0; i < viejos.length; i++) {
+        zonas.removeChild(viejos[i]);
+        setTimeout(function(){myScroll.refresh()}, 300);
+      }
 
       for(var i=0; i<data.objects.length;i++){
 
-        var nuevo = document.createElement("option");
+        var nuevo = document.createElement("li");
 
-        nuevo.value = data.objects[i].id;
+        nuevo.dataset.code = data.objects[i].id;
         nuevo.innerHTML = data.objects[i].direccion;
 
-        zonas.options.add(nuevo);
+        zonas.appendChild(nuevo);
 
       }
+
+      $("#zona_id .mn").after().click(function(){
+        $('#zona_id .hm').text($(this).text());
+        $('#zona_id .hm')[0].dataset.code = $(this)[0].dataset.code;
+        $("#zona_id .mn").slideToggle();
+        if($("#zona_id .hm")[0].className.includes('abajo'))
+          $("#zona_id .hm").removeClass('abajo').addClass('arriba');
+        else if($("#zona_id .hm")[0].className.includes('arriba'))
+          $("#zona_id .hm").removeClass('arriba').addClass('abajo');
+        setTimeout(function(){myScroll.refresh()}, 300);
+      });
 
     },
     error: function(){
@@ -424,11 +462,10 @@ function busquedaZona(){
 
 }
 
-function busquedaMunicipio(){
+function busquedaMunicipio(id){
 
 
-  var id = $(this).val();
-  document.getElementById('muni_id').length = 0;
+  // var id = $(this).val();
 
   $.ajax({
 
@@ -440,22 +477,42 @@ function busquedaMunicipio(){
 
       var municipios = document.getElementById("muni_id");
 
-      var p = document.createElement("option");
-      p.value = "0";
-      p.innerHTML = "------"
+      $('#muni_id .hm').text('Seleccionar municipio');
+      $('#muni_id .hm')[0].dataset.code = '0';
 
-      municipios.options.add(p);
+      if($("#muni_id .hm")[0].className.includes('arriba'))
+        $("#muni_id .hm").removeClass('arriba').addClass('abajo');
+
+      var viejos = $('#muni_id .mn');
+
+      for (var i = 0; i < viejos.length; i++) {
+        municipios.removeChild(viejos[i]);
+        setTimeout(function(){myScroll.refresh()}, 300);
+      }
 
       for(var i=0;i<data.objects.length;i++){
 
-        var nuevo = document.createElement("option");
+        var nuevo = document.createElement("li");
 
-        nuevo.value = data.objects[i].id;
+        nuevo.dataset.code = data.objects[i].id;
         nuevo.innerHTML = data.objects[i].nombre;
+        nuevo.className = "mn";
 
-        municipios.options.add(nuevo);
+        municipios.appendChild(nuevo);
 
       }
+
+      $("#muni_id .mn").after().click(function(){
+        $('#muni_id .hm').text($(this).text());
+        $('#muni_id .hm')[0].dataset.code = $(this)[0].dataset.code;
+        $("#muni_id .mn").slideToggle();
+        busquedaZona($(this)[0].dataset.code);
+        if($("#muni_id .hm")[0].className.includes('abajo'))
+          $("#muni_id .hm").removeClass('abajo').addClass('arriba');
+        else if($("#muni_id .hm")[0].className.includes('arriba'))
+          $("#muni_id .hm").removeClass('arriba').addClass('abajo');
+        setTimeout(function(){myScroll.refresh()}, 300);
+      });
 
     },
     error: function(){
@@ -536,9 +593,70 @@ function getDepartamentos(){
     scrollear($(this));
   });
 
-  $('select').on('focus',function(){
-    $(this).click();
+  $("#dep .hm").after().click(function(){
+    $("#dep .mn").slideToggle();
+    if($("#dep .hm")[0].className.includes('abajo'))
+      $("#dep .hm").removeClass('abajo').addClass('arriba');
+    else if($("#dep .hm")[0].className.includes('arriba'))
+      $("#dep .hm").removeClass('arriba').addClass('abajo');
+    setTimeout(function(){myScroll.refresh()}, 300);
   });
+
+  $("#muni_id .hm").after().click(function(){;
+    $("#muni_id .mn").slideToggle();
+    if($("#muni_id .hm")[0].className.includes('abajo'))
+      $("#muni_id .hm").removeClass('abajo').addClass('arriba');
+    else if($("#muni_id .hm")[0].className.includes('arriba'))
+      $("#muni_id .hm").removeClass('arriba').addClass('abajo');
+    setTimeout(function(){myScroll.refresh()}, 300);
+  });
+
+  $("#zona_id .hm").after().click(function(){
+    $("#zona_id .mn").slideToggle();
+    if($("#zona_id .hm")[0].className.includes('abajo'))
+      $("#zona_id .hm").removeClass('abajo').addClass('arriba');
+    else if($("#zona_id .hm")[0].className.includes('arriba'))
+      $("#zona_id .hm").removeClass('arriba').addClass('abajo');
+    setTimeout(function(){myScroll.refresh()}, 300);
+  });
+
+  $("#id_tipo .hm").after().click(function(){
+    $("#id_tipo .mn").slideToggle();
+    if($("#id_tipo .hm")[0].className.includes('abajo'))
+      $("#id_tipo .hm").removeClass('abajo').addClass('arriba');
+    else if($("#id_tipo .hm")[0].className.includes('arriba'))
+      $("#id_tipo .hm").removeClass('arriba').addClass('abajo');
+    setTimeout(function(){myScroll.refresh()}, 300);
+  });
+  $("#id_tipo .mn").after().click(function(){
+    $('#id_tipo .hm').text($(this).text());
+    $('#id_tipo .hm')[0].dataset.code = $(this)[0].dataset.code;
+    $("#id_tipo .mn").slideToggle();
+    busquedaMotivo($(this)[0].dataset.code);
+    if($("#id_tipo .hm")[0].className.includes('abajo'))
+      $("#id_tipo .hm").removeClass('abajo').addClass('arriba');
+    else if($("#id_tipo .hm")[0].className.includes('arriba'))
+      $("#id_tipo .hm").removeClass('arriba').addClass('abajo');
+    setTimeout(function(){myScroll.refresh()}, 300);
+  });
+
+  $("#motivo_id .hm").after().click(function(){
+    $("#motivo_id .mn").slideToggle();
+    if($("#motivo_id .hm")[0].className.includes('abajo'))
+      $("#motivo_id .hm").removeClass('abajo').addClass('arriba');
+    else if($("#motivo_id .hm")[0].className.includes('arriba'))
+      $("#motivo_id .hm").removeClass('arriba').addClass('abajo');
+    setTimeout(function(){myScroll.refresh()}, 300);
+  });
+  // $("#motivo_id .mn").after().click(function(){
+  //   // $('#motivo_id .hm').text($(this).text());
+  //   // $('#motivo_id .hm')[0].dataset.code = $(this)[0].dataset.code;
+  //   $("#motivo_id .mn").slideToggle();
+  //   setTimeout(function(){myScroll.refresh()}, 300);
+  // });
+  // $('select').on('touchstart',function(){
+  //   $(this).slideUp();
+  // });
 
   // $('select').on('touchstart' /*'mousedown'*/, function(e) {
   //   e.stopPropagation();
@@ -556,7 +674,7 @@ function getDepartamentos(){
 
   var deps = document.getElementById('dep');
   var muni = document.getElementById('muni_id');
-  var tipo = document.getElementById('id_tipo');
+  // var tipo = document.getElementById('id_tipo');
   var enviar = document.getElementById('enviar');
   var doc = document.getElementById('file');
   var camara = document.getElementById('camara');
@@ -565,7 +683,7 @@ function getDepartamentos(){
   camara.addEventListener('click', receivedEvent);
   doc.addEventListener('change', mostrarDoc);
   enviar.addEventListener('click', enviarInfo);
-  tipo.addEventListener('change', busquedaMotivo);
+  // tipo.addEventListener('change', busquedaMotivo);
   muni.addEventListener('change', busquedaZona);
   deps.addEventListener('change', busquedaMunicipio);
 
@@ -584,14 +702,26 @@ function getDepartamentos(){
     success: function(data){
       for(var i=0; i<data.objects.length; i++){
 
-        var nuevo = document.createElement("option");
+        var nuevo = document.createElement("li");
 
-        nuevo.value = data.objects[i].id;
+        nuevo.dataset.code = data.objects[i].id;
         nuevo.innerHTML = data.objects[i].nombre;
+        nuevo.className = "mn";
 
-        deps.options.add(nuevo);
+        deps.appendChild(nuevo);
 
       }
+      $("#dep .mn").after().click(function(){
+        $('#dep .hm').text($(this).text());
+        $('#dep .hm')[0].dataset.code = $(this)[0].dataset.code;
+        $("#dep .mn").slideToggle();
+        busquedaMunicipio($(this)[0].dataset.code);
+        if($("#dep .hm")[0].className.includes('abajo'))
+          $("#dep .hm").removeClass('abajo').addClass('arriba');
+        else if($("#dep .hm")[0].className.includes('arriba'))
+          $("#dep .hm").removeClass('arriba').addClass('abajo');
+        setTimeout(function(){myScroll.refresh()}, 300);
+      });
     },
     error: function(){
       navigator.notification.alert(
@@ -830,9 +960,9 @@ function irPorPasos(paso){
     texto = document.createTextNode('Tu denuncia se enviará a');
     celdath.appendChild(texto);
     var aux = "";
-    if($('#motivo_id').val()!="0"){
-      var index = document.getElementById('motivo_id').selectedIndex;
-      aux = institucion[index-1].toString();
+    if($('#motivo_id .hm')[0].dataset.code!="0"){
+      var index = $('#motivo_id .hm')[0].dataset.index;
+      aux = institucion[index];
     }
     texto = document.createTextNode(aux);
     celdatd.appendChild(texto);
