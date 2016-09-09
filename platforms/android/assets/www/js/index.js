@@ -199,8 +199,8 @@ function enviarInfo(){
     $('#cargando').hide();
   })
 
-  var motivo = document.getElementById('motivo_id').value;
-  var direccion = document.getElementById('zona_id').value;
+  var motivo = $('#motivo_id .hm')[0].dataset.code;
+  var direccion = $('#zona_id .hm')[0].dataset.code;
 
   if(motivo==0){
     $('#motivo_id').css('border-bottom-color','red');
@@ -209,7 +209,7 @@ function enviarInfo(){
   }
 
   if(document.getElementById('denuncia').value==""){
-    document.getElementById('denuncia').value = $("#motivo_id option:selected").text();
+    document.getElementById('denuncia').value = $("#motivo_id .hm").text();
   }
 
   if(direccion==0){
@@ -225,7 +225,7 @@ function enviarInfo(){
      'denuncia': document.getElementById('denuncia').value,
      'referencia': document.getElementById('referencia').value,
     //  'archivo': document.getElementById('file')
-     'tipo': document.getElementById('id_tipo').value,
+     'tipo': $('#id_tipo .hm')[0].dataset.code,
      'motivo': "denuncias/api/d1/motivo/" + motivo + '/',
      'direccion': "estadisticas/api/local/direccion/" + direccion + '/',
      'file': document.getElementById('archivo').value,
@@ -432,6 +432,7 @@ function busquedaZona(id){
 
         nuevo.dataset.code = data.objects[i].id;
         nuevo.innerHTML = data.objects[i].direccion;
+        nuevo.className = "mn";
 
         zonas.appendChild(nuevo);
 
@@ -476,6 +477,7 @@ function busquedaMunicipio(id){
     success: function(data){
 
       var municipios = document.getElementById("muni_id");
+      var zonas = document.getElementById("zona_id");
 
       $('#muni_id .hm').text('Seleccionar municipio');
       $('#muni_id .hm')[0].dataset.code = '0';
@@ -483,10 +485,23 @@ function busquedaMunicipio(id){
       if($("#muni_id .hm")[0].className.includes('arriba'))
         $("#muni_id .hm").removeClass('arriba').addClass('abajo');
 
+      $('#zona_id .hm').text('Seleccionar zona');
+      $('#zona_id .hm')[0].dataset.code = '0';
+
+      if($("#zona_id .hm")[0].className.includes('arriba'))
+        $("#zona_id .hm").removeClass('arriba').addClass('abajo');
+
       var viejos = $('#muni_id .mn');
 
       for (var i = 0; i < viejos.length; i++) {
         municipios.removeChild(viejos[i]);
+        setTimeout(function(){myScroll.refresh()}, 300);
+      }
+
+      viejos = $('#zona_id .mn');
+
+      for (var i = 0; i < viejos.length; i++) {
+        zonas.removeChild(viejos[i]);
         setTimeout(function(){myScroll.refresh()}, 300);
       }
 
@@ -909,7 +924,7 @@ function irPorPasos(paso){
     celdatd = document.createElement('td');
     texto = document.createTextNode('Tipo');
     celdath.appendChild(texto);
-    texto = document.createTextNode($('#id_tipo option:selected').text());
+    texto = document.createTextNode($('#id_tipo .hm').text());
     celdatd.appendChild(texto);
     fila.appendChild(celdath);
     fila.appendChild(celdatd);
@@ -920,7 +935,7 @@ function irPorPasos(paso){
     celdatd = document.createElement('td');
     texto = document.createTextNode('Motivo');
     celdath.appendChild(texto);
-    texto = document.createTextNode($('#motivo_id option:selected').text());
+    texto = document.createTextNode($('#motivo_id .hm').text());
     celdatd.appendChild(texto);
     fila.appendChild(celdath);
     fila.appendChild(celdatd);
@@ -931,9 +946,9 @@ function irPorPasos(paso){
     celdatd = document.createElement('td');
     texto = document.createTextNode('Direccion');
     celdath.appendChild(texto);
-    var direccion = $('#zona_id option:selected').text();
-    direccion += ', '+$('#muni_id option:selected').text();
-    direccion += ', '+$('#dep option:selected').text();
+    var direccion = $('#zona_id .hm').text();
+    direccion += ', '+$('#muni_id .hm').text();
+    direccion += ', '+$('#dep .hm').text();
     texto = document.createTextNode(direccion);
     celdatd.appendChild(texto);
     fila.appendChild(celdath);
