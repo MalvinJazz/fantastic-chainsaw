@@ -53,9 +53,12 @@ var app = {
         //               }
         // momentum: false
       });
+      myScroll.on("flick", function(){
+        menu('menu');
+      });
+
       myScrollMenu = new IScroll('#wrapperMenu', { hideScrollbar: true, bounce: true });
     }, 300);
-
 
       this.bindEvents();
     },
@@ -224,7 +227,6 @@ function enviarInfo(){
      'longitud': document.getElementById('lon').value,
      'denuncia': document.getElementById('denuncia').value,
      'referencia': document.getElementById('referencia').value,
-    //  'archivo': document.getElementById('file')
      'tipo': $('#id_tipo .hm')[0].dataset.code,
      'motivo': "denuncias/api/d1/motivo/" + motivo + '/',
      'direccion': "estadisticas/api/local/direccion/" + direccion + '/',
@@ -265,6 +267,16 @@ function enviarInfo(){
           myScroll.refresh();
           myScroll.scrollTo(0,0);
           geoLconfirmada = false;
+        },
+        404: function(){
+          // alert('Ha ocurrido un error con el servidor, ' +
+          //                      'intenta de nuevo mas tarde.');
+         navigator.notification.alert(
+           'Ha ocurrido un error con el servidor, intenta de nuevo más tarde.',
+             null,
+           'Error',
+           'OK'
+         );
         },
         400: function(){
           // alert('Ha ocurrido un error con el servidor, ' +
