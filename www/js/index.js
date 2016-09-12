@@ -42,6 +42,9 @@ var app = {
 
     // Creamos los 2 scroll mediante el plugin iscroll, uno para el men� principal y otro para el cuerpo
     setTimeout(function(){
+
+      var hammertime = new Hammer(wrapper)
+
       myScroll = new IScroll('#wrapper', {
         scrollbars: true,
         bounce: false,
