@@ -1,6 +1,6 @@
 // Declaraci�n de variables globales
 var myScroll, myScrollMenu, cuerpo, menuprincipal, wrapper, estado;
-var direccion = '192.168.0.89:8000'
+var direccion = '192.168.0.88:8000'
 var geoLconfirmada = false;
 var institucion = [];
 var pasos = ['Denuncia', 'Descripción', 'Localización', 'Enviar'];
@@ -16,13 +16,14 @@ var app = {
     // Constructor de la app
     initialize: function() {
 
+      // $(window).resize(function(){
+      //   setTimeout(function(){
+      //     alert('tamaño cambiado');
+      //   }, 500);
+      // });
+
       // Estado inicial mostrando capa cuerpo
       estado="cuerpo";
-
-      // navigator.splashscreen.show();
-      // setTimeout(function() {
-      //   navigator.splashscreen.hide();
-      // }, 2000);
 
       // Creamos el elemento style, lo a�adimos al html y creamos la clase cssClass para aplicarsela al contenedor wrapper
       var heightCuerpo=window.innerHeight+200;
@@ -43,21 +44,34 @@ var app = {
     // Creamos los 2 scroll mediante el plugin iscroll, uno para el men� principal y otro para el cuerpo
     setTimeout(function(){
 
-      var hammertime = new Hammer(wrapper)
+      document.onkeypress = function(ev){
+        console.log(ev.which);
+        if(ev.which==13){
+          ev.preventDefault();
+        }
+      };
+
+      var hammertime = new Hammer(wrapper, {domEvents: true});
+
+      hammertime.on('swiperight', function(ev){
+        if(!$('#mapa').find(ev.target).length){
+          if(estado=="cuerpo")
+            menu('menu');
+        }
+      });
+
+      hammertime.on('swipeleft', function(ev){
+        if(!$('#mapa').find(ev.target).length){
+          if(estado!="cuerpo")
+            menu('menu');
+        }
+      })
+
 
       myScroll = new IScroll('#wrapper', {
         scrollbars: true,
         bounce: false,
-        // preventDefault: true,
-        click: false,
-        // preventDefaultException: {
-        //               tagName:/^(INPUT|TEXTAREA|BUTTON|SELECT)$/,
-        //               className: /^(onoffswitch)$/
-        //               }
-        // momentum: false
-      });
-      myScroll.on("flick", function(){
-        menu('menu');
+        click: false
       });
 
       myScrollMenu = new IScroll('#wrapperMenu', { hideScrollbar: true, bounce: true });
@@ -160,7 +174,7 @@ function mostrarDoc(evt) {
 
         irPorPasos(1);
         // $('#photo').show();
-        // myScroll.refresh();
+        myScroll.refresh();
       }
       fr.readAsDataURL(files[0]);
     }
@@ -250,7 +264,7 @@ function enviarInfo(){
 
       data: data,
       // url: "http://"+direccion+"/denuncias/api/d1/denuncia/",
-      url: 'http://192.168.0.89:8000/denuncias/api/d1/denuncia/',
+      url: 'http://192.168.0.88:8000/denuncias/api/d1/denuncia/',
       // "http://"+direccion+"/estadisticas/api/local/departamento?limit=22"
       type: 'POST',
       contentType: 'application/json',
@@ -572,7 +586,7 @@ function onSuccess(imageData){
   // $('#file').hide();
   // $('#photo').show();
   document.getElementById('archivo').value = img.src;
-  // myScroll.refresh();
+  myScroll.refresh();
   irPorPasos(1);
   // document.getElementById('text').innerHTML = imageData;
 }
@@ -608,16 +622,23 @@ function scrollear(element){
     // console.log(element);
     setTimeout(function(){
       myScroll.refresh();
+      myScroll.scrollTo(0, -(element.offset().top - 100) , 100);
       // var scroll = (window.innerHeight/2) - element.top;
       // myScroll.scrollToElement(element,0);
       // myScroll.scrollTo(0, -scroll, 0, true);
-      myScroll.scrollTo(0, -(element.offset().top - 100) , 100);
-    }, 300)
+    }, 700);
 
 }
 
 function getDepartamentos(){
-  $('input[type=text], textarea').bind("click",function(){
+
+  $('input[type=text], textarea').on('touchstart' ,function(ev){
+    // scrollear($(this)[0]);
+    // scrollear($(this).offset());
+    scrollear($(this));
+  });
+
+  $('input[type=text], textarea').after().click(function(ev){
     // scrollear($(this)[0]);
     // scrollear($(this).offset());
     scrollear($(this));
@@ -688,9 +709,6 @@ function getDepartamentos(){
   //   $(this).slideUp();
   // });
 
-  // $('select').on('touchstart' /*'mousedown'*/, function(e) {
-  //   e.stopPropagation();
-  // }, false);
 
   $('#cargando').hide();
 
