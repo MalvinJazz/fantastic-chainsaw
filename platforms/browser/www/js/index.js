@@ -173,7 +173,7 @@ function mostrarDoc(evt) {
         document.getElementById('archivo').value = fr.result;
 
         irPorPasos(1);
-        // $('#photo').show();
+        $('#photo').show();
         myScroll.refresh();
       }
       fr.readAsDataURL(files[0]);
@@ -584,7 +584,7 @@ function onSuccess(imageData){
   img.src = "data:image/jpeg;base64," + imageData;
   divPhoto.appendChild(img);
   // $('#file').hide();
-  // $('#photo').show();
+  $('#photo').show();
   document.getElementById('archivo').value = img.src;
   myScroll.refresh();
   irPorPasos(1);
@@ -608,7 +608,8 @@ function receivedEvent() {
   navigator.camera.getPicture(onSuccess, onFail, {
     quality: 50,
     destinationType: Camera.DestinationType.DATA_URL,
-    saveToPhotoAlbum: true
+    saveToPhotoAlbum: true,
+    encodingType    : navigator.camera.EncodingType.JPEG,
     // sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
     // mediaType: Camera.MediaType.ALLMEDIA
   });
@@ -915,7 +916,7 @@ function irPorPasos(paso){
   if(paso==2){
     if(($('#id_tipo .hm')[0].dataset.code == "0")||($('#motivo_id .hm')[0].dataset.code == "0")){
       navigator.notification.alert(
-        'Escoge un motivo y presiona continuar.',
+        'Selecciona un motivo y presiona continuar.',
         null,
         'Error',
         'OK'
@@ -925,7 +926,7 @@ function irPorPasos(paso){
   }else if(paso==3){
     if(($('#dep .hm')[0].dataset.code == "0")||($('#muni_id .hm')[0].dataset.code == "0")||($('#zona_id .hm')[0].dataset.code == "0")){
       navigator.notification.alert(
-        'Escoge una zona y presiona continuar.',
+        'Selecciona una zona y presiona continuar.',
         null,
         'Error',
         'OK'
@@ -1005,15 +1006,30 @@ function irPorPasos(paso){
     celdath = document.createElement('th');
     celdatd = document.createElement('td');
     texto = document.createTextNode('Archivo');
+    $("#photo").hide();
     celdath.appendChild(texto);
-    if($('#archivo').val()!="")
-      texto = document.createTextNode('Si');
+    if($('#archivo').val()!=""){
+      texto = document.createElement('a');
+      texto.appendChild(document.createTextNode('Si'));
+      texto.href = 'javascript:mostrar();';
+    }
     else
       texto = document.createTextNode('No');
     celdatd.appendChild(texto);
+    celdatd.id = 'archivo_celda';
+    // celdatd.className = 'arriba';
+    // $('#archivo_celda').click(function(){
+    //   if($("#archivo_celda")[0].className.includes('abajo'))
+    //     $("#archivo_celda").removeClass('abajo').addClass('arriba');
+    //   else if($("#archivo_celda")[0].className.includes('arriba'))
+    //     $("#archivo_celda").removeClass('arriba').addClass('abajo');
+    //   $("#photo").slideToggle();
+    // });
     fila.appendChild(celdath);
     fila.appendChild(celdatd);
     tbody.appendChild(fila);
+
+
 
     fila = document.createElement('tr');
     celdath = document.createElement('th');
@@ -1316,6 +1332,11 @@ function sleep(miliseconds) {
 
    while (currentTime + miliseconds >= new Date().getTime()) {
    }
+}
+
+function mostrar(){
+  $("#photo").slideToggle();
+  myScroll.refresh();
 }
 
 function checkConnection() {

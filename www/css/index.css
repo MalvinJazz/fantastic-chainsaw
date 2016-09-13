@@ -775,6 +775,18 @@ color: black;
 	color: #47525e;
 }
 
+td.arriba::after{
+	content: "\022c1";
+	color: green;
+	text-align: center;
+}
+
+td.abajo::after{
+	content: "\022C0";
+	color: green;
+	text-align: center;
+}
+
 #continuar{
 	/*position: absolute;*/
 	width: 50%;
