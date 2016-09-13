@@ -912,6 +912,28 @@ function regresar(paso){
 
 function irPorPasos(paso){
 
+  if(paso==2){
+    if(($('#id_tipo .hm')[0].dataset.code == "0")||($('#motivo_id .hm')[0].dataset.code == "0")){
+      navigator.notification.alert(
+        'Selecciona un motivo y presiona continuar.',
+        null,
+        'Error',
+        'OK'
+      );
+      return;
+    }
+  }else if(paso==3){
+    if(($('#dep .hm')[0].dataset.code == "0")||($('#muni_id .hm')[0].dataset.code == "0")||($('#zona_id .hm')[0].dataset.code == "0")){
+      navigator.notification.alert(
+        'Selecciona una zona y presiona continuar.',
+        null,
+        'Error',
+        'OK'
+      );
+      return;
+    }
+  }
+
   document.getElementById('cabecera').innerHTML = 'PASO '+(paso+1)+': '+pasos[paso];
 
   var celdas = document.getElementById('pasos').rows[0].cells;
@@ -924,15 +946,6 @@ function irPorPasos(paso){
     else
       celdas[i].style.display = 'none';
   }
-
-  // if(paso==1){
-  //   navigator.notification.alert(
-  //     'Tus datos e identidad permanecerán completamente anonimos, toda la información de Denuncia Móvil está cifrada.',
-  //     null,
-  //     'Denuncia Movil',
-  //     'Continuar'
-  //   );
-  // }
 
   if(paso>2){
     var tabla = document.getElementById('denuncia-completa');
