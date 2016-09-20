@@ -1006,7 +1006,7 @@ function irPorPasos(paso){
     celdath = document.createElement('th');
     celdatd = document.createElement('td');
     texto = document.createTextNode('Archivo');
-    $("#photo").hide();
+    $("#photo").show();
     celdath.appendChild(texto);
     if($('#archivo').val()!=""){
       texto = document.createElement('a');

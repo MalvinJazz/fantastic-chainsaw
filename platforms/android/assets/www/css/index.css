@@ -37,6 +37,7 @@ body {
 	margin:0;
 	border:0;
 	position: fixed;
+	background-color: white;
 }
 
 a {
@@ -164,17 +165,14 @@ ul.selector > li > a {
 	position:absolute; z-index:2;
 	top:0; left:0;
 	width:100%;
-	/*background: #1A57A7;*/
-	/*background: #263248;*/
-	/*background: #294471;*/
 	background: white;
-	/*border-bottom: 5px solid #000;*/
 	padding:0;
 	color:#eee;
 	font-size:14px;
 	line-height: 45px;
 	text-align:center;
 	height: 55px;
+	min-width: 400px;
 }
 
 
@@ -463,6 +461,7 @@ ul.selector > li > a {
 		align-content: center;
 		margin: 10px auto;
 		max-width: 300px;
+		min-width: 200px;
 		width: 60%;
 		height: 60px;
 		color: white;
@@ -534,6 +533,7 @@ select{
 #content input[type='button']{
   width: 60%;
 	max-width: 300px;
+	min-width: 200px;
   height: 60px;
   color: white;
 	font-family: 'Roboto', sans-serif;
@@ -619,6 +619,7 @@ select{
   -webkit-border-radius: 13px;
   -moz-border-radius: 13px;
   border-radius: 13px;
+	min-width: 35px;
 }
 
 #pasos tr .activo{
@@ -775,15 +776,23 @@ color: black;
 	color: #47525e;
 }
 
-#continuar{
-	position: absolute;
-	width: 50%;
-	height: 60px;
+td.arriba::after{
+	content: "\022c1";
+	color: green;
+	text-align: center;
+}
+
+td.abajo::after{
+	content: "\022C0";
+	color: green;
+	text-align: center;
+}
+
+a#continuar{
+	width: 60%;
 	margin: 0 auto;
-	left: 0;
-	right: 0;
-	min-width: 250px;
-	max-width: 360px;
+	min-width: 200px;
+	max-width: 300px;
 }
 
 
