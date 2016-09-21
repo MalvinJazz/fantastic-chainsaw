@@ -160,6 +160,22 @@ ul.selector > li > a {
   font-family: Tox;
 }
 
+.recargar{
+	width: 28px;
+  height: 48px;
+  text-align: center;
+  top: 90px;
+  right: 0%;
+  position: absolute;
+	display: none;
+}
+
+.recargar span{
+	font-family: 'Icon';
+    font-size: -webkit-xxx-large;
+    color: #e0e0e0;
+}
+
 /*Inicio estilos de la cabecera*/
 #header {
 	position:absolute; z-index:2;

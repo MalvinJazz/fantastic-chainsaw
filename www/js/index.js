@@ -1183,14 +1183,14 @@ function drawGeoChart() {
                 startup: true,
             },
             colors: ['#4370bb'],
-            vAxis:{
+            hAxis:{
               format: 'decimal',
               minValue: 0,
               // ticks: [0, .3, .6, .9, 1]
             },
           };
 
-          var chart1 = new google.visualization.ColumnChart(document.getElementById('columnchart'));
+          var chart1 = new google.visualization.BarChart(document.getElementById('columnchart'));
           chart1.draw(tabla, options1);
           myScroll.refresh();
           myScroll.scrollToElement('#columnchart', 800, true, true);
