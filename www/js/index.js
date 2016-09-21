@@ -882,6 +882,7 @@ function menu(opcion){
 }
 
 function regresar(paso){
+
   document.getElementById('cabecera').innerHTML = 'PASO '+paso+': '+pasos[paso-1];
 
   var celdas = document.getElementById('pasos').rows[0].cells;

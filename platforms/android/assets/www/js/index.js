@@ -882,6 +882,11 @@ function menu(opcion){
 }
 
 function regresar(paso){
+  document.addEventListener("backbutton", function(){
+    alert(paso);
+    // regresar(paso-1);
+  }, false);
+
   document.getElementById('cabecera').innerHTML = 'PASO '+paso+': '+pasos[paso-1];
 
   var celdas = document.getElementById('pasos').rows[0].cells;
@@ -914,6 +919,10 @@ function regresar(paso){
 
 
 function irPorPasos(paso){
+  document.addEventListener("backbutton", function(){
+    alert(paso);
+    // regresar(paso-1);
+  }, false);
 
   if(paso==2){
     if(($('#id_tipo .hm')[0].dataset.code == "0")||($('#motivo_id .hm')[0].dataset.code == "0")){
