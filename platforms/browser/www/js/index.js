@@ -4,6 +4,7 @@ var direccion = '192.168.0.88:8000'
 var geoLconfirmada = false;
 var institucion = [];
 var pasos = ['Denuncia', 'Descripción', 'Localización', 'Enviar'];
+var contador = 0;
 
 var denuncias = [];
 
@@ -1274,6 +1275,7 @@ function initMap(){
           timeout: 3000,
           url: "http://"+direccion+"/denuncias/geo_denuncias/",
           success: function(data){
+            contador = 0;
 
             // alert('1');
             for(var i=0; i<data.length; i++){
@@ -1299,10 +1301,14 @@ function initMap(){
           error: function(){
             navigator.notification.alert(
               'Ha ocurrido un error con el servidor, intenta de nuevo más tarde.',
-                null,
+              null,
               'Error',
               'OK'
             );
+            if(contador < 3){
+              setTimeout(initMap, 7000);
+              contador++;
+            }
           }
 
         });
