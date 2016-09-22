@@ -1,3 +1,4 @@
+// Poner un ejemplo en el punto de referencia.
 // Declaraci�n de variables globales
 var myScroll, myScrollMenu, cuerpo, menuprincipal, wrapper, estado;
 var direccion = '192.168.0.88:8000'
