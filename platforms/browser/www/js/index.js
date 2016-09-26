@@ -1,3 +1,4 @@
+// Poner un ejemplo en el punto de referencia.
 // Declaraci�n de variables globales
 var myScroll, myScrollMenu, cuerpo, menuprincipal, wrapper, estado;
 var direccion = '192.168.0.88:8000'
@@ -807,6 +808,7 @@ function removeClass( classname, element ) {
 }
 
 function menu(opcion){
+  contador = 0;
 
 	// Si pulsamos en el bot�n de "menu" entramos en el if
 	if(opcion=="menu"){
@@ -881,6 +883,7 @@ function menu(opcion){
 }
 
 function regresar(paso){
+
   document.getElementById('cabecera').innerHTML = 'PASO '+paso+': '+pasos[paso-1];
 
   var celdas = document.getElementById('pasos').rows[0].cells;
@@ -1182,14 +1185,14 @@ function drawGeoChart() {
                 startup: true,
             },
             colors: ['#4370bb'],
-            vAxis:{
+            hAxis:{
               format: 'decimal',
               minValue: 0,
               // ticks: [0, .3, .6, .9, 1]
             },
           };
 
-          var chart1 = new google.visualization.ColumnChart(document.getElementById('columnchart'));
+          var chart1 = new google.visualization.BarChart(document.getElementById('columnchart'));
           chart1.draw(tabla, options1);
           myScroll.refresh();
           myScroll.scrollToElement('#columnchart', 800, true, true);

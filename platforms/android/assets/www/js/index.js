@@ -1,3 +1,4 @@
+// Poner un ejemplo en el punto de referencia.
 // Declaraci�n de variables globales
 var myScroll, myScrollMenu, cuerpo, menuprincipal, wrapper, estado;
 var direccion = '192.168.0.88:8000'
@@ -882,10 +883,6 @@ function menu(opcion){
 }
 
 function regresar(paso){
-  document.addEventListener("backbutton", function(){
-    alert(paso);
-    // regresar(paso-1);
-  }, false);
 
   document.getElementById('cabecera').innerHTML = 'PASO '+paso+': '+pasos[paso-1];
 
@@ -919,10 +916,6 @@ function regresar(paso){
 
 
 function irPorPasos(paso){
-  document.addEventListener("backbutton", function(){
-    alert(paso);
-    // regresar(paso-1);
-  }, false);
 
   if(paso==2){
     if(($('#id_tipo .hm')[0].dataset.code == "0")||($('#motivo_id .hm')[0].dataset.code == "0")){
