@@ -528,7 +528,7 @@ ul.selector > li > a {
 #content textarea, input[type='text'], select{
   width: 80%;
   height: 40px;
-  margin-top: 5px;
+  margin-top: 10px;
   max-width: 300px;
 	font-family: 'Roboto', sans-serif;
 	font-weight: 300;
