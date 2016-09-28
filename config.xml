@@ -54,7 +54,7 @@
         <allow-intent href="itms-apps:*" />
         <icon src="res/ios/icon_ios.png" width="180" height="180"/>
 
-        <!-- <splash src="res/screen/android/splash-port-xhdpi.png"/> -->
+        <splash src="res/screen/android/splash-port-xhdpi.png"/>
         <!-- <splash src="res/screen/android/splash-land-xhdpi.png" density="port-xhdpi"/> -->
 
     </platform>
