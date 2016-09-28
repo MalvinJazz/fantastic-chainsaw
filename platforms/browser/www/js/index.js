@@ -18,12 +18,6 @@ var app = {
     // Constructor de la app
     initialize: function() {
 
-      // $(window).resize(function(){
-      //   setTimeout(function(){
-      //     alert('tamaño cambiado');
-      //   }, 500);
-      // });
-
       // Estado inicial mostrando capa cuerpo
       estado="cuerpo";
 
@@ -196,12 +190,6 @@ function onConfirm(buttonIndex){
     getGeolocation();
     // navigator.notification.alert('¡Gracias!', null, 'Localización procesada', 'Continuar');
   }else if (buttonIndex == 2) {
-    // navigator.notification.alert(
-    //   'Tu denuncia se procesará.',
-    //     null,
-    //   'Denuncia Movil',
-    //   'Continuar'
-    // );
   }
   geoLconfirmada = true;
 
@@ -254,7 +242,6 @@ function enviarInfo(){
   })
 
   navigator.notification.alert(
-    // 'Te recordamos que tu anonimato es nuestra prioridad.\nTu denuncia es encriptada y enviada al servidor.',
     'Por tu seguridad, nadie, inlcuyendo al equipo de Denuncia Móvil, puede saber quien denuncia.',
       null,
     'Denuncia Movil',
@@ -274,7 +261,6 @@ function enviarInfo(){
       dataType: 'json',
       statusCode: {
         201: function(){
-          // alert('Denuncia enviada con exito.');
           navigator.notification.alert(
             'Denuncia enviada con exito.',
               null,
@@ -288,8 +274,6 @@ function enviarInfo(){
           geoLconfirmada = false;
         },
         404: function(){
-          // alert('Ha ocurrido un error con el servidor, ' +
-          //                      'intenta de nuevo mas tarde.');
          navigator.notification.alert(
            'Ha ocurrido un error con el servidor, intenta de nuevo más tarde.',
              null,
@@ -298,8 +282,6 @@ function enviarInfo(){
          );
         },
         400: function(){
-          // alert('Ha ocurrido un error con el servidor, ' +
-          //                      'intenta de nuevo mas tarde.');
          navigator.notification.alert(
            'Ha ocurrido un error con el servidor, intenta de nuevo más tarde.',
              null,
@@ -316,17 +298,6 @@ function enviarInfo(){
          );
        }
       },
-      // success: function(data){
-      //   alert('Se ha enviado con exito.')
-      // },
-      // error: function(){
-      //   navigator.notification.alert(
-      //     'Ha ocurrido un error con el servidor, intenta de nuevo más tarde.',
-      //       null,
-      //     'Error',
-      //     'OK'
-      //   );
-      // },
       processData: false
 
     });
@@ -359,9 +330,6 @@ function getGeolocation(){
 }
 
 function busquedaMotivo(id){
-
-  // var id = $(this).val();
-  // document.getElementById('motivo_id').length = 0;
 
   $.ajax({
 
@@ -431,9 +399,6 @@ function busquedaMotivo(id){
 
 function busquedaZona(id){
 
-  // var id = $(this).val();
-  // document.getElementById('zona_id').length = 0;
-
   $.ajax({
 
     type: 'get',
@@ -495,9 +460,6 @@ function busquedaZona(id){
 }
 
 function busquedaMunicipio(id){
-
-
-  // var id = $(this).val();
 
   $.ajax({
 
@@ -585,23 +547,19 @@ function onSuccess(imageData){
   img.style.width = '200px';
   img.src = "data:image/jpeg;base64," + imageData;
   divPhoto.appendChild(img);
-  // $('#file').hide();
   $('#photo').show();
   document.getElementById('archivo').value = img.src;
   myScroll.refresh();
   irPorPasos(1);
-  // document.getElementById('text').innerHTML = imageData;
 }
 
 function onFail(message){
-  // alert('Error por ' + message);
   navigator.notification.alert(
     'Camara cerrada.',
       null,
     message,
     'OK'
   );
-  // $('#file').show();
   $('#photo').hide();
 }
 
@@ -612,8 +570,6 @@ function receivedEvent() {
     destinationType: Camera.DestinationType.DATA_URL,
     saveToPhotoAlbum: true,
     encodingType    : navigator.camera.EncodingType.JPEG,
-    // sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-    // mediaType: Camera.MediaType.ALLMEDIA
   });
 
   document.getElementById('photo').style.display = 'none';
@@ -622,13 +578,9 @@ function receivedEvent() {
 
 function scrollear(element){
 
-    // console.log(element);
     setTimeout(function(){
       myScroll.refresh();
       myScroll.scrollTo(0, -(element.offset().top - 100) , 100);
-      // var scroll = (window.innerHeight/2) - element.top;
-      // myScroll.scrollToElement(element,0);
-      // myScroll.scrollTo(0, -scroll, 0, true);
     }, 700);
 
 }
@@ -636,14 +588,10 @@ function scrollear(element){
 function getDepartamentos(){
 
   $('input[type=text], textarea').on('touchstart' ,function(ev){
-    // scrollear($(this)[0]);
-    // scrollear($(this).offset());
     scrollear($(this));
   });
 
   $('input[type=text], textarea').after().click(function(ev){
-    // scrollear($(this)[0]);
-    // scrollear($(this).offset());
     scrollear($(this));
   });
 
@@ -702,15 +650,6 @@ function getDepartamentos(){
       $("#motivo_id .hm").removeClass('arriba').addClass('abajo');
     setTimeout(function(){myScroll.refresh()}, 300);
   });
-  // $("#motivo_id .mn").after().click(function(){
-  //   // $('#motivo_id .hm').text($(this).text());
-  //   // $('#motivo_id .hm')[0].dataset.code = $(this)[0].dataset.code;
-  //   $("#motivo_id .mn").slideToggle();
-  //   setTimeout(function(){myScroll.refresh()}, 300);
-  // });
-  // $('select').on('touchstart',function(){
-  //   $(this).slideUp();
-  // });
 
 
   $('#cargando').hide();
@@ -725,24 +664,14 @@ function getDepartamentos(){
 
   var deps = document.getElementById('dep');
   var muni = document.getElementById('muni_id');
-  // var tipo = document.getElementById('id_tipo');
   var enviar = document.getElementById('enviar');
   var doc = document.getElementById('file');
   var camara = document.getElementById('camara');
-  // var fake = document.getElementById('fake');
-  // fake.addEventListener('click', subirArchivo);
   camara.addEventListener('click', receivedEvent);
   doc.addEventListener('change', mostrarDoc);
   enviar.addEventListener('click', enviarInfo);
-  // tipo.addEventListener('change', busquedaMotivo);
   muni.addEventListener('change', busquedaZona);
   deps.addEventListener('change', busquedaMunicipio);
-
-  // var departamentos = document.getElementById('dep');
-
-  // location.href = 'file:///android_asset/www/prueba.html';
-
-  // file:///android_asset/www/index.html
 
   $.ajax({
 
@@ -828,9 +757,6 @@ function menu(opcion){
 		addClass('li-menu-activo' , document.getElementById("ulMenu").getElementsByTagName("li")[opcion]);
 
 		// Recogemos mediante ajax el contenido del html seg�n la opci�n clickeada en el menu
-		// xhReq.open("GET", "opciones/opcion"+opcion+".html", false);
-		// xhReq.send(null);
-		// document.getElementById("contenidoCuerpo").innerHTML=xhReq.responseText;
     $('#contenidoCuerpo').load("opciones/opcion"+opcion+".html");
 
     if(opcion=='1'){
@@ -852,11 +778,6 @@ function menu(opcion){
         );
         menu('1');
       }
-      // var graficas = new iScroll('graficas', {
-    	// snap: 'li',
-    	// momentum: false,
-    	// hScrollbar: false,
-    	// vScrollbar: false });
     }
 
     if(opcion=='3'){
@@ -1021,14 +942,6 @@ function irPorPasos(paso){
       texto = document.createTextNode('No');
     celdatd.appendChild(texto);
     celdatd.id = 'archivo_celda';
-    // celdatd.className = 'arriba';
-    // $('#archivo_celda').click(function(){
-    //   if($("#archivo_celda")[0].className.includes('abajo'))
-    //     $("#archivo_celda").removeClass('abajo').addClass('arriba');
-    //   else if($("#archivo_celda")[0].className.includes('arriba'))
-    //     $("#archivo_celda").removeClass('arriba').addClass('abajo');
-    //   $("#photo").slideToggle();
-    // });
     fila.appendChild(celdath);
     fila.appendChild(celdatd);
     tbody.appendChild(fila);
@@ -1127,9 +1040,7 @@ function drawGeoChart() {
          datalessRegionColor: '#C0C0C0',
          defaultColor: '#4D4D50',
          region: 'GT',
-         //displayMode: 'markers',
          resolution: 'provinces',
-         //#FAE398
          colorAxis: {colors: ['#FDF1CB','#FFC400','#DF0000']},
       };
 
@@ -1145,9 +1056,6 @@ function drawGeoChart() {
 
       document.getElementById("columnchart").style.display = 'block';
       $("#columnchart").show();
-
-      // var pos = $('#columnchart').offset();
-      // window.scrollTo(pos.left, pos.top-100);
 
       $.ajax({
 
@@ -1177,8 +1085,6 @@ function drawGeoChart() {
             title: dep,
             legend: { position: 'none'},
             bar: { groupWidth: '75%' },
-            // isStacked: 'percent',
-            // isStacked: true,
             animation:{
                 duration: 1500,
                 easing: 'out',
@@ -1188,7 +1094,6 @@ function drawGeoChart() {
             hAxis:{
               format: 'decimal',
               minValue: 0,
-              // ticks: [0, .3, .6, .9, 1]
             },
           };
 
@@ -1328,14 +1233,6 @@ function initMap(){
 
 }
 
-  // function sleep(milliseconds) {
-  //   var start = new Date().getTime();
-  //   for (var i = 0; i < 1e7; i++) {
-  //     if ((new Date().getTime() - start) > milliseconds){
-  //       break;
-  //     }
-  //   }
-  // }
 function sleep(miliseconds) {
    var currentTime = new Date().getTime();
 
@@ -1352,18 +1249,4 @@ function checkConnection() {
     var networkState = navigator.connection.type;
 
     return networkState;
-    // var states = {};
-    // states[Connection.UNKNOWN]  = 'Unknown connection';
-    // states[Connection.ETHERNET] = 'Ethernet connection';
-    // states[Connection.WIFI]     = 'WiFi connection';
-    // states[Connection.CELL_2G]  = 'Cell 2G connection';
-    // states[Connection.CELL_3G]  = 'Cell 3G connection';
-    // states[Connection.CELL_4G]  = 'Cell 4G connection';
-    // states[Connection.CELL]     = 'Cell generic connection';
-    // states[Connection.NONE]     = 'No network connection';
-
-    // alert('Connection type: ' + states[networkState]);
 }
-
-
-//Corregir clicks, hacer menos peticiones, mejorar titulos.
