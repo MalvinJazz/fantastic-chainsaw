@@ -52,5 +52,10 @@
     <platform name="ios">
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
+        <icon src="res/android/icon-xhdpi.png" width="96" height="96"/>
+
+        <!-- <splash src="res/screen/android/splash-port-xhdpi.png"/> -->
+        <!-- <splash src="res/screen/android/splash-land-xhdpi.png" density="port-xhdpi"/> -->
+
     </platform>
 </widget>
