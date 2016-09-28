@@ -39,16 +39,6 @@
         "is_top_level": true,
         "variables": {}
     },
-    "phonegap-plugin-push": {
-        "source": {
-            "type": "registry",
-            "id": "phonegap-plugin-push"
-        },
-        "is_top_level": true,
-        "variables": {
-            "SENDER_ID": "700344756414"
-        }
-    },
     "cordova-plugin-network-information": {
         "source": {
             "type": "registry",

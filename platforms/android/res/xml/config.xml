@@ -14,9 +14,6 @@
     <feature name="Notification">
         <param name="android-package" value="org.apache.cordova.dialogs.Notification" />
     </feature>
-    <feature name="PushNotification">
-        <param name="android-package" value="com.adobe.phonegap.push.PushPlugin" />
-    </feature>
     <feature name="NetworkStatus">
         <param name="android-package" value="org.apache.cordova.networkinformation.NetworkManager" />
     </feature>
@@ -24,6 +21,7 @@
         <param name="android-package" value="org.apache.cordova.splashscreen.SplashScreen" />
         <param name="onload" value="true" />
     </feature>
+    <name>Denuncia Movil(beta)</name>
     <allow-intent href="market:*" />
     <splash density="land-hdpi" src="res/screen/android/splash-port-hdpi.png" />
     <splash density="land-ldpi" src="res/screen/android/splash-port-ldpi.png" />
@@ -39,12 +37,12 @@
     <icon density="mdpi" src="res/android/icon-mdpi.png" />
     <icon density="hdpi" src="res/android/icon-hdpi.png" />
     <icon density="xhdpi" src="res/android/icon-xhdpi.png" />
-    <name>Denuncia Movil(beta)</name>
+    <name>Denuncia Movil</name>
     <description>
         A sample Apache Cordova application that responds to the deviceready event.
     </description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
-        Apache Cordova Team
+    <author email="malvinjazz@live.com" href="">
+        MalvinJazz
     </author>
     <content src="index.html" />
     <access origin="*" />

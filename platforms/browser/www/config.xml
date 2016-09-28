@@ -3,12 +3,12 @@
     <feature name="Camera">
         <param name="browser-package" value="Camera" />
     </feature>
-    <name>Denuncia Movil(beta)</name>
+    <name>Denuncia Movil</name>
     <description>
         A sample Apache Cordova application that responds to the deviceready event.
     </description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
-        Apache Cordova Team
+    <author email="malvinjazz@live.com" href="">
+        MalvinJazz
     </author>
     <content src="index.html" />
     <access origin="*" />

@@ -55,13 +55,6 @@ module.exports = [
         ]
     },
     {
-        "file": "plugins/phonegap-plugin-push/www/push.js",
-        "id": "phonegap-plugin-push.PushNotification",
-        "clobbers": [
-            "PushNotification"
-        ]
-    },
-    {
         "file": "plugins/cordova-plugin-network-information/www/network.js",
         "id": "cordova-plugin-network-information.network",
         "clobbers": [
@@ -92,7 +85,6 @@ module.exports.metadata =
     "cordova-plugin-camera": "2.2.0",
     "cordova-plugin-geolocation": "2.2.0",
     "cordova-plugin-dialogs": "1.2.1",
-    "phonegap-plugin-push": "1.8.1",
     "cordova-plugin-network-information": "1.2.1",
     "cordova-plugin-splashscreen": "3.2.2"
 };

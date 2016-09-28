@@ -1,18 +1,18 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.denunciamovil.denunciamovil" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Denuncia Movil(beta)</name>
+    <name>Denuncia Movil</name>
     <description>
         A sample Apache Cordova application that responds to the deviceready event.
     </description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
-        Apache Cordova Team
+    <author email="malvinjazz@live.com" href="">
+        MalvinJazz
     </author>
     <content src="index.html" />
     <plugin name="cordova-plugin-whitelist" spec="1" />
     <plugin name="cordova-plugin-camera" spec="2.2.0" />
     <plugin name="cordova-plugin-dialogs" spec="1.2.1" />
     <plugin name="cordova-plugin-geolocation" spec="2.2.0" />
-    <plugin name="phonegap-plugin-push" spec="1.8.1" />
+    <!-- <plugin name="phonegap-plugin-push" spec="1.8.1" /> -->
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -52,9 +52,9 @@
     <platform name="ios">
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
-        <icon src="res/android/icon-xhdpi.png" width="96" height="96"/>
+        <icon src="res/ios/icon_ios.png" width="180" height="180"/>
 
-        <!-- <splash src="res/screen/android/splash-port-xhdpi.png"/> -->
+        <splash src="res/screen/android/splash-port-xhdpi.png"/>
         <!-- <splash src="res/screen/android/splash-land-xhdpi.png" density="port-xhdpi"/> -->
 
     </platform>
