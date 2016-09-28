@@ -1,0 +1,38 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-camera": {
+            "PACKAGE_NAME": "com.denunciamovil.denunciamovil"
+        },
+        "cordova-plugin-dialogs": {
+            "PACKAGE_NAME": "com.denunciamovil.denunciamovil"
+        },
+        "cordova-plugin-geolocation": {
+            "PACKAGE_NAME": "com.denunciamovil.denunciamovil"
+        },
+        "cordova-plugin-network-information": {
+            "PACKAGE_NAME": "com.denunciamovil.denunciamovil"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.denunciamovil.denunciamovil"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.denunciamovil.denunciamovil"
+        },
+        "phonegap-plugin-push": {
+            "SENDER_ID": "700344756414",
+            "PACKAGE_NAME": "com.denunciamovil.denunciamovil"
+        }
+    },
+    "dependent_plugins": {
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "com.denunciamovil.denunciamovil"
+        }
+    }
+}
