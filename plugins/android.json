@@ -13,9 +13,6 @@
         "cordova-plugin-camera": {
             "PACKAGE_NAME": "com.debursa.prueba"
         },
-        "cordova-plugin-geolocation": {
-            "PACKAGE_NAME": "com.debursa.prueba"
-        },
         "cordova-plugin-dialogs": {
             "PACKAGE_NAME": "com.debursa.prueba"
         },
@@ -23,6 +20,9 @@
             "PACKAGE_NAME": "com.debursa.prueba"
         },
         "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.denunciamovil.denunciamovil"
+        },
+        "cordova-plugin-geolocation": {
             "PACKAGE_NAME": "com.denunciamovil.denunciamovil"
         }
     },
