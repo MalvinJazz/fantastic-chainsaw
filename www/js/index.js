@@ -118,9 +118,9 @@ function mostrarDoc(evt) {
     files = tgt.files;
 
     if(this.files[0].size > 25e6 ){
-      var tamaño = this.files[0].size/1e6;
+      var tamano = this.files[0].size/1e6;
       navigator.notification.alert(
-        'El archivo no debe ser mayor a 25MB.\n(Tamaño: '+tamaño.toFixed(2)+' MB)',
+        'El archivo no debe ser mayor a 25MB.\n(Tamaño: '+tamano.toFixed(2)+' MB)',
           null,
         'Error',
         'OK'
