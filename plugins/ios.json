@@ -24,10 +24,6 @@
         },
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.denunciamovil.denunciamovil"
-        },
-        "phonegap-plugin-push": {
-            "SENDER_ID": "700344756414",
-            "PACKAGE_NAME": "com.denunciamovil.denunciamovil"
         }
     },
     "dependent_plugins": {
