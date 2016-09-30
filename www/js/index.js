@@ -18,6 +18,8 @@ var app = {
     // Constructor de la app
     initialize: function() {
 
+      alert(navigator.userAgent);
+
       // Estado inicial mostrando capa cuerpo
       estado="cuerpo";
 
