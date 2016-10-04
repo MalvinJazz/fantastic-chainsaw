@@ -10,13 +10,10 @@
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.debursa.prueba"
         },
-        "cordova-plugin-camera": {
-            "PACKAGE_NAME": "com.debursa.prueba"
-        },
-        "cordova-plugin-dialogs": {
-            "PACKAGE_NAME": "com.debursa.prueba"
-        },
         "cordova-plugin-network-information": {
+            "PACKAGE_NAME": "com.debursa.prueba"
+        },
+        "cordova-plugin-compat": {
             "PACKAGE_NAME": "com.debursa.prueba"
         },
         "cordova-plugin-splashscreen": {
@@ -24,11 +21,13 @@
         },
         "cordova-plugin-geolocation": {
             "PACKAGE_NAME": "com.denunciamovil.denunciamovil"
+        },
+        "cordova-plugin-camera": {
+            "PACKAGE_NAME": "com.denunciamovil.denunciamovil"
+        },
+        "cordova-plugin-dialogs": {
+            "PACKAGE_NAME": "com.denunciamovil.denunciamovil"
         }
     },
-    "dependent_plugins": {
-        "cordova-plugin-compat": {
-            "PACKAGE_NAME": "com.debursa.prueba"
-        }
-    }
+    "dependent_plugins": {}
 }
