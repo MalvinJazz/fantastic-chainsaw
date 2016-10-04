@@ -60,6 +60,8 @@
 
         <splash src="res/screen/ios/retinax2.png" width="750" height="1334"/>
         <splash src="res/screen/ios/retinax3.png" width="1242" height="2208"/>
+        <splash src="res/screen/ios/defaultx2.png" width="640" height="960"/>
+        <splash src="res/screen/ios/retina4.png" width="640" height="1136"/>
 
         <!-- <splash src="res/screen/android/splash-land-xhdpi.png" density="port-xhdpi"/> -->
 
