@@ -528,7 +528,8 @@ function busquedaMunicipio(id){
       });
 
     },
-    error: function(){
+    error: function(error){
+      console.log(error);
       navigator.notification.alert(
         'Ha ocurrido un error con el servidor, intenta de nuevo más tarde.',
           null,
@@ -585,7 +586,8 @@ function scrollear(element){
 
     setTimeout(function(){
       myScroll.refresh();
-      myScroll.scrollTo(0, -(element.offset().top - 100) , 100);
+      // myScroll.scrollTo(0, -(element.offset().top - 100) , 100);
+      myScroll.scrollToElement(element, 200, true, true);
     }, 700);
 
 }
@@ -596,11 +598,11 @@ function getDepartamentos(){
 
   if (isAndroid) {
     $('input[type=text], textarea').on('touchstart' ,function(ev){
-      scrollear($(this));
+      scrollear(this);
     });
 
     $('input[type=text], textarea').after().click(function(ev){
-      scrollear($(this));
+      scrollear(this);
     });
   }
 
