@@ -20,7 +20,7 @@ var app = {
 
       var isAndroid = navigator.userAgent.toLowerCase().indexOf("android") > -1;
       if (isAndroid) {
-        document.getElementsByTagName('body')[0].style.margin.top = '0';
+        $('body').css('margin-top', '0px');
       }
 
       // Estado inicial mostrando capa cuerpo

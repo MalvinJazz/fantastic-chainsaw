@@ -36,6 +36,7 @@ body {
   width:100%;
   padding:0;
 	margin:0;
+	margin-top: 20px;
 	border:0;
 	position: fixed;
 	background-color: white;
@@ -446,9 +447,9 @@ ul.selector > li > a {
 .page.right {
     -webkit-transform: translate3d(80%, 0, 0);
     transform: translate3d(80%, 0, 0);
-		-webkit-box-shadow: -5px 0px 5px 0px rgba(0,0,0,0.71);
-		-moz-box-shadow: -5px 0px 5px 0px rgba(0,0,0,0.71);
-		box-shadow: -5px 0px 5px 0px rgba(0,0,0,0.71);
+		-webkit-box-shadow: -5px 3px 5px 0px rgba(0,0,0,0.71);
+		-moz-box-shadow: -5px 3px 5px 0px rgba(0,0,0,0.71);
+		box-shadow: -5px 3px 5px 0px rgba(0,0,0,0.71);
 }
 
 .page.transition {
@@ -468,7 +469,6 @@ ul.selector > li > a {
   display: block;
   align-items: center;
   align-content: center;
-  padding-top: 30px;
   margin-top: 10px;
   margin-bottom: 100px;
   background-color: #FFF;
