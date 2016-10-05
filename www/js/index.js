@@ -528,8 +528,7 @@ function busquedaMunicipio(id){
       });
 
     },
-    error: function(error){
-      console.log(error);
+    error: function(){
       navigator.notification.alert(
         'Ha ocurrido un error con el servidor, intenta de nuevo más tarde.',
           null,
