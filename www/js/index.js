@@ -18,6 +18,11 @@ var app = {
     // Constructor de la app
     initialize: function() {
 
+      var isAndroid = navigator.userAgent.toLowerCase().indexOf("android") > -1;
+      if (isAndroid) {
+        document.getElementsByTagName('body')[0].style.margin.top = '0';
+      }
+
       // Estado inicial mostrando capa cuerpo
       estado="cuerpo";
 
@@ -587,13 +592,17 @@ function scrollear(element){
 
 function getDepartamentos(){
 
-  $('input[type=text], textarea').on('touchstart' ,function(ev){
-    scrollear($(this));
-  });
+  var isAndroid = navigator.userAgent.toLowerCase().indexOf("android") > -1;
 
-  $('input[type=text], textarea').after().click(function(ev){
-    scrollear($(this));
-  });
+  if (isAndroid) {
+    $('input[type=text], textarea').on('touchstart' ,function(ev){
+      scrollear($(this));
+    });
+
+    $('input[type=text], textarea').after().click(function(ev){
+      scrollear($(this));
+    });
+  }
 
   $("#dep .hm").after().click(function(){
     $("#dep .mn").slideToggle();
