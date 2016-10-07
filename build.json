@@ -1,0 +1,18 @@
+{
+     "android": {
+         "debug": {
+             "keystore": "DM.keystore",
+             "storePassword": "SuperMonsterMash1973",
+             "alias": "MalvinJazz",
+             "password" : "SuperMonsterMash1973",
+             "keystoreType": ""
+         },
+         "release": {
+             "keystore": "DM.keystore",
+             "storePassword": "SuperMonsterMash1973",
+             "alias": "MalvinJazz",
+             "password" : "SuperMonsterMash1973",
+             "keystoreType": ""
+         }
+     }
+ }

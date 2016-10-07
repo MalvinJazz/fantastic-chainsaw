@@ -1157,7 +1157,7 @@ function initMap(){
   if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function(position){
 
-        document.getElementById('mapa').style.height = (window.innerHeight*0.75) + 'px';
+        document.getElementById('mapa').style.height = (window.innerHeight*0.6) + 'px';
         console.log(window.innerHeight);
 
         var map = new GMaps({
