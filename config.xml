@@ -1,8 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.denunciamovil.denunciamovil" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.denunciapp.denunciapp" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Denuncia Movil</name>
     <description>
-        A sample Apache Cordova application that responds to the deviceready event.
+        Aplicación para realizar denuncias de tipo Criminal, Municipal,
+        Medio ambiental o de Derechos humanos, dentro del territorio de Guatemala.
     </description>
     <author email="malvinjazz@live.com" href="">
         MalvinJazz

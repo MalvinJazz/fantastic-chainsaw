@@ -114,7 +114,10 @@ var app = {
 };
 
 function cerrar(){
-  navigator.app.exitApp();
+  var isAndroid = navigator.userAgent.toLowerCase().indexOf("android") > -1;
+  if (isAndroid) {
+    navigator.app.exitApp();;
+  }
 }
 
 function mostrarDoc(evt) {

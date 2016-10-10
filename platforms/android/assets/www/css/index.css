@@ -492,7 +492,7 @@ ul.selector > li > a {
 		border-radius: 10px;
 }
 
-.falso-boton:active {
+#content .falso-boton:active {
     background-color: #363F45;
 }
 
