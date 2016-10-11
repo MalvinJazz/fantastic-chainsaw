@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.denunciapp.denunciapp" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Denuncia Movil</name>
+    <name>DenunciApp</name>
     <description>
         Aplicación para realizar denuncias de tipo Criminal, Municipal,
         Medio ambiental o de Derechos humanos, dentro del territorio de Guatemala.
@@ -55,6 +55,15 @@
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
         <icon src="res/ios/icon_ios.png" width="180" height="180"/>
+        <icon src="res/ios/icon_ios60.png" width="60" height="60"/>
+        <icon src="res/ios/icon_ios40.png" width="40" height="40"/>
+        <icon src="res/ios/icon_ios40x2.png" width="80" height="80"/>
+        <icon src="res/ios/icon_ios40x3.png" width="120" height="120"/>
+        <icon src="res/ios/icon_ios20.png" width="20" height="20"/>
+        <icon src="res/ios/icon_ios20x2.png" width="40" height="40"/>
+        <icon src="res/ios/icon_ios20x3.png" width="60" height="60"/>
+        <icon src="res/ios/icon_ios29x2.png" width="58" height="58"/>
+        <icon src="res/ios/icon_ios29x3.png" width="87" height="87"/>
         <icon src="res/ios/icon_ios60x2.png" width="120" height="120"/>
         <icon src="res/ios/icon_ios76.png" width="76" height="76"/>
         <icon src="res/ios/icon_ios76x2.png" width="152" height="152"/>
