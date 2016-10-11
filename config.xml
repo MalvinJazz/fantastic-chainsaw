@@ -62,6 +62,7 @@
         <icon src="res/ios/icon_ios20.png" width="20" height="20"/>
         <icon src="res/ios/icon_ios20x2.png" width="40" height="40"/>
         <icon src="res/ios/icon_ios20x3.png" width="60" height="60"/>
+        <icon src="res/ios/icon_ios29.png" width="29" height="29"/>
         <icon src="res/ios/icon_ios29x2.png" width="58" height="58"/>
         <icon src="res/ios/icon_ios29x3.png" width="87" height="87"/>
         <icon src="res/ios/icon_ios60x2.png" width="120" height="120"/>
