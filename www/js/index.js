@@ -896,13 +896,15 @@ function irPorPasos(paso){
     var celdatd = document.createElement('td');
     var link = document.createElement('a');
 
-    var texto = document.createTextNode('Denuncia');
-    celdath.appendChild(texto);
-    texto = document.createTextNode($('#denuncia').val());
-    celdatd.appendChild(texto);
-    fila.appendChild(celdath);
-    fila.appendChild(celdatd);
-    tbody.appendChild(fila);
+    if($('#denuncia').val()!=""){
+      var texto = document.createTextNode('Denuncia');
+      celdath.appendChild(texto);
+      texto = document.createTextNode($('#denuncia').val());
+      celdatd.appendChild(texto);
+      fila.appendChild(celdath);
+      fila.appendChild(celdatd);
+      tbody.appendChild(fila);
+    }
 
     fila = document.createElement('tr');
     celdath = document.createElement('th');
