@@ -1,7 +1,8 @@
 // Poner un ejemplo en el punto de referencia.
 // Declaraci�n de variables globales
 var myScroll, myScrollMenu, cuerpo, menuprincipal, wrapper, estado;
-var direccion = '192.168.0.89:8000'
+// var direccion = '192.168.0.89:8000'
+var direccion = 'www.denunciamovil.com';
 var geoLconfirmada = false;
 var institucion = [];
 var pasos = ['Denuncia', 'Descripción', 'Localización', 'Enviar'];
@@ -261,7 +262,8 @@ function enviarInfo(){
 
       data: data,
       // url: "http://"+direccion+"/denuncias/api/d1/denuncia/",
-      url: 'http://192.168.0.89:8000/denuncias/api/d1/denuncia/',
+      //url: 'http://192.168.0.89:8000/denuncias/api/d1/denuncia/',
+      url: 'http://www.denunciamovil.com/denuncias/api/d1/denuncia/',
       // "http://"+direccion+"/estadisticas/api/local/departamento?limit=22"
       type: 'POST',
       contentType: 'application/json',
