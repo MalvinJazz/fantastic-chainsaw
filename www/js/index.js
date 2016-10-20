@@ -91,9 +91,9 @@ var app = {
       google.charts.load('visualization', '1', {'packages': ['geochart', 'corechart']});
       new FastClick(document.body);
       navigator.notification.alert(
-        'Tus datos e identidad permanecerán completamente anonimos, toda la información de Denuncia Móvil está cifrada.',
+        'Tus datos e identidad permanecerán completamente anonimos, toda la información de DenunciApp está cifrada.',
         null,
-        'Denuncia Movil',
+        'DenunciApp',
         'Continuar'
       );
       // checkConnection();
@@ -250,9 +250,9 @@ function enviarInfo(){
   })
 
   navigator.notification.alert(
-    'Por tu seguridad, nadie, inlcuyendo al equipo de Denuncia Móvil, puede saber quien denuncia.',
+    'Por tu seguridad, nadie, inlcuyendo al equipo de DenunciApp, puede saber quien denuncia.',
       null,
-    'Denuncia Movil',
+    'DenunciApp',
     'Continuar'
   );
 
@@ -786,7 +786,7 @@ function menu(opcion){
           'Ocurrió un error, intenta de nuevo más tarde.',
           // err,
             null,
-          'Denuncia Movil',
+          'DenunciApp',
           'Continuar'
         );
         menu('1');
