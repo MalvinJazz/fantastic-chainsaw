@@ -60,6 +60,8 @@ p{
   position: relative;
 	width: 80%;
   max-width: 260px;
+	font-size: small;
+	font-family: 'Roboto', sans-serif;
 }
 
 ul.selector > li{
@@ -771,7 +773,7 @@ color: black;
 #cabecera{
 	font-family: 'Montserrat', sans-serif;
 	font-weight: lighter;
-	font-size: 30px;
+	font-size: 25px;
 }
 
 #paso1 i{
@@ -788,7 +790,7 @@ color: black;
 
 .paso-cabecera{
 	/*font-family: 'Montserrat', sans-serif;*/
-	font-weight: lighter;
+	font-weight: bold;
 	font-size: x-large;
 	color: #47525e;
 }
@@ -816,6 +818,7 @@ a#continuar{
 div>div>label{
 	font-family: 'Montserrat', sans-serif;
 	font-weight: lighter;
+	font-size: larger;
 }
 
 div>label, div>span{

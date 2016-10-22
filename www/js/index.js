@@ -2,7 +2,7 @@
 // Declaraci�n de variables globales
 var myScroll, myScrollMenu, cuerpo, menuprincipal, wrapper, estado;
 // var direccion = '192.168.0.89:8000'
-var direccion = 'www.denunciamovil.com';
+var direccion = 'www.denunciappguatemala.com';
 var geoLconfirmada = false;
 var institucion = [];
 var pasos = ['Denuncia', 'Descripción', 'Localización', 'Enviar'];
@@ -250,12 +250,12 @@ function enviarInfo(){
 
   })
 
-  navigator.notification.alert(
-    'Por tu seguridad, nadie, inlcuyendo al equipo de DenunciApp, puede saber quien denuncia.',
-      null,
-    'DenunciApp',
-    'Continuar'
-  );
+  // navigator.notification.alert(
+  //   'Por tu seguridad, nadie, inlcuyendo al equipo de DenunciApp, puede saber quien denuncia.',
+  //     null,
+  //   'DenunciApp',
+  //   'Continuar'
+  // );
 
   try{
     $.ajax({
@@ -263,7 +263,7 @@ function enviarInfo(){
       data: data,
       // url: "http://"+direccion+"/denuncias/api/d1/denuncia/",
       //url: 'http://192.168.0.89:8000/denuncias/api/d1/denuncia/',
-      url: 'http://www.denunciamovil.com/denuncias/api/d1/denuncia/',
+      url: 'http://www.denunciappguatemala.com/denuncias/api/d1/denuncia/',
       // "http://"+direccion+"/estadisticas/api/local/departamento?limit=22"
       type: 'POST',
       contentType: 'application/json',
@@ -282,6 +282,16 @@ function enviarInfo(){
           myScroll.refresh();
           myScroll.scrollTo(0,0);
           geoLconfirmada = false;
+          $('#dep .hm').text("Seleccionar departamento");
+          $('#dep .hm')[0].dataset.code = 0;
+          $('#muni_id .hm').text("Seleccionar municipio");
+          $('#muni_id .hm')[0].dataset.code = 0;
+          $('#zona_id .hm').text("Seleccionar zona");
+          $('#zona_id .hm')[0].dataset.code = 0;
+          $('#id_tipo .hm').text("Seleccionar tipo");
+          $('#id_tipo .hm')[0].dataset.code = 0;
+          $('#motivo_id .hm').text("Seleccionar motivo");
+          $('#motivo_id .hm')[0].dataset.code = 0;
         },
         404: function(){
          navigator.notification.alert(
@@ -311,6 +321,7 @@ function enviarInfo(){
       processData: false
 
     });
+
   }catch(err){
     alert(err);
   }
@@ -985,7 +996,7 @@ function irPorPasos(paso){
 
     if (!geoLconfirmada) {
       navigator.notification.confirm(
-        'Esto hace que tu denuncia tenga una ubicación más exacta.',
+        'Esto hace que tu denuncia tenga una ubicación más exacta. Recuerda que tu denuncia es totalmente anónima.',
         onConfirm,
         '¿Nos brindarías tu ubicación actual?',
         ['Si', 'No']
