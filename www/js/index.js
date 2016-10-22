@@ -955,24 +955,24 @@ function irPorPasos(paso){
     fila.appendChild(celdatd);
     tbody.appendChild(fila);
 
-    fila = document.createElement('tr');
-    celdath = document.createElement('th');
-    celdatd = document.createElement('td');
-    texto = document.createTextNode('Archivo');
-    $("#photo").show();
-    celdath.appendChild(texto);
+    // fila = document.createElement('tr');
+    // celdath = document.createElement('th');
+    // celdatd = document.createElement('td');
+    // texto = document.createTextNode('Archivo');
+    // $("#photo").show();
+    // celdath.appendChild(texto);
     if($('#archivo').val()!=""){
-      texto = document.createElement('a');
-      texto.appendChild(document.createTextNode('Si'));
+      // texto = document.createElement('a');
+      //texto.appendChild(document.createTextNode('Si'));
       texto.href = 'javascript:mostrar();';
     }
-    else
-      texto = document.createTextNode('No');
-    celdatd.appendChild(texto);
-    celdatd.id = 'archivo_celda';
-    fila.appendChild(celdath);
-    fila.appendChild(celdatd);
-    tbody.appendChild(fila);
+    // else
+    //   texto = document.createTextNode('No');
+    // celdatd.appendChild(texto);
+    // celdatd.id = 'archivo_celda';
+    // fila.appendChild(celdath);
+    // fila.appendChild(celdatd);
+    // tbody.appendChild(fila);
 
 
 
