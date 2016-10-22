@@ -1,7 +1,8 @@
 // Poner un ejemplo en el punto de referencia.
 // Declaraci�n de variables globales
 var myScroll, myScrollMenu, cuerpo, menuprincipal, wrapper, estado;
-var direccion = '192.168.0.88:8000'
+// var direccion = '192.168.0.89:8000'
+var direccion = 'www.denunciamovil.com';
 var geoLconfirmada = false;
 var institucion = [];
 var pasos = ['Denuncia', 'Descripción', 'Localización', 'Enviar'];
@@ -91,9 +92,9 @@ var app = {
       google.charts.load('visualization', '1', {'packages': ['geochart', 'corechart']});
       new FastClick(document.body);
       navigator.notification.alert(
-        'Tus datos e identidad permanecerán completamente anonimos, toda la información de Denuncia Móvil está cifrada.',
+        'Tus datos e identidad permanecerán completamente anonimos, toda la información de DenunciApp está cifrada.',
         null,
-        'Denuncia Movil',
+        'DenunciApp',
         'Continuar'
       );
       // checkConnection();
@@ -250,9 +251,9 @@ function enviarInfo(){
   })
 
   navigator.notification.alert(
-    'Por tu seguridad, nadie, inlcuyendo al equipo de Denuncia Móvil, puede saber quien denuncia.',
+    'Por tu seguridad, nadie, inlcuyendo al equipo de DenunciApp, puede saber quien denuncia.',
       null,
-    'Denuncia Movil',
+    'DenunciApp',
     'Continuar'
   );
 
@@ -261,7 +262,8 @@ function enviarInfo(){
 
       data: data,
       // url: "http://"+direccion+"/denuncias/api/d1/denuncia/",
-      url: 'http://192.168.0.88:8000/denuncias/api/d1/denuncia/',
+      //url: 'http://192.168.0.89:8000/denuncias/api/d1/denuncia/',
+      url: 'http://www.denunciamovil.com/denuncias/api/d1/denuncia/',
       // "http://"+direccion+"/estadisticas/api/local/departamento?limit=22"
       type: 'POST',
       contentType: 'application/json',
@@ -786,7 +788,7 @@ function menu(opcion){
           'Ocurrió un error, intenta de nuevo más tarde.',
           // err,
             null,
-          'Denuncia Movil',
+          'DenunciApp',
           'Continuar'
         );
         menu('1');
@@ -896,13 +898,15 @@ function irPorPasos(paso){
     var celdatd = document.createElement('td');
     var link = document.createElement('a');
 
-    var texto = document.createTextNode('Denuncia');
-    celdath.appendChild(texto);
-    texto = document.createTextNode($('#denuncia').val());
-    celdatd.appendChild(texto);
-    fila.appendChild(celdath);
-    fila.appendChild(celdatd);
-    tbody.appendChild(fila);
+    if($('#denuncia').val()!=""){
+      var texto = document.createTextNode('Denuncia');
+      celdath.appendChild(texto);
+      texto = document.createTextNode($('#denuncia').val());
+      celdatd.appendChild(texto);
+      fila.appendChild(celdath);
+      fila.appendChild(celdatd);
+      tbody.appendChild(fila);
+    }
 
     fila = document.createElement('tr');
     celdath = document.createElement('th');

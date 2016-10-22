@@ -770,7 +770,7 @@ color: black;
 
 #cabecera{
 	font-family: 'Montserrat', sans-serif;
-	font-weight: bolder;
+	font-weight: lighter;
 	font-size: 30px;
 }
 
@@ -788,7 +788,7 @@ color: black;
 
 .paso-cabecera{
 	/*font-family: 'Montserrat', sans-serif;*/
-	font-weight: lighter;
+	font-weight: bold;
 	font-size: x-large;
 	color: #47525e;
 }
