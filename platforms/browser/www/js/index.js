@@ -1,7 +1,8 @@
 // Poner un ejemplo en el punto de referencia.
 // Declaraci�n de variables globales
 var myScroll, myScrollMenu, cuerpo, menuprincipal, wrapper, estado;
-var direccion = '192.168.0.88:8000'
+// var direccion = '192.168.0.89:8000'
+var direccion = 'www.denunciappguatemala.com';
 var geoLconfirmada = false;
 var institucion = [];
 var pasos = ['Denuncia', 'Descripción', 'Localización', 'Enviar'];
@@ -17,6 +18,11 @@ wrapper = document.getElementById("wrapper");
 var app = {
     // Constructor de la app
     initialize: function() {
+
+      var isAndroid = navigator.userAgent.toLowerCase().indexOf("android") > -1;
+      if (isAndroid) {
+        $('body').css('margin-top', '0px');
+      }
 
       // Estado inicial mostrando capa cuerpo
       estado="cuerpo";
@@ -86,9 +92,9 @@ var app = {
       google.charts.load('visualization', '1', {'packages': ['geochart', 'corechart']});
       new FastClick(document.body);
       navigator.notification.alert(
-        'Tus datos e identidad permanecerán completamente anonimos, toda la información de Denuncia Móvil está cifrada.',
+        'Tus datos e identidad permanecerán completamente anonimos, toda la información de DenunciApp está cifrada.',
         null,
-        'Denuncia Movil',
+        'DenunciApp',
         'Continuar'
       );
       // checkConnection();
@@ -109,7 +115,10 @@ var app = {
 };
 
 function cerrar(){
-  navigator.app.exitApp();
+  var isAndroid = navigator.userAgent.toLowerCase().indexOf("android") > -1;
+  if (isAndroid) {
+    navigator.app.exitApp();;
+  }
 }
 
 function mostrarDoc(evt) {
@@ -241,19 +250,20 @@ function enviarInfo(){
 
   })
 
-  navigator.notification.alert(
-    'Por tu seguridad, nadie, inlcuyendo al equipo de Denuncia Móvil, puede saber quien denuncia.',
-      null,
-    'Denuncia Movil',
-    'Continuar'
-  );
+  // navigator.notification.alert(
+  //   'Por tu seguridad, nadie, inlcuyendo al equipo de DenunciApp, puede saber quien denuncia.',
+  //     null,
+  //   'DenunciApp',
+  //   'Continuar'
+  // );
 
   try{
     $.ajax({
 
       data: data,
       // url: "http://"+direccion+"/denuncias/api/d1/denuncia/",
-      url: 'http://192.168.0.88:8000/denuncias/api/d1/denuncia/',
+      //url: 'http://192.168.0.89:8000/denuncias/api/d1/denuncia/',
+      url: 'http://www.denunciappguatemala.com/denuncias/api/d1/denuncia/',
       // "http://"+direccion+"/estadisticas/api/local/departamento?limit=22"
       type: 'POST',
       contentType: 'application/json',
@@ -272,6 +282,16 @@ function enviarInfo(){
           myScroll.refresh();
           myScroll.scrollTo(0,0);
           geoLconfirmada = false;
+          $('#dep .hm').text("Seleccionar departamento");
+          $('#dep .hm')[0].dataset.code = 0;
+          $('#muni_id .hm').text("Seleccionar municipio");
+          $('#muni_id .hm')[0].dataset.code = 0;
+          $('#zona_id .hm').text("Seleccionar zona");
+          $('#zona_id .hm')[0].dataset.code = 0;
+          $('#id_tipo .hm').text("Seleccionar tipo");
+          $('#id_tipo .hm')[0].dataset.code = 0;
+          $('#motivo_id .hm').text("Seleccionar motivo");
+          $('#motivo_id .hm')[0].dataset.code = 0;
         },
         404: function(){
          navigator.notification.alert(
@@ -301,6 +321,7 @@ function enviarInfo(){
       processData: false
 
     });
+
   }catch(err){
     alert(err);
   }
@@ -580,20 +601,25 @@ function scrollear(element){
 
     setTimeout(function(){
       myScroll.refresh();
-      myScroll.scrollTo(0, -(element.offset().top - 100) , 100);
+      // myScroll.scrollTo(0, -(element.offset().top - 100) , 100);
+      myScroll.scrollToElement(element, 200, true, true);
     }, 700);
 
 }
 
 function getDepartamentos(){
 
-  $('input[type=text], textarea').on('touchstart' ,function(ev){
-    scrollear($(this));
-  });
+  var isAndroid = navigator.userAgent.toLowerCase().indexOf("android") > -1;
 
-  $('input[type=text], textarea').after().click(function(ev){
-    scrollear($(this));
-  });
+  if (isAndroid) {
+    $('input[type=text], textarea').on('touchstart' ,function(ev){
+      scrollear(this);
+    });
+
+    $('input[type=text], textarea').after().click(function(ev){
+      scrollear(this);
+    });
+  }
 
   $("#dep .hm").after().click(function(){
     $("#dep .mn").slideToggle();
@@ -773,7 +799,7 @@ function menu(opcion){
           'Ocurrió un error, intenta de nuevo más tarde.',
           // err,
             null,
-          'Denuncia Movil',
+          'DenunciApp',
           'Continuar'
         );
         menu('1');
@@ -883,13 +909,15 @@ function irPorPasos(paso){
     var celdatd = document.createElement('td');
     var link = document.createElement('a');
 
-    var texto = document.createTextNode('Denuncia');
-    celdath.appendChild(texto);
-    texto = document.createTextNode($('#denuncia').val());
-    celdatd.appendChild(texto);
-    fila.appendChild(celdath);
-    fila.appendChild(celdatd);
-    tbody.appendChild(fila);
+    if($('#denuncia').val()!=""){
+      var texto = document.createTextNode('Denuncia');
+      celdath.appendChild(texto);
+      texto = document.createTextNode($('#denuncia').val());
+      celdatd.appendChild(texto);
+      fila.appendChild(celdath);
+      fila.appendChild(celdatd);
+      tbody.appendChild(fila);
+    }
 
     fila = document.createElement('tr');
     celdath = document.createElement('th');
@@ -968,7 +996,7 @@ function irPorPasos(paso){
 
     if (!geoLconfirmada) {
       navigator.notification.confirm(
-        'Esto hace que tu denuncia tenga una ubicación más exacta.',
+        'Esto hace que tu denuncia tenga una ubicación más exacta. Recuerda que tu denuncia es totalmente anónima.',
         onConfirm,
         '¿Nos brindarías tu ubicación actual?',
         ['Si', 'No']
@@ -1046,6 +1074,14 @@ function drawGeoChart() {
 
       var chart = new google.visualization.GeoChart(document.getElementById('chart_div'));
       chart.draw(datos, options);
+
+      var zoomer = new IScroll('#chart_div', {
+        zoom: true,
+        scrollX: true,
+    		scrollY: true,
+    		mouseWheel: true,
+    		wheelAction: 'zoom'
+      });
 
       google.visualization.events.addListener(chart, 'select', function() {
       var seleccion = chart.getSelection();
@@ -1147,7 +1183,7 @@ function initMap(){
   if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function(position){
 
-        document.getElementById('mapa').style.height = (window.innerHeight*0.75) + 'px';
+        document.getElementById('mapa').style.height = (window.innerHeight*0.6) + 'px';
         console.log(window.innerHeight);
 
         var map = new GMaps({

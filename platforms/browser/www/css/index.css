@@ -36,6 +36,7 @@ body {
   width:100%;
   padding:0;
 	margin:0;
+	margin-top: 20px;
 	border:0;
 	position: fixed;
 	background-color: white;
@@ -59,6 +60,8 @@ p{
   position: relative;
 	width: 80%;
   max-width: 260px;
+	font-size: small;
+	font-family: 'Roboto', sans-serif;
 }
 
 ul.selector > li{
@@ -446,9 +449,9 @@ ul.selector > li > a {
 .page.right {
     -webkit-transform: translate3d(80%, 0, 0);
     transform: translate3d(80%, 0, 0);
-		-webkit-box-shadow: -5px 0px 5px 0px rgba(0,0,0,0.71);
-		-moz-box-shadow: -5px 0px 5px 0px rgba(0,0,0,0.71);
-		box-shadow: -5px 0px 5px 0px rgba(0,0,0,0.71);
+		-webkit-box-shadow: -5px 3px 5px 0px rgba(0,0,0,0.71);
+		-moz-box-shadow: -5px 3px 5px 0px rgba(0,0,0,0.71);
+		box-shadow: -5px 3px 5px 0px rgba(0,0,0,0.71);
 }
 
 .page.transition {
@@ -468,7 +471,6 @@ ul.selector > li > a {
   display: block;
   align-items: center;
   align-content: center;
-  padding-top: 30px;
   margin-top: 10px;
   margin-bottom: 100px;
   background-color: #FFF;
@@ -492,7 +494,7 @@ ul.selector > li > a {
 		border-radius: 10px;
 }
 
-.falso-boton:active {
+#content .falso-boton:active {
     background-color: #363F45;
 }
 
@@ -770,8 +772,8 @@ color: black;
 
 #cabecera{
 	font-family: 'Montserrat', sans-serif;
-	font-weight: bolder;
-	font-size: 30px;
+	font-weight: lighter;
+	font-size: 25px;
 }
 
 #paso1 i{
@@ -787,7 +789,7 @@ color: black;
 }
 
 .paso-cabecera{
-	font-family: 'Montserrat', sans-serif;
+	/*font-family: 'Montserrat', sans-serif;*/
 	font-weight: bold;
 	font-size: x-large;
 	color: #47525e;
@@ -816,6 +818,7 @@ a#continuar{
 div>div>label{
 	font-family: 'Montserrat', sans-serif;
 	font-weight: lighter;
+	font-size: larger;
 }
 
 div>label, div>span{

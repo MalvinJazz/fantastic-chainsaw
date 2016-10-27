@@ -1075,6 +1075,14 @@ function drawGeoChart() {
       var chart = new google.visualization.GeoChart(document.getElementById('chart_div'));
       chart.draw(datos, options);
 
+      var zoomer = new IScroll('#chart_div', {
+        zoom: true,
+        scrollX: true,
+    		scrollY: true,
+    		mouseWheel: true,
+    		wheelAction: 'zoom'
+      });
+
       google.visualization.events.addListener(chart, 'select', function() {
       var seleccion = chart.getSelection();
       var code = datos.getValue(seleccion[0].row, 0);
