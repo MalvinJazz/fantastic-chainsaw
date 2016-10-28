@@ -1080,6 +1080,8 @@ function drawGeoChart() {
         scrollX: true,
     		scrollY: true,
     		mouseWheel: true,
+        mouseWheel: true,
+        freeScroll: true,
     		wheelAction: 'zoom'
       });
 
