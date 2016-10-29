@@ -56,14 +56,14 @@ var app = {
       var hammertime = new Hammer(wrapper, {domEvents: true});
 
       hammertime.on('swiperight', function(ev){
-        if(!$('#mapa').find(ev.target).length){
+        if(!$('#mapa').find(ev.target).length && !$('#chart_div').find(ev.target).length){
           if(estado=="cuerpo")
             menu('menu');
         }
       });
 
       hammertime.on('swipeleft', function(ev){
-        if(!$('#mapa').find(ev.target).length){
+        if(!$('#mapa').find(ev.target).length && !$('#chart_div').find(ev.target).length){
           if(estado!="cuerpo")
             menu('menu');
         }
@@ -1027,6 +1027,7 @@ function irPorPasos(paso){
 function drawGeoChart() {
 
   $('#cargando').hide();
+  // document.getElementById("columnchart").style.display = 'none';
   $("#columnchart").hide();
 
   $(document).ajaxStart(function(){
@@ -1080,9 +1081,26 @@ function drawGeoChart() {
         scrollX: true,
     		scrollY: true,
     		mouseWheel: true,
-        mouseWheel: true,
         freeScroll: true,
-    		wheelAction: 'zoom'
+    		wheelAction: 'zoom',
+        bounce: false
+      });
+
+      zoomer.on('zoomStart', function(){
+        myScroll.disable();
+      });
+
+      zoomer.on('scrollStart', function(){
+        if(zoomer.scale != 1)
+          myScroll.disable();
+      });
+
+      zoomer.on('zoomEnd', function(){
+        myScroll.enable();
+      });
+
+      zoomer.on('scrollEnd', function(){
+        myScroll.enable();
       });
 
       google.visualization.events.addListener(chart, 'select', function() {

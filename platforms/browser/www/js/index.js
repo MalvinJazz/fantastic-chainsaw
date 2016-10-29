@@ -56,14 +56,14 @@ var app = {
       var hammertime = new Hammer(wrapper, {domEvents: true});
 
       hammertime.on('swiperight', function(ev){
-        if(!$('#mapa').find(ev.target).length){
+        if(!$('#mapa').find(ev.target).length && !$('#chart_div').find(ev.target).length){
           if(estado=="cuerpo")
             menu('menu');
         }
       });
 
       hammertime.on('swipeleft', function(ev){
-        if(!$('#mapa').find(ev.target).length){
+        if(!$('#mapa').find(ev.target).length && !$('#chart_div').find(ev.target).length){
           if(estado!="cuerpo")
             menu('menu');
         }
@@ -263,7 +263,7 @@ function enviarInfo(){
       data: data,
       // url: "http://"+direccion+"/denuncias/api/d1/denuncia/",
       //url: 'http://192.168.0.89:8000/denuncias/api/d1/denuncia/',
-      url: 'http://www.denunciappguatemala.com/denuncias/api/d1/denuncia/',
+      url: 'https://www.denunciappguatemala.com/denuncias/api/d1/denuncia/',
       // "http://"+direccion+"/estadisticas/api/local/departamento?limit=22"
       type: 'POST',
       contentType: 'application/json',
@@ -357,7 +357,7 @@ function busquedaMotivo(id){
     type: 'get',
     dataType: 'json',
     timeout: 3000,
-    url: 'http://'+direccion+'/denuncias/api/d1/motivo?tipo='+id,
+    url: 'https://'+direccion+'/denuncias/api/d1/motivo?tipo='+id,
     success: function(data){
       institucion = [];
       var motivos = document.getElementById('motivo_id');
@@ -425,7 +425,7 @@ function busquedaZona(id){
     type: 'get',
     dataType: 'json',
     timeout: 3000,
-    url: "http://"+direccion+"/estadisticas/api/local/direccion/?municipio__id="+id,
+    url: "https://"+direccion+"/estadisticas/api/local/direccion/?municipio__id="+id,
     success: function(data){
 
       var zonas = document.getElementById("zona_id");
@@ -487,7 +487,7 @@ function busquedaMunicipio(id){
     type: 'get',
     dataType: 'json',
     timeout: 3000,
-    url: "http://"+direccion+"/estadisticas/api/local/municipio/?departamento__id="+id,
+    url: "https://"+direccion+"/estadisticas/api/local/municipio/?departamento__id="+id,
     success: function(data){
 
       var municipios = document.getElementById("muni_id");
@@ -704,7 +704,7 @@ function getDepartamentos(){
     type: 'get',
     dataType: "json",
     timeout: 3000,
-    url: "http://"+direccion+"/estadisticas/api/local/departamento?limit=22",
+    url: "https://"+direccion+"/estadisticas/api/local/departamento?limit=22",
     success: function(data){
       for(var i=0; i<data.objects.length; i++){
 
@@ -955,24 +955,24 @@ function irPorPasos(paso){
     fila.appendChild(celdatd);
     tbody.appendChild(fila);
 
-    fila = document.createElement('tr');
-    celdath = document.createElement('th');
-    celdatd = document.createElement('td');
-    texto = document.createTextNode('Archivo');
-    $("#photo").show();
-    celdath.appendChild(texto);
+    // fila = document.createElement('tr');
+    // celdath = document.createElement('th');
+    // celdatd = document.createElement('td');
+    // texto = document.createTextNode('Archivo');
+    // $("#photo").show();
+    // celdath.appendChild(texto);
     if($('#archivo').val()!=""){
-      texto = document.createElement('a');
-      texto.appendChild(document.createTextNode('Si'));
+      // texto = document.createElement('a');
+      //texto.appendChild(document.createTextNode('Si'));
       texto.href = 'javascript:mostrar();';
     }
-    else
-      texto = document.createTextNode('No');
-    celdatd.appendChild(texto);
-    celdatd.id = 'archivo_celda';
-    fila.appendChild(celdath);
-    fila.appendChild(celdatd);
-    tbody.appendChild(fila);
+    // else
+    //   texto = document.createTextNode('No');
+    // celdatd.appendChild(texto);
+    // celdatd.id = 'archivo_celda';
+    // fila.appendChild(celdath);
+    // fila.appendChild(celdatd);
+    // tbody.appendChild(fila);
 
 
 
@@ -1027,6 +1027,7 @@ function irPorPasos(paso){
 function drawGeoChart() {
 
   $('#cargando').hide();
+  document.getElementById('columnchart').style.display = 'none';
   $("#columnchart").hide();
 
   $(document).ajaxStart(function(){
@@ -1047,7 +1048,7 @@ function drawGeoChart() {
 
     type: 'get',
     dataType: "json",
-    url: "http://"+direccion+"/estadisticas/api/local/departamento?limit=22",
+    url: "https://"+direccion+"/estadisticas/api/local/departamento?limit=22",
     timeout: 3000,
     success: function(data){
       for(var i=0; i<data.objects.length; i++){
@@ -1080,7 +1081,26 @@ function drawGeoChart() {
         scrollX: true,
     		scrollY: true,
     		mouseWheel: true,
-    		wheelAction: 'zoom'
+        freeScroll: true,
+    		wheelAction: 'zoom',
+        bounce: false
+      });
+
+      zoomer.on('zoomStart', function(){
+        myScroll.disable();
+      });
+
+      zoomer.on('scrollStart', function(){
+        if(zoomer.scale != 1)
+          myScroll.disable();
+      });
+
+      zoomer.on('zoomEnd', function(){
+        myScroll.enable();
+      });
+
+      zoomer.on('scrollEnd', function(){
+        myScroll.enable();
       });
 
       google.visualization.events.addListener(chart, 'select', function() {
@@ -1096,7 +1116,7 @@ function drawGeoChart() {
       $.ajax({
 
         data: {'code': code},
-        url: "http://"+direccion+"/estadisticas/obtD/",
+        url: "https://"+direccion+"/estadisticas/obtD/",
         type: 'get',
         success: function(data){
 
@@ -1194,7 +1214,7 @@ function initMap(){
         });
 
         var image = {
-          url: 'http://'+direccion+'/static/images/marcadores.png',
+          url: 'https://'+direccion+'/static/images/marcadores.png',
           size: new google.maps.Size(36,46),
           origin: new google.maps.Point(0,0),
           anchor: new google.maps.Point(0,17)
@@ -1217,7 +1237,7 @@ function initMap(){
           type: 'get',
           dataType: "json",
           timeout: 3000,
-          url: "http://"+direccion+"/denuncias/geo_denuncias/",
+          url: "https://"+direccion+"/denuncias/geo_denuncias/",
           success: function(data){
             contador = 0;
 
@@ -1225,7 +1245,7 @@ function initMap(){
             for(var i=0; i<data.length; i++){
 
               image = {
-                url: 'http://'+direccion+'/static/images/marcadores.png',
+                url: 'https://'+direccion+'/static/images/marcadores.png',
                 size: new google.maps.Size(36,46),
                 origin: new google.maps.Point(data[i].sprite,0),
                 anchor: new google.maps.Point(0,17)
