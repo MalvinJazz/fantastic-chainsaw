@@ -1027,18 +1027,40 @@ function irPorPasos(paso){
 function drawGeoChart() {
 
   $('#cargando').hide();
-  document.getElementById('columnchart').style.display = 'none';
+  // document.getElementById("columnchart").style.display = 'none';
   $("#columnchart").hide();
 
   $(document).ajaxStart(function(){
     console.log('ajaxStart');
     $('#cargando').show();
-  })
+  });
 
   $(document).ajaxStop(function(){
     console.log('ajaxStop');
     $('#cargando').hide();
-  })
+  });
+
+  setTimeout(function(){
+    $("ul#tipo .hm").after().click(function(){
+      $("ul#tipo .mn").slideToggle();
+      if($("ul#tipo .hm")[0].className.includes('abajo'))
+        $("ul#tipo .hm").removeClass('abajo').addClass('arriba');
+      else if($("ul#tipo .hm")[0].className.includes('arriba'))
+        $("ul#tipo .hm").removeClass('arriba').addClass('abajo');
+      setTimeout(function(){myScroll.refresh()}, 300);
+    });
+    $("#tipo .mn").after().click(function(){
+      $('#tipo .hm').text($(this).text());
+      $('#tipo .hm')[0].dataset.code = $(this)[0].dataset.code;
+      $("#tipo .mn").slideToggle();
+      // busquedaMotivo($(this)[0].dataset.code);
+      if($("#tipo .hm")[0].className.includes('abajo'))
+        $("#tipo .hm").removeClass('abajo').addClass('arriba');
+      else if($("#tipo .hm")[0].className.includes('arriba'))
+        $("#tipo .hm").removeClass('arriba').addClass('abajo');
+      setTimeout(function(){myScroll.refresh()}, 300);
+    });
+  }, 300);
 
   var deps = [
       ['States','Departamento', 'Denuncias']
@@ -1183,6 +1205,7 @@ function drawGeoChart() {
     }
 
   });
+
 
 }
 

@@ -1026,6 +1026,11 @@ function irPorPasos(paso){
 
 function drawGeoChart() {
 
+  var estadisticas;
+  var deps = [
+      ['States','Departamento', 'Denuncias']
+    ];
+
   $('#cargando').hide();
   // document.getElementById("columnchart").style.display = 'none';
   $("#columnchart").hide();
@@ -1033,16 +1038,65 @@ function drawGeoChart() {
   $(document).ajaxStart(function(){
     console.log('ajaxStart');
     $('#cargando').show();
-  })
+  });
 
   $(document).ajaxStop(function(){
     console.log('ajaxStop');
     $('#cargando').hide();
-  })
+  });
 
-  var deps = [
-      ['States','Departamento', 'Denuncias']
-    ];
+  setTimeout(function(){
+    $("ul#tipo .hm").after().click(function(){
+      $("ul#tipo .mn").slideToggle();
+      if($("ul#tipo .hm")[0].className.includes('abajo'))
+        $("ul#tipo .hm").removeClass('abajo').addClass('arriba');
+      else if($("ul#tipo .hm")[0].className.includes('arriba'))
+        $("ul#tipo .hm").removeClass('arriba').addClass('abajo');
+      setTimeout(function(){myScroll.refresh()}, 300);
+    });
+    $("#tipo .mn").after().click(function(){
+      $('#tipo .hm').text($(this).text());
+      $('#tipo .hm')[0].dataset.code = $(this)[0].dataset.code;
+      $("#tipo .mn").slideToggle();
+      deps = [
+          ['States','Departamento', 'Denuncias']
+        ];
+      // busquedaMotivo($(this)[0].dataset.code);
+      for(var i=0; i<estadisticas.objects.length; i++){
+
+        var nuevo = [
+          estadisticas.objects[i].codigo,
+          estadisticas.objects[i].nombre
+        ];
+
+        switch ($(this)[0].dataset.code) {
+          case 'CR':
+            nuevo.push(estadisticas.objects[i].CR);
+            break;
+          case 'MU':
+            nuevo.push(estadisticas.objects[i].MU);
+            break;
+          case 'MA':
+            nuevo.push(estadisticas.objects[i].MA);
+            break;
+          case 'DH':
+            nuevo.push(estadisticas.objects[i].DH);
+            break;
+          default:
+            nuevo.push(estadisticas.objects[i].denuncias);
+        }
+
+        deps.push(nuevo);
+      }
+      dibujar_chart(deps, $(this)[0].dataset.code);
+
+      if($("#tipo .hm")[0].className.includes('abajo'))
+        $("#tipo .hm").removeClass('abajo').addClass('arriba');
+      else if($("#tipo .hm")[0].className.includes('arriba'))
+        $("#tipo .hm").removeClass('arriba').addClass('abajo');
+      setTimeout(function(){myScroll.refresh()}, 300);
+    });
+  }, 300);
 
   $.ajax({
 
@@ -1051,6 +1105,9 @@ function drawGeoChart() {
     url: "https://"+direccion+"/estadisticas/api/local/departamento?limit=22",
     timeout: 3000,
     success: function(data){
+
+      estadisticas = data;
+
       for(var i=0; i<data.objects.length; i++){
 
         var nuevo = [
@@ -1062,115 +1119,8 @@ function drawGeoChart() {
         deps.push(nuevo);
 
       }
-      var datos = new google.visualization.arrayToDataTable(deps);
 
-      var options = {
-         backgroundColor: '#white',
-         datalessRegionColor: '#C0C0C0',
-         defaultColor: '#4D4D50',
-         region: 'GT',
-         resolution: 'provinces',
-         colorAxis: {colors: ['#FDF1CB','#FFC400','#DF0000']},
-      };
-
-      var chart = new google.visualization.GeoChart(document.getElementById('chart_div'));
-      chart.draw(datos, options);
-
-      var zoomer = new IScroll('#chart_div', {
-        zoom: true,
-        scrollX: true,
-    		scrollY: true,
-    		mouseWheel: true,
-        freeScroll: true,
-    		wheelAction: 'zoom',
-        bounce: false
-      });
-
-      zoomer.on('zoomStart', function(){
-        myScroll.disable();
-      });
-
-      zoomer.on('scrollStart', function(){
-        if(zoomer.scale != 1)
-          myScroll.disable();
-      });
-
-      zoomer.on('zoomEnd', function(){
-        myScroll.enable();
-      });
-
-      zoomer.on('scrollEnd', function(){
-        myScroll.enable();
-      });
-
-      google.visualization.events.addListener(chart, 'select', function() {
-      var seleccion = chart.getSelection();
-      var code = datos.getValue(seleccion[0].row, 0);
-      var dep = datos.getValue(seleccion[0].row, 1);
-      console.log(code);
-
-
-      document.getElementById("columnchart").style.display = 'block';
-      $("#columnchart").show();
-
-      $.ajax({
-
-        data: {'code': code},
-        url: "https://"+direccion+"/estadisticas/obtD/",
-        type: 'get',
-        success: function(data){
-
-          var lista = [[
-            'Municipio',
-            'Cantidad',
-            { role: 'annotation' }
-          ]];
-
-
-         for(var i=0; i<data.length;i++){
-           lista.push([
-             data[i].fields.nombre,
-             data[i].cant,
-             data[i].cant
-           ]);
-         }
-
-          var tabla = new google.visualization.arrayToDataTable(lista);
-
-          var options1 = {
-            title: dep,
-            legend: { position: 'none'},
-            bar: { groupWidth: '75%' },
-            animation:{
-                duration: 1500,
-                easing: 'out',
-                startup: true,
-            },
-            colors: ['#4370bb'],
-            hAxis:{
-              format: 'decimal',
-              minValue: 0,
-            },
-          };
-
-          var chart1 = new google.visualization.BarChart(document.getElementById('columnchart'));
-          chart1.draw(tabla, options1);
-          myScroll.refresh();
-          myScroll.scrollToElement('#columnchart', 800, true, true);
-        },
-        error: function(){
-          navigator.notification.alert(
-            'Ha ocurrido un error con el servidor, intenta de nuevo más tarde.',
-              null,
-            'Error',
-            'OK'
-          );
-        }
-
-      })
-
-
-    });
+      dibujar_chart(deps);
 
     },
     error: function(){
@@ -1183,6 +1133,137 @@ function drawGeoChart() {
     }
 
   });
+}
+
+function dibujar_chart(deps, tipo){
+  var datos = new google.visualization.arrayToDataTable(deps);
+
+  var colores;
+
+  switch (tipo) {
+    case 'CR':
+      colores = ['#88c3c3', '#406060', '#204040'];
+      break;
+    case 'MU':
+      colores = ['#9bb3bf', '#4060a0', '#404060'];
+      break;
+    case 'MA':
+      colores = ['#a0a080', '#406040', '#204020'];
+      break;
+    case 'DH':
+      colores = ['#f0f0f0', '#604020', '#402020'];
+      break;
+    default:
+      colores = ['#FDF1CB', '#FFC400', '#DF0000'];
+  }
+
+  var options = {
+     backgroundColor: '#white',
+     datalessRegionColor: '#C0C0C0',
+     defaultColor: '#4D4D50',
+     region: 'GT',
+     resolution: 'provinces',
+     colorAxis: {colors: colores},
+  };
+
+  var chart = new google.visualization.GeoChart(document.getElementById('chart_div'));
+  chart.draw(datos, options);
+
+  var zoomer = new IScroll('#chart_div', {
+    zoom: true,
+    scrollX: true,
+    scrollY: true,
+    mouseWheel: true,
+    freeScroll: true,
+    wheelAction: 'zoom',
+    bounce: false
+  });
+
+  zoomer.on('zoomStart', function(){
+    myScroll.disable();
+  });
+
+  zoomer.on('scrollStart', function(){
+    if(zoomer.scale != 1)
+      myScroll.disable();
+  });
+
+  zoomer.on('zoomEnd', function(){
+    myScroll.enable();
+  });
+
+  zoomer.on('scrollEnd', function(){
+    myScroll.enable();
+  });
+
+  google.visualization.events.addListener(chart, 'select', function() {
+  var seleccion = chart.getSelection();
+  var code = datos.getValue(seleccion[0].row, 0);
+  var dep = datos.getValue(seleccion[0].row, 1);
+  console.log(code);
+
+
+  document.getElementById("columnchart").style.display = 'block';
+  $("#columnchart").show();
+
+  $.ajax({
+
+    data: {'code': code},
+    url: "https://"+direccion+"/estadisticas/obtD/",
+    type: 'get',
+    success: function(data){
+
+      var lista = [[
+        'Municipio',
+        'Cantidad',
+        { role: 'annotation' }
+      ]];
+
+
+     for(var i=0; i<data.length;i++){
+       lista.push([
+         data[i].fields.nombre,
+         data[i].cant,
+         data[i].cant
+       ]);
+     }
+
+      var tabla = new google.visualization.arrayToDataTable(lista);
+
+      var options1 = {
+        title: dep,
+        legend: { position: 'none'},
+        bar: { groupWidth: '75%' },
+        animation:{
+            duration: 1500,
+            easing: 'out',
+            startup: true,
+        },
+        colors: ['#4370bb'],
+        hAxis:{
+          format: 'decimal',
+          minValue: 0,
+        },
+      };
+
+      var chart1 = new google.visualization.BarChart(document.getElementById('columnchart'));
+      chart1.draw(tabla, options1);
+      myScroll.refresh();
+      myScroll.scrollToElement('#columnchart', 800, true, true);
+    },
+    error: function(){
+      navigator.notification.alert(
+        'Ha ocurrido un error con el servidor, intenta de nuevo más tarde.',
+          null,
+        'Error',
+        'OK'
+      );
+    }
+
+  })
+
+
+});
 
 }
 
