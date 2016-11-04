@@ -1297,6 +1297,24 @@ function dibujar_chart(deps, tipo){
         };
 
         setTimeout(function(){
+          $('#retorno').on('click', function(){
+            try{
+              $('#contenidoCuerpo').load("opciones/opcion2.html");
+              google.charts.setOnLoadCallback(drawGeoChart);
+
+              myScroll.refresh();
+          		myScroll.scrollTo(0,0);
+            }catch(err){
+              navigator.notification.alert(
+                'Ocurrió un error, intenta de nuevo más tarde.',
+                // err,
+                  null,
+                'DenunciApp',
+                'Continuar'
+              );
+            }
+          });
+
           myScroll.refresh();
       		myScroll.scrollTo(0,0);
           var piechart = new google.visualization.PieChart(document.getElementById('piechart'));
