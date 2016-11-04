@@ -1058,6 +1058,7 @@ function drawGeoChart() {
       $('#tipo .hm').text($(this).text());
       $('#tipo .hm')[0].dataset.code = $(this)[0].dataset.code;
       $("#tipo .mn").slideToggle();
+      $("#columnchart").hide();
       deps = [
           ['States','Departamento', 'Denuncias']
         ];
@@ -1120,7 +1121,7 @@ function drawGeoChart() {
 
       }
 
-      dibujar_chart(deps);
+      dibujar_chart(deps, "0");
 
     },
     error: function(){
@@ -1208,7 +1209,7 @@ function dibujar_chart(deps, tipo){
 
   $.ajax({
 
-    data: {'code': code},
+    data: {'code': code, 'tipo': tipo},
     url: "https://"+direccion+"/estadisticas/obtD/",
     type: 'get',
     success: function(data){
@@ -1221,14 +1222,40 @@ function dibujar_chart(deps, tipo){
 
 
      for(var i=0; i<data.length;i++){
-       lista.push([
-         data[i].fields.nombre,
-         data[i].cant,
-         data[i].cant
-       ]);
+       if (tipo=='0') {
+         lista.push([
+           data[i].fields.nombre,
+           data[i].fields.denuncias,
+           data[i].fields.denuncias
+         ]);
+       }else{
+         lista.push([
+           data[i].fields.nombre,
+           data[i].filtrado,
+           data[i].filtrado
+         ]);
+       }
      }
 
       var tabla = new google.visualization.arrayToDataTable(lista);
+
+      var color;
+      switch (tipo) {
+        case 'CR':
+          color = ['#406060'];
+          break;
+        case 'MU':
+          color = ['#404060'];
+          break;
+        case 'MA':
+          color = ['#406040'];
+          break;
+        case 'DH':
+          color = ['#604020'];
+          break;
+        default:
+          color = ['#4370bb'];
+      }
 
       var options1 = {
         title: dep,
@@ -1239,15 +1266,45 @@ function dibujar_chart(deps, tipo){
             easing: 'out',
             startup: true,
         },
-        colors: ['#4370bb'],
+        colors: color,
         hAxis:{
           format: 'decimal',
           minValue: 0,
         },
       };
 
+      document.getElementById('columnchart').style.height = (lista.length * 35)+"px";
+
       var chart1 = new google.visualization.BarChart(document.getElementById('columnchart'));
       chart1.draw(tabla, options1);
+
+      google.visualization.events.addListener(chart1, 'select', function(){
+
+        console.dir(chart1.getSelection());
+        $('#contenidoCuerpo').load("opciones/opcion8.html");
+
+        var data_pie = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['Work',     11],
+          ['Eat',      2],
+          ['Commute',  2],
+          ['Watch TV', 2],
+          ['Sleep',    7]
+        ]);
+
+        var options_pie = {
+          title: 'My Daily Activities'
+        };
+
+        setTimeout(function(){
+          myScroll.refresh();
+      		myScroll.scrollTo(0,0);
+          var piechart = new google.visualization.PieChart(document.getElementById('piechart'));
+          piechart.draw(data_pie, options_pie);
+        }, 300);
+
+      });
+
       myScroll.refresh();
       myScroll.scrollToElement('#columnchart', 800, true, true);
     },
