@@ -1,6 +1,6 @@
 // Poner un ejemplo en el punto de referencia.
 // Declaraci�n de variables globales
-var myScroll, myScrollMenu, cuerpo, menuprincipal, wrapper, estado;
+var myScroll, myScrollMenu, cuerpo, menuprincipal, wrapper, estado, zoomer;
 // var direccion = '192.168.0.89:8000'
 var direccion = 'www.denunciappguatemala.com';
 var geoLconfirmada = false;
@@ -56,14 +56,22 @@ var app = {
       var hammertime = new Hammer(wrapper, {domEvents: true});
 
       hammertime.on('swiperight', function(ev){
-        if(!$('#mapa').find(ev.target).length && !$('#chart_div').find(ev.target).length){
+        if(!$('#mapa').find(ev.target).length){//!$('#chart_div').find(ev.target).length){
+          if($('#chart_div').length){
+            if(zoomer.scale != 1)
+              return;
+          }
           if(estado=="cuerpo")
             menu('menu');
         }
       });
 
       hammertime.on('swipeleft', function(ev){
-        if(!$('#mapa').find(ev.target).length && !$('#chart_div').find(ev.target).length){
+        if(!$('#mapa').find(ev.target).length){//!$('#chart_div').find(ev.target).length){
+          if($('#chart_div').length){
+            if(zoomer.scale != 1)
+              return;
+          }
           if(estado!="cuerpo")
             menu('menu');
         }
@@ -1170,7 +1178,7 @@ function dibujar_chart(deps, tipo){
   var chart = new google.visualization.GeoChart(document.getElementById('chart_div'));
   chart.draw(datos, options);
 
-  var zoomer = new IScroll('#chart_div', {
+  zoomer = new IScroll('#chart_div', {
     zoom: true,
     scrollX: true,
     scrollY: true,
