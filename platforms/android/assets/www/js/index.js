@@ -1217,7 +1217,8 @@ function dibujar_chart(deps, tipo){
       var lista = [[
         'Municipio',
         'Cantidad',
-        { role: 'annotation' }
+        { role: 'annotation' },
+        { role: 'hidden' }
       ]];
 
 
@@ -1226,13 +1227,15 @@ function dibujar_chart(deps, tipo){
          lista.push([
            data[i].fields.nombre,
            data[i].fields.denuncias,
-           data[i].fields.denuncias
+           data[i].fields.denuncias,
+           data[i].pk
          ]);
        }else{
          lista.push([
            data[i].fields.nombre,
            data[i].filtrado,
-           data[i].filtrado
+           data[i].filtrado,
+           data[i].pk
          ]);
        }
      }
@@ -1280,21 +1283,14 @@ function dibujar_chart(deps, tipo){
 
       google.visualization.events.addListener(chart1, 'select', function(){
 
-        console.dir(chart1.getSelection());
+        var seleccion = chart1.getSelection();
+        // console.log(tabla.getValue(seleccion[0].row, 3));
+        var id = tabla.getValue(seleccion[0].row, 3);
+
         $('#contenidoCuerpo').load("opciones/opcion8.html");
 
-        var data_pie = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Day'],
-          ['Work',     11],
-          ['Eat',      2],
-          ['Commute',  2],
-          ['Watch TV', 2],
-          ['Sleep',    7]
-        ]);
-
-        var options_pie = {
-          title: 'My Daily Activities'
-        };
+        var data_pie;
+        var options_pie;
 
         setTimeout(function(){
           $('#retorno').on('click', function(){
@@ -1315,10 +1311,50 @@ function dibujar_chart(deps, tipo){
             }
           });
 
+          $.ajax({
+
+            type: 'get',
+            data: {'id': id},
+            dataType: 'json',
+            url: "https://"+direccion+"/estadisticas/muni_response",
+            timeout: 3000,
+            success: function(data){
+
+              options_pie = {
+                title:  data[0].fields.nombre,
+                legend: {
+                  alignment: 'center',
+                  position: 'bottom',
+                  maxLines: 4
+                },
+                // colors: ['#406060', '#404060', '#406040', '#604020']
+              };
+
+              data_pie = google.visualization.arrayToDataTable([
+                ['Tipo', 'Denuncias'],
+                ['Criminal',        data[0].tipos.CR],
+                ['Medio Ambiente',  data[0].tipos.MA],
+                ['Derechos Humanos',data[0].tipos.DH],
+                ['Municipal',       data[0].tipos.MU]
+              ]);
+
+              var piechart = new google.visualization.PieChart(document.getElementById('piechart'));
+              piechart.draw(data_pie, options_pie);
+            },
+            error: function() {
+              navigator.notification.alert(
+                'Ha ocurrido un error con el servidor, intenta de nuevo más tarde.',
+                  null,
+                'Error',
+                'OK'
+              );
+            }
+
+          });
+
+
           myScroll.refresh();
       		myScroll.scrollTo(0,0);
-          var piechart = new google.visualization.PieChart(document.getElementById('piechart'));
-          piechart.draw(data_pie, options_pie);
         }, 300);
 
       });
