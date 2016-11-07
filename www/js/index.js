@@ -1234,8 +1234,8 @@ function dibujar_chart(deps, tipo){
        if (tipo=='0') {
          lista.push([
            data[i].fields.nombre,
-           data[i].fields.denuncias,
-           data[i].fields.denuncias,
+           data[i].denuncias,
+           data[i].denuncias,
            data[i].pk
          ]);
        }else{
