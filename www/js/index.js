@@ -492,6 +492,10 @@ function busquedaMunicipio(id){
 
   $.ajax({
 
+    data: {
+      'departamento__id':id,
+      'limit':30
+    },
     type: 'get',
     dataType: 'json',
     timeout: 3000,
@@ -1331,15 +1335,15 @@ function dibujar_chart(deps, tipo){
               options_pie = {
                 title:  data[0].fields.nombre,
                 legend: {
-                  alignment: 'center',
-                  position: 'bottom',
+                  // alignment: 'center',
+                  position: 'none',
                   maxLines: 4
                 },
                 // colors: ['#406060', '#404060', '#406040', '#604020']
               };
 
               data_pie = google.visualization.arrayToDataTable([
-                ['Tipo', 'Denuncias'],
+                ['Tipo',            'Denuncias'],
                 ['Criminal',        data[0].tipos.CR],
                 ['Medio Ambiente',  data[0].tipos.MA],
                 ['Derechos Humanos',data[0].tipos.DH],
@@ -1348,6 +1352,52 @@ function dibujar_chart(deps, tipo){
 
               var piechart = new google.visualization.PieChart(document.getElementById('piechart'));
               piechart.draw(data_pie, options_pie);
+
+              var est_zonas = [[
+                'Zona',
+                'Criminal',
+                'Medio Ambiente',
+                'Derechos Humanos',
+                'Municipal'
+              ]];
+
+              for (var i = 0; i < data[0].zonas.length; i++) {
+                est_zonas.push([
+                  data[0].zonas[i].zona,
+                  data[0].zonas[i].denuncias.CR,
+                  data[0].zonas[i].denuncias.MA,
+                  data[0].zonas[i].denuncias.DH,
+                  data[0].zonas[i].denuncias.MU
+                ])
+              }
+
+              var tabla_zonas = new google.visualization.arrayToDataTable(est_zonas);
+
+              var options_zonas = {
+                title: 'Denuncias por Zona',
+                legend: {
+                  position: 'top',
+                  // alignment: 'center',
+                  maxLines: 4
+                },
+                bar: { groupWidth: '75%' },
+                animation:{
+                    duration: 500,
+                    easing: 'out',
+                    startup: true,
+                },
+                // colors: color,
+                hAxis:{
+                  format: 'decimal',
+                  minValue: 0,
+                },
+              };
+
+              document.getElementById('bar_chart').style.height = (data[0].zonas.length * 75)+"px";
+
+              var bar_chart = new google.visualization.BarChart(document.getElementById('bar_chart'));
+              bar_chart.draw(tabla_zonas, options_zonas);
+
             },
             error: function() {
               navigator.notification.alert(
