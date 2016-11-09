@@ -57,7 +57,7 @@ var app = {
 
       hammertime.on('swiperight', function(ev){
         if(!$('#mapa').find(ev.target).length){//!$('#chart_div').find(ev.target).length){
-          if($('#chart_div').length){
+          if($('#chart_div').length&&$('#chart_div').find(ev.target).length){
             if(zoomer.scale != 1)
               return;
           }
@@ -68,7 +68,7 @@ var app = {
 
       hammertime.on('swipeleft', function(ev){
         if(!$('#mapa').find(ev.target).length){//!$('#chart_div').find(ev.target).length){
-          if($('#chart_div').length){
+          if($('#chart_div').length&&$('#chart_div').find(ev.target).length){
             if(zoomer.scale != 1)
               return;
           }
@@ -1397,6 +1397,8 @@ function dibujar_chart(deps, tipo){
 
               var bar_chart = new google.visualization.BarChart(document.getElementById('bar_chart'));
               bar_chart.draw(tabla_zonas, options_zonas);
+              myScroll.refresh();
+          		myScroll.scrollTo(0,0);
 
             },
             error: function() {
@@ -1410,9 +1412,6 @@ function dibujar_chart(deps, tipo){
 
           });
 
-
-          myScroll.refresh();
-      		myScroll.scrollTo(0,0);
         }, 300);
 
       });
