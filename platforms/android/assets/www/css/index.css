@@ -238,6 +238,22 @@ ul.selector > li > a {
     background-color:#0f6f91;
 }
 
+.acercade{
+	width: 100%;
+	/*height: 1000px;*/
+}
+
+.acercade p strong{
+	font-family: 'Montserrat', sans-serif;
+	font-size: large;
+}
+
+.acercade p{
+	font-family: 'Roboto', sans-serif;
+	font-size: medium;
+	text-align: center;
+}
+
 #header .btn {
     position: absolute;
 		font-family: 'Icon';

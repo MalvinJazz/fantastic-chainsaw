@@ -824,6 +824,13 @@ function menu(opcion){
 
 		// Refrescamos el elemento iscroll seg�n el contenido ya a�adido mediante ajax, y hacemos que se desplace al top
 		setTimeout(function(){
+      if($('.acercade').length){
+        if(window.innerHeight<510){
+          var dif = window.innerHeight - 510;
+          $('.acercade').css('height', (window.innerHeight+dif)+"px");
+        }
+      }
+
       myScroll.refresh();
   		myScroll.scrollTo(0,0);
     }, 300);
@@ -1452,6 +1459,9 @@ function initMap(){
   if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function(position){
 
+        // setTimeout(function() {
+        //   document.getElementById('#mapa').style.height = (window.innerHeight*0.6) + 'px';
+        // }, 300);
         document.getElementById('mapa').style.height = (window.innerHeight*0.6) + 'px';
         console.log(window.innerHeight);
 
