@@ -1459,9 +1459,6 @@ function initMap(){
   if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function(position){
 
-        // setTimeout(function() {
-        //   document.getElementById('#mapa').style.height = (window.innerHeight*0.6) + 'px';
-        // }, 300);
         document.getElementById('mapa').style.height = (window.innerHeight*0.6) + 'px';
         console.log(window.innerHeight);
 
@@ -1500,7 +1497,6 @@ function initMap(){
           success: function(data){
             contador = 0;
 
-            // alert('1');
             for(var i=0; i<data.length; i++){
 
               image = {
