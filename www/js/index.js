@@ -499,7 +499,7 @@ function busquedaMunicipio(id){
     type: 'get',
     dataType: 'json',
     timeout: 3000,
-    url: "https://"+direccion+"/estadisticas/api/local/municipio/?departamento__id="+id,
+    url: "https://"+direccion+"/estadisticas/api/local/municipio/",
     success: function(data){
 
       var municipios = document.getElementById("muni_id");
@@ -716,7 +716,8 @@ function getDepartamentos(){
     type: 'get',
     dataType: "json",
     timeout: 3000,
-    url: "https://"+direccion+"/estadisticas/api/local/departamento?limit=22",
+    //url: "https://"+direccion+"/estadisticas/api/local/departamento?limit=22",
+    url: "../json/departamentos.json",
     success: function(data){
       for(var i=0; i<data.objects.length; i++){
 
