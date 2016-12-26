@@ -365,7 +365,8 @@ function busquedaMotivo(id){
     type: 'get',
     dataType: 'json',
     timeout: 3000,
-    url: 'https://'+direccion+'/denuncias/api/d1/motivo?tipo='+id,
+    // url: 'https://'+direccion+'/denuncias/api/d1/motivo?tipo='+id,
+    url: '../json/motivos/'+id+'.json',
     success: function(data){
       institucion = [];
       var motivos = document.getElementById('motivo_id');
@@ -492,14 +493,15 @@ function busquedaMunicipio(id){
 
   $.ajax({
 
-    data: {
-      'departamento__id':id,
-      'limit':30
-    },
+    // data: {
+    //   'departamento__id':id,
+    //   'limit':30
+    // },
     type: 'get',
     dataType: 'json',
     timeout: 3000,
-    url: "https://"+direccion+"/estadisticas/api/local/municipio/",
+    // url: "https://"+direccion+"/estadisticas/api/local/municipio/",
+    url: "../json/municipios/departamento"+id+".json",
     success: function(data){
 
       var municipios = document.getElementById("muni_id");
