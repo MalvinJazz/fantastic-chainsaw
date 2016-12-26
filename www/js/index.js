@@ -601,7 +601,7 @@ function receivedEvent() {
   navigator.camera.getPicture(onSuccess, onFail, {
     quality: 50,
     destinationType: Camera.DestinationType.DATA_URL,
-    saveToPhotoAlbum: true,
+    saveToPhotoAlbum: false,
     encodingType    : navigator.camera.EncodingType.JPEG,
   });
 
