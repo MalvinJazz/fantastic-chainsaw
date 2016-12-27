@@ -1,8 +1,8 @@
 iOS:
-no abre camara.
-municipios.
+no abre camara. Verficar con el dispositivo.
+"municipios.
 categorias.
-error de servidor en deps.
+error de servidor en deps." Corregidos!
 
 Android:
-WebView no funciona con iScroll.
+WebView no funciona con iScroll.: Solucion, instalar CrossWalk WebView
