@@ -366,7 +366,7 @@ function busquedaMotivo(id){
     dataType: 'json',
     timeout: 3000,
     // url: 'https://'+direccion+'/denuncias/api/d1/motivo?tipo='+id,
-    url: '../json/motivos/'+id+'.json',
+    url: 'json/motivos/'+id+'.json',
     success: function(data){
       institucion = [];
       var motivos = document.getElementById('motivo_id');
@@ -434,7 +434,8 @@ function busquedaZona(id){
     type: 'get',
     dataType: 'json',
     timeout: 3000,
-    url: "https://"+direccion+"/estadisticas/api/local/direccion/?municipio__id="+id,
+    // url: "https://"+direccion+"/estadisticas/api/local/direccion/?municipio__id="+id,
+    url: "json/municipios/zonas/municipio"+id+".json",
     success: function(data){
 
       var zonas = document.getElementById("zona_id");
@@ -501,7 +502,7 @@ function busquedaMunicipio(id){
     dataType: 'json',
     timeout: 3000,
     // url: "https://"+direccion+"/estadisticas/api/local/municipio/",
-    url: "../json/municipios/departamento"+id+".json",
+    url: "json/municipios/departamento"+id+".json",
     success: function(data){
 
       var municipios = document.getElementById("muni_id");
@@ -719,7 +720,7 @@ function getDepartamentos(){
     dataType: "json",
     timeout: 3000,
     //url: "https://"+direccion+"/estadisticas/api/local/departamento?limit=22",
-    url: "../json/departamentos.json",
+    url: "json/departamentos.json",
     success: function(data){
       for(var i=0; i<data.objects.length; i++){
 
