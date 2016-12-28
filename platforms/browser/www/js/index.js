@@ -365,7 +365,8 @@ function busquedaMotivo(id){
     type: 'get',
     dataType: 'json',
     timeout: 3000,
-    url: 'https://'+direccion+'/denuncias/api/d1/motivo?tipo='+id,
+    // url: 'https://'+direccion+'/denuncias/api/d1/motivo?tipo='+id,
+    url: '../json/motivos/'+id+'.json',
     success: function(data){
       institucion = [];
       var motivos = document.getElementById('motivo_id');
@@ -492,14 +493,15 @@ function busquedaMunicipio(id){
 
   $.ajax({
 
-    data: {
-      'departamento__id':id,
-      'limit':30
-    },
+    // data: {
+    //   'departamento__id':id,
+    //   'limit':30
+    // },
     type: 'get',
     dataType: 'json',
     timeout: 3000,
-    url: "https://"+direccion+"/estadisticas/api/local/municipio/?departamento__id="+id,
+    // url: "https://"+direccion+"/estadisticas/api/local/municipio/",
+    url: "../json/municipios/departamento"+id+".json",
     success: function(data){
 
       var municipios = document.getElementById("muni_id");
@@ -716,7 +718,8 @@ function getDepartamentos(){
     type: 'get',
     dataType: "json",
     timeout: 3000,
-    url: "https://"+direccion+"/estadisticas/api/local/departamento?limit=22",
+    //url: "https://"+direccion+"/estadisticas/api/local/departamento?limit=22",
+    url: "../json/departamentos.json",
     success: function(data){
       for(var i=0; i<data.objects.length; i++){
 
@@ -826,7 +829,7 @@ function menu(opcion){
 		setTimeout(function(){
       if($('.acercade').length){
         if(window.innerHeight<510){
-          var dif = window.innerHeight - 490;
+          var dif = window.innerHeight - 510;
           $('.acercade').css('height', (window.innerHeight+dif)+"px");
         }
       }
@@ -1459,9 +1462,6 @@ function initMap(){
   if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function(position){
 
-        // setTimeout(function() {
-        //   document.getElementById('#mapa').style.height = (window.innerHeight*0.6) + 'px';
-        // }, 300);
         document.getElementById('mapa').style.height = (window.innerHeight*0.6) + 'px';
         console.log(window.innerHeight);
 
@@ -1500,7 +1500,6 @@ function initMap(){
           success: function(data){
             contador = 0;
 
-            // alert('1');
             for(var i=0; i<data.length; i++){
 
               image = {

@@ -365,7 +365,8 @@ function busquedaMotivo(id){
     type: 'get',
     dataType: 'json',
     timeout: 3000,
-    url: 'https://'+direccion+'/denuncias/api/d1/motivo?tipo='+id,
+    // url: 'https://'+direccion+'/denuncias/api/d1/motivo?tipo='+id,
+    url: 'json/motivos/'+id+'.json',
     success: function(data){
       institucion = [];
       var motivos = document.getElementById('motivo_id');
@@ -433,7 +434,8 @@ function busquedaZona(id){
     type: 'get',
     dataType: 'json',
     timeout: 3000,
-    url: "https://"+direccion+"/estadisticas/api/local/direccion/?municipio__id="+id,
+    // url: "https://"+direccion+"/estadisticas/api/local/direccion/?municipio__id="+id,
+    url: "json/municipios/zonas/municipio"+id+".json",
     success: function(data){
 
       var zonas = document.getElementById("zona_id");
@@ -492,14 +494,15 @@ function busquedaMunicipio(id){
 
   $.ajax({
 
-    data: {
-      'departamento__id':id,
-      'limit':30
-    },
+    // data: {
+    //   'departamento__id':id,
+    //   'limit':30
+    // },
     type: 'get',
     dataType: 'json',
     timeout: 3000,
-    url: "https://"+direccion+"/estadisticas/api/local/municipio/?departamento__id="+id,
+    // url: "https://"+direccion+"/estadisticas/api/local/municipio/",
+    url: "json/municipios/departamento"+id+".json",
     success: function(data){
 
       var municipios = document.getElementById("muni_id");
@@ -716,7 +719,8 @@ function getDepartamentos(){
     type: 'get',
     dataType: "json",
     timeout: 3000,
-    url: "https://"+direccion+"/estadisticas/api/local/departamento?limit=22",
+    //url: "https://"+direccion+"/estadisticas/api/local/departamento?limit=22",
+    url: "json/departamentos.json",
     success: function(data){
       for(var i=0; i<data.objects.length; i++){
 
@@ -1459,9 +1463,6 @@ function initMap(){
   if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function(position){
 
-        // setTimeout(function() {
-        //   document.getElementById('#mapa').style.height = (window.innerHeight*0.6) + 'px';
-        // }, 300);
         document.getElementById('mapa').style.height = (window.innerHeight*0.6) + 'px';
         console.log(window.innerHeight);
 
@@ -1500,7 +1501,6 @@ function initMap(){
           success: function(data){
             contador = 0;
 
-            // alert('1');
             for(var i=0; i<data.length; i++){
 
               image = {
