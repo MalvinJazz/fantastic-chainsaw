@@ -5,4 +5,4 @@ categorias.
 error de servidor en deps." Corregidos!
 
 Android:
-WebView no funciona con iScroll.: Solucion, instalar CrossWalk WebView
+iScroll no funciona con WebView.: Solucion, instalar CrossWalk WebView
