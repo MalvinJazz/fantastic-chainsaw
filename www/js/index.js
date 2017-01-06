@@ -286,6 +286,7 @@ function enviarInfo(){
             'OK'
           );
           document.getElementById('form1').reset();
+          document.getElementById('archivo').value = "";
           regresar(1);
           myScroll.refresh();
           myScroll.scrollTo(0,0);
@@ -453,8 +454,8 @@ function busquedaZona(id){
         setTimeout(function(){myScroll.refresh()}, 300);
       }
 
-      for(var i=0; i<data.objects.length;i++){
-
+      for(var i=data.objects.length-1; i>-1;i--){
+        
         var nuevo = document.createElement("li");
 
         nuevo.dataset.code = data.objects[i].id;
