@@ -3,7 +3,7 @@ clear
 
 for motivo in "CR" "MU" "MA" "DH"
 do
-
+  clear
   echo -e "\e[31mDescargando archivo $motivo\e[0m"
   wget -O "$motivo.sindepurar.json" "https://www.denunciappguatemala.com/denuncias/api/d1/motivo?tipo="$motivo | "sh"
 
