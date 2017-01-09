@@ -275,7 +275,7 @@ function enviarInfo(){
       // "http://"+direccion+"/estadisticas/api/local/departamento?limit=22"
       type: 'POST',
       contentType: 'application/json',
-      timeout: 10000,
+      timeout: 15000,
       dataType: 'json',
       statusCode: {
         201: function(){
@@ -455,7 +455,7 @@ function busquedaZona(id){
       }
 
       for(var i=data.objects.length-1; i>-1;i--){
-        
+
         var nuevo = document.createElement("li");
 
         nuevo.dataset.code = data.objects[i].id;
@@ -603,10 +603,13 @@ function onFail(message){
 function receivedEvent() {
 
   navigator.camera.getPicture(onSuccess, onFail, {
-    quality: 50,
+    quality: 40,
     destinationType: Camera.DestinationType.DATA_URL,
     saveToPhotoAlbum: true,
-    encodingType    : navigator.camera.EncodingType.JPEG,
+    targetWidth: 480,
+    targetHeight: 640,
+    encodingType: navigator.camera.EncodingType.JPEG,
+    correctOrientation: true
   });
 
   document.getElementById('photo').style.display = 'none';
