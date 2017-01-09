@@ -603,7 +603,7 @@ function onFail(message){
 function receivedEvent() {
 
   navigator.camera.getPicture(onSuccess, onFail, {
-    quality: 40,
+    quality: 60,
     destinationType: Camera.DestinationType.DATA_URL,
     saveToPhotoAlbum: true,
     targetWidth: 480,
