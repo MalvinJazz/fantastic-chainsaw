@@ -607,11 +607,11 @@ function receivedEvent() {
   navigator.camera.getPicture(onSuccess, onFail, {
     quality: 60,
     destinationType: Camera.DestinationType.DATA_URL,
-    saveToPhotoAlbum: true,
     targetWidth: 480,
     targetHeight: 640,
     encodingType: navigator.camera.EncodingType.JPEG,
-    correctOrientation: true
+    correctOrientation: true,
+    saveToPhotoAlbum: false
   });
 
   document.getElementById('photo').style.display = 'none';
