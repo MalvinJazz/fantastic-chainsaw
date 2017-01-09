@@ -164,8 +164,8 @@ function mostrarDoc(evt) {
           else
             var img = document.createElement('img');
           img.id = 'myImage';
-          img.style.height = '200px';
-          img.style.width = '200px';
+          img.style.height = '214px';
+          img.style.width = '160px';
           img.src = fr.result;
           divPhoto.appendChild(img);
         }else if (fr.result.includes('video')) {
@@ -301,6 +301,8 @@ function enviarInfo(){
           $('#id_tipo .hm')[0].dataset.code = 0;
           $('#motivo_id .hm').text("Seleccionar motivo");
           $('#motivo_id .hm')[0].dataset.code = 0;
+          $('#file')[0].value = "";
+          $("#photo").empty();
         },
         404: function(){
          navigator.notification.alert(
@@ -605,11 +607,11 @@ function receivedEvent() {
   navigator.camera.getPicture(onSuccess, onFail, {
     quality: 60,
     destinationType: Camera.DestinationType.DATA_URL,
-    saveToPhotoAlbum: true,
     targetWidth: 480,
     targetHeight: 640,
     encodingType: navigator.camera.EncodingType.JPEG,
-    correctOrientation: true
+    correctOrientation: true,
+    saveToPhotoAlbum: false
   });
 
   document.getElementById('photo').style.display = 'none';
