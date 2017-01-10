@@ -594,9 +594,9 @@ function onSuccess(imageData){
 
 function onFail(message){
   navigator.notification.alert(
-    'Cámara/Galería',
-      null,
     message,
+    null,
+    'Cámara/Galería',
     'OK'
   );
   $('#photo').hide();
@@ -731,7 +731,7 @@ function getDepartamentos(){
   var camara = document.getElementById('camara');
   camara.addEventListener('click', receivedEvent);
   //doc.addEventListener('change', mostrarDoc);
-  doc.addEventListener('change', abrir_galería);
+  doc.addEventListener('click', abrir_galería);
   enviar.addEventListener('click', enviarInfo);
   muni.addEventListener('change', busquedaZona);
   deps.addEventListener('change', busquedaMunicipio);
