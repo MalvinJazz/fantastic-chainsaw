@@ -603,7 +603,6 @@ function onFail(message){
 }
 
 function abrir_galería(){
-  alert('Funciona click');
   navigator.camera.getPicture(onSuccess, onFail, {
     quality: 60,
     destinationType: Camera.DestinationType.DATA_URL,
