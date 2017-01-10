@@ -582,8 +582,8 @@ function onSuccess(imageData){
   else
     var img = document.createElement('img');
   img.id = 'myImage';
-  img.style.height = '200px';
-  img.style.width = '200px';
+  img.style.height = '214px';
+  img.style.width = '160px';
   img.src = "data:image/jpeg;base64," + imageData;
   divPhoto.appendChild(img);
   $('#photo').show();
@@ -594,12 +594,27 @@ function onSuccess(imageData){
 
 function onFail(message){
   navigator.notification.alert(
-    'Camara cerrada.',
+    'Cámara/Galería',
       null,
     message,
     'OK'
   );
   $('#photo').hide();
+}
+
+function abrir_galería(){
+  navigator.camera.getPicture(onSuccess, onFail, {
+    quality: 60,
+    destinationType: Camera.DestinationType.DATA_URL,
+    sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+    targetWidth: 480,
+    targetHeight: 640,
+    encodingType: navigator.camera.EncodingType.JPEG,
+    correctOrientation: true,
+    saveToPhotoAlbum: false
+  });
+
+  document.getElementById('photo').style.display = 'none';
 }
 
 function receivedEvent() {
@@ -715,7 +730,8 @@ function getDepartamentos(){
   var doc = document.getElementById('file');
   var camara = document.getElementById('camara');
   camara.addEventListener('click', receivedEvent);
-  doc.addEventListener('change', mostrarDoc);
+  //doc.addEventListener('change', mostrarDoc);
+  doc.addEventListener('change', abrir_galería);
   enviar.addEventListener('click', enviarInfo);
   muni.addEventListener('change', busquedaZona);
   deps.addEventListener('change', busquedaMunicipio);
