@@ -164,8 +164,8 @@ function mostrarDoc(evt) {
           else
             var img = document.createElement('img');
           img.id = 'myImage';
-          img.style.height = '200px';
-          img.style.width = '200px';
+          img.style.height = '214px';
+          img.style.width = '160px';
           img.src = fr.result;
           divPhoto.appendChild(img);
         }else if (fr.result.includes('video')) {
@@ -275,7 +275,7 @@ function enviarInfo(){
       // "http://"+direccion+"/estadisticas/api/local/departamento?limit=22"
       type: 'POST',
       contentType: 'application/json',
-      timeout: 10000,
+      timeout: 15000,
       dataType: 'json',
       statusCode: {
         201: function(){
@@ -301,6 +301,8 @@ function enviarInfo(){
           $('#id_tipo .hm')[0].dataset.code = 0;
           $('#motivo_id .hm').text("Seleccionar motivo");
           $('#motivo_id .hm')[0].dataset.code = 0;
+          $('#file')[0].value = "";
+          $("#photo").empty();
         },
         404: function(){
          navigator.notification.alert(
@@ -455,7 +457,7 @@ function busquedaZona(id){
       }
 
       for(var i=data.objects.length-1; i>-1;i--){
-        
+
         var nuevo = document.createElement("li");
 
         nuevo.dataset.code = data.objects[i].id;
@@ -580,8 +582,8 @@ function onSuccess(imageData){
   else
     var img = document.createElement('img');
   img.id = 'myImage';
-  img.style.height = '200px';
-  img.style.width = '200px';
+  img.style.height = '214px';
+  img.style.width = '160px';
   img.src = "data:image/jpeg;base64," + imageData;
   divPhoto.appendChild(img);
   $('#photo').show();
@@ -592,7 +594,7 @@ function onSuccess(imageData){
 
 function onFail(message){
   navigator.notification.alert(
-    'Camara cerrada.',
+    'Cámara/Galería',
       null,
     message,
     'OK'
@@ -600,13 +602,31 @@ function onFail(message){
   $('#photo').hide();
 }
 
+function abrir_galería(){
+  navigator.camera.getPicture(onSuccess, onFail, {
+    quality: 60,
+    destinationType: Camera.DestinationType.DATA_URL,
+    sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+    targetWidth: 480,
+    targetHeight: 640,
+    encodingType: navigator.camera.EncodingType.JPEG,
+    correctOrientation: true,
+    saveToPhotoAlbum: false
+  });
+
+  document.getElementById('photo').style.display = 'none';
+}
+
 function receivedEvent() {
 
   navigator.camera.getPicture(onSuccess, onFail, {
-    quality: 50,
+    quality: 60,
     destinationType: Camera.DestinationType.DATA_URL,
-    saveToPhotoAlbum: true,
-    encodingType    : navigator.camera.EncodingType.JPEG,
+    targetWidth: 480,
+    targetHeight: 640,
+    encodingType: navigator.camera.EncodingType.JPEG,
+    correctOrientation: true,
+    saveToPhotoAlbum: false
   });
 
   document.getElementById('photo').style.display = 'none';
@@ -710,7 +730,8 @@ function getDepartamentos(){
   var doc = document.getElementById('file');
   var camara = document.getElementById('camara');
   camara.addEventListener('click', receivedEvent);
-  doc.addEventListener('change', mostrarDoc);
+  //doc.addEventListener('change', mostrarDoc);
+  doc.addEventListener('change', abrir_galería);
   enviar.addEventListener('click', enviarInfo);
   muni.addEventListener('change', busquedaZona);
   deps.addEventListener('change', busquedaMunicipio);
@@ -1565,4 +1586,61 @@ function checkConnection() {
     var networkState = navigator.connection.type;
 
     return networkState;
+}
+
+function comprimir(file) {
+  var reader = new FileReader();
+  reader.onloadend = function() {
+    var tempImg = new Image();
+    tempImg.onload = function() {
+      // Comprobamos con el aspect cómo será la reducción
+      // MAX_IMAGE_SIZE_PROCESS es la N que definimos como máxima
+      var MAX_WIDTH = 480;
+      var MAX_HEIGHT = 640;
+      var tempW = tempImg.width;
+      var tempH = tempImg.height;
+      if (tempW > tempH) {
+        if (tempW > MAX_WIDTH) {
+          tempH *= MAX_WIDTH / tempW;
+          tempW = MAX_WIDTH;
+        }
+      } else {
+        if (tempH > MAX_HEIGHT) {
+          tempW *= MAX_HEIGHT / tempH;
+          tempH = MAX_HEIGHT;
+        }
+      }
+      // Creamos un canvas para la imagen reducida y la dibujamos
+      var resizedCanvas = document.createElement('canvas');
+      resizedCanvas.width = tempW;
+      resizedCanvas.height = tempH;
+      var ctx = resizedCanvas.getContext("2d");
+      ctx.drawImage(this, 0, 0, tempW, tempH);
+      var dataURL = resizedCanvas.toDataURL("image/jpeg");
+
+      // Pasamos la dataURL que nos devuelve Canvas a objeto Blob
+      // Envíamos por Ajax el objeto Blob
+      // Cogiendo el valor de photo (nombre del input file)
+      var file = dataURLtoBlob(dataURL);
+      var fd = new FormData();
+      fd.append("photo", file);
+
+    };
+    tempImg.src = reader.result;
+  }
+  reader.readAsDataURL(file);
+}
+
+function dataURLtoBlob(dataURL)
+{
+	// Decodifica dataURL
+	var binary = atob(dataURL.split(',')[1]);
+	// Se transfiere a un array de 8-bit unsigned
+	var array = [];
+	var length = binary.length;
+	for(var i = 0; i < length; i++) {
+		array.push(binary.charCodeAt(i));
+	}
+	// Retorna el objeto Blob
+	return new Blob([new Uint8Array(array)], {type: 'image/jpeg'});
 }
