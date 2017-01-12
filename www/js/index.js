@@ -217,6 +217,8 @@ function enviarInfo(){
   $('#cargando').hide();
 
   $(document).ajaxStart(function(){
+    myScroll.refresh();
+    myScroll.scrollTo(0,0);
     console.log('ajaxStart');
     $('#cargando').show();
   })
